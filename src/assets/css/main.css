@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Regular';
+}
+@font-face {
+  font-family: 'Regular';
+  src: url('../fonts/Epilogue-Regular.ttf');
+}
+@font-face {
+  font-family: 'Bold';
+  src: url('../fonts/Epilogue-Bold.ttf');
+}
+@font-face {
+  font-family: 'Extra-Bold';
+  src: url('../fonts/Epilogue-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'Semi-Bold';
+  src: url('../fonts/Epilogue-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'Medium';
+  src: url('../fonts/Epilogue-Medium.ttf');
+}
+@font-face {
+  font-family: 'Jost-ExtraBold';
+  src: url('../fonts/jost/Jost-ExtraBold-BF63dc52d09ee91.ttf');
+}
+@font-face {
+  font-family: 'Jost-Bold';
+  src: url('../fonts/jost/Jost-Bold-BF63dc52d022010.ttf');
+}
+@font-face {
+  font-family: 'Jost-SemiBold';
+  src: url('../fonts/jost/Jost-SemiBold-BF63dc52d0c0560.ttf');
+}
