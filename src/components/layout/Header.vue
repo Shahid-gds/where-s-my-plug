@@ -148,29 +148,29 @@
         </div>
         <transition name="fade">
             <div v-if="isMobileMenuOpen" class="absolute z-50 w-full xl:hidden">
-                <nav class="flex flex-col py-4 px-6 bg-[#150528] text-[#917bab]">
+                <nav class="flex flex-col py-4 px-6 bg-gradient-to-t from-[#468f85] bg-[#61c1b4]">
                     <ul class="">
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white] pb-4">
                             <a href="#">Dispensaries</a>
                         </li>
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white] pb-4">
                             <a href="#">Deliveries</a>
                         </li>
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white] pb-4">
                             <a href="#">Brands</a>
                         </li>
-                        <li class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                        <li class="text-[white] pb-4 active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <div class="relative">
                               <div class="product-btn cursor-pointer">Product</div>
                             </div>
                           </li>
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white] pb-4">
                             <a href="#">Deals</a>
                         </li>
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white] pb-4">
                             <a href="#">Learn</a>
                         </li>
-                        <li class="text-[#bec3c2]">
+                        <li class="text-[white]">
                             <a href="#">Strains</a>
                         </li>
                     </ul>
