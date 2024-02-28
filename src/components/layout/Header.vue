@@ -200,12 +200,6 @@ const hideSearchInput = () => {
 
 
 <style scoped>
-.header {
-    background-image: url('@/assets/images/HeaderBg.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 
 .fade-enter-active,
 .fade-leave-active {
