@@ -44,7 +44,7 @@
             </div>
         </transition-group>
         <div class="flex justify-center pt-[2rem]">
-            <button class="bg-[#61c1b4] p-4 px-6 rounded-full text-white font-[Jost-Bold]">View All Dispensaries</button>
+            <button class="hover-btn bg-[#61c1b4] p-4 px-6 rounded-full text-white font-[Jost-Bold]">View All Dispensaries</button>
         </div>
     </section>
 </template>

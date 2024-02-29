@@ -1,7 +1,7 @@
 <template>
     <header class="w-full">
         <!-- Top Header -->
-        <div class="lg:block hidden p-3 px-16">
+        <div class="lg:block hidden w-full p-3 px-16 top-header">
             <div class="flex items-start justify-between">
                 <div class="flex items-center space-x-2">
                     <div class="">
@@ -48,33 +48,33 @@
                 <div>
                     <ul class="flex space-x-10">
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Dispensaries</a>
                         </li>
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Deliveries</a>
                         </li>
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Brands</a>
                         </li>
-                        <li class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                        <li class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <div class="relative">
                               <div class="product-btn cursor-pointer">Product</div>
                             </div>
                           
                           </li>
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Deals</a>
                         </li>
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Learn</a>
                         </li>
                         <li
-                            class="text-[#bec3c2] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Strains</a>
                         </li>
                     </ul>
@@ -281,5 +281,10 @@ const hideSearchInput = () => {
         transform: translateY(-20px);
     }
 }
-
+@media(max-width:1900px) {
+ .top-header{
+    padding-right: 2rem;
+    padding-left: 2rem;
+ }
+}
 </style>

@@ -13,30 +13,30 @@
                                 of type and scrambled it to make a type specimen book.</p>
                         </div>
                         <div class="flex items-center space-x-4 py-6">
-                            <div class="w-[50px] h-[50px] border-2 p-4 rounded-full shadow-xl">
-                                <img src="../icons/facebook.svg" alt="">
-                            </div>
-                            <div class="w-[50px] h-[50px] border-2 p-4 rounded-full shadow-xl">
-                                <img src="../icons/googlePlus.svg" alt="">
-                            </div>
-                            <div class="w-[50px] h-[50px] border-2 p-4 rounded-full shadow-xl">
-                                <img src="../icons/twitter.svg" alt="">
-                            </div>
+                            <a href="#" class="hover-btn w-[50px] h-[50px] border-2 p-3.5 rounded-full shadow-xl">
+                                <img class="w-full" src="../icons/facebook.svg" alt="">
+                            </a>
+                            <a href="#" class="hover-btn w-[50px] h-[50px] border-2 p-3 py-4 rounded-full shadow-xl">
+                                <img class="w-full" src="../icons/googlePlus.svg" alt="">
+                            </a>
+                            <a href="#" class="hover-btn w-[50px] h-[50px] border-2 p-3.5 rounded-full shadow-xl">
+                                <img class="w-full" src="../icons/twitter.svg" alt="">
+                            </a>
                         </div>
                     </div>
                     <div class="w-1/2 px-6 pb-6 2xl:block hidden">
-                        <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Quick Links</h1>
-                        <ul class="text-[18px] text-[#444444]">
-                            <li class="pb-4">><a href="#"
-                                    class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                    :active-class="'active-route text-[#0000] font-[600]'"> About us</a></li>
-                            <li class="pb-4">><a href="#"
+                        <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">About</h1>
+                        <ul class="text-[18px] text-[#191a1a]">
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
+                                    class="active-route-link text-[#444444] font-[Regular] hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                    :active-class="'active-route text-[#444444]'"> About us</a></li>
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Careers</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Contact us</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> FAQs</a></li>
                         </ul>
@@ -44,22 +44,22 @@
                     <div class="w-1/2 px-6 pb-6 2xl:block hidden">
                         <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Dispensaries In</h1>
                         <ul class="text-[18px] text-[#444444]">
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Seattle</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Portland</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> San Francisco</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Toronto</a></li>
-                            <li>><a href="#"
+                            <li><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Detroit</a></li>
                         </ul>
@@ -67,37 +67,37 @@
                     <div class="w-[60%] px-6 2xl:block hidden">
                         <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Privacy & Terms</h1>
                         <ul class="text-[18px] text-[#444444]">
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Commercial Terms <br> <span class="text-transparent">></span>  Of Use</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Privacy policy</a></li>
-                            <li class="pb-4">><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Do not sell my personal  <span class="text-transparent">></span> information</a></li>
                         </ul>
                     </div>
                     <div class="flex pt-[5rem] justify-between 2xl:hidden">
                         <div class="w-full pb-6 md:block hidden">
-                            <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Quick Links</h1>
+                            <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">About</h1>
                             <ul class="text-[18px] text-[#444444]">
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#0000] font-[600]'"> About us</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Careers</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Contact us</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> FAQs</a></li>
                             </ul>
@@ -105,22 +105,22 @@
                         <div class="w-full pb-6 md:block hidden">
                             <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Dispensaries In</h1>
                             <ul class="text-[18px] text-[#444444]">
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Seattle</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Portland</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> San Francisco</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Toronto</a></li>
-                                <li>><a href="#"
+                                <li><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Detroit</a></li>
                             </ul>
@@ -128,18 +128,18 @@
                         <div class="w-full md:hidden px-6">
                            <div class="flex justify-between">
                             <div class="w-full pb-6">
-                                <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Quick Links</h1>
+                                <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">About</h1>
                                 <ul class="text-[18px] text-[#444444]">
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#0000] font-[600]'"> About us</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Careers</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Contact us</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> FAQs</a></li>
                                 </ul>
@@ -147,19 +147,19 @@
                             <div class="w-full pb-6">
                                 <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Dispensaries In</h1>
                                 <ul class="text-[18px] text-[#444444]">
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Seattle</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Portland</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> San Francisco</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Toronto</a></li>
                                     <li>><a href="#"
@@ -171,19 +171,19 @@
                             <div class="w-full">
                                 <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Privacy & Terms</h1>
                                 <ul class="text-[18px] text-[#444444]">
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Commercial Terms <br> <span class="text-transparent">></span>  Of Use</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Privacy policy</a></li>
-                                    <li class="pb-4">><a href="#"
+                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Do not sell my personal <br> <span class="text-transparent">></span> information</a></li>
                                 </ul>
@@ -192,19 +192,19 @@
                         <div class="w-full md:block hidden">
                             <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Privacy & Terms</h1>
                             <ul class="text-[18px] text-[#444444]">
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Commercial Terms <br> <span class="text-transparent">></span>  Of Use</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Privacy policy</a></li>
-                                <li class="pb-4">><a href="#"
+                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Do not sell my personal <br> <span class="text-transparent">></span> information</a></li>
                             </ul>

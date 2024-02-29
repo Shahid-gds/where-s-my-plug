@@ -2,7 +2,7 @@
     <div class="mt-[3rem]">
         <carousel-3d class="" :autoplay="true" :disable3d="true" :space="500" :clickable="false">
             <slide class="" v-for="(slide, i) in slides" :index="i" :key="i">
-                <div class="rounded-2xl sm:p-8 p-6 border-2 border-white hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white] shadow-xl">
+                <div class="rounded-2xl p-6 border-2 border-white hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white] shadow-xl">
                     <div class="text-left ">
                         <div class="">
                             <h1 class="sm:text-[25px] text-[18px] font-[Extra-Bold]">{{ slide.heading }}</h1>

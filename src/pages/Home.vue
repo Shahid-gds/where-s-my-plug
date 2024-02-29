@@ -82,5 +82,6 @@
   
   @media(max-width:1900px) {
  
-  }</style>
+  }
+</style>
      
