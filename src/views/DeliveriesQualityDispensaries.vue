@@ -1,6 +1,6 @@
 <template>
-    <section class="py-28 relative">
-        <div class="container mx-auto px-10 flex justify-center items-center h-full] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <section class="pb-[10rem] relative">
+        <div class="container mx-auto px-10 flex justify-center items-center h-full] absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="relative lg:block hidden">
                 <div class="xl:w-[1280px]">
                     <img class="" src="../assets/images/qualityProductsLabel.svg" alt="">
@@ -89,33 +89,29 @@
                     </div>
             </div>
         </div>
-        <div class="overflow-hidden pt-[8rem]">
-            <div class="flex justify-center">
-                <div class="py-6 relative">
-                    <div class="bg-[#61c1b4] w-[182px] h-0.5">
-                        <div class="w-full absolute top-0 ">
-                            <img class="mr-auto ml-auto" src="../components/icons/drugLeaf.svg" alt="">
-                        </div>
+        <div class="overflow-hidden pt-[15rem]">
+         <div class="flex justify-center">
+            <div class="py-6 relative">
+                <div class="bg-[#61c1b4] w-[182px] h-0.5">
+                    <div class="w-full absolute top-0 ">
+                        <img class="mr-auto ml-auto" src="../components/icons/drugLeaf.svg" alt="">
                     </div>
                 </div>
+              </div>
+         </div>
+         <div class="flex justify-center px-6">
+            <div class="text-center">
+                <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Quality dispensaries</h1>
+                <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Featured Cannabis Products</h1>
             </div>
-            <div class="flex justify-center px-6">
-                <div class="text-center">
-                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Quality Products</h1>
-                    <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Great Weed You Can Find Today!</h1>
-                </div>
-            </div>
-            <div>
-                <QualityProductsCard />
-            </div>
+         </div>
+         <div class="overflow-hidden">
+            <QualityDispensariesCarousel />
+         </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import QualityProductsCard from '@/components/layout/UI/QualityProductsCard.vue';
+import QualityDispensariesCarousel from '@/components/layout/UI/QualityDispensariesCarousel.vue';
 </script>
-
-<style scoped>
-   
-</style>

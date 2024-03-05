@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute header w-full px-16 p-3 xl:block hidden">
+        <div class="absolute header w-full px-16 p-3 xl:block hidden z-50">
             <nav class="flex items-center justify-between ">
                 <div>
                     <a href="#">
@@ -47,24 +47,26 @@
                 </div>
                 <div>
                     <ul class="flex space-x-10">
-                        <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Dispensaries</a>
+                        <li class="">
+                            <router-link :to="{ name: 'Home' }"
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Dispensaries</router-link>
                         </li>
-                        <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Deliveries</a>
+                        <li class="">
+                            <router-link :to="{ name: 'Deliveries' }"  class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                            :active-class="'active-route text-[black] font-[600]'">Deliveries</router-link>
                         </li>
                         <li
                             class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Brands</a>
                         </li>
-                        <li class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                        <li
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <div class="relative">
-                              <div class="product-btn cursor-pointer">Product</div>
+                                <div class="product-btn cursor-pointer">Product</div>
                             </div>
-                          
-                          </li>
+
+                        </li>
                         <li
                             class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <a href="#">Deals</a>
@@ -104,13 +106,16 @@
                             <h1>1</h1>
                         </div>
                     </div>
-                    
-                    <div :class="{'show-search': isSearchVisible, 'hide-search': !isSearchVisible}" class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
-                        <input type="search" placeholder="Search..." class="border border-gray-300 p-3 px-6 rounded-xl relative">
-                        <button  @click="hideSearchInput" class="bg-[#61c1b4] rounded-full py-0.5 w-6 h-6 absolute -right-2 -top-2 text-white font-bold">&#x2715</button>
-                    </div>                    
+
+                    <div :class="{ 'show-search': isSearchVisible, 'hide-search': !isSearchVisible }"
+                        class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
+                        <input type="search" placeholder="Search..."
+                            class="border border-gray-300 p-3 px-6 rounded-xl relative">
+                        <button @click="hideSearchInput"
+                            class="bg-[#61c1b4] rounded-full py-0.5 w-6 h-6 absolute -right-2 -top-2 text-white font-bold">&#x2715</button>
+                    </div>
                 </div>
-               
+
             </nav>
         </div>
         <div class="flex items-center justify-between p-6 cursor-pointer xl:hidden">
@@ -159,11 +164,12 @@
                         <li class="text-[white] pb-4">
                             <a href="#">Brands</a>
                         </li>
-                        <li class="text-[white] pb-4 active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
+                        <li
+                            class="text-[white] pb-4 active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
                             <div class="relative">
-                              <div class="product-btn cursor-pointer">Product</div>
+                                <div class="product-btn cursor-pointer">Product</div>
                             </div>
-                          </li>
+                        </li>
                         <li class="text-[white] pb-4">
                             <a href="#">Deals</a>
                         </li>
@@ -179,6 +185,7 @@
         </transition>
     </header>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 
@@ -200,7 +207,6 @@ const hideSearchInput = () => {
 
 
 <style scoped>
-
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -223,15 +229,17 @@ const hideSearchInput = () => {
         margin-left: auto;
     }
 }
+
 .submenu-enter-active,
 .submenu-leave-active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .submenu-enter-to,
 .submenu-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
+
 .submenu::before {
     content: '';
     position: absolute;
@@ -243,21 +251,25 @@ const hideSearchInput = () => {
     transform: rotate(45deg);
     z-index: -2;
     box-shadow: rgba(0, 0, 0, 0.7);
-  }
-.product-btn::after{
+}
+
+.product-btn::after {
     content: '\f107';
     font-family: FontAwesome;
     position: absolute;
     left: 4.1rem;
 }
+
 .show-search {
     animation: slideIn 0.3s ease forwards;
-    transition: opacity 0.5s ease; /* Add transition property */
+    transition: opacity 0.5s ease;
+    /* Add transition property */
 }
 
 .hide-search {
     animation: slideOut 0.3s ease forwards;
-    transition: opacity 0.5s ease; /* Add transition property */
+    transition: opacity 0.5s ease;
+    /* Add transition property */
 }
 
 @keyframes slideIn {
@@ -265,6 +277,7 @@ const hideSearchInput = () => {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -276,15 +289,17 @@ const hideSearchInput = () => {
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
         transform: translateY(-20px);
     }
 }
+
 @media(max-width:1900px) {
- .top-header{
-    padding-right: 2rem;
-    padding-left: 2rem;
- }
+    .top-header {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
 }
 </style>

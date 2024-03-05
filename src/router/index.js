@@ -10,12 +10,12 @@ const router = createRouter({
       meta: {layout: 'Default'},
       component: Home
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-
-    //   component: () => import('../views/AboutView.vue')
-    // }
+    {
+      path: '/deliveries',
+      name: 'Deliveries',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Deliveries.vue')
+    }
   ]
 })
 
