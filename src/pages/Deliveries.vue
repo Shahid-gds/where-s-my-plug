@@ -17,7 +17,7 @@
       </section>
       <!-- Back to Top Button -->
       <button v-if="showBackToTop" @click="scrollToTop"
-        class="w-[50px] h-[50px] fixed bottom-4 right-4 bg-gradient-to-t from-[#8c38f3] bg-[#7526d8] hover:bg-blue-700 transition-all ease-in duration-300 text-white font-bold py-3 px-3 rounded-full">
+        class="w-[50px] h-[50px] fixed bottom-4 z-50 right-4 bg-gradient-to-t from-[#8c38f3] bg-[#7526d8] hover:bg-blue-700 transition-all ease-in duration-300 text-white font-bold py-3 px-3 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />

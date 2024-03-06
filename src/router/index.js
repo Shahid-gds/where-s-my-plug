@@ -15,7 +15,19 @@ const router = createRouter({
       name: 'Deliveries',
       meta: {layout: 'Default'},
       component: () => import('../pages/Deliveries.vue')
-    }
+    },
+    {
+      path: '/brands',
+      name: 'Brands',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Brands.vue')
+    },
+    {
+      path: '/products',
+      name: 'Products',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Products.vue')
+    },
   ]
 })
 

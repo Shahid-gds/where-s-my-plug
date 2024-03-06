@@ -53,19 +53,19 @@
                                 :active-class="'active-route text-[black] font-[600]'">Dispensaries</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Deliveries' }"  class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                            :active-class="'active-route text-[black] font-[600]'">Deliveries</router-link>
+                            <router-link :to="{ name: 'Deliveries' }"
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Deliveries</router-link>
                         </li>
-                        <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Brands</a>
+                        <li class="">
+                            <router-link :to="{ name: 'Brands' }"
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Brands</router-link>
                         </li>
-                        <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <div class="relative">
-                                <div class="product-btn cursor-pointer">Product</div>
-                            </div>
-
+                        <li class="">
+                            <router-link :to="{ name: 'Products' }"
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                            :active-class="'active-route text-[black] font-[600]'">Product</router-link>
                         </li>
                         <li
                             class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
@@ -253,12 +253,12 @@ const hideSearchInput = () => {
     box-shadow: rgba(0, 0, 0, 0.7);
 }
 
-.product-btn::after {
+/*.product-btn::after {
     content: '\f107';
     font-family: FontAwesome;
     position: absolute;
     left: 4.1rem;
-}
+}*/
 
 .show-search {
     animation: slideIn 0.3s ease forwards;
