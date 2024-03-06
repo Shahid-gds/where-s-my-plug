@@ -312,11 +312,6 @@ function goToPage(pageNumber) {
 </script>
 
 <style scoped>
-.card {
-    background: url("@/assets/images/PaginationCard.svg");
-    background-repeat: no-repeat;
-}
-
 
 .nested-enter-active,
 .nested-leave-active {
