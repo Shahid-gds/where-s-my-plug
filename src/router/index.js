@@ -28,6 +28,24 @@ const router = createRouter({
       meta: {layout: 'Default'},
       component: () => import('../pages/Products.vue')
     },
+    {
+      path: '/deals',
+      name: 'Deals',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Deals.vue')
+    },
+    {
+      path: '/learn',
+      name: 'Learn',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Learn.vue')
+    },
+    {
+      path: '/strains',
+      name: 'Strains',
+      meta: {layout: 'Default'},
+      component: () => import('../pages/Strains.vue')
+    },
   ]
 })
 

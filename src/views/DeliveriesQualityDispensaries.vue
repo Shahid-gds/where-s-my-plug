@@ -1,5 +1,5 @@
 <template>
-    <section class="pb-[10rem] relative">
+    <section class="pb-[5rem] relative">
         <div class="container mx-auto px-10 flex justify-center items-center h-full] absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="relative lg:block hidden">
                 <div class="xl:w-[1280px]">

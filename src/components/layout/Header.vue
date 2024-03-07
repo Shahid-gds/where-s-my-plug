@@ -68,16 +68,22 @@
                             :active-class="'active-route text-[black] font-[600]'">Product</router-link>
                         </li>
                         <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Deals</a>
+                            class="">
+                            <router-link :to="{ name: 'Deals' }"
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                            :active-class="'active-route text-[black] font-[600]'">Deals</router-link>
                         </li>
                         <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Learn</a>
+                            class="">
+                            <router-link :to="{ name: 'Learn' }"
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                            :active-class="'active-route text-[black] font-[600]'">Learn</router-link>
                         </li>
                         <li
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <a href="#">Strains</a>
+                            class="">
+                            <router-link :to="{ name: 'Strains' }"
+                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                            :active-class="'active-route text-[black] font-[600]'">Strains</router-link>
                         </li>
                     </ul>
                 </div>

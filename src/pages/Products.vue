@@ -36,6 +36,9 @@ const sections = [
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/ProductsHeroSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsCategories.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsCategoriesCarousel.vue').then(m => m.default), { lazy: true }) },
+    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/ProductsQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
+    { name: '', class: '', component: defineAsyncComponent(() => import('../views/GetYourAnswerSection.vue').then(m => m.default), { lazy: true }) },
+    { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
 ];
 setTimeout(() => {
     isLoading.value = false;
@@ -68,7 +71,10 @@ onUnmounted(() => {
     background: url("../assets/images/bgs/ProductsHeroSectionBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
     background-size: 100% 100%;
 }
-
+.QualityProductsBg {
+    background: url("../assets/images/bgs/FooterBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
+    background-size: cover;
+  }
 .bg {
     overflow-x: hidden;
 }
