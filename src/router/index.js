@@ -11,6 +11,12 @@ const router = createRouter({
       component: Home
     },
     {
+      path: '/dispensaries',
+      name: 'Dispensaries',
+      meta: {layout: 'dispensariesDefault'},
+      component: () => import('../pages/Dispensaries.vue')
+    },
+    {
       path: '/deliveries',
       name: 'Deliveries',
       meta: {layout: 'Default'},

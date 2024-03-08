@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute header w-full px-16 p-3 xl:block hidden z-50">
+        <div class="absolute header w-full px-16 p-3 xl:block hidden z-50 bg-[#EFFBF9]">
             <nav class="flex items-center justify-between ">
                 <div>
                     <router-link :to="{ name: 'Home' }">
