@@ -3,7 +3,7 @@
         <div>
             <GoogleMap />
         </div>
-        <div class="absolute top-24 left-6 z-50">
+        <div class="absolute xl:top-[5.4rem] top-0 z-30">
             <DispensariesSidebar />
         </div>
     </div>

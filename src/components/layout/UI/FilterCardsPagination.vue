@@ -5,7 +5,7 @@
                 <h1 class="font-bold">Search Strains</h1>
                 <div class="relative">
                     <input type="text" class="w-full border-2 border-[#CCE3E0] bg-[#FBFBFB]  p-2 rounded-[15px] px-4"
-                        placeholder="Search Strains Here..." v-model="searchText" @input="filterOptions">
+                        placeholder="Search Strains Here..." v-model="searchQuery">
                     <div class="absolute top-2.5 right-3 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="#61C1B4" class="w-6 h-6">
@@ -133,7 +133,7 @@
         </div>
         <div class="w-full">
             <transition-group name="nested" tag="div" class="flex flex-wrap">
-                <div v-for="card in paginationCard" :key="card.image"
+                <div v-for="card in filteredCards" :key="card.image"
                     class="w-[385px] rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
                         <div class="">
@@ -458,18 +458,14 @@ const cards = ref([
         price: '$35.00'
     },
 ]);
-const searchText = ref('');
 
-function filterOptions() {
-    const search = searchText.value.toLowerCase();
-    const filteredStrainTypes = strainTypes.value.filter(type => type.toLowerCase().startsWith(search));
-    const filteredEffects = effects.value.filter(effect => effect.toLowerCase().startsWith(search));
-    const filteredFlavors = flavors.value.filter(flavor => flavor.toLowerCase().startsWith(search));
+const searchQuery = ref('');
 
-    selectedStrainTypes.value = filteredStrainTypes;
-    selectedEffects.value = filteredEffects;
-    selectedFlavors.value = filteredFlavors;
-}
+const filteredCards = computed(() => {
+    if (!searchQuery.value) return paginationCard.value;
+    const query = searchQuery.value.toLowerCase();
+    return paginationCard.value.filter(card => card.heading.toLowerCase().includes(query));
+});
 // Define number of cards per page
 const cardsPerPage = 24;
 

@@ -11,6 +11,16 @@ const router = createRouter({
       component: Home
     },
     {
+      path: '/sign-in',
+      name: 'Sign-In',
+      component: () => import('../pages/Sign-In.vue')
+    },
+    {
+      path: '/sign-up',
+      name: 'Sign-Up',
+      component: () => import('../pages/Sign-Up.vue')
+    },
+    {
       path: '/dispensaries',
       name: 'Dispensaries',
       meta: {layout: 'dispensariesDefault'},

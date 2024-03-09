@@ -100,9 +100,9 @@
                             Search
                         </div>
                     </div>
-                    <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <router-link :to="{name: 'Sign-In'}" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                         <img src="../icons/user.svg" alt="">
-                    </div>
+                    </router-link>
                     <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
                         <div>
                             <img src="../icons/shop.svg" alt="">

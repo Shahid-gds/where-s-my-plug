@@ -100,9 +100,9 @@
                             Search
                         </div>
                     </div>
-                    <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <router-link :to="{name: 'Sign-In'}" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                         <img src="../icons/user.svg" alt="">
-                    </div>
+                    </router-link>
                     <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
                         <div>
                             <img src="../icons/shop.svg" alt="">
@@ -144,22 +144,17 @@
                     <img src="../../assets/images/Logo.svg" alt="">
                 </a>
             </div>
-            <div class="w-full flex space-x-3 justify-end">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </div>
-                <div class="font-bold">
-                    Search
-                </div>
-            </div>
+            <div class="w-full flex justify-end">
+                <router-link :to="{name: 'Sign-In'}" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <img src="../icons/user.svg" alt="">
+                </router-link>
+            </div>             
+       
         </div>
-        <transition name="fade">
-            <div v-if="isMobileMenuOpen" class="absolute z-50 w-full xl:hidden">
-                <nav class="flex flex-col py-4 px-6 bg-gradient-to-t from-[#468f85] bg-[#61c1b4]">
+        
+        <TransitionGroup name="list" tag="ul" class="relative">
+            <div v-if="isMobileMenuOpen" class="absolute z-50 w-1/2 xl:hidden">
+                <nav class="flex flex-col h-screen py-4 px-6 bg-gradient-to-t from-[#468f85] bg-[#61c1b4]">
                     <ul class="">
                         <li class="text-[white] pb-4">
                             <a href="#">Dispensaries</a>
@@ -188,7 +183,7 @@
                     </ul>
                 </nav>
             </div>
-        </transition>
+        </TransitionGroup>
     </header>
 </template>
 
@@ -209,18 +204,18 @@ const toggleSearchInput = () => {
 const hideSearchInput = () => {
     isSearchVisible.value = false;
 };
+
 </script>
 
-
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-400px);
 }
 
 @media(max-width:1900px) {
@@ -235,36 +230,6 @@ const hideSearchInput = () => {
         margin-left: auto;
     }
 }
-
-.submenu-enter-active,
-.submenu-leave-active {
-    opacity: 1;
-}
-
-.submenu-enter-to,
-.submenu-leave-to {
-    opacity: 0;
-}
-
-.submenu::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 35px;
-    width: 20px;
-    height: 20px;
-    background: #848484;
-    transform: rotate(45deg);
-    z-index: -2;
-    box-shadow: rgba(0, 0, 0, 0.7);
-}
-
-/*.product-btn::after {
-    content: '\f107';
-    font-family: FontAwesome;
-    position: absolute;
-    left: 4.1rem;
-}*/
 
 .show-search {
     animation: slideIn 0.3s ease forwards;
