@@ -2,7 +2,7 @@
     <section class="h-screen">
         <div class="pt-[4rem] text-center container mx-auto pb-[6rem] md:px-[30rem] px-6">
             <div class="flex justify-center pb-6">
-                <img src="../../../assets/images/FooterLogo.svg" alt="">
+                <img src="@/assets/images/footerLogo.svg" alt="">
             </div>
             <div class="font-extrabold sm:leading-[2.5rem]">
                 <span
