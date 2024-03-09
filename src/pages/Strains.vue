@@ -72,10 +72,6 @@ onUnmounted(() => {
     background: url("../assets/images/bgs/StrainsHeroSectionBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
     background-size: 100% 100%;
 }
-.QualityProductsBg {
-    background: url("../assets/images/bgs/FooterBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
-    background-size: cover;
-  }
 .bg {
     overflow-x: hidden;
 }
