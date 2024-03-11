@@ -1,6 +1,6 @@
 <template>
     <section class="">
-      <div class="2xl:pt-[15rem] lg:pt-[10rem] pt-[8rem] text-center container mx-auto pb-[25rem] px-6">
+      <div class="sm:pt-[15rem] pt-[10rem] text-center container mx-auto pb-[25rem] px-6">
         <div class="font-extrabold sm:leading-[2.5rem]">
           <span class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Discover</span><span class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative"> Local<sup class="font-features sups text-[#010101] font-[Jost-ExtraBold] text-[20px] absolute sm:top-6 top-3">sm</sup></span>
           <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">There Was Legal Weet Shops Nearby?</h1>

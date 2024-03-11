@@ -64,26 +64,23 @@
                         </li>
                         <li class="">
                             <router-link :to="{ name: 'Products' }"
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                            :active-class="'active-route text-[black] font-[600]'">Product</router-link>
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Product</router-link>
                         </li>
-                        <li
-                            class="">
+                        <li class="">
                             <router-link :to="{ name: 'Deals' }"
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                            :active-class="'active-route text-[black] font-[600]'">Deals</router-link>
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Deals</router-link>
                         </li>
-                        <li
-                            class="">
+                        <li class="">
                             <router-link :to="{ name: 'Learn' }"
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                            :active-class="'active-route text-[black] font-[600]'">Learn</router-link>
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Learn</router-link>
                         </li>
-                        <li
-                            class="">
+                        <li class="">
                             <router-link :to="{ name: 'Strains' }"
-                            class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                            :active-class="'active-route text-[black] font-[600]'">Strains</router-link>
+                                class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'">Strains</router-link>
                         </li>
                     </ul>
                 </div>
@@ -100,7 +97,7 @@
                             Search
                         </div>
                     </div>
-                    <router-link :to="{name: 'Sign-In'}" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <router-link :to="{ name: 'Sign-In' }" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                         <img src="../icons/user.svg" alt="">
                     </router-link>
                     <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
@@ -124,7 +121,8 @@
 
             </nav>
         </div>
-        <div class="flex items-center justify-between p-6 cursor-pointer xl:hidden">
+        <div
+            class="fixed z-50 w-full bg-[#EFFBF9] shadow-lg flex items-center justify-between p-6 cursor-pointer xl:hidden">
             <div class="w-full">
                 <button @click="toggleMobileMenu" class="block 2xl:hidden" transition="slide-fade">
                     <!-- Show menu icon or cancel icon based on isMobileMenuOpen -->
@@ -133,68 +131,81 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="black" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+
                 </button>
             </div>
             <div class="w-full">
-                <a href="#">
+                <router-link :to="{ name: 'Home' }" @click="closeSideMenuOutside">
                     <img src="../../assets/images/Logo.svg" alt="">
-                </a>
+                </router-link>
             </div>
-            <div class="w-full flex space-x-3 justify-end">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </div>
-                <div class="font-bold">
-                    Search
-                </div>
+            <div class="w-full flex justify-end">
+                <router-link :to="{ name: 'Sign-In' }" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <img src="../icons/user.svg" alt="">
+                </router-link>
             </div>
+
         </div>
-        <transition name="fade">
-            <div v-if="isMobileMenuOpen" class="absolute z-50 w-full xl:hidden">
-                <nav class="flex flex-col py-4 px-6 bg-gradient-to-t from-[#468f85] bg-[#61c1b4]">
-                    <ul class="">
-                        <li class="text-[white] pb-4">
-                            <a href="#">Dispensaries</a>
+
+        <TransitionGroup name="list" tag="ul" class="relative">
+            <div v-if="isMobileMenuOpen" @click="closeSideMenuOutside" class="fixed inset-0 z-10 opacity-25">
+            </div>
+            <div v-if="isMobileMenuOpen" class="fixed z-50 w-1/2 xl:hidden">
+                <nav class="flex flex-col h-screen py-4 px-6 bg-gradient-to-t from-[#468f85] bg-[#61c1b4] relative">
+                    <div class="absolute p-2 rounded-lg top-3 bg-[#EFFBF9] right-3" @click="toggleMobileMenu">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="black" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+                    <ul class="pt-10">
+                        <li class="py-4">
+                            <router-link :to="{ name: 'Dispensaries' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Dispensaries</router-link>
                         </li>
-                        <li class="text-[white] pb-4">
-                            <a href="#">Deliveries</a>
+                        <li class="pb-4">
+                            <router-link :to="{ name: 'Deliveries' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Deliveries</router-link>
                         </li>
-                        <li class="text-[white] pb-4">
-                            <a href="#">Brands</a>
+                        <li class="pb-4">
+                            <router-link :to="{ name: 'Brands' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Brands</router-link>
                         </li>
-                        <li
-                            class="text-[white] pb-4 active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold">
-                            <div class="relative">
-                                <div class="product-btn cursor-pointer">Product</div>
-                            </div>
+                        <li class="pb-4">
+                            <router-link :to="{ name: 'Products' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Product</router-link>
                         </li>
-                        <li class="text-[white] pb-4">
-                            <a href="#">Deals</a>
+                        <li class="pb-4">
+                            <router-link :to="{ name: 'Deals' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Deals</router-link>
                         </li>
-                        <li class="text-[white] pb-4">
-                            <a href="#">Learn</a>
+                        <li class="pb-4">
+                            <router-link :to="{ name: 'Learn' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Learn</router-link>
                         </li>
-                        <li class="text-[white]">
-                            <a href="#">Strains</a>
+                        <li class="">
+                            <router-link :to="{ name: 'Strains' }"
+                                class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Strains</router-link>
                         </li>
                     </ul>
                 </nav>
             </div>
-        </transition>
+        </TransitionGroup>
     </header>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
+const closeSideMenuOutside = () => {
+    isMobileMenuOpen.value = false;
+};
 const isMobileMenuOpen = ref(false);
 const isSearchVisible = ref(false);
 
@@ -209,18 +220,19 @@ const toggleSearchInput = () => {
 const hideSearchInput = () => {
     isSearchVisible.value = false;
 };
+
 </script>
 
-
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.list-enter-from,
+.list-leave-to {
     opacity: 0;
+    transform: translateX(-400px);
 }
 
 @media(max-width:1900px) {
@@ -235,36 +247,6 @@ const hideSearchInput = () => {
         margin-left: auto;
     }
 }
-
-.submenu-enter-active,
-.submenu-leave-active {
-    opacity: 1;
-}
-
-.submenu-enter-to,
-.submenu-leave-to {
-    opacity: 0;
-}
-
-.submenu::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 35px;
-    width: 20px;
-    height: 20px;
-    background: #848484;
-    transform: rotate(45deg);
-    z-index: -2;
-    box-shadow: rgba(0, 0, 0, 0.7);
-}
-
-/*.product-btn::after {
-    content: '\f107';
-    font-family: FontAwesome;
-    position: absolute;
-    left: 4.1rem;
-}*/
 
 .show-search {
     animation: slideIn 0.3s ease forwards;

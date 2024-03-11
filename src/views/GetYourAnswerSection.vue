@@ -1,6 +1,6 @@
 <template>
     <section class="pb-[20rem]">
-        <div class="container mx-auto overflow-hidden pt-[5rem]">
+        <div class="container mx-auto overflow-hidden xl:pt-[5rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -17,8 +17,8 @@
                     <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Common Queries</h1>
                 </div>
             </div>
-            <div class="flex justify-center">
-                <div class="w-1/2 relative">
+            <div class="flex justify-center px-6">
+                <div class="lg:w-1/2 w-full relative">
                     <input type="text" class="border-2 w-full p-3 rounded-full px-8" placeholder="Find Queries">
                     <button
                         class="flex space-x-2 items-center bg-[#707070] p-3 absolute top-0.5 right-0.5 rounded-full px-[2rem] text-white">
@@ -33,7 +33,7 @@
                     </button>
                 </div>
             </div>
-            <div class="pt-[5rem] px-[10rem]">
+            <div class="pt-[5rem] lg:px-[10rem] px-6">
                 <div v-for="(item, index) in items" :key="index">
                     <div @click="toggleAccordion(index)" class="accordion-item">
                         <div
@@ -53,20 +53,20 @@
                                 </div>
                                 <div class="py-6">
                                     <ul class="">
-                                        <li class="flex items-center space-x-6 pb-6">
-                                            <div class="w-4 h-4 rounded-full bg-[#61C1B4]"></div>
+                                        <li class="flex items-center sm:space-x-6 space-x-3 pb-6">
+                                            <div class="sm:w-4 sm:h-4 p-1.5 rounded-full bg-[#61C1B4]"></div>
                                             <div class="mt-1.5 text-[#010101] text-[18px]">{{ item.listOne }}</div>
                                         </li>
-                                        <li class="flex items-center space-x-6 pb-6">
-                                            <div class="w-4 h-4 rounded-full bg-[#61C1B4]"></div>
+                                        <li class="flex items-center sm:space-x-6 space-x-3 pb-6">
+                                            <div class="sm:w-4 sm:h-4 p-1.5 rounded-full bg-[#61C1B4]"></div>
                                             <div class="mt-1.5 text-[#010101] text-[18px]">{{ item.listTwo }}</div>
                                         </li>
-                                        <li class="flex items-center space-x-6 pb-6">
-                                            <div class="w-4 h-4 rounded-full bg-[#61C1B4]"></div>
+                                        <li class="flex items-center sm:space-x-6 space-x-3 pb-6">
+                                            <div class="sm:w-4 sm:h-4 p-1.5 rounded-full bg-[#61C1B4]"></div>
                                             <div class="mt-1.5 text-[#010101] text-[18px]">{{ item.listThree }}</div>
                                         </li>
-                                        <li class="flex items-center space-x-6">
-                                            <div class="w-4 h-4 rounded-full bg-[#61C1B4]"></div>
+                                        <li class="flex items-center sm:space-x-6 space-x-3">
+                                            <div class="sm:w-4 sm:h-4 p-1.5 rounded-full bg-[#61C1B4]"></div>
                                             <div class="mt-1.5 text-[#010101] text-[18px]">{{ item.listFourth }}</div>
                                         </li>
                                     </ul>
@@ -177,4 +177,9 @@ const toggleAccordion = (index) => {
   opacity: 0;
   transform: translateX(30px);
 }
+@media(max-width:768px) {
+    .accordion-content {
+        padding: 5px;
+    }
+  }
 </style>

@@ -16,7 +16,7 @@
                 <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Best Strains Delivered</h1>
             </div>
          </div>
-      <div>
+      <div class="">
         <CannabisStrainCarousel />
       </div>
         </div>

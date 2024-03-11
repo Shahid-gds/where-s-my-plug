@@ -1,7 +1,7 @@
 
 <template>
     <div class="">
-        <MapboxMap class="" height="94.3vh" :center="center" :zoom="3" :accessToken="accessToken" :mapStyle="mapStyle">
+        <MapboxMap class="fixed" height="100vh" :center="center" :zoom="3" :accessToken="accessToken" :mapStyle="mapStyle">
             <MapboxMarker>
                 <template #icon>
                    <!-- The icon will here -->

@@ -9,10 +9,10 @@
                             <img class="w-full" :src="slide.src" alt="">
                         </div>
                         <div class="relative">
-                            <div class="border-2 w-1/2 p-3 rounded-full text-[#B4B4B4] text-center">
+                            <div class="border-2 w-1/2 sm:p-3 p-1 rounded-full text-[#B4B4B4] text-center">
                                 {{ slide.button }}
                             </div>
-                            <div class="py-2 font-[Extra-Bold]">
+                            <div class="sm:py-2 font-[Extra-Bold]">
                                 {{ slide.heading }}
                             </div>
                             <div>

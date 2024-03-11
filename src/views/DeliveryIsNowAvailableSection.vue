@@ -1,6 +1,6 @@
 <template>
     <section class="">
-        <div class="overflow-hidden pt-[10rem]">
+        <div class="overflow-hidden sm:pt-[10rem] pt-[5rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="container mx-auto 2xl:px-[8rem] xl:flex relative px-6 pt-[5rem]">
-                <div class="w-full flex justify-center">
+                <div class="w-full flex justify-center sm:pb-[10rem]">
                     <div class="w-full relative pb-[10rem]">
                         <div class="2xl:ml-[7.5rem] sm:ml-[6rem]">
                             <img src="../assets/images/welcomeWMP.svg" alt="">
@@ -44,7 +44,7 @@
                                     to your cart.</p>
                             </div>
                         </div>
-                        <div class="absolute -left-[15rem] -bottom-8 z-10">
+                        <div class="absolute 2xl:-left-[15rem] 2xl:-bottom-[12rem] z-10">
                             <img src="../assets/images/DeliveriesVehicle.svg" alt="">
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                             <p>Your store will text or email you with updates. Have your ID and payment ready.</p>
                         </div>
 
-                        <div class="pt-[5rem]">
+                        <div class="md:pt-[5rem]">
                             <div class="flex items-center space-x-3">
                                 <div class="bg-[#61c1b4] w-[40px] h-[40px] rounded-full py-2.5">
                                     <img class="mr-auto ml-auto" src="../components/icons/shield.svg" alt="">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="py-[5rem] px-[15rem] text-center">
+            <div class="md:py-[5rem] 2xl:px-[15rem] px-6 text-center">
                 <p>
                     To start your order, simply enter your address to shop local menus from the most reputable and
                     reliable weed delivery services near you. Order your favorite THC products for quick delivery

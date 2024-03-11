@@ -3,7 +3,7 @@
         <carousel-3d class="" :autoplay="true" :disable3d="true" :space="500" :clickable="false">
             <slide class="" v-for="(slide, i) in slides" :index="i" :key="i">
                 <div
-                    class="rounded-2xl p-6 border-2 border-white hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white] shadow-xl">
+                    class="rounded-2xl sm:p-6 p-2 border-2 border-white hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white] shadow-xl">
                     <div class="flex space-x-4">
                         <div class="">
                             <img class="w-full" :src="slide.src" alt="">

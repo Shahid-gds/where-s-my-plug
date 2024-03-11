@@ -45,7 +45,7 @@
                    </div>
                 </div>
             </div>
-            <div class="lg:hidden">
+            <div class="lg:hidden pb-20">
                     <div class="bg-gradient-to-r from-[#61c1b4] bg-[#468f85] w-full p-10 px-6 rounded-[30px] shadow-xl">
                         <div class="">
                             <div class="w-full sm:flex items-center sm:space-x-4">

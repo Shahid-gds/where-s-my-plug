@@ -5,8 +5,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
               </svg>              
         </router-link>
-        <div class="pt-[4rem] text-center container mx-auto pb-[6rem] md:px-[30rem] px-6">
-            <div class="flex justify-center pb-6">
+        <div class="2xl:pt-[4rem] pt-[2rem] text-center container mx-auto 2xl:px-[30rem] xl:px-[20rem] lg:px-[10rem] px-6">
+            <div class="flex justify-center sm:pb-6">
                 <img src="@/assets/images/footerLogo.svg" alt="">
             </div>
             <div class="font-extrabold sm:leading-[2.5rem]">
@@ -56,8 +56,9 @@
                 <div class="text-center underline pb-8">
                     <a href="#" class="font-[Bold]">Forgot Password?</a>
                 </div>
-                <div class="flex items-center space-x-4 pb-8">
-                    <button class="flex items-center px-12 space-x-2 border-2 p-3 border-[#28B446] rounded-full w-full">
+                <div class="sm:flex items-center sm:space-x-4 pb-8">
+                    <div class="w-full pb-2">
+                      <button class="flex justify-center items-center px-10 space-x-2 border-2 p-3 border-[#28B446] rounded-full w-full">
                         <div><svg id="search" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 32 32">
                                 <path id="Path_7282" data-name="Path 7282"
@@ -76,22 +77,25 @@
                         </div>
                         <div class="mt-1 text-[#28B446]">Sign In With Google</div>
                     </button>
-                    <button class="flex items-center px-6 space-x-2 border-2 p-3 border-[#3D6AD6] rounded-full w-full">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.584" height="28.825"
-                                viewBox="0 0 15.584 28.825">
-                                <g id="_x30_1._Facebook" transform="translate(-28.374 -9.999)">
-                                    <path id="Icon_11_"
-                                        d="M32.721,26.273H29.139c-.564,0-.765-.2-.765-.77q0-2.185,0-4.37c0-.56.213-.774.769-.774h3.576c0-.1,0-2.2,0-3.171A7.908,7.908,0,0,1,33.7,13.13a5.973,5.973,0,0,1,3.218-2.673A7.954,7.954,0,0,1,39.679,10q1.772,0,3.544,0c.508,0,.733.225.734.736q0,2.055,0,4.11c0,.517-.217.724-.736.73-.968.01-1.937,0-2.9.043a1.316,1.316,0,0,0-1.491,1.488c-.023,1.069-.01,2.14-.01,3.248h4.171c.59,0,.792.2.792.8q0,2.173,0,4.347c0,.585-.19.771-.784.772H38.8V38c0,.625-.2.824-.814.824H33.479c-.545,0-.758-.212-.758-.757,0-3.819,0-11.66,0-11.794Z"
-                                        fill="#3d6ad6" />
-                                </g>
-                                </svg>
-                        </div>
-                        <div class="mt-1 text-[#3D6AD6]">Continue with Facebook</div>
-                    </button>
+                    </div>
+                  <div class="w-full pb-2">
+                    <button class="flex justify-center items-center px-6 space-x-2 border-2 p-3 border-[#3D6AD6] rounded-full w-full">
+                      <div class="">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15.584" height="28.825"
+                              viewBox="0 0 15.584 28.825">
+                              <g id="_x30_1._Facebook" transform="translate(-28.374 -9.999)">
+                                  <path id="Icon_11_"
+                                      d="M32.721,26.273H29.139c-.564,0-.765-.2-.765-.77q0-2.185,0-4.37c0-.56.213-.774.769-.774h3.576c0-.1,0-2.2,0-3.171A7.908,7.908,0,0,1,33.7,13.13a5.973,5.973,0,0,1,3.218-2.673A7.954,7.954,0,0,1,39.679,10q1.772,0,3.544,0c.508,0,.733.225.734.736q0,2.055,0,4.11c0,.517-.217.724-.736.73-.968.01-1.937,0-2.9.043a1.316,1.316,0,0,0-1.491,1.488c-.023,1.069-.01,2.14-.01,3.248h4.171c.59,0,.792.2.792.8q0,2.173,0,4.347c0,.585-.19.771-.784.772H38.8V38c0,.625-.2.824-.814.824H33.479c-.545,0-.758-.212-.758-.757,0-3.819,0-11.66,0-11.794Z"
+                                      fill="#3d6ad6" />
+                              </g>
+                              </svg>
+                      </div>
+                      <div class="mt-1 text-[#3D6AD6]">Continue with Facebook</div>
+                  </button>
+                  </div>
                 </div>
                 <div class="text-center">
-                    <span class="text-[#818181]">New to Where's My Plug? <a href="/sign-up" class="text-[#61C1B4] uppercase">create an account</a></span>
+                    <span class="text-[#818181]">New to Where's My Plug? <router-link to="/sign-up" class="text-[#61C1B4] uppercase">create an account</router-link></span>
                 </div>
             </div>
         </div>
