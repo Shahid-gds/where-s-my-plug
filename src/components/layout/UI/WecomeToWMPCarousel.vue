@@ -3,10 +3,10 @@
         <carousel-3d class="" :autoplay="true" :disable3d="true" :space="650" :clickable="false">
             <slide class="sm:p-4 px-4" v-for="(slide, i) in slides" :index="i" :key="i">
                 <div class="rounded-2xl sm:p-10 p-4" :style="{ backgroundColor: slide.backgroundColor }">
-                    <div class="font-[Jost-Bold] text-2xl sm:pb-3">
+                    <div class="font-[Jost-Bold] sm:text-2xl text-xl sm:pb-3">
                         {{ slide.heading }}
                     </div>
-                    <div class="font-bold sm:text-[18px] text-[16px]">
+                    <div class="font-bold sm:text-[18px] text-[13px] pb-1">
                         {{ slide.desc }}
                     </div>
                     <button class="hover-btn bg-white hover:text-[#61c1b4] hover:text-bold rounded-full sm:p-2.5 p-1 sm:mt-[1rem]">
