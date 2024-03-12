@@ -79,5 +79,14 @@ onUnmounted(() => {
     overflow-x: hidden;
 }
 
-@media(max-width:1900px) {}
+@media(max-width:1900px) {
+    .HomeHeroBg {
+        background: url("../assets/images/bgs/ProductsHeroSectionBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
+        background-size: cover;
+    }
+    .QualityProductsBg {
+        background: url("../assets/images/bgs/FooterBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
+        background-size: cover;
+      }
+}
 </style>

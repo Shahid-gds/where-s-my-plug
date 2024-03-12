@@ -1,6 +1,6 @@
 <template>
-    <section class="container mx-auto flex">
-        <div class="w-[20%]">
+    <section class="container mx-auto flex relative">
+        <div class="2xl:w-[20%] w-1/2 md:block hidden">
             <div>
                 <h1 class="font-bold">Search Strains</h1>
                 <div class="relative">
@@ -132,9 +132,33 @@
             </div>
         </div>
         <div class="w-full">
-            <transition-group name="nested" tag="div" class="flex flex-wrap">
+            <div class="md:hidden flex items-center space-x-3 px-4">
+                <div class="w-full">
+                    <h1 class="font-bold">Search Strains</h1>
+                    <div class="relative">
+                        <input type="text"
+                            class="w-full border-2 border-[#CCE3E0] bg-[#FBFBFB]  p-2 rounded-[15px] px-4"
+                            placeholder="Search Strains Here..." v-model="searchQuery">
+                        <div class="absolute top-2.5 right-3 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="#61C1B4" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-[1rem]" @click="toggleSideMenu">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
+                    </svg>
+                </div>
+            </div>
+            <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
                 <div v-for="card in filteredCards" :key="card.image"
-                    class="w-[385px] rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
+                    class="md:w-[385px] w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
                         <div class="">
                             <img class="w-full" :src="card.src" alt="">
@@ -232,6 +256,128 @@
                 </nav>
             </div>
         </div>
+        <div v-if="isSideMenuOpen" @click="closeSideMenuOutside" class="fixed inset-0 bg-black z-10 opacity-25">
+        </div>
+        <TransitionGroup name="list" tag="ul" class="md:hidden">
+            <div class="w-[80%] shadow-lg bg-[#FBFBFB] p-6 rounded-tl-2xl rounded-bl-2xl absolute right-0 z-20" v-if="isSideMenuOpen">
+                <div class="border-2 p-4 mt-[1rem] rounded-[15px] bg-[#FBFBFB]">
+                    <div class="flex justify-between border-b-2">
+                        <div>
+                            <h1 class="font-[Bold]">Strain Types</h1>
+                        </div>
+                        <div @click="toggleStrainType" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="#61C1B4" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <transition name="fade" class="h-[160px]">
+                        <div class="p-2" v-if="showStrainTypeCheckboxArea">
+                            <div v-for="(strainType, index) in strainTypes" :key="index"
+                                class="checkbox-wrapper-45 flex items-center space-x-3 pb-3 mt-2">
+                                <div>
+                                    <input :id="'cbx-' + index" type="checkbox" :value="strainType"
+                                        v-model="selectedStrainTypes" @change="handleCheckboxClick">
+                                    <label class="cbx" :for="'cbx-' + index">
+                                        <div class="flip">
+                                            <div class="front"></div>
+                                            <div class="back">
+                                                <svg width="16" height="14" viewBox="0 0 16 14">
+                                                    <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label :for="'cbx-' + index">{{ strainType }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+                <!-- Effects Section -->
+                <div class="border-2 p-4 mt-[1rem] rounded-[15px] bg-[#FBFBFB]">
+                    <div class="flex justify-between border-b-2">
+                        <div>
+                            <h1 class="font-[Bold]">Effects</h1>
+                        </div>
+                        <div @click="toggleEffects" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="#61C1B4" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <transition name="fade" class="h-[200px] overflow-y-scroll mt-4">
+                        <div class="px-2" v-if="showEffectsCheckboxArea">
+                            <div v-for="(effect, index) in effects" :key="'effect' + index"
+                                class="checkbox-wrapper-45 flex items-center space-x-3 pb-3">
+                                <div>
+                                    <input :id="'cbx-' + (index + 48)" type="checkbox" :value="effect"
+                                        v-model="selectedEffects" @change="handleCheckboxClick">
+                                    <label class="cbx" :for="'cbx-' + (index + 48)">
+                                        <div class="flip">
+                                            <div class="front"></div>
+                                            <div class="back">
+                                                <svg width="16" height="14" viewBox="0 0 16 14">
+                                                    <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label :for="'cbx-' + (index + 48)">{{ effect }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+
+                <!-- Flavors Section -->
+                <div class="border-2 p-4 mt-[1rem] rounded-[15px] bg-[#FBFBFB]">
+                    <div class="flex justify-between border-b-2">
+                        <div>
+                            <h1 class="font-[Bold]">Flavors</h1>
+                        </div>
+                        <div @click="toggleFlavors" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="#61C1B4" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <transition name="fade" class="h-[380px] overflow-y-scroll mt-4">
+                        <div class="px-2" v-if="showFlavorsCheckboxArea">
+                            <div v-for="(flavor, index) in flavors" :key="'flavor' + index"
+                                class="checkbox-wrapper-45 flex items-center space-x-3 pb-3">
+                                <div>
+                                    <input :id="'cbx-' + (index + 60)" type="checkbox" :value="flavor"
+                                        v-model="selectedFlavors" @change="handleCheckboxClick">
+                                    <label class="cbx" :for="'cbx-' + (index + 60)">
+                                        <div class="flip">
+                                            <div class="front"></div>
+                                            <div class="back">
+                                                <svg width="16" height="14" viewBox="0 0 16 14">
+                                                    <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label :for="'cbx-' + (index + 60)">{{ flavor }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+
+
+            </div>
+        </TransitionGroup>
     </section>
 </template>
 
@@ -241,7 +387,13 @@ import img1 from '@/assets/images/CannabisStrainCarousel/ImgOne.svg';
 import img2 from '@/assets/images/CannabisStrainCarousel/ImgTwo.svg';
 const strainTypes = ref(['Hybrid Strains', 'Indica Strains', 'Sativa Strains']);
 const selectedStrainTypes = ref([strainTypes.value[0]]);
-
+const closeSideMenuOutside = () => {
+    isSideMenuOpen.value = false;
+};
+const isSideMenuOpen = ref(false);
+const toggleSideMenu = () => {
+    isSideMenuOpen.value = !isSideMenuOpen.value;
+};
 const showStrainTypeCheckboxArea = ref(true);
 function toggleStrainType() {
     showStrainTypeCheckboxArea.value = !showStrainTypeCheckboxArea.value;
@@ -662,6 +814,17 @@ function goToPage(pageNumber) {
 .pagination-btn.active {
     color: black;
     font-weight: bolder;
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(400px);
 }
 
 ::-webkit-scrollbar {

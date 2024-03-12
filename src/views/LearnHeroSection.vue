@@ -1,12 +1,12 @@
 <template>
     <section class="">
-      <div class="2xl:pt-[15rem] relative lg:pt-[10rem] pt-[8rem] pb-[5rem] text-center container mx-auto px-6">
+      <div class="sm:pt-[15rem] pt-[10rem] relative sm:pb-[5rem] text-center container mx-auto px-6">
         <div class="font-extrabold sm:leading-[2.5rem]">
           <span class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Learn</span><span class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative"> Resources</span>
           <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">Your Trusted Educational Resource</h1>
           <p>Working with a global network of wellbeing enthusiasts and health experts</p>
         </div>
-        <div class="flex justify-center items-center sm:space-x-4 mt-[2rem]">
+        <div class="flex justify-center items-center sm:space-x-4 sm:mt-[2rem]">
             <div>
               <img src="../components/icons/oilDrop.svg" alt="">
             </div>

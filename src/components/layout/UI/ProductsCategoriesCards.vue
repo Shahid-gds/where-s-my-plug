@@ -1,6 +1,6 @@
 <template>
-    <section class="sm:py-[5rem] py-[4rem]">
-        <div class="flex flex-wrap justify-center px-6 text-left pb-[5rem]">
+    <section class="md:py-[5rem] py-[1rem]">
+        <div class="md:flex flex-wrap justify-center px-6 text-left pb-[5rem]">
             <div class="pb-2 m-2">
                 <div @click="setActiveCategory('Concentrates')"
                     :class="{ 'active border-2 border-[#837e7e] text-[#707070] shadow-xl font-[Bold]': activeCategory === 'Concentrates' }"
@@ -60,7 +60,7 @@
         </div>
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
             <div v-for="card in paginationCard" :key="card.index"
-                class="w-[420px] border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
+                class="2xl:w-[420px] w-[400px] border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
                 <div class="flex justify-center pb-6">
                     <div>
                         <img :src="card.image">

@@ -1,5 +1,5 @@
 <template>
-    <section class="pt-[5rem] pb-[15rem]">
+    <section class="sm:pt-[5rem] pb-[15rem]">
         <div class="overflow-hidden pt-[5rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container mx-auto md:px-[15rem] flex justify-center px-6 pb-[5rem]">
+            <div class="container mx-auto xl:px-[15rem] flex justify-center px-6 md:pb-[5rem] pb-[2rem]">
                 <div class="text-center">
                     <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Welcome to
                         Learn</h1>
