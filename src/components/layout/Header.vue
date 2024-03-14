@@ -97,25 +97,25 @@
                             Search
                         </div>
                     </div>
-                    <router-link :to="{ name: 'Sign-In' }" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                    <router-link :to="{ name: 'Sign-In' }" class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                         <img src="../icons/user.svg" alt="">
                     </router-link>
-                    <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
+                    <router-link :to="{name: 'YourCart'}" class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
                         <div>
                             <img src="../icons/shop.svg" alt="">
                         </div>
-                        <div
+                        <!-- <div
                             class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
                             <h1>1</h1>
-                        </div>
-                    </div>
+                        </div> -->
+                    </router-link>
 
                     <div :class="{ 'show-search': isSearchVisible, 'hide-search': !isSearchVisible }"
                         class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
                         <input type="search" placeholder="Search..."
                             class="border border-gray-300 p-3 px-6 rounded-xl relative">
                         <button @click="hideSearchInput"
-                            class="bg-[#61c1b4] rounded-full py-0.5 w-6 h-6 absolute -right-2 -top-2 text-white font-bold">&#x2715</button>
+                            class="bg-[#61c1b4] rounded-full py-0.5 w-6 h-6 absolute -right-2 -top-2 text-white font-bold">&#x2715;</button>
                     </div>
                 </div>
 
