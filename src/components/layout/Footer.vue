@@ -30,9 +30,9 @@
                             <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link text-[#444444] font-[Regular] hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#444444]'"> About us</a></li>
-                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><router-link :to="{name: 'Careers'}"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                    :active-class="'active-route text-[#ac69fc] font-[600]'"> Careers</a></li>
+                                    :active-class="'active-route text-[black] font-[600]'" @click="scrollToTop"> Careers</router-link></li>
                             <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Contact us</a></li>
@@ -284,6 +284,12 @@
 
 <script setup>
 import FooterCarousel from './UI/FooterCarousel.vue';
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
 
 <style scoped>

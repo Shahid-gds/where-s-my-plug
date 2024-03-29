@@ -24,7 +24,7 @@
             <div class="px-4 text-[#61C1B4]">
                 <h1>ALL DISPENSARY RESULTS</h1>
             </div>
-            <transition-group name="nested" tag="div" class=" overflow-y-auto h-[1000px]">
+            <transition-group name="nested" tag="div" class="overflow-y-auto h-[1000px]">
                 <div v-for="card in paginationCard" :key="card.image"
                     class="rounded-2xl p-3 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
