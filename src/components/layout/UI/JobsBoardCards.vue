@@ -36,11 +36,11 @@
                             </div>
                             <div class="w-1/2">
                               <div class="">
-                                <div class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase">
+                                <router-link :to="{name: 'ApplyForJobs'}" class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase" @click="scrollToTop">
                                     {{ card.applyButton }}
-                                   </div>
+                                   </router-link>
                               </div>
-                                <router-link :to="{name: 'JobDetail'}" class="hover-btn w-full border-2 border-[#61C1B4] p-2 text-center rounded-full text-[#61C1B4]">
+                                <router-link :to="{name: 'JobDetail'}" class="hover-btn w-full border-2 border-[#61C1B4] p-2 text-center rounded-full text-[#61C1B4]" @click="scrollToTop">
                                     {{ card.jobDetailButton }}
                                 </router-link>
                             </div>
@@ -75,7 +75,12 @@
   
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 const cards = ref([
     {
         id: '1',
