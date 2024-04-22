@@ -2,12 +2,11 @@
     <section class="">
         <div class="sm:pt-[20rem] pt-[10rem] relative pb-[5rem] text-center container mx-auto px-6">
             <div class="font-extrabold sm:leading-[2.5rem]">
-                <span class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Find Your
+                <span class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Where's My Plug
                 </span><span
                     class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative">
-                    Dream Job</span>
-                <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">Grow With The Leading
-                    Cannabis Technology Company</h1>
+                    Support</span>
+                <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">How can we help?</h1>
                 <p>Jobs & Job search. Find jobs in global. Executive jobs & work.</p>
             </div>
 

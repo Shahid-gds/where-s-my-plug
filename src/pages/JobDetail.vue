@@ -54,10 +54,10 @@
                             </div>
                             <div class="w-[20%]">
                                 <div class="">
-                                    <div
-                                        class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase">
+                                    <router-link :to="{name: 'ApplyForJobs'}"
+                                        class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase" @click="scrollToTop">
                                         {{ card.applyButton }}
-                                    </div>
+                                    </router-link>
                                 </div>
 
                             </div>
@@ -156,9 +156,9 @@
                             been the industry's</p>
                     </div>
                     <div v-for="card in cards" class="w-[40%]">
-                        <div class="hover-btn w-full cursor-pointer bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase">
+                        <router-link :to="{name: 'ApplyForJobs'}" class="hover-btn w-full cursor-pointer bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase" @click="scrollToTop">
                             {{ card.applyButton }}
-                        </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -381,6 +381,12 @@
 import { ref, onMounted, computed } from 'vue';
 import JobLocationMap from '@/components/layout/UI/JobLocationMap.vue';
 import RelatedJobs from '../views/RelatedJobs.vue';
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 const cards = ref([
     {
         id: '1',

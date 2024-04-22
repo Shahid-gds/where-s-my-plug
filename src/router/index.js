@@ -86,6 +86,18 @@ const router = createRouter({
       meta: { layout: "Default" },
       component: () => import("../pages/ApplyForJobs.vue"),
     },
+    {
+      path: "/post-a-job",
+      name: "PostAJob",
+      meta: { layout: "Default" },
+      component: () => import("../pages/PostAJob.vue"),
+    },
+    {
+      path: "/faq",
+      name: "Faqs",
+      meta: { layout: "Default" },
+      component: () => import("../pages/Faqs.vue"),
+    },
   ],
 });
 

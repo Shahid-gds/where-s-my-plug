@@ -33,12 +33,15 @@
                             <li class="pb-4"><span class="text-black font-bold">></span><router-link :to="{name: 'Careers'}"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[black] font-[600]'" @click="scrollToTop"> Careers</router-link></li>
+                            <li class="pb-4"><span class="text-black font-bold">></span><router-link :to="{name: 'PostAJob'}"
+                                    class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
+                                    :active-class="'active-route text-[black] font-[600]'" @click="scrollToTop"> Post A Job</router-link></li>
                             <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Contact us</a></li>
-                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
+                            <li class="pb-4"><span class="text-black font-bold">></span><router-link :to="{name: 'Faqs'}"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                    :active-class="'active-route text-[#ac69fc] font-[600]'"> FAQs</a></li>
+                                    :active-class="'active-route text-[black] font-[600]'" @click="scrollToTop"> FAQs</router-link></li>
                         </ul>
                     </div>
                     <div class="w-1/2 px-6 pb-6 2xl:block hidden">
@@ -67,9 +70,6 @@
                     <div class="w-[60%] px-6 2xl:block hidden">
                         <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Privacy & Terms</h1>
                         <ul class="text-[18px] text-[#444444]">
-                            <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
-                                    class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                    :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
                             <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                     class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                     :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>
@@ -173,9 +173,6 @@
                                 <ul class="text-[18px] text-[#444444]">
                                     <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                            :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
-                                    <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
-                                            class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                             :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>
                                     <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                             class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
@@ -192,9 +189,6 @@
                         <div class="w-full md:block hidden">
                             <h1 class="text-[20px] text-black font-[Extra-Bold] pb-8">Privacy & Terms</h1>
                             <ul class="text-[18px] text-[#444444]">
-                                <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
-                                        class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                        :active-class="'active-route text-[#0000] font-[600]'"> Los Angeles </a></li>
                                 <li class="pb-4"><span class="text-black font-bold">></span><a href="#"
                                         class="active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                         :active-class="'active-route text-[#ac69fc] font-[600]'"> Terms of use</a></li>

@@ -11,37 +11,44 @@
                         <div class="w-full">
                             <div class="flex space-x-10 items-end">
                                 <div class="w-full">
-                                  <div class="flex space-x-3">
-                                    <div v-if="slide.fullTimeButton" class="bg-[#DDE8F8] text-center p-1.5 rounded-full text-[#4C6DDC] w-[30%]">
-                                        {{ slide.fullTimeButton }}
+                                    <div class="flex space-x-3">
+                                        <div v-if="slide.fullTimeButton"
+                                            class="bg-[#DDE8F8] text-center p-1.5 rounded-full text-[#4C6DDC] w-[30%]">
+                                            {{ slide.fullTimeButton }}
+                                        </div>
+                                        <div v-if="slide.partTimeButton"
+                                            class="bg-[#DDE8F8] text-center p-1.5 rounded-full text-[#4C6DDC] w-[30%]">
+                                            {{ slide.partTimeButton }}
+                                        </div>
+                                        <div v-if="slide.privateButton"
+                                            class="bg-[#E1F2E5] text-center p-1.5 rounded-full text-[#8EB06A] w-[30%]">
+                                            {{ slide.privateButton }}
+                                        </div>
+                                        <div v-if="slide.urgentButton"
+                                            class="bg-[#FEF2D9] text-center p-1.5 rounded-full text-[#FAAB5B] w-[30%]">
+                                            {{ slide.urgentButton }}
+                                        </div>
                                     </div>
-                                    <div v-if="slide.partTimeButton" class="bg-[#DDE8F8] text-center p-1.5 rounded-full text-[#4C6DDC] w-[30%]">
-                                        {{ slide.partTimeButton }}
-                                    </div>
-                                    <div v-if="slide.privateButton" class="bg-[#E1F2E5] text-center p-1.5 rounded-full text-[#8EB06A] w-[30%]">
-                                        {{ slide.privateButton }}
-                                    </div>
-                                    <div v-if="slide.urgentButton" class="bg-[#FEF2D9] text-center p-1.5 rounded-full text-[#FAAB5B] w-[30%]">
-                                        {{ slide.urgentButton }}
-                                    </div>
-                                  </div>
                                     <div class="py-1 font-[Extra-Bold]">
                                         {{ slide.heading }}
                                     </div>
                                     <div class="py-1">
-                                        <span class="font-[Extra-Bold] text-[#A5A5A5]">Posted by:</span> <span class="">{{ slide.postedBy }}</span>
-                                     </div>
+                                        <span class="font-[Extra-Bold] text-[#A5A5A5]">Posted by:</span> <span
+                                            class="">{{ slide.postedBy }}</span>
+                                    </div>
                                     <div class="text-[#A5A5A5]">
                                         {{ slide.paragraph }}
                                     </div>
                                 </div>
                                 <div class="w-1/2">
-                                  <div class="">
-                                    <div class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase">
-                                        {{ slide.applyButton }}
-                                       </div>
-                                  </div>
-                                    <router-link :to="{name: 'JobDetail'}" class="hover-btn w-full border-2 border-[#61C1B4] p-2 text-center rounded-full text-[#61C1B4]">
+                                    <div class="">
+                                        <router-link :to="{name: 'ApplyForJobs'}"
+                                            class="hover-btn w-full bg-[#61C1B4] text-center rounded-full p-2 text-white uppercase">
+                                            {{ slide.applyButton }}
+                                        </router-link>
+                                    </div>
+                                    <router-link :to="{ name: 'JobDetail' }"
+                                        class="hover-btn w-full border-2 border-[#61C1B4] p-2 text-center rounded-full text-[#61C1B4]">
                                         {{ slide.jobDetailButton }}
                                     </router-link>
                                 </div>
@@ -129,7 +136,7 @@ const slides = [
         applyButton: 'Apply for job',
         jobDetailButton: 'Job Detail'
     },
- 
+
 
 ]
 
