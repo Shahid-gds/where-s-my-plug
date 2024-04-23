@@ -1,0 +1,23 @@
+<svg id="surface1" xmlns="http://www.w3.org/2000/svg" width="21.221" height="20.536" viewBox="0 0 21.221 20.536">
+  <path id="Path_7301" data-name="Path 7301" d="M1.678,18.335H10.4V17.66H1.678A1.009,1.009,0,0,1,.671,16.648V1.811A1.009,1.009,0,0,1,1.678.8H16.441a1.009,1.009,0,0,1,1.007,1.012V9.567h.671V1.811A1.684,1.684,0,0,0,16.441.125H1.678A1.684,1.684,0,0,0,0,1.811V16.648A1.684,1.684,0,0,0,1.678,18.335Zm0,0" transform="translate(0 -0.125)" fill="#9b9b9b"/>
+  <path id="Path_7302" data-name="Path 7302" d="M62.344,62.469h.775v.775h-.775Zm0,0" transform="translate(-60.792 -60.917)" fill="#9b9b9b"/>
+  <path id="Path_7303" data-name="Path 7303" d="M124.676,62.469h.776v.775h-.776Zm0,0" transform="translate(-121.574 -60.917)" fill="#9b9b9b"/>
+  <path id="Path_7304" data-name="Path 7304" d="M187.016,62.469h.776v.775h-.776Zm0,0" transform="translate(-182.927 -60.917)" fill="#9b9b9b"/>
+  <path id="Path_7305" data-name="Path 7305" d="M62.344,124.8H80.183v.776H62.344Zm0,0" transform="translate(-60.792 -121.699)" fill="#9b9b9b"/>
+  <path id="Path_7306" data-name="Path 7306" d="M65.877,191.707l-.985.985a1.945,1.945,0,1,0,.548.548l.985-.985Zm-2.053,3.764a1.163,1.163,0,1,1,0-2.327,1.143,1.143,0,0,1,.5.116l-.772.773.548.548.773-.772a1.142,1.142,0,0,1,.116.5A1.163,1.163,0,0,1,63.824,195.471Zm0,0" transform="translate(-60.334 -187.636)" fill="#9b9b9b"/>
+  <path id="Path_7307" data-name="Path 7307" d="M264.941,249.484h6.593v.775h-6.593Zm0,0" transform="translate(-259.415 -244.033)" fill="#9b9b9b"/>
+  <path id="Path_7308" data-name="Path 7308" d="M264.941,311.82h2.715v.775h-2.715Zm0,0" transform="translate(-259.221 -305.006)" fill="#9b9b9b"/>
+  <path id="Path_7309" data-name="Path 7309" d="M405.2,311.82h5.429v.775H405.2Zm0,0" transform="translate(-396.649 -305.006)" fill="#9b9b9b"/>
+  <path id="Path_7310" data-name="Path 7310" d="M561.047,249.484h3.878v.775h-3.878Zm0,0" transform="translate(-549.041 -244.033)" fill="#9b9b9b"/>
+  <path id="Path_7311" data-name="Path 7311" d="M65.877,378.723l-.985.985a1.945,1.945,0,1,0,.548.548l.985-.985Zm-2.053,3.765a1.163,1.163,0,0,1,0-2.327,1.145,1.145,0,0,1,.5.116l-.772.773.548.548.773-.772a1.143,1.143,0,0,1,.116.5A1.163,1.163,0,0,1,63.824,382.488Zm0,0" transform="translate(-60.334 -370.677)" fill="#9b9b9b"/>
+  <path id="Path_7312" data-name="Path 7312" d="M264.941,436.492h6.593v.776h-6.593Zm0,0" transform="translate(-259.415 -426.952)" fill="#9b9b9b"/>
+  <path id="Path_7313" data-name="Path 7313" d="M264.941,498.836h2.715v.776h-2.715Zm0,0" transform="translate(-259.221 -487.933)" fill="#9b9b9b"/>
+  <path id="Path_7314" data-name="Path 7314" d="M405.2,498.836h3.1v.776h-3.1Zm0,0" transform="translate(-396.479 -487.933)" fill="#9b9b9b"/>
+  <path id="Path_7315" data-name="Path 7315" d="M561.047,436.492H562.6v.776h-1.551Zm0,0" transform="translate(-548.838 -426.952)" fill="#9b9b9b"/>
+  <path id="Path_7316" data-name="Path 7316" d="M65.877,565.738l-.985.985a1.945,1.945,0,1,0,.548.548l.985-.985ZM63.824,569.5a1.163,1.163,0,0,1,0-2.327,1.14,1.14,0,0,1,.5.116l-.772.773.548.548.773-.772a1.143,1.143,0,0,1,.116.5A1.163,1.163,0,0,1,63.824,569.5Zm0,0" transform="translate(-60.334 -553.718)" fill="#9b9b9b"/>
+  <path id="Path_7317" data-name="Path 7317" d="M264.941,623.512h5.042v.776h-5.042Zm0,0" transform="translate(-259.328 -609.884)" fill="#9b9b9b"/>
+  <path id="Path_7318" data-name="Path 7318" d="M264.941,685.852h2.715v.776h-2.715Zm0,0" transform="translate(-259.221 -670.861)" fill="#9b9b9b"/>
+  <path id="Path_7319" data-name="Path 7319" d="M405.2,685.852h1.551v.776H405.2Zm0,0" transform="translate(-396.386 -670.861)" fill="#9b9b9b"/>
+  <path id="Path_7320" data-name="Path 7320" d="M504.528,479.3a5.817,5.817,0,1,0-5.817-5.817A5.817,5.817,0,0,0,504.528,479.3Zm0-10.859a5.042,5.042,0,1,1-5.042,5.042A5.042,5.042,0,0,1,504.528,468.44Zm0,0" transform="translate(-489.124 -458.762)" fill="#9b9b9b"/>
+  <path id="Path_7321" data-name="Path 7321" d="M610.214,584.527l-.694.347.776,1.551a.387.387,0,0,0,.285.21.424.424,0,0,0,.06.005.388.388,0,0,0,.274-.114l4.654-4.654-.548-.548-4.273,4.273Zm0,0" transform="translate(-597.176 -569.063)" fill="#9b9b9b"/>
+</svg>

@@ -98,6 +98,42 @@ const router = createRouter({
       meta: { layout: "Default" },
       component: () => import("../pages/Faqs.vue"),
     },
+    {
+      path: "/about-us",
+      name: "About Us",
+      meta: { layout: "Default" },
+      component: () => import("../pages/AboutUs.vue"),
+    },
+    {
+      path: "/los-angeles",
+      name: "Los Angeles",
+      meta: { layout: "dispensariesDefault" },
+      component: () => import("../pages/LosAngeles.vue"),
+    },
+    {
+      path: "/terms-of-use",
+      name: "Terms",
+      meta: { layout: "Default" },
+      component: () => import("../pages/Terms.vue"),
+    },
+    {
+      path: "/commercial-terms-of-use",
+      name: "CommercialTerms",
+      meta: { layout: "Default" },
+      component: () => import("../pages/CommercialTerms.vue"),
+    },
+    {
+      path: "/privacy-policy",
+      name: "PrivacyPolicy",
+      meta: { layout: "Default" },
+      component: () => import("../pages/PrivacyPolicy.vue"),
+    },
+    {
+      path: "/account-setting",
+      name: "AccountSetting",
+      meta: { layout: "Default" },
+      component: () => import("../pages/AccountSetting.vue"),
+    },
   ],
 });
 

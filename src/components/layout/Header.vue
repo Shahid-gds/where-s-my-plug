@@ -97,10 +97,61 @@
                             Search
                         </div>
                     </div>
-                    <router-link :to="{ name: 'Sign-In' }" class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
-                        <img src="../icons/user.svg" alt="">
-                    </router-link>
-                    <router-link :to="{name: 'YourCart'}" class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
+                    <TransitionGroup name="bounce" tag="ul" class="relative">
+                        <!-- <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
+                        </div> -->
+                        <div @click="accontToggleShow"
+                            class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 mt-2 rounded-full cursor-pointer">
+                            <img src="../icons/user.svg" alt="">
+                        </div>
+                        <div v-if="isAccountToggleShow"
+                            class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
+                            <div class="flex items-center space-x-4 pb-4">
+                                <div class=" bg-[#61c1b4] p-4 rounded-full">
+                                    <img src="../icons/user.svg" alt="">
+                                </div>
+                                <div class="text-[#9B9B9B] font-[Bold]">
+                                    Hi, example@gmail.com
+                                    <router-link :to="{name : 'AccountSetting'}" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]" href="#">View Account</router-link>
+                                </div>
+                            </div>
+                            <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
+                                <div class="w-full flex items-center space-x-4 pb-6">
+                                    <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
+                                    <a href="" class="text-[#636363]">My Order</a>
+                                </div>
+                                <div class="w-full flex items-center space-x-4 pb-6">
+                                    <img class="w-[12%]" src="../icons/heart.svg" alt="">
+                                    <a href="" class="text-[#636363]">Add Your Listings</a>
+                                </div>
+                                <div class="w-full flex items-center space-x-4 pb-6">
+                                    <img class="w-[12%]" src="../icons/review.svg" alt="">
+                                    <a href="" class="text-[#636363]">My Reviews</a>
+                                </div>
+                                <div class="w-full flex items-center space-x-4 pb-6">
+                                    <img class="w-[12%]" src="../icons/help.svg" alt="">
+                                    <a href="" class="text-[#636363]">Help</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
+                                <div class="cl-toggle-switch py-4">
+                                    <label class="cl-switch">
+                                      <input type="checkbox">
+                                      <span></span>
+                                    </label>
+                                  </div>
+                                  <div class="text-[#636363]">
+                                    Switch to Business
+                                  </div>
+                            </div>
+                            <div class="w-full flex items-center space-x-4 py-6 px-4">
+                                <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
+                                <a href="" class="text-[#9B9B9B]">Sign-Out</a>
+                            </div>
+                        </div>
+                    </TransitionGroup>
+                    <router-link :to="{ name: 'YourCart' }"
+                        class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
                         <div>
                             <img src="../icons/shop.svg" alt="">
                         </div>
@@ -135,9 +186,9 @@
                 </button>
             </div>
             <div class="w-full">
-                    <router-link :to="{ name: 'Home' }" @click="closeSideMenuOutside">
-                        <img src="../../assets/images/Logo.svg" alt="">
-                    </router-link>
+                <router-link :to="{ name: 'Home' }" @click="closeSideMenuOutside">
+                    <img src="../../assets/images/Logo.svg" alt="">
+                </router-link>
             </div>
             <div class="w-full flex justify-end">
                 <router-link :to="{ name: 'Sign-In' }" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
@@ -162,37 +213,44 @@
                         <li class="py-4">
                             <router-link :to="{ name: 'Dispensaries' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Dispensaries</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Dispensaries</router-link>
                         </li>
                         <li class="pb-4">
                             <router-link :to="{ name: 'Deliveries' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Deliveries</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Deliveries</router-link>
                         </li>
                         <li class="pb-4">
                             <router-link :to="{ name: 'Brands' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Brands</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Brands</router-link>
                         </li>
                         <li class="pb-4">
                             <router-link :to="{ name: 'Products' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Product</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Product</router-link>
                         </li>
                         <li class="pb-4">
                             <router-link :to="{ name: 'Deals' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Deals</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Deals</router-link>
                         </li>
                         <li class="pb-4">
                             <router-link :to="{ name: 'Learn' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Learn</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Learn</router-link>
                         </li>
                         <li class="">
                             <router-link :to="{ name: 'Strains' }"
                                 class="text-[#ffff] font-[Bold] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
-                                :active-class="'active-route text-[black] font-[600]'" @click="toggleMobileMenu">Strains</router-link>
+                                :active-class="'active-route text-[black] font-[600]'"
+                                @click="toggleMobileMenu">Strains</router-link>
                         </li>
                     </ul>
                 </nav>
@@ -220,6 +278,10 @@ const toggleSearchInput = () => {
 const hideSearchInput = () => {
     isSearchVisible.value = false;
 };
+const isAccountToggleShow = ref(false);
+const accontToggleShow = () => {
+    isAccountToggleShow.value = !isAccountToggleShow.value
+}
 
 </script>
 
@@ -233,6 +295,28 @@ const hideSearchInput = () => {
 .list-leave-to {
     opacity: 0;
     transform: translateX(-400px);
+}
+
+.bounce-enter-active {
+    animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    50% {
+        transform: scale(1);
+    }
 }
 
 @media(max-width:1900px) {
@@ -284,6 +368,92 @@ const hideSearchInput = () => {
     }
 }
 
+.submenu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background: #FFFFFF;
+    transform: rotate(45deg);
+    z-index: -2;
+}
+.cl-toggle-switch {
+    position: relative;
+   }
+   
+   .cl-switch {
+    position: relative;
+    display: inline-block;
+   }
+   /* Input */
+   .cl-switch > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    z-index: -1;
+    position: absolute;
+    right: 6px;
+    top: -8px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+    transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+   }
+   /* Track */
+   .cl-switch > span::before {
+    content: "";
+    float: right;
+    display: inline-block;
+    margin: 5px 0 5px 10px;
+    border-radius: 20px;
+    width: 44px;
+    height: 21px;
+    background-color: transparent;
+    border: 2px solid #61C1B4;
+    vertical-align: top;
+    transition: background-color 0.2s, opacity 0.2s;
+   }
+   /* Thumb */
+   .cl-switch > span::after {
+    content: "";
+    position: absolute;
+    top: 2.5px;
+    right: 20px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #61C1B4;
+    background: white;
+    transition: background-color 0.2s, transform 0.2s;
+   }
+   /* Checked */
+   .cl-switch > input:checked {
+    right: -10px;
+    background-color: #85b8b7;
+   }
+   
+   .cl-switch > input:checked + span::before {
+    background-color: #61C1B4;
+   }
+   
+   .cl-switch > input:checked + span::after {
+   
+    transform: translateX(20px);
+   }
+   /* Hover, Focus */
+   .cl-switch:hover > input {
+    opacity: 0.04;
+   }
+   
+     
 @media(max-width:1900px) {
     .top-header {
         padding-right: 2rem;
