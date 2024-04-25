@@ -112,12 +112,12 @@
                                 </div>
                                 <div class="w-full text-[#9B9B9B] font-[Bold]">
                                     {{ greeting }}
-                                    <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                    <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                         {{ accountText }}
                                       </router-link>
                                 
                                       <!-- Router link for Business Account -->
-                                      <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                      <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                         {{ accountText }}
                                       </router-link>
                                   </div>
@@ -125,19 +125,19 @@
                             <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
-                                    <router-link :to="{name: 'MyOrder'}" @click="accontToggleShow" class="text-[#636363]">My Order</router-link>
+                                    <router-link :to="{name: 'MyOrder'}" @click="handleClick" class="text-[#636363]">My Order</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/heart.svg" alt="">
-                                    <router-link :to="{name: 'AddYourListings'}" @click="accontToggleShow" class="text-[#636363]">Add Your Listings</router-link>
+                                    <router-link :to="{name: 'AddYourListings'}" @click="handleClick" class="text-[#636363]">Add Your Listings</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/review.svg" alt="">
-                                    <router-link :to="{name : 'MyReview'}" @click="accontToggleShow" class="text-[#636363]">My Reviews</router-link>
+                                    <router-link :to="{name : 'MyReview'}" @click="handleClick" class="text-[#636363]">My Reviews</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/help.svg" alt="">
-                                    <router-link :to="{name: 'Help'}" @click="accontToggleShow" class="text-[#636363]">Help</router-link>
+                                    <router-link :to="{name: 'Help'}" @click="handleClick" class="text-[#636363]">Help</router-link>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
@@ -296,7 +296,16 @@ const greeting = computed(() => {
 const accountText = computed(() => {
   return isBusinessAccount.value ? 'Business Account' : 'View Account';
 });
-
+const handleClick = () => {
+    scrollToTop();
+    accontToggleShow();
+};
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
 
 <style scoped>
