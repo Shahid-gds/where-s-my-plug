@@ -65,13 +65,13 @@
                     </div>
                 </div>
                 <div class="w-full sm:pb-8 pb-4">
-                    <button class="bg-[#61C1B4] w-full p-4 rounded-full text-white text-xl">Create Account</button>
+                    <button class="hover-btn bg-[#61C1B4] w-full p-4 rounded-full text-white text-xl">Create Account</button>
                 </div>
                 <div class="text-center text-[#818181] pb-8">
                     <p>By using Where's My Plug, I agree to the <br>
-                        <a href="#" class="font-[Bold] text-[#3D3D3D] underline">Terms of Use</a>
+                        <a href="/terms-of-use" target="_blank" class="font-[Bold] text-[#3D3D3D] underline">Terms of Use</a>
                         and
-                        <a href="#" class="font-[Bold] text-[#3D3D3D] underline">Privacy Policy.</a>
+                        <a href="/privacy-policy" target="_blank" class="font-[Bold] text-[#3D3D3D] underline">Privacy Policy.</a>
                     </p>
                 </div>
                 <div class="sm:flex items-center sm:space-x-4 sm:pb-8 pb-4">

@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import("../pages/Sign-Up.vue"),
     },
     {
+      path: "/forget-password",
+      name: "ForgetPassword",
+      component: () => import("../pages/ForgetPassword.vue"),
+    },
+    {
       path: "/your-cart",
       name: "YourCart",
       meta: { layout: "Default" },
@@ -159,6 +164,18 @@ const router = createRouter({
       meta: { layout: "Default" },
       component: () => import("../pages/AddYourListing.vue"),
 
+    },
+    {
+      path: "/my-review",
+      name: "MyReview",
+      meta: { layout: "Default" },
+      component: () => import("../pages/MyReview.vue"),
+    },
+    {
+      path: "/help",
+      name: "Help",
+      meta: { layout: "Default" },
+      component: () => import("../pages/Help.vue"),
     },
   ],
 });

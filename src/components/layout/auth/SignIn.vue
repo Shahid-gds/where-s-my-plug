@@ -51,10 +51,10 @@
                     <div><label for="cbx-45">Remember Me. <span class="text-[#818181]">I confirm this is not a shared device.</span></label></div>
                   </div>
                 <div class="w-full pb-8">
-                    <button class="bg-[#61C1B4] w-full p-4 rounded-full text-white text-xl">Sign-In</button>
+                    <button class="hover-btn bg-[#61C1B4] w-full p-4 rounded-full text-white text-xl">Sign-In</button>
                 </div>
                 <div class="text-center underline pb-8">
-                    <a href="#" class="font-[Bold]">Forgot Password?</a>
+                    <router-link :to="{name: 'ForgetPassword'}" class="font-[Bold]">Forgot Password?</router-link>
                 </div>
                 <div class="sm:flex items-center sm:space-x-4 pb-8">
                     <div class="w-full pb-2">

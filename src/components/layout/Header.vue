@@ -133,11 +133,11 @@
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/review.svg" alt="">
-                                    <a href="" class="text-[#636363]">My Reviews</a>
+                                    <router-link :to="{name : 'MyReview'}" @click="accontToggleShow" class="text-[#636363]">My Reviews</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/help.svg" alt="">
-                                    <a href="" class="text-[#636363]">Help</a>
+                                    <router-link :to="{name: 'Help'}" @click="accontToggleShow" class="text-[#636363]">Help</router-link>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
@@ -153,7 +153,7 @@
                             </div>
                             <div class="w-full flex items-center space-x-4 py-6 px-4">
                                 <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
-                                <a href="" class="text-[#9B9B9B]">Sign-Out</a>
+                                <router-link :to="{name: 'Sign-In'}" class="text-[#9B9B9B]">Sign-Out</router-link>
                             </div>
                         </div>
                     </TransitionGroup>
