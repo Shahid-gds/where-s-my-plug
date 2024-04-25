@@ -1,13 +1,13 @@
 <template>
     <div class="">
-      <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center bg-[white] opacity-80 z-50">
+      <!-- <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center bg-[#1e0d34] opacity-80 z-50">
         <span class="relative flex h-16 w-16">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-16 w-16 bg-sky-500 p-2">
             <img class="" src="../components/icons/drugLeaf.svg" alt="">
           </span>
         </span>
-      </div>
+      </div> -->
       <section :class="{ 'bg-opacity-100': !isLoading }" class="bg bg-gradient-to-t from-[#ffffff] bg-[#ffffff] transition-opacity duration-500">
         <div v-for="section in sections" :key="section.name" :class="section.class">
           <div class="section">
