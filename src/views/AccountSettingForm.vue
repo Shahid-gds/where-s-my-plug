@@ -1,19 +1,46 @@
 <template>
     <section class="container mx-auto pb-[25rem] -mt-[8rem] px-20">
         <div class="flex items-end space-x-4 pb-6">
-            <div class="w-full bg-white flex items-center border-2 p-6 rounded-2xl">
+            <div class="w-full bg-white flex items-center border-2 p-6 rounded-2xl relative">
                 <div class="w-full">
-                    <label for="" class="text-[#161616] font-[Bold]">First Name</label>
-                    <input type="text" class="w-full text-[#818181] outline-none" readonly v-model="fname">
+                  <label for="" class="text-[#161616] font-[Bold]">First Name</label>
+                  <input v-if="!isEdit" type="text" class="w-full text-[#818181] outline-none"
+                    readonly :value="fname" />
+                  <input v-if="isEdit" type="text"
+                    class="w-full text-[#818181] outline-none border-2 p-2 mt-3 rounded-xl px-4"
+                    v-model="editedName" />
+                  <div v-if="isEdit" class="flex justify-end space-x-4 pt-2">
+                    <div class="flex items-center space-x-1 cursor-pointer" @click="cancelEdit">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18.735" height="18.735" viewBox="0 0 18.735 18.735">
+                          <path fill="#ff3b3b" d="M18.1,3.692,12.425,9.369,18.1,15.046A2.162,2.162,0,1,1,15.045,18.1L9.367,12.426,3.69,18.1A2.162,2.162,0,0,1,.633,15.046L6.31,9.369.633,3.692A2.162,2.162,0,0,1,3.69.635L9.367,6.312,15.045.635A2.162,2.162,0,0,1,18.1,3.692Z"
+                            transform="translate(0 -0.002)" />
+                        </svg>
+                      </div>
+                      <div class="text-[#FF3B3B] font-[Bold]">Cancel</div>
+                    </div>
+                    <div class="flex items-center space-x-1 cursor-pointer" @click="saveEdit">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24.965" height="21.992" viewBox="0 0 24.965 21.992">
+                          <path
+                            fill="#61c1b4"
+                            d="M43.387,81.15a.547.547,0,0,1-.4-.176L32.146,69.249a.547.547,0,0,1,.4-.919h5.218a.548.548,0,0,1,.413.188L41.8,72.685a20.755,20.755,0,0,1,2.479-3.928,36.881,36.881,0,0,1,11.88-9.535.547.547,0,0,1,.594.915,35.808,35.808,0,0,0-5.213,5.4,40.256,40.256,0,0,0-7.623,15.2.547.547,0,0,1-.531.416Z"
+                            transform="translate(-32 -59.158)"
+                          />
+                        </svg>
+                      </div>
+                      <div class="text-[#61C1B4] font-[Bold]">Save</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="cursor-pointer" @click="editMode">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="#61C1B4" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                    </svg>
+                <div v-if="!isEdit" class="cursor-pointer absolute right-3" @click="editMode">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#61C1B4"
+                    class="w-6 h-6">
+                    <path
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                  </svg>
                 </div>
-            </div>
+              </div>
             <div class="w-full h-[193px] bg-white flex items-center space-x-5 border-2 p-4 rounded-2xl">
                 <div class="bg-[#F6F9F9] p-6 rounded-xl border-2 border-[#61C1B4] relative">
                     <svg id="Group_2" data-name="Group 2" xmlns="http://www.w3.org/2000/svg" width="71.017"
@@ -131,7 +158,7 @@
             <div class="w-full h-[140px] bg-white flex items-center border-2 p-6 rounded-2xl">
                 <div class="w-full">
                     <label for="" class="text-[#161616] font-[Bold]">Password</label>
-                    <input type="text" class="w-full text-[#818181] outline-none" readonly v-model="pass">
+                    <input type="text" class="w-full text-[#818181] outline-none text-2xl" readonly v-model="pass">
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -326,19 +353,33 @@
 import { ref } from 'vue';
 
 const isEdit = ref(false);
+const fname = ref('John Smith');
+const editedName = ref('');
 
 const editMode = () => {
-    isEdit.value = !isEdit.value;
-}
+  isEdit.value = !isEdit.value;
+  if (isEdit.value) {
+    editedName.value = fname.value;
+  }
+};
 
-const fname = ref('John Smith');
+const cancelEdit = () => {
+  isEdit.value = false;
+  editedName.value = fname.value;
+};
+
+const saveEdit = () => {
+  isEdit.value = false;
+  fname.value = editedName.value;
+};
+
 const lname = ref('Farnadies');
 const email = ref('johnsmith@gmail.com');
 const bday = ref('Enter your date of birth');
 const pId = ref('Add a photo ID');
 const websiteUrl = ref('https://www.websitename.com');
 const uName = ref('John 007');
-const pass = ref('*********');
+const pass = ref('**************');
 const about = ref('A little description of about yourself');
 const phone = ref('Add a phone number');
 const mobile = ref('Add a mobile number');
@@ -414,9 +455,8 @@ const notes2 = ref([
         para: 'Cannabis policy updates and information on how to get involved in advocacy campaigns.',
         checked: false
     },
-
- 
 ]);
+
 </script>
 
 <style scoped>

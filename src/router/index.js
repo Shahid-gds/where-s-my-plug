@@ -134,6 +134,32 @@ const router = createRouter({
       meta: { layout: "Default" },
       component: () => import("../pages/AccountSetting.vue"),
     },
+    {
+      path: "/business-account",
+      name: "BusinessAccount",
+      meta: { layout: "Default" },
+      component: () => import("../pages/BusinessAccount.vue"),
+    },
+    {
+      path: "/my-orders",
+      name: "MyOrder",
+      meta: { layout: "Default" },
+      component: () => import("../pages/MyOrder.vue"),
+    },
+    {
+      path: "/my-orders-details:id",
+      name: "MyOrderDetails",
+      meta: { layout: "Default" },
+      component: () => import("../pages/MyOrderDetails.vue"),
+      props: true,
+    },
+    {
+      path: "/add-your-listing",
+      name: "AddYourListings",
+      meta: { layout: "Default" },
+      component: () => import("../pages/AddYourListing.vue"),
+
+    },
   ],
 });
 

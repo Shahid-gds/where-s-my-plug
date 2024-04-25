@@ -107,22 +107,29 @@
                         <div v-if="isAccountToggleShow"
                             class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                             <div class="flex items-center space-x-4 pb-4">
-                                <div class=" bg-[#61c1b4] p-4 rounded-full">
+                                <div class="bg-[#61c1b4] p-4 rounded-full">
                                     <img src="../icons/user.svg" alt="">
                                 </div>
-                                <div class="text-[#9B9B9B] font-[Bold]">
-                                    Hi, example@gmail.com
-                                    <router-link :to="{name : 'AccountSetting'}" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]" href="#">View Account</router-link>
-                                </div>
+                                <div class="w-full text-[#9B9B9B] font-[Bold]">
+                                    {{ greeting }}
+                                    <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                        {{ accountText }}
+                                      </router-link>
+                                
+                                      <!-- Router link for Business Account -->
+                                      <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="accontToggleShow" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                        {{ accountText }}
+                                      </router-link>
+                                  </div>
                             </div>
                             <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
-                                    <a href="" class="text-[#636363]">My Order</a>
+                                    <router-link :to="{name: 'MyOrder'}" @click="accontToggleShow" class="text-[#636363]">My Order</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/heart.svg" alt="">
-                                    <a href="" class="text-[#636363]">Add Your Listings</a>
+                                    <router-link :to="{name: 'AddYourListings'}" @click="accontToggleShow" class="text-[#636363]">Add Your Listings</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/review.svg" alt="">
@@ -136,10 +143,10 @@
                             <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
                                 <div class="cl-toggle-switch py-4">
                                     <label class="cl-switch">
-                                      <input type="checkbox">
+                                      <input type="checkbox" v-model="isBusinessAccount">
                                       <span></span>
                                     </label>
-                                  </div>
+                                </div>
                                   <div class="text-[#636363]">
                                     Switch to Business
                                   </div>
@@ -260,7 +267,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 const closeSideMenuOutside = () => {
     isMobileMenuOpen.value = false;
 };
@@ -282,6 +289,13 @@ const isAccountToggleShow = ref(false);
 const accontToggleShow = () => {
     isAccountToggleShow.value = !isAccountToggleShow.value
 }
+const isBusinessAccount = ref(false);
+const greeting = computed(() => {
+  return isBusinessAccount.value ? 'Hi, Business User' : 'Hi, example@gmail.com';
+});
+const accountText = computed(() => {
+  return isBusinessAccount.value ? 'Business Account' : 'View Account';
+});
 
 </script>
 
