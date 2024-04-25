@@ -5,7 +5,7 @@
             <p class="text-[#ACACAC] text-[18px] uppercase pb-6">We'll email you an order conformation with details and tracking Info</p>
             <div class="w-full">
                 <router-link :to="{ name: 'CheckOut' }" @click="scrollToTop"
-                    class="hover-btn w-[30%] text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Place Order</router-link>
+                    class="hover-btn w-[30%] text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Continue Shopping</router-link>
             </div>
         </div>
        
@@ -13,8 +13,12 @@
 </template>
 
 <script setup>
-
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
 
 <style scoped>
