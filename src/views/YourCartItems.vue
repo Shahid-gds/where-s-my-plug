@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="w-full pb-16">
-                <button class="hover-btn w-full p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Proceed To Checkout</button>
+                <router-link :to="{name : 'CheckOut'}" @click="scrollToTop" class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Proceed To Checkout</router-link>
             </div>
             <div class="w-full text-center">
                 <a href="#" class="underline font-[Bold]">Continue Shopping</a>
@@ -161,6 +161,12 @@ onMounted(async () => {
         }))
     );
 });
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
 
 <style scoped>

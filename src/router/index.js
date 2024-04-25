@@ -32,6 +32,18 @@ const router = createRouter({
       component: () => import("../pages/YourCart.vue"),
     },
     {
+      path: "/check-out",
+      name: "CheckOut",
+      meta: { layout: "Default" },
+      component: () => import("../pages/CheckOut.vue"),
+    },
+    {
+      path: "/check-out-thanks",
+      name: "CheckOutThankYou",
+      meta: { layout: "Default" },
+      component: () => import("../pages//CheckOutThankYou.vue"),
+    },
+    {
       path: "/dispensaries",
       name: "Dispensaries",
       meta: { layout: "dispensariesDefault" },

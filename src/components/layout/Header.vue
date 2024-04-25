@@ -41,44 +41,44 @@
         <div class="absolute header w-full px-16 p-3 xl:block hidden z-50">
             <nav class="flex items-center justify-between ">
                 <div>
-                    <router-link :to="{ name: 'Home' }">
+                    <router-link :to="{ name: 'Home' }" @click="handleClick">
                         <img src="../../assets/images/Logo.svg" alt="">
                     </router-link>
                 </div>
                 <div>
                     <ul class="flex space-x-10">
                         <li class="">
-                            <router-link :to="{ name: 'Dispensaries' }"
+                            <router-link :to="{ name: 'Dispensaries' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Dispensaries</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Deliveries' }"
+                            <router-link :to="{ name: 'Deliveries' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Deliveries</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Brands' }"
+                            <router-link :to="{ name: 'Brands' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Brands</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Products' }"
+                            <router-link :to="{ name: 'Products' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Product</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Deals' }"
+                            <router-link :to="{ name: 'Deals' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Deals</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Learn' }"
+                            <router-link :to="{ name: 'Learn' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Learn</router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Strains' }"
+                            <router-link :to="{ name: 'Strains' }" @click="handleClick"
                                 class="text-[#929493] active-route-link hover:text-black transition-all ease-in duration-300 hover:font-extrabold"
                                 :active-class="'active-route text-[black] font-[600]'">Strains</router-link>
                         </li>
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </TransitionGroup>
-                    <router-link :to="{ name: 'YourCart' }"
+                    <router-link :to="{ name: 'YourCart' }" @click="handleClick"
                         class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
                         <div>
                             <img src="../icons/shop.svg" alt="">
@@ -298,7 +298,8 @@ const accountText = computed(() => {
 });
 const handleClick = () => {
     scrollToTop();
-    accontToggleShow();
+    isAccountToggleShow.value = false;
+    isSearchVisible.value = false;
 };
 const scrollToTop = () => {
     window.scrollTo({
