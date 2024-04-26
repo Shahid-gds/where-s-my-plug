@@ -1,5 +1,5 @@
 <template>
-    <section class="container mx-auto pb-[15rem] -mt-[8rem]">
+    <section class="container mx-auto pb-[15rem] -mt-[8rem] xl:px-20 px-6">
         <div class="w-[400px] h-[193px] bg-white flex items-center mr-auto ml-auto space-x-5 border-2 p-4 rounded-2xl">
             <div class="bg-[#F6F9F9] p-6 rounded-xl border-2 border-[#61C1B4] relative">
                 <svg id="Group_2" data-name="Group 2" xmlns="http://www.w3.org/2000/svg" width="71.017"
@@ -33,7 +33,7 @@
         <div class="px-4">
             <form class="pt-[2rem]">
                 <div class="flex flex-wrap">
-                    <div v-for="(inputGroup, index) in personalInfoInputGroup" :key="index" class="flex space-x-4 w-full">
+                    <div v-for="(inputGroup, index) in personalInfoInputGroup" :key="index" class="lg:flex lg:space-x-4 w-full">
                         <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
                             <div class="text-[#343434]">
                                 <label :for="input.id">
