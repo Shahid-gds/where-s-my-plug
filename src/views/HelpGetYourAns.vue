@@ -1,6 +1,6 @@
 <template>
     <section class="sm:pb-[5rem]">
-        <div class="container mx-auto overflow-hidden xl:pt-[10rem]">
+        <div class="container mx-auto overflow-hidden pt-[10rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -38,7 +38,7 @@
                 <div v-for="(item, index) in items" :key="index">
                     <div @click="toggleAccordion(index)" class="accordion-item">
                         <div
-                            class="accordion-header text-[#010101] font-[Extra-Bold] rounded-full flex items-center space-x-4">
+                            class="accordion-header text-[#010101] sm:font-[Extra-Bold] rounded-full flex items-center space-x-4">
                             <div
                                 class="border-2 w-[30px] h-[30px] border-[#61C1B4] bg-white p-2 px-2.5 rounded-full mr-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="5" height="11" viewBox="0 0 5 11">
@@ -81,7 +81,7 @@
             <div class="pt-[3rem] text-center pb-[15rem] relative">
                 <h1 class="text-[#D9D8D8] font-[Bold] text-[30px]">--- OR ---</h1>
                 <h1 class="text-[40px] uppercase py-[1rem]">Contact Now!</h1>
-                <div class="flex justify-center space-x-7">
+                <div class="md:flex justify-center space-x-7 sm:pb-6 pb-16">
                     <div>
                         <span class="text-[#61C1B4] text-xl font-[Semi-Bold]">Email Us:</span><a class="text-xl" href="#">
                             contact@wheresmyplug.com</a>
@@ -186,7 +186,7 @@
                 </div>
         </div>
     </div>
-    <div class="pt-[10rem]">
+    <div class="sm:pt-[10rem] pt-[13rem]">
         <WecomeToWMPCarouselVue />
     </div>
  </section>

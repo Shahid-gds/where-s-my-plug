@@ -68,16 +68,16 @@
                     <div class="" v-for="(card, index) in cards" :key="card.id"
                         :class="{ 'border-b-2': index !== cards.length - 1 }">
                         <div class="py-4">
-                            <div class="md:flex justify-center space-x-4 py-4">
-                                <div class="w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
+                            <div class="md:flex justify-center md:space-x-4 py-4">
+                                <div class="md:w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
                                     <img class="" :src="card.image" alt="">
                                 </div>
                                 <div class="w-full relative">
-                                    <button class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center absolute top-0 right-0"
+                                    <button class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center absolute sm:top-0 top-3 right-0"
                                         @click="removeItem(index)">
                                         <div class="font-[Bold] ">&#128473;</div>
                                     </button>
-                                    <div class="text-[#61C1B4] font-[Bold]">
+                                    <div class="text-[#61C1B4] font-[Bold] pt-3">
                                         {{ card.weight }}
                                     </div>
                                     <div class="flex justify-between py-2">
@@ -104,7 +104,7 @@
                     </div>
                 </transition-group>
             </div>
-            <div class="h-[700px] w-full border-2 border-[#61C1B4] p-6 rounded-xl bg-white">
+            <div class="sm:h-[700px] w-full border-2 border-[#61C1B4] p-6 rounded-xl bg-white">
                 <h1 class="font-[Extra-Bold] uppercase text-xl py-2">Order Summary</h1>
                 <div class="text-lg pb-4">
                     <span class="text-[#61C1B4] font-[600]">Pickup</span> <span class="font-[600]">Available Until
@@ -145,7 +145,7 @@
                         modifications must be made.</p>
                 </div>
             </div>
-            <div class="flex w-1/2 items-strat space-x-2 pt-6 pb-6">
+            <div class="flex sm:w-1/2 items-strat space-x-2 pt-6 pb-6">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#FFD764" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">

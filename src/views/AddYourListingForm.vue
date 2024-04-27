@@ -1,5 +1,5 @@
 <template>
-    <section class="container mx-auto pb-[15rem]">
+    <section class="container mx-auto pb-[15rem] xl:px-20 px-6">
         <div class="px-4">
             <form class="pt-[3rem]">
                 <!-- Contact Information Section -->
@@ -7,9 +7,9 @@
                     <h1 class="text-2xl">Contact Information</h1>
                     <div class="flex flex-wrap">
                         <div v-for="(inputGroup, index) in contactInfoInputGroup" :key="index"
-                            class="flex space-x-4 w-full">
+                            class="lg:flex lg:space-x-4 w-full">
                             <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full"
-                                :style="{ width: input.type === 'tel' ? '50%' : '100%' }">
+                                :class="{ 'lg:w-1/2': input.type === 'tel' }">
                                 <div class="text-[#343434]"
                                     :class="{ 'pb-2 mt-3': input.id === 'addressLine1' || input.id === 'addressLine2' }">
                                     <label :for="input.id">
@@ -18,7 +18,7 @@
                                             class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
                                     </label>
                                 </div>
-                                <div v-if="input.type === 'select'" class="select w-full">
+                                <div v-if="input.type === 'select'" class="select w-full pb-6">
                                     <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
                                         :class="{ toggle: dropdownVisible[input.id] }"
                                         @click="toggleDropdown(input.id)">
@@ -45,9 +45,8 @@
                     <h1 class="text-2xl">Business Information</h1>
                     <div class="flex flex-wrap">
                         <div v-for="(inputGroup, index) in businessInfoInputGroup" :key="index"
-                            class="flex space-x-4 w-full">
-                            <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full"
-                                :style="{ width: input.type === 'tel' ? '50%' : '100%' }">
+                            class="lg:flex lg:space-x-4 w-full">
+                            <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
                                 <div class="text-[#343434]"
                                     :class="{ 'pb-2 mt-3': input.id === 'city' || input.id === 'state' || input.id === 'webUrl' }">
                                     <label :for="input.id">
@@ -56,7 +55,7 @@
                                             class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
                                     </label>
                                 </div>
-                                <div v-if="input.type === 'select'" class="select w-full">
+                                <div v-if="input.type === 'select'" class="select w-full pb-6">
                                     <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
                                         :class="{ toggle: dropdownVisible[input.id] }"
                                         @click="toggleDropdown(input.id)">
@@ -85,7 +84,7 @@
                         <div v-for="(inputGroup, index) in saleInfoInputGroup" :key="index"
                             class="flex space-x-4 w-full">
                             <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full"
-                                :style="{ width: input.type === 'select' ? '50%' : '100%' }">
+                            :class="{ 'lg:w-1/2': input.type === 'select' }">
                                 <div class="text-[#343434]" :class="{ 'pb-2 mt-3': input.id === 'saleSystem' }">
                                     <label :for="input.id">
                                         {{ input.label }}
@@ -137,7 +136,7 @@
                     <h1 class="text-2xl">License</h1>
                     <div class="flex flex-wrap">
                         <div v-for="(inputGroup, index) in licenseInfoInputGroup" :key="index"
-                            class="flex space-x-4 w-full">
+                            class="lg:flex lg:space-x-4 w-full">
                             <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
                                 <div class="text-[#343434]"
                                     :class="{ 'pb-2 mt-3': input.id === 'licenseNumber' || input.id === 'expiration' }">
@@ -147,7 +146,7 @@
                                             class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
                                     </label>
                                 </div>
-                                <div v-if="input.type === 'select'" class="select w-full">
+                                <div v-if="input.type === 'select'" class="select w-full pb-6">
                                     <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
                                         :class="{ toggle: dropdownVisible[input.id] }"
                                         @click="toggleDropdown(input.id)">
@@ -171,7 +170,7 @@
                     <div class="pt-[3rem] text-center text-[18px]">
                         <p>By completing this form, you agree that Weedmaps may process your information in accordance
                             with our <br> <a class="text-[#6AC4B8]" href="#">Privacy Policy</a>.</p>
-                        <p class="px-[15rem] pt-8">You acknowledge that all use of the Weedmaps platform for business is
+                        <p class="xl:px-[15rem] pt-8">You acknowledge that all use of the Weedmaps platform for business is
                             subject to the <a class="text-[#6AC4B8]" href="#">Weedmaps
                                 Commercial Terms of Use</a> and the <a class="text-[#6AC4B8]" href="#">Weedmaps Privacy
                                 Policy</a>, and you agree to be bound

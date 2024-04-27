@@ -197,12 +197,67 @@
                     <img src="../../assets/images/Logo.svg" alt="">
                 </router-link>
             </div>
-            <div class="w-full flex justify-end">
-                <router-link :to="{ name: 'Sign-In' }" class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+            <div class="w-full flex justify-end" @click="accontToggleShow">
+                <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                     <img src="../icons/user.svg" alt="">
-                </router-link>
+                </div>
             </div>
-
+            <TransitionGroup name="bounce" tag="ul" class="relative">
+                <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
+                </div>               
+                <div v-if="isAccountToggleShow"
+                    class="submenu w-[312px] absolute right-0 sm:top-20 top-12 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
+                    <div class="flex items-center space-x-4 pb-4">
+                        <div class="bg-[#61c1b4] p-4 rounded-full">
+                            <img src="../icons/user.svg" alt="">
+                        </div>
+                        <div class="w-full text-[#9B9B9B] font-[Bold]">
+                            {{ greeting }}
+                            <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                {{ accountText }}
+                              </router-link>
+                        
+                              <!-- Router link for Business Account -->
+                              <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                {{ accountText }}
+                              </router-link>
+                          </div>
+                    </div>
+                    <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
+                        <div class="w-full flex items-center space-x-4 pb-6">
+                            <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
+                            <router-link :to="{name: 'MyOrder'}" @click="handleClick" class="text-[#636363]">My Order</router-link>
+                        </div>
+                        <div class="w-full flex items-center space-x-4 pb-6">
+                            <img class="w-[12%]" src="../icons/heart.svg" alt="">
+                            <router-link :to="{name: 'AddYourListings'}" @click="handleClick" class="text-[#636363]">Add Your Listings</router-link>
+                        </div>
+                        <div class="w-full flex items-center space-x-4 pb-6">
+                            <img class="w-[12%]" src="../icons/review.svg" alt="">
+                            <router-link :to="{name : 'MyReview'}" @click="handleClick" class="text-[#636363]">My Reviews</router-link>
+                        </div>
+                        <div class="w-full flex items-center space-x-4 pb-6">
+                            <img class="w-[12%]" src="../icons/help.svg" alt="">
+                            <router-link :to="{name: 'Help'}" @click="handleClick" class="text-[#636363]">Help</router-link>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
+                        <div class="cl-toggle-switch py-4">
+                            <label class="cl-switch">
+                              <input type="checkbox" v-model="isBusinessAccount">
+                              <span></span>
+                            </label>
+                        </div>
+                          <div class="text-[#636363]">
+                            Switch to Business
+                          </div>
+                    </div>
+                    <div class="w-full flex items-center space-x-4 py-6 px-4">
+                        <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
+                        <router-link :to="{name: 'Sign-In'}" class="text-[#9B9B9B]">Sign-Out</router-link>
+                    </div>
+                </div>
+            </TransitionGroup>
         </div>
 
         <TransitionGroup name="list" tag="ul" class="relative">

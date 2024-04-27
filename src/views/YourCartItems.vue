@@ -1,23 +1,32 @@
 <template>
-    <section class="pb-[5rem] -mt-[10rem] container mx-auto xl:flex xl:space-x-5 px-6">
+    <section class="-mt-[10rem] container mx-auto xl:flex xl:space-x-5 px-6">
         <div class="w-full">
             <transition-group name="nested" tag="div" class="w-full rounded-xl shadow-xl bg-[white] px-6">
                 <div class="" v-for="(card, index) in cards" :key="card.id"
                     :class="{ 'border-b-2': index !== cards.length - 1 }">
                     <div class="py-4">
-                        <div class="md:flex justify-center space-x-4 py-4">
-                            <div class="w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
+                        <div class="md:flex justify-center md:space-x-4 py-4">
+                            <div class="md:w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
                                 <img class="" :src="card.image" alt="">
                             </div>
                             <div class="w-full">
-                                <div class="text-[#61C1B4] font-[Bold]">
+                                <div class="sm:hidden flex justify-between items-center pt-3">
+                                    <div class="w-full text-[#61C1B4] font-[Bold]">
+                                        {{ card.weight }}
+                                    </div>
+                                    <div class="w-full text-right">
+                                        {{ card.price }}
+                                    </div>
+                                </div>
+                                <div class="text-[#61C1B4] font-[Bold] sm:block hidden">
                                     {{ card.weight }}
                                 </div>
+                                
                                 <div class="flex justify-between py-2">
                                     <div class="w-full font-[Extra-Bold]">
                                         {{ card.heading }}
                                     </div>
-                                    <div class="w-full text-right">
+                                    <div class="w-full text-right sm:block hidden">
                                         {{ card.price }}
                                     </div>
                                 </div>
@@ -25,21 +34,30 @@
                                     <div class="">
                                         {{ card.paragraph }}
                                     </div>
-                                    <button 
-                                        class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center"
+                                    <button class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center"
                                         @click="removeItem(index)">
-                                        <div class="font-[Bold] ">&#128473;</div>
+                                        <div class="font-[Bold] sm:block hidden">&#128473;</div>
                                         <div class="font-[Bold] sm:block hidden">
                                             {{ card.removeButton }}
                                         </div>
                                     </button>
                                 </div>
-                                <div class="mt-4">
+                                <div class="mt-4 flex justify-between">
+                                  <div>
                                     <button class="text-2xl" @click="increment(index)">&#65291;</button>
                                     <span
                                         class="border-2 border-[#61C1B4] text-[#61C1B4] rounded-lg p-2 px-3 shadow-lg">
                                         {{ cardCounts[index] }} </span>
-                                    <button class="text-2xl" @click="decrement(index)">&#8722;</button>
+                                        <button class="text-2xl" @click="decrement(index)">&#8722;</button>
+                                  </div>
+                                    
+                                    <button class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center"
+                                    @click="removeItem(index)">
+                                    <div class="font-[Bold] sm:hidden">&#128473;</div>
+                                    <div class="font-[Bold] sm:hidden">
+                                        {{ card.removeButton }}
+                                    </div>
+                                </button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="xl:w-[70%] h-[700px] w-full border-2 border-[#61C1B4] p-6 rounded-xl bg-white">
+        <div class="xl:w-[70%] sm:h-[700px] w-full border-2 border-[#61C1B4] p-6 rounded-xl bg-white">
             <h1 class="font-[Extra-Bold] uppercase text-xl py-2">Order Summary</h1>
             <div class="text-lg pb-4">
                 <span class="text-[#61C1B4] font-[600]">Pickup</span> <span class="font-[600]">Available Until 6:30pm
@@ -74,8 +92,8 @@
             </div>
             <div class="flex justify-between py-8">
                 <div class="w-full">
-                    <h1 class="pb-2 text-lg font-[Bold]">Subtotal (4 Items)</h1>
-                    <h1 class="pb-2 text-lg">Est. Taxes</h1>
+                    <h1 class="pb-2 sm:text-lg font-[Bold]">Subtotal (4 Items)</h1>
+                    <h1 class="pb-2 sm:text-lg">Est. Taxes</h1>
                     <h1 class="font-[Bold]">Estimated Total</h1>
                 </div>
                 <div class="w-full text-right">
@@ -85,7 +103,9 @@
                 </div>
             </div>
             <div class="w-full pb-16">
-                <router-link :to="{name : 'CheckOut'}" @click="scrollToTop" class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Proceed To Checkout</router-link>
+                <router-link :to="{ name: 'CheckOut' }" @click="scrollToTop"
+                    class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Proceed To
+                    Checkout</router-link>
             </div>
             <div class="w-full text-center">
                 <a href="#" class="underline font-[Bold]">Continue Shopping</a>

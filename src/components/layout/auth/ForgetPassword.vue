@@ -1,5 +1,5 @@
 <template>
-    <section class="h-screen relative">
+    <section class="h-screen relative sm:pt-0 pt-[12rem]">
         <router-link :to="{ name: 'Sign-In' }"
             class="bg-[#707070] p-4 rounded-2xl absolute left-4 top-4 font-[Extra-Bold] text-white hover:text-[#f3e7e7] hover:bg-[#ada7a7] duration-300 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

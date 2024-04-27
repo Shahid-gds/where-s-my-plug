@@ -206,7 +206,7 @@
                 <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
                 </div>               
                 <div v-if="isAccountToggleShow"
-                    class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
+                    class="submenu w-[312px] absolute right-0 sm:top-20 top-12 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                     <div class="flex items-center space-x-4 pb-4">
                         <div class="bg-[#61c1b4] p-4 rounded-full">
                             <img src="../icons/user.svg" alt="">

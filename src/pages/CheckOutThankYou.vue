@@ -71,6 +71,9 @@
   }
   
   @media(max-width:1900px) {
- 
+    .HomeHeroBg {
+      background: url("../assets/images/bgs/YourCartHeroSectionBg.svg#svgView(preserveAspectRatio(none))") center center no-repeat;
+      background-size: cover;
+    }
   }
 </style>
