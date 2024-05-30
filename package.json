@@ -12,6 +12,7 @@
     "@fawmi/vue-google-maps": "^0.9.79",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.6",
+    "axios": "^1.7.2",
     "glightbox": "^3.2.0",
     "mapbox": "^1.0.0-beta10",
     "pinia": "^2.1.7",
