@@ -1,6 +1,6 @@
 <template>
     <section class="h-screen">
-        <div
+        <div v-if="!emailVerification"
             class=" 2xl:pt-[4rem] pt-[2rem] text-center container mx-auto 2xl:px-[15rem] xl:px-[10rem] lg:px-[5rem] px-6 pb-5">
             <div class="flex justify-center sm:pb-6">
                 <img src="@/assets/images/footerLogo.svg" alt="">
@@ -11,16 +11,17 @@
                     class="text-[#61c1b4]  md:text-[40px] text-[30px] font-[Jost-SemiBold] uppercase">Up</span>
                 <h1 class="md:text-[20px]  text-[18px] font-[Jost-ExtraBold]">Create An Account</h1>
             </div>
-            <div class="text-left sm:pt-6">
+            <div class="text-left sm:pt-6 relative">
                 <div class="lg:flex lg:space-x-4">
                     <div class="pb-8 w-full">
                         <div class="pb-1">
                             <label for="">Full Name</label>
                         </div>
                         <div>
-                            <input type="text" class="border-2 w-full p-4 px-4 rounded-xl shadow-xl"
-                                :class="{ 'border-red-500': emptyFields.includes('fname') }"
-                                placeholder="Enter your Full Name" v-model="fname" required>
+                            <input type="text" class="border-2 w-full p-4 px-4 rounded-xl shadow-xl outline-none"
+                                :class="{ 'border-red-500': emptyFields.includes('name') }"
+                                placeholder="Enter your Full Name" v-model="name" required
+                                @input="removeEmptyField('name')">
                         </div>
                     </div>
                     <div class="pb-8 w-full">
@@ -28,9 +29,9 @@
                             <label for="">Email Address</label>
                         </div>
                         <div>
-                            <input type="email" class="border-2 w-full p-4 px-4 rounded-xl shadow-xl"
+                            <input type="email" class="border-2 w-full p-4 px-4 rounded-xl shadow-xl outline-none"
                                 :class="{ 'border-red-500': emptyFields.includes('email') }" placeholder="Email Address"
-                                v-model="email" required>
+                                v-model="email" required @input="removeEmptyField('email')">
                         </div>
                     </div>
                 </div>
@@ -40,10 +41,10 @@
                             <label for="">Password</label>
                         </div>
                         <div>
-                            <input class="border-2 w-full p-4 px-4 rounded-xl shadow-xl"
+                            <input class="border-2 w-full p-4 px-4 rounded-xl shadow-xl outline-none"
                                 :class="{ 'border-red-500': emptyFields.includes('password') }"
                                 placeholder="Enter Password" :type="passwordVisible ? 'text' : 'password'"
-                                v-model="password" required>
+                                v-model="password" required @input="removeEmptyField('password')">
                         </div>
                         <div class="absolute right-4 top-8 mt-4 mr-2 cursor-pointer" @click="togglePasswordVisibility">
                             <svg v-if="passwordVisible" xmlns="http://www.w3.org/2000/svg"
@@ -101,9 +102,10 @@
                         </div>
                         <div>
                             <input :type="passwordConfirmVisible ? 'text' : 'password'"
-                                class="border-2 w-full p-4 px-4 rounded-xl shadow-xl"
+                                class="border-2 w-full p-4 px-4 rounded-xl shadow-xl outline-none"
                                 :class="{ 'border-red-500': emptyFields.includes('passwordConfirm') }"
-                                placeholder="Confirm Password" v-model="passwordConfirm" required>
+                                placeholder="Confirm Password" v-model="passwordConfirm" required
+                                @input="removeEmptyField('passwordConfirm')">
                         </div>
                         <div class="absolute right-4 top-8 mt-4 mr-2 cursor-pointer"
                             @click="togglePasswordConfirmVisibility">
@@ -202,17 +204,14 @@
                             </label>
                         </div>
                     </div>
-                    <div v-if="!chckboxChecked" class="absolute text-lg w-full top-10 right-0 text-center text-red-500">
-                        {{ responseMessageCheck }}
-                    </div>
+                   
                 </div>
 
                 <div class="w-full flex justify-center sm:pb-8 pb-4">
-                    <button @click.prevent="signup" v-if="processing"
-                        class="hover-btn bg-[#61C1B4] w-1/2 p-4 rounded-full text-white text-xl">Create
-                        Account</button>
-                    <div class="bg-[#61C1B4] w-1/2 p-4 rounded-full text-white text-xl text-center" v-if="!processing">
-                        Please Wait...</div>
+                    <button @click.prevent="signup" :disabled="processing"
+                        class="hover-btn bg-[#61C1B4] w-1/2 p-4 rounded-full text-white text-xl">
+                        {{ processing ? 'Please Wait...' : 'Create Account' }}
+                    </button>
                 </div>
                 <div class="text-center text-[#818181] pb-8">
                     <p>By using Where's My Plug, I agree to the <br>
@@ -231,66 +230,134 @@
                             class="text-[#61C1B4] uppercase"> sign in</router-link></span>
                 </div>
             </div>
+            <div v-if="responseMessage" class="absolute w-[500px] top-4 translate-x-[50%] bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg">
+                <p class="text-lg">{{ responseMessage }}</p>
+            </div>
         </div>
+        <div v-else-if="emailVerification">
+            <verifyOTP />
+        </div>
+
     </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onUnmounted, ref, watch } from 'vue';
 import axios from 'axios';
-
-const fname = ref('');
+import verifyOTP from '../auth/verifyOTP.vue'
+const name = ref('');
 const email = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
 const passwordVisible = ref(false)
 const passwordConfirmVisible = ref(false)
-const processing = ref(false)
 const emptyFields = ref([])
 const responseMessage = ref('')
 const chckboxChecked = ref(true)
-const responseMessageCheck = ref('')
+const emailVerification = ref(false)
+const processing = ref(false)
 
-const baseUrl = 'http://127.0.0.1:3000/api/v1/users'
+// const baseUrl = 'http://127.0.0.1:3000/api/v1/users'
 const togglePasswordVisibility = () => {
     passwordVisible.value = !passwordVisible.value
 }
 const togglePasswordConfirmVisibility = () => {
     passwordConfirmVisible.value = !passwordConfirmVisible.value
 }
-
-processing.value = true
 emptyFields.value = []
 
+const removeEmptyField = (fieldName) => {
+    const index = emptyFields.value.indexOf(fieldName);
+    if (index !== -1 && fieldName === 'name' && name.value.trim() !== '') {
+        emptyFields.value.splice(index, 1);
+    }
+    else if (index !== -1 && fieldName === 'email' && email.value.trim() !== '') {
+        emptyFields.value.splice(index, 1);
+    }
+    else if (index !== -1 && fieldName === 'password' && password.value.trim() !== '') {
+        emptyFields.value.splice(index, 1);
+    }
+    else if (index !== -1 && fieldName === 'passwordConfirm' && passwordConfirm.value.trim() !== '') {
+        emptyFields.value.splice(index, 1);
+    }
+    else if (fieldName === 'password' || fieldName === 'passwordConfirm') {
+        emptyFields.value.splice(index, 1);
+    }
+}
+
 const signup = async () => {
-    if (!fname.value || !email.value || !password.value || !passwordConfirm.value) {
+    if (!name.value || !email.value || !password.value || !passwordConfirm.value) {
         responseMessage.value = "Please fill in the required fields!";
-        if (!fname.value) emptyFields.value.push('fname');
+        if (!name.value) emptyFields.value.push('name');
         if (!email.value) emptyFields.value.push('email');
         if (!password.value) emptyFields.value.push('password');
         if (!passwordConfirm.value) emptyFields.value.push('passwordConfirm');
         return
     }
+    if (!email.value.includes('@')) {
+        responseMessage.value = "Please enter a valid email address!";
+        emptyFields.value.push('email');
+        return;
+    }
     if (!chckboxChecked.value) {
-        responseMessageCheck.value = 'You must affirm that you are 21 years of age or older.'
+        responseMessage.value = 'You must affirm that you are 21 years of age or older.'
         emptyFields.value.push('checkbox')
         return
     }
 
+    if (password.value.length < 8) {
+        responseMessage.value = "Password must be at least 8 characters long.";
+        emptyFields.value.push('password');
+        return;
+    }
+
+    if (password.value !== passwordConfirm.value) {
+        responseMessage.value = "Passwords do not match.";
+        emptyFields.value.push('password');
+        emptyFields.value.push('passwordConfirm');
+        return;
+    }
+
     try {
+        processing.value = true;
         const response = await axios.post(`${baseUrl}/signup`, {
-            fname: fname.value,
+            name: name.value,
             email: email.value,
             password: password.value,
             passwordConfirm: passwordConfirm.value,
             chckboxChecked: chckboxChecked.value
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
+        responseMessage.value = 'User Signed Up successfully!'
         console.log('User Signed Up successfully:', response.data)
-    } catch (error){
-        console.error('Error signing up', error.response.data)
+        // emailVerification.value = true; // This is using for api
+    } catch (error) {
+        if (error.response && error.response.status === 400) {
+            responseMessage.value = 'Email is already in use',
+                emptyFields.value.push('email')
+        } else {
+            responseMessage.value = 'Something went wrong. Please try again later !';
+        }
+    } finally {
+        processing.value = false;
+        emailVerification.value = true; // This is using for when api is off
     }
-
 }
+
+const responseMessageTimeout = ref(null);
+
+watch(responseMessage, (newValue) => {
+    clearTimeout(responseMessageTimeout.value);
+    responseMessageTimeout.value = setTimeout(() => {
+        responseMessage.value = '';
+    }, 5000);
+});
+onUnmounted(() => {
+    clearTimeout(responseMessageTimeout.value);
+});
 
 </script>
 
