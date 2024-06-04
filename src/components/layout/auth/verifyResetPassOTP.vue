@@ -83,11 +83,11 @@
                   
                 </div>
             </div>
-            <div v-if="responseMessage" class="absolute w-[500px] text-center translate-x-[150%] top-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg">
-                <p class="text-lg">{{ responseMessage }}</p>
-            </div>
+            
         </div>
-      
+        <div class="h-8 mt-2">
+            <p class="text-lg text-red-500 text-center">{{ responseMessage }}</p>
+        </div>
         <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center bg-white opacity-80 z-50">
             <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
         </div>
@@ -186,7 +186,7 @@ const verifyOTP = async () => {
         console.log('OTP verified successfully:', response.data)
         successfullOtp.value = true;
         setTimeout(() => {
-            router.replace('/sign-in')
+            router.replace('/reset-password')
         }, 1000);
     } catch (error) {
         incorrectCodeAttempts.value++
