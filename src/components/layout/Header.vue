@@ -153,7 +153,7 @@
                             </div>
                             <div class="w-full flex items-center space-x-4 py-6 px-4">
                                 <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
-                                <router-link :to="{name: 'Sign-In'}" class="text-[#9B9B9B]">Sign-Out</router-link>
+                                <button @click="signOut" class="text-[#9B9B9B]">Sign-Out</button>
                             </div>
                         </div>
                     </TransitionGroup>
@@ -322,7 +322,9 @@
 </template>
 
 <script setup>
+import router from '@/router';
 import { ref, computed } from 'vue'
+
 const closeSideMenuOutside = () => {
     isMobileMenuOpen.value = false;
 };
@@ -342,11 +344,21 @@ const hideSearchInput = () => {
 };
 const isAccountToggleShow = ref(false);
 const accontToggleShow = () => {
-    isAccountToggleShow.value = !isAccountToggleShow.value
+    const userEmail = localStorage.getItem('userEmail:');
+    if (userEmail) {
+        isAccountToggleShow.value = !isAccountToggleShow.value
+    } else {
+        router.push('/sign-in');
+    }   
+}
+
+const signOut = () => {
+    localStorage.removeItem('userEmail:');
+    router.push('/sign-in');
 }
 const isBusinessAccount = ref(false);
 const greeting = computed(() => {
-  return isBusinessAccount.value ? 'Hi, Business User' : 'Hi, example@gmail.com';
+  return isBusinessAccount.value ? 'Hi, Business User' : 'Hi', localStorage.getItem('userEmail:');
 });
 const accountText = computed(() => {
   return isBusinessAccount.value ? 'Business Account' : 'View Account';

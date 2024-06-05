@@ -29,6 +29,9 @@ const router = createRouter({
       path: "/reset-password",
       name: "resetPassword",
       component: () => import("../components/layout/auth/resetPassword.vue"),
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/your-cart",
@@ -180,7 +183,6 @@ const router = createRouter({
       name: "AddYourListings",
       meta: { layout: "Default" },
       component: () => import("../pages/AddYourListing.vue"),
-
     },
     {
       path: "/my-review",
@@ -197,4 +199,16 @@ const router = createRouter({
   ],
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (localStorage.getItem('correctOTP:')) {
+      next();
+    }
+     else {
+      next("sign-in");
+    }
+  } else {
+    next();
+  }
+});
 export default router;

@@ -149,7 +149,7 @@
             </div>
 
         </div>
-      
+
     </section>
 </template>
 
@@ -230,8 +230,8 @@ const resetPassword = async () => {
         });
         responseMessage.value = 'Password successfuly updated'
         console.log('Password Successfuly updated:', response.data);
-        router.replace('sign-in')
-
+        router.replace('sign-in');
+            localStorage.removeItem('correctOTP:')
     } catch (error) {
         if (error.response && error.response.status === 400) {
             responseMessage.value = ''

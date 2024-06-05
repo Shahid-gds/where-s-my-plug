@@ -1,41 +1,47 @@
 <template>
     <div class="w-full">
-       <div v-if="showPopup">
-        <resendOtp />
-       </div>
-       <div v-if="successfullOtp">
-        <successOtp />
-       </div>
+        <div v-if="showPopup">
+            <resendOtp />
+        </div>
+        <div v-if="successfullOtp">
+            <successOtp />
+        </div>
         <div class="main-container flex relative">
             <div class="sm:mt-[10%] w-full flex justify-center">
                 <div class="px-6">
-                   <div class="mt-10">
-                    <div class="flex justify-center pb-5">
-                        <svg width="50" height="40" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M42.287 0.436752L24.521 16.27C24.1088 16.6375 23.5759 16.8406 23.0236 16.8406C22.4714 16.8406 21.9384 16.6375 21.5263 16.27L3.686 0.445752C4.1119 0.315851 4.55473 0.249883 5 0.250002H41C41.4358 0.249607 41.8693 0.312514 42.287 0.436752ZM45.338 3.553C45.4438 3.9355 45.5 4.336 45.5 4.75V27.25C45.5 28.4435 45.0259 29.5881 44.182 30.432C43.3381 31.2759 42.1935 31.75 41 31.75H5C3.80653 31.75 2.66193 31.2759 1.81802 30.432C0.974106 29.5881 0.5 28.4435 0.5 27.25V4.75C0.5 4.33375 0.55625 3.931 0.662 3.5485L18.5315 19.6315C19.7679 20.7334 21.3663 21.3423 23.0225 21.3423C24.6787 21.3423 26.2771 20.7334 27.5135 19.6315L45.338 3.553Z" fill="#61C1B4"/>
-                        </svg>                            
+                    <div class="mt-10">
+                        <div class="flex justify-center pb-5">
+                            <svg width="50" height="40" viewBox="0 0 46 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M42.287 0.436752L24.521 16.27C24.1088 16.6375 23.5759 16.8406 23.0236 16.8406C22.4714 16.8406 21.9384 16.6375 21.5263 16.27L3.686 0.445752C4.1119 0.315851 4.55473 0.249883 5 0.250002H41C41.4358 0.249607 41.8693 0.312514 42.287 0.436752ZM45.338 3.553C45.4438 3.9355 45.5 4.336 45.5 4.75V27.25C45.5 28.4435 45.0259 29.5881 44.182 30.432C43.3381 31.2759 42.1935 31.75 41 31.75H5C3.80653 31.75 2.66193 31.2759 1.81802 30.432C0.974106 29.5881 0.5 28.4435 0.5 27.25V4.75C0.5 4.33375 0.55625 3.931 0.662 3.5485L18.5315 19.6315C19.7679 20.7334 21.3663 21.3423 23.0225 21.3423C24.6787 21.3423 26.2771 20.7334 27.5135 19.6315L45.338 3.553Z"
+                                    fill="#61C1B4" />
+                            </svg>
+                        </div>
                     </div>
-                   </div>
                     <div class="">
-                        <h1 class="font-[Bold] uppercase xl:text-[64px] sm:text-[45px] text-[25px] text-center font-[700] text-[#61C1B4] md:text-center">Verify Your Email!</h1>
+                        <h1
+                            class="font-[Bold] uppercase xl:text-[64px] sm:text-[45px] text-[25px] text-center font-[700] text-[#61C1B4] md:text-center">
+                            Verify Your Email!</h1>
                     </div>
                     <div class="text-[#666] sm:text-center sm:text-lg">
                         <p>Enter the 4-digit code you received in your email</p>
                     </div>
                     <div class="mt-5 px-6 lg:block hidden">
                         <div class="pb-2 w-full flex justify-center">
-                            <div v-for="(digit, index) in codeDigits" :key="index" class="mx-3 inline-block sm:w-[60px] w-[35px]  sm:h-[70px] text-center">
+                            <div v-for="(digit, index) in codeDigits" :key="index"
+                                class="mx-3 inline-block sm:w-[60px] w-[35px]  sm:h-[70px] text-center">
                                 <input v-model="codeDigits[index]" type="text"
                                     class="border-2 w-full outline-none p-2 text-center h-[70px]"
-                                    :class="{ 'border-red-500': emptyFields.includes('otp') }"
-                                    maxlength="1" @paste="handlePaste($event, index)"  
-                                    @input="handleInput($event, index)"
+                                    :class="{ 'border-red-500': emptyFields.includes('otp') }" maxlength="1"
+                                    @paste="handlePaste($event, index)" @input="handleInput($event, index)"
                                     @keydown="handleKeyDown($event, index)">
-                                    <span v-if="index < codeDigits.length - 1" class="absolute ml-1.5 mt-[2rem]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="#9F9F9F">
-                                            <path d="M0 1H10.5" stroke="#9F9F9F"/>
-                                          </svg>
-                                    </span>
+                                <span v-if="index < codeDigits.length - 1" class="absolute ml-1.5 mt-[2rem]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2"
+                                        fill="#9F9F9F">
+                                        <path d="M0 1H10.5" stroke="#9F9F9F" />
+                                    </svg>
+                                </span>
                             </div>
                         </div>
                         <div class="text-[#BEBEBE] text-center">
@@ -44,18 +50,20 @@
                     </div>
                     <div class="mt-5 lg:hidden">
                         <div class="py-28 flex justify-center">
-                            <div v-for="(digit, index) in codeDigits" :key="index" class="mx-2 inline-block  h-[35px] w-[37px] text-center">
+                            <div v-for="(digit, index) in codeDigits" :key="index"
+                                class="mx-2 inline-block  h-[35px] w-[37px] text-center">
                                 <input v-model="codeDigits[index]" type="text"
                                     class="border-2 w-full outline-none text-center rounded-md h-[49px]"
-                                    :class="{ 'border-red-500': emptyFields.includes('otp') }"
-                                    maxlength="1" @paste="handlePaste($event, index)"  
-                                    @input="handleInput($event, index)"
+                                    :class="{ 'border-red-500': emptyFields.includes('otp') }" maxlength="1"
+                                    @paste="handlePaste($event, index)" @input="handleInput($event, index)"
                                     @keydown="handleKeyDown($event, index)">
-                                    <span v-if="index < codeDigits.length - 1" class="absolute sm:ml-1.5 ml-0.5 sm:mt-[2rem] mt-[1.5rem]">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="#9F9F9F">
-                                            <path d="M0 1H10.5" stroke="#9F9F9F"/>
-                                          </svg>
-                                    </span>
+                                <span v-if="index < codeDigits.length - 1"
+                                    class="absolute sm:ml-1.5 ml-0.5 sm:mt-[2rem] mt-[1.5rem]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2"
+                                        fill="#9F9F9F">
+                                        <path d="M0 1H10.5" stroke="#9F9F9F" />
+                                    </svg>
+                                </span>
                             </div>
                         </div>
                         <div class="text-[#BEBEBE] text-center">
@@ -66,24 +74,25 @@
                         <div class="flex space-x-2 text-[40px] py-6 text-[#61C1B4] justify-center">
                             <div> {{ formattedTime }} </div>
                         </div>
-                       </div>
-                      
+                    </div>
+
                     <div class="flex space-x-6 items-center justify-center py-6">
                         <div class="text-center bg-[#61C1B4] px-16 p-4 rounded-lg cursor-pointer"
                             :class="{ 'cursor-not-allowed': !showVerify }" :disabled="!showVerify"
-                            :style="{ borderColor: showVerify ? '#666668' : '#BEBEBE', color: showVerify ? '#fff'  : '#BEBEBE' }" @click="verifyOTP">
+                            :style="{ borderColor: showVerify ? '#666668' : '#BEBEBE', color: showVerify ? '#fff' : '#BEBEBE' }"
+                            @click="verifyOTP">
                             <button :class="{ 'cursor-not-allowed': !showVerify }">Confirm</button>
                         </div>
                     </div>
-                   <div class="lg:block hidden">
-                    <div class="flex space-x-2 text-[48px] text-[#20184E] justify-center">
-                        <div> {{ formattedTime }} </div>
+                    <div class="lg:block hidden">
+                        <div class="flex space-x-2 text-[48px] text-[#20184E] justify-center">
+                            <div> {{ formattedTime }} </div>
+                        </div>
                     </div>
-                   </div>
-                  
+
                 </div>
             </div>
-            
+
         </div>
         <div class="h-8 mt-2">
             <p class="text-lg text-red-500 text-center">{{ responseMessage }}</p>
@@ -93,6 +102,7 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
 import axios from 'axios';
@@ -127,16 +137,16 @@ const handlePaste = (event, index) => {
     }
 };
 const handleInput = (event, index) => {
-        const inputElement = event.target;
-        const inputLength = inputElement.value.length;
-        if (inputLength === 1 && index < codeDigits.value.length - 1) {
-            const nextInput = inputElement.parentElement.nextElementSibling.querySelector('input[type="text"]');
-            if (nextInput) {
-                nextInput.focus();
-            }
+    const inputElement = event.target;
+    const inputLength = inputElement.value.length;
+    if (inputLength === 1 && index < codeDigits.value.length - 1) {
+        const nextInput = inputElement.parentElement.nextElementSibling.querySelector('input[type="text"]');
+        if (nextInput) {
+            nextInput.focus();
         }
-    };
-    const handleKeyDown = (event, index) => {
+    }
+};
+const handleKeyDown = (event, index) => {
     if (event.keyCode === 8 || event.key === "Backspace") {
         event.preventDefault();
         codeDigits.value[index] = '';
@@ -167,7 +177,7 @@ const verifyOTP = async () => {
     emptyFields.value = [];
     invalidCode.value = false;
     const codeValue = codeDigits.value.join('');
-    if(!codeValue) {
+    if (!codeValue) {
         responseMessage.value = "Please fill the OTP fields with sent 4 digit on your email!";
         emptyFields.value.push('otp');
         return;
@@ -185,12 +195,17 @@ const verifyOTP = async () => {
         responseMessage.value = 'OTP verified successfully!'
         console.log('OTP verified successfully:', response.data)
         successfullOtp.value = true;
+        localStorage.setItem('correctOTP:', codeValue);
+        setTimeout(() => {
+            localStorage.removeItem('correctOTP:');
+            router.replace('/sign-in');
+        }, 60 * 1000);
         setTimeout(() => {
             router.replace('/reset-password')
         }, 1000);
     } catch (error) {
         incorrectCodeAttempts.value++
-        if(incorrectCodeAttempts.value === 4) {
+        if (incorrectCodeAttempts.value === 4) {
             showPopup.value = true;
         }
         if (error.response && error.response.status === 400) {
@@ -220,6 +235,5 @@ onMounted(() => {
     return () => clearInterval(timeInterval);
 })
 </script>
-<style scoped>
 
-</style>
+<style scoped></style>
