@@ -343,8 +343,18 @@ const hideSearchInput = () => {
     isSearchVisible.value = false;
 };
 const isAccountToggleShow = ref(false);
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function eraseCookie(name) {
+    document.cookie = `${name}=; Max-Age=-99999999;`;
+}
+
 const accontToggleShow = () => {
-    const userEmail = localStorage.getItem('userEmail:');
+    const userEmail = getCookie('userEmail');
     if (userEmail) {
         isAccountToggleShow.value = !isAccountToggleShow.value
     } else {
@@ -353,12 +363,12 @@ const accontToggleShow = () => {
 }
 
 const signOut = () => {
-    localStorage.removeItem('userEmail:');
+    eraseCookie('userEmail');
     router.push('/sign-in');
 }
 const isBusinessAccount = ref(false);
 const greeting = computed(() => {
-  return isBusinessAccount.value ? 'Hi, Business User' : 'Hi', localStorage.getItem('userEmail:');
+  return isBusinessAccount.value ? 'Hi, Business User' : `Hi, ${getCookie('userEmail')}`;
 });
 const accountText = computed(() => {
   return isBusinessAccount.value ? 'Business Account' : 'View Account';

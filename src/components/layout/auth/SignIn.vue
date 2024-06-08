@@ -161,7 +161,16 @@ const removeEmptyField = (fieldName) => {
     emptyFields.value.splice(index, 1);
   }
 }
-
+// Utility function to set a cookie
+const setCookie = (name, value, days) => {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
 const login = async () => {
   if (!email.value || !password.value) {
     responseMessage.value = "Please fill in the required fields!";
@@ -187,7 +196,7 @@ const login = async () => {
     });
     responseMessage.value = 'User Logged in successfully!'
     console.log('User Logged successfully:', response.data);
-    localStorage.setItem('userEmail:', email.value)
+    setCookie('userEmail', email.value, 7);
     router.replace('/')
   } catch (error) {
     if (error.response && error.response.status === 401) {
