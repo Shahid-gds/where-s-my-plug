@@ -15,8 +15,8 @@
                     <div>
                         <label for="sortBy" class="">Sort By:</label>
                         <select id="sortBy" v-model="sortBy" @change="sortCards" class="rounded-lg outline-none">
-                            <!-- <option value="price"></option>
-                      <option value="rating"></option> -->
+                            <!-- <option value="price">Price</option>
+                            <option value="rating">Rating</option> -->
                         </select>
                     </div>
                 </div>
@@ -25,7 +25,8 @@
                 <h1>ALL DISPENSARY RESULTS</h1>
             </div>
             <transition-group name="nested" tag="div" class="overflow-y-auto h-[1000px]">
-                <div v-for="card in paginationCard" :key="card.image"
+                <div v-for="card in paginationCard" :key="card.id" @click="navigateToDetails(card.id)"
+                    :class="{ 'border-b-2': index !== cards.length - 1 }"
                     class="rounded-2xl p-3 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
                         <div class="border-2 h-[80px] p-3 rounded-xl">
@@ -90,8 +91,26 @@
                             <div>
                                 {{ card.paragraph }}
                             </div>
-                            <div class="py-2 uppercase text-[#61C1B4] font-[Bold]">
-                                {{ card.button }}
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2" stroke="#61C1B4" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m6.115 5.19.319 1.913A6 6 0 0 0 8.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 0 0 2.288-4.042 1.087 1.087 0 0 0-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 0 1-.98-.314l-.295-.295a1.125 1.125 0 0 1 0-1.591l.13-.132a1.125 1.125 0 0 1 1.3-.21l.603.302a.809.809 0 0 0 1.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 0 0 1.528-1.732l.146-.292M6.115 5.19A9 9 0 1 0 17.18 4.64M6.115 5.19A8.965 8.965 0 0 1 12 3c1.929 0 3.716.607 5.18 1.64" />
+                                        </svg>
+                                    </div>
+                                    <div class="font-bold">
+                                        {{ card.distence }}
+                                    </div>
+                                </div>
+                                <div class="rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="#61C1B4" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +122,7 @@
             <div v-if="isSideMenuOpen" @click="closeSideMenuOutside" class="fixed inset-0 -z-10 opacity-25">
             </div>
             <div class="bg-[#FFFFFF] p-2  sm:w-[480px]" v-if="isSideMenuOpen">
-              
+
                 <div class="p-4 pt-2 bg-[#FFFFFF]">
                     <div class="flex items-center justify-between">
                         <div>
@@ -234,6 +253,12 @@ import img1 from '@/assets/images/DispensariesSlidebarImages/Img1.svg';
 import img2 from '@/assets/images/DispensariesSlidebarImages/Img2.svg';
 import img3 from '@/assets/images/DispensariesSlidebarImages/Img3.svg';
 import img4 from '@/assets/images/DispensariesSlidebarImages/Img4.svg';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const navigateToDetails = (id) => {
+    router.push({ name: 'ShopDetail', params: { id } });
+};
 const closeSideMenuOutside = () => {
     isSideMenuOpen.value = false;
 };
@@ -247,7 +272,7 @@ const sortingOptions = {
 };
 const cards = ref([
     {
-        title: 'Slide 1',
+        id: '1',
         src: img1,
         rating: '5.0',
         ratingQty: '(120)',
@@ -255,10 +280,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 2',
+        id: '2',
         src: img2,
         rating: '5.0',
         ratingQty: '(120)',
@@ -266,10 +291,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 3',
+        id: '3',
         src: img3,
         rating: '5.0',
         ratingQty: '(120)',
@@ -277,10 +302,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 4',
+        id: '4',
         src: img4,
         rating: '5.0',
         ratingQty: '(120)',
@@ -288,10 +313,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 5',
+        id: '5',
         src: img1,
         rating: '5.0',
         ratingQty: '(120)',
@@ -299,10 +324,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 6',
+        id: '6',
         src: img2,
         rating: '5.0',
         ratingQty: '(120)',
@@ -310,10 +335,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 1',
+        id: '7',
         src: img1,
         rating: '5.0',
         ratingQty: '(120)',
@@ -321,10 +346,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 2',
+        id: '8',
         src: img2,
         rating: '5.0',
         ratingQty: '(120)',
@@ -332,10 +357,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 3',
+        id: '9',
         src: img3,
         rating: '5.0',
         ratingQty: '(120)',
@@ -343,10 +368,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 4',
+        id: '10',
         src: img4,
         rating: '5.0',
         ratingQty: '(120)',
@@ -354,10 +379,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 5',
+        id: '11',
         src: img1,
         rating: '5.0',
         ratingQty: '(120)',
@@ -365,10 +390,10 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
     {
-        title: 'Slide 6',
+        id: '12',
         src: img2,
         rating: '5.0',
         ratingQty: '(120)',
@@ -376,10 +401,17 @@ const cards = ref([
         optionsOne: 'Dispensary',
         optionsTwo: 'Recreational',
         paragraph: 'Lorem ipsum dolor sit amet,',
-        button: 'order Now'
+        distence: '2.4 miles away'
     },
 
 ]);
+const cardDetial = ref([
+    {
+        phone: 'Phone',
+        email: 'Email',
+        detailBtn: 'Detail'
+    }
+])
 const sortBy = ref('price'); // Default sorting option
 function sortCards() {
     cards.value.sort(sortingOptions[sortBy.value]);
@@ -434,5 +466,16 @@ textarea {
 ::-webkit-scrollbar-thumb {
     background-color: #DBF1EE;
     border-radius: 5px;
+}
+
+.card-list-enter-active,
+.card-list-leave-active {
+    transition: all 0.5s ease;
+}
+
+.card-list-enter-from,
+.card-list-leave-to {
+    opacity: 0;
+
 }
 </style>

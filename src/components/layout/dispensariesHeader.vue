@@ -100,60 +100,75 @@
                     <TransitionGroup name="bounce" tag="ul" class="relative">
                         <!-- <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
                         </div> -->
-                        <div @click="accontToggleShow"
-                            class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 mt-2 rounded-full cursor-pointer">
-                            <img src="../icons/user.svg" alt="">
+                        <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
+                            class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover"
+                                :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                        </div>
+                        <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                            class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                         </div>
                         <div v-if="isAccountToggleShow"
                             class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                             <div class="flex items-center space-x-4 pb-4">
-                                <div class="bg-[#61c1b4] p-4 rounded-full">
-                                    <img src="../icons/user.svg" alt="">
+                                <div class="bg-[#61c1b4] w-[55px] rounded-full">
+                                    <img class="w-full h-full rounded-full object-cover"
+                                        :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
+                                        alt="">
                                 </div>
+
                                 <div class="w-full text-[#9B9B9B] font-[Bold]">
-                                    {{ greeting }}
-                                    <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                    {{ greeting }} <br>
+                                    <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }"
+                                        @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                         {{ accountText }}
-                                      </router-link>
-                                
-                                      <!-- Router link for Business Account -->
-                                      <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                                    </router-link>
+
+                                    <!-- Router link for Business Account -->
+                                    <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }"
+                                        @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                         {{ accountText }}
-                                      </router-link>
-                                  </div>
+                                    </router-link>
+                                </div>
                             </div>
                             <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
-                                    <router-link :to="{name: 'MyOrder'}" @click="handleClick" class="text-[#636363]">My Order</router-link>
+                                    <router-link :to="{ name: 'MyOrder' }" @click="handleClick"
+                                        class="text-[#636363]">My
+                                        Order</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/heart.svg" alt="">
-                                    <router-link :to="{name: 'AddYourListings'}" @click="handleClick" class="text-[#636363]">Add Your Listings</router-link>
+                                    <router-link :to="{ name: 'AddYourListings' }" @click="handleClick"
+                                        class="text-[#636363]">Add Your Listings</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/review.svg" alt="">
-                                    <router-link :to="{name : 'MyReview'}" @click="handleClick" class="text-[#636363]">My Reviews</router-link>
+                                    <router-link :to="{ name: 'MyReview' }" @click="handleClick"
+                                        class="text-[#636363]">My Reviews</router-link>
                                 </div>
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/help.svg" alt="">
-                                    <router-link :to="{name: 'Help'}" @click="handleClick" class="text-[#636363]">Help</router-link>
+                                    <router-link :to="{ name: 'Help' }" @click="handleClick"
+                                        class="text-[#636363]">Help</router-link>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
                                 <div class="cl-toggle-switch py-4">
                                     <label class="cl-switch">
-                                      <input type="checkbox" v-model="isBusinessAccount">
-                                      <span></span>
+                                        <input type="checkbox" v-model="isBusinessAccount">
+                                        <span></span>
                                     </label>
                                 </div>
-                                  <div class="text-[#636363]">
+                                <div class="text-[#636363]">
                                     Switch to Business
-                                  </div>
+                                </div>
                             </div>
                             <div class="w-full flex items-center space-x-4 py-6 px-4">
                                 <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
-                                <router-link :to="{name: 'Sign-In'}" class="text-[#9B9B9B]">Sign-Out</router-link>
+                                <button @click="signOut" class="text-[#9B9B9B]">Sign-Out</button>
                             </div>
                         </div>
                     </TransitionGroup>
@@ -197,64 +212,81 @@
                     <img src="../../assets/images/Logo.svg" alt="">
                 </router-link>
             </div>
-            <div class="w-full flex justify-end" @click="accontToggleShow">
-                <div class="bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
-                    <img src="../icons/user.svg" alt="">
-                </div>
+            <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
+                class="hover-btn w-[100px] mt-2 rounded-full cursor-pointer">
+                <img class="w-full h-full rounded-full object-cover"
+                    :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+            </div>
+            <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                class="hover-btn w-[100px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
             </div>
             <TransitionGroup name="bounce" tag="ul" class="relative">
                 <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
-                </div>               
+                </div>
                 <div v-if="isAccountToggleShow"
                     class="submenu w-[312px] absolute right-0 sm:top-20 top-12 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                     <div class="flex items-center space-x-4 pb-4">
-                        <div class="bg-[#61c1b4] p-4 rounded-full">
-                            <img src="../icons/user.svg" alt="">
+                        <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
+                            class="hover-btn w-[50px] mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover"
+                                :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                        </div>
+                        <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                            class="hover-btn w-[50px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                         </div>
                         <div class="w-full text-[#9B9B9B] font-[Bold]">
-                            {{ greeting }}
-                            <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                            {{ greeting }} <br>
+                            <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }" @click="handleClick"
+                                class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                 {{ accountText }}
-                              </router-link>
-                        
-                              <!-- Router link for Business Account -->
-                              <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="handleClick" class="font-[Semi-bold] uppercase text-[#61C1B4]">
+                            </router-link>
+
+                            <!-- Router link for Business Account -->
+                            <router-link v-if="isBusinessAccount" :to="{ name: 'BusinessAccount' }" @click="handleClick"
+                                class="font-[Semi-bold] uppercase text-[#61C1B4]">
                                 {{ accountText }}
-                              </router-link>
-                          </div>
+                            </router-link>
+                        </div>
                     </div>
                     <div class="px-4 border-t-2 border-[#CBCBCB] pt-6">
                         <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/myOrderList.svg" alt="">
-                            <router-link :to="{name: 'MyOrder'}" @click="handleClick" class="text-[#636363]">My Order</router-link>
+                            <router-link :to="{ name: 'MyOrder' }" @click="handleClick" class="text-[#636363]">My
+                                Order</router-link>
                         </div>
                         <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/heart.svg" alt="">
-                            <router-link :to="{name: 'AddYourListings'}" @click="handleClick" class="text-[#636363]">Add Your Listings</router-link>
+                            <router-link :to="{ name: 'AddYourListings' }" @click="handleClick"
+                                class="text-[#636363]">Add
+                                Your Listings</router-link>
                         </div>
                         <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/review.svg" alt="">
-                            <router-link :to="{name : 'MyReview'}" @click="handleClick" class="text-[#636363]">My Reviews</router-link>
+                            <router-link :to="{ name: 'MyReview' }" @click="handleClick" class="text-[#636363]">My
+                                Reviews</router-link>
                         </div>
                         <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/help.svg" alt="">
-                            <router-link :to="{name: 'Help'}" @click="handleClick" class="text-[#636363]">Help</router-link>
+                            <router-link :to="{ name: 'Help' }" @click="handleClick"
+                                class="text-[#636363]">Help</router-link>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4 border-t-2 border-b-2 border-[#CBCBCB]">
                         <div class="cl-toggle-switch py-4">
                             <label class="cl-switch">
-                              <input type="checkbox" v-model="isBusinessAccount">
-                              <span></span>
+                                <input type="checkbox" v-model="isBusinessAccount">
+                                <span></span>
                             </label>
                         </div>
-                          <div class="text-[#636363]">
+                        <div class="text-[#636363]">
                             Switch to Business
-                          </div>
+                        </div>
                     </div>
                     <div class="w-full flex items-center space-x-4 py-6 px-4">
                         <img class="w-[12%]" src="../icons/sign-out.svg" alt="">
-                        <router-link :to="{name: 'Sign-In'}" class="text-[#9B9B9B]">Sign-Out</router-link>
+                        <button @click="signOut" class="text-[#9B9B9B]">Sign-Out</button>
                     </div>
                 </div>
             </TransitionGroup>
@@ -322,7 +354,53 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import router from '@/router';
+import axios from 'axios';
+import { ref, computed, reactive, onMounted } from 'vue'
+
+const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+const userId = getCookie('userId');
+const userData = reactive({
+    fname: '',
+    lname: '',
+    profilePhotoUrl: '',
+});
+
+const getUserData = async () => {
+
+    const headers = {
+        'user-id': userId,
+        'Content-Type': 'application/json'
+    };
+    try {
+        const response = await axios.get(`${baseUrl}/me`,
+            { headers });
+
+        const getUser = response.data.data.data;
+        if (getUser) {
+            const { name } = getUser
+            const [fname, lname] = name.split(' ')
+            userData.fname = fname || '';
+            userData.lname = lname || '';
+            userData.profilePhotoUrl = getUser.photo || '';
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+const generateProfileInitial = (fname, lname) => {
+    if (fname && lname) {
+        const firstNameInitial = fname[0].toUpperCase();
+        const lastNameInitial = lname[0].toUpperCase();
+        return `https://via.placeholder.com/150/61c1b4/FFFFFF?text=${firstNameInitial}${lastNameInitial}`;
+    } else {
+        return '';
+    }
+}
+
 const closeSideMenuOutside = () => {
     isMobileMenuOpen.value = false;
 };
@@ -341,15 +419,36 @@ const hideSearchInput = () => {
     isSearchVisible.value = false;
 };
 const isAccountToggleShow = ref(false);
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function eraseCookie(name) {
+    document.cookie = `${name}=; Max-Age=-99999999;`;
+}
+
 const accontToggleShow = () => {
-    isAccountToggleShow.value = !isAccountToggleShow.value
+    const userEmail = getCookie('userEmail');
+    if (userEmail) {
+        isAccountToggleShow.value = !isAccountToggleShow.value
+    } else {
+        router.push('/sign-in');
+    }
+}
+
+const signOut = () => {
+    eraseCookie('userEmail');
+    eraseCookie('userId');
+    router.push('/sign-in');
 }
 const isBusinessAccount = ref(false);
 const greeting = computed(() => {
-  return isBusinessAccount.value ? 'Hi, Business User' : 'Hi, example@gmail.com';
+    return isBusinessAccount.value ? 'Hi, Business User' : `Hi, ${userData.fname} ${userData.lname.replace(' ', '<br>')}`;
 });
 const accountText = computed(() => {
-  return isBusinessAccount.value ? 'Business Account' : 'View Account';
+    return isBusinessAccount.value ? 'Business Account' : 'View Account';
 });
 const handleClick = () => {
     scrollToTop();
@@ -362,6 +461,9 @@ const scrollToTop = () => {
         behavior: 'smooth'
     });
 };
+onMounted(() => {
+    getUserData();
+})
 </script>
 
 <style scoped>
@@ -458,16 +560,18 @@ const scrollToTop = () => {
     transform: rotate(45deg);
     z-index: -2;
 }
+
 .cl-toggle-switch {
     position: relative;
-   }
-   
-   .cl-switch {
+}
+
+.cl-switch {
     position: relative;
     display: inline-block;
-   }
-   /* Input */
-   .cl-switch > input {
+}
+
+/* Input */
+.cl-switch>input {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -485,11 +589,12 @@ const scrollToTop = () => {
     transform: scale(1);
     pointer-events: none;
     transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
-   }
-   /* Track */
-   .cl-switch > span::before {
+}
+
+/* Track */
+.cl-switch>span::before {
     content: "";
-    float: right;
+    /*float: right;*/
     display: inline-block;
     margin: 5px 0 5px 10px;
     border-radius: 20px;
@@ -499,9 +604,10 @@ const scrollToTop = () => {
     border: 2px solid #61C1B4;
     vertical-align: top;
     transition: background-color 0.2s, opacity 0.2s;
-   }
-   /* Thumb */
-   .cl-switch > span::after {
+}
+
+/* Thumb */
+.cl-switch>span::after {
     content: "";
     position: absolute;
     top: 2.5px;
@@ -512,27 +618,29 @@ const scrollToTop = () => {
     border: 2px solid #61C1B4;
     background: white;
     transition: background-color 0.2s, transform 0.2s;
-   }
-   /* Checked */
-   .cl-switch > input:checked {
+}
+
+/* Checked */
+.cl-switch>input:checked {
     right: -10px;
     background-color: #85b8b7;
-   }
-   
-   .cl-switch > input:checked + span::before {
+}
+
+.cl-switch>input:checked+span::before {
     background-color: #61C1B4;
-   }
-   
-   .cl-switch > input:checked + span::after {
-   
+}
+
+.cl-switch>input:checked+span::after {
+
     transform: translateX(20px);
-   }
-   /* Hover, Focus */
-   .cl-switch:hover > input {
+}
+
+/* Hover, Focus */
+.cl-switch:hover>input {
     opacity: 0.04;
-   }
-   
-     
+}
+
+
 @media(max-width:1900px) {
     .top-header {
         padding-right: 2rem;

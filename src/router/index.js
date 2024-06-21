@@ -58,6 +58,13 @@ const router = createRouter({
       component: () => import("../pages/Dispensaries.vue"),
     },
     {
+      path: "/dispensaries-detail:id",
+      name: "ShopDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/ShopDetail.vue"),
+      props: true,
+    },
+    {
       path: "/deliveries",
       name: "Deliveries",
       meta: { layout: "Default" },

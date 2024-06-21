@@ -196,6 +196,9 @@ const login = async () => {
     });
     responseMessage.value = 'User Logged in successfully!'
     console.log('User Logged successfully:', response.data);
+    const userId = response.data.data.user._id;
+    setCookie('userId', userId, 7);
+    // console.log('Extracted userId:', userId); 
     setCookie('userEmail', email.value, 7);
     router.replace('/')
   } catch (error) {
