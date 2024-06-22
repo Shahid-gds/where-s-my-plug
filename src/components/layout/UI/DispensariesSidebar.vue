@@ -257,6 +257,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const navigateToDetails = (id) => {
+    scrollToTop();
     router.push({ name: 'ShopDetail', params: { id } });
 };
 const closeSideMenuOutside = () => {
@@ -428,7 +429,12 @@ const paginationCard = computed(() => {
     const endIndex = startIndex + cardsPerPage;
     return cards.value.slice(startIndex, endIndex);
 });
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
 
 <style scoped>

@@ -65,6 +65,13 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/product-detail:id",
+      name: "ProductDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/ProductDetial.vue"),
+      props: true,
+    },
+    {
       path: "/deliveries",
       name: "Deliveries",
       meta: { layout: "Default" },
