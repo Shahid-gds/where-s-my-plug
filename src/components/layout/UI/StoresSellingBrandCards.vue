@@ -100,29 +100,29 @@ const router = useRouter();
 
 const navigateToDetails = (id) => {
     scrollToTop();
-    router.push({ name: 'BrandsDetail', params: { id } });
+    router.push({ name: 'StoresSellingBrand', params: { id } });
 }
 
 const cards = ref([
     {
         id: '1',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
+        image: import('../../../assets/images/DispensariesSlidebarImages/Img1.svg').then((module) => module.default),
+        heading: 'Dreadlock & Jetset',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
     {
         id: '2',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'DRiP',
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img2.svg').then((module) => module.default),
+        heading: 'Coffeeshop The Stud',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
     {
         id: '3',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img3.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -130,7 +130,7 @@ const cards = ref([
     },
     {
         id: '4',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img4.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -138,188 +138,37 @@ const cards = ref([
     },
     {
         id: '5',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
+        image: import('../../../assets/images/DispensariesSlidebarImages/Img1.svg').then((module) => module.default),
+        heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
     {
         id: '6',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Element',
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img2.svg').then((module) => module.default),
+        heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
     {
         id: '7',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img3.svg').then((module) => module.default),
+        heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
     {
         id: '8',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('../../../assets/images//DispensariesSlidebarImages/Img4.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
         ratingQty: '(120)',
     },
-    {
-        id: '9',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '10',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '11',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '12',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '13',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '14',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '15',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '16',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '17',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '18',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '19',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '20',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '21',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '22',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '23',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '24',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '25',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '26',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '27',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
+
 ]);
 
 
@@ -332,7 +181,7 @@ onMounted(async () => {
     );
 });
 // Define number of cards per page
-const cardsPerPage = 21;
+const cardsPerPage = 12;
 
 const currentPage = ref(1);
 

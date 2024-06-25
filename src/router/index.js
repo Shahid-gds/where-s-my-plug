@@ -91,10 +91,23 @@ const router = createRouter({
       component: () => import("../pages/Brands.vue"),
     },
     {
+      path: "/brands-detail:id",
+      name: "BrandsDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/BrandsDetail.vue"),
+    },
+    {
+      path: "/stores-for-selling-brand",
+      name: "StoresSellingBrand",
+      meta: { layout: "Default" },
+      component: () => import("../pages/StoresSellingBrandProducts.vue"),
+    },
+    {
       path: "/products",
       name: "Products",
       meta: { layout: "Default" },
       component: () => import("../pages/Products.vue"),
+      props: true,
     },
     {
       path: "/deals",
