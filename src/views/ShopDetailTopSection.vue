@@ -1,5 +1,5 @@
 <template>
-    <section class="py-[20rem] pb-[25rem]">
+    <section class="py-[20rem] pb-[25rem] relative">
         <div class="container mx-auto">
             <div class="sm:flex justify-between bg-white p-6 shadow-xl rounded-xl">
                 <div class="w-full flex space-x-6 items-center">

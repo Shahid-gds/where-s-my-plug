@@ -65,39 +65,61 @@
         <div class="w-full">
             <div class="pb-6">
                 <transition-group name="nested" tag="div" class="w-full rounded-xl shadow-xl bg-[white] px-6">
-                    <div class="" v-for="(card, index) in cards" :key="card.id"
-                        :class="{ 'border-b-2': index !== cards.length - 1 }">
-                        <div class="py-4">
-                            <div class="md:flex justify-center md:space-x-4 py-4">
-                                <div class="md:w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
-                                    <img class="" :src="card.image" alt="">
+                    <!-- Display cart items dynamically -->
+                    <div v-for="(item, index) in cartItems" :key="index" class="py-4"
+                        :class="{ 'border-b-2': index !== item.length - 1 }">
+                        <div class="md:flex justify-center md:space-x-4 py-4">
+                            <div class="md:w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
+                                <img :src="item.img1" alt="">
+                            </div>
+                            <div class="w-full">
+                                <div class="sm:hidden flex justify-between items-center pt-3">
+                                    <div class="w-full text-[#61C1B4] font-[Bold]">
+                                        {{ item.weight }}
+                                    </div>
+                                    <div class="w-full text-right">
+                                        ${{ item.price.toFixed(2) }}
+                                    </div>
                                 </div>
-                                <div class="w-full relative">
-                                    <button class="w-1/2 text-[#FF3B3B] uppercase  flex justify-end items-center absolute sm:top-0 top-3 right-0"
-                                        @click="removeItem(index)">
-                                        <div class="font-[Bold] ">&#128473;</div>
+                                <div class="text-[#61C1B4] font-[Bold] sm:block hidden">
+                                    {{ item.weight }}
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <div class="w-full font-[Extra-Bold]">
+                                        {{ item.heading }}
+                                    </div>
+                                    <div class="w-full text-right">
+                                        ${{ (item.price * item.quantity).toFixed(2) }}
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        {{ item.subHeading }}
+                                    </div>
+                                    <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
+                                        @click="removeFromCart(index)">
+                                        <div class="font-[Bold] sm:block hidden">&#128473;</div>
+                                        <div class="font-[Bold] sm:block hidden">
+                                            Remove item
+                                        </div>
                                     </button>
-                                    <div class="text-[#61C1B4] font-[Bold] pt-3">
-                                        {{ card.weight }}
+                                </div>
+                                <div class="mt-4 flex justify-between">
+                                    <div>
+                                        <button class="text-2xl" @click="increment(index)">&#65291;</button>
+                                        <span
+                                            class="border-2 border-[#61C1B4] text-[#61C1B4] rounded-lg p-2 px-3 shadow-lg">
+                                            {{ item.quantity }}
+                                        </span>
+                                        <button class="text-2xl" @click="decrement(index)">&#8722;</button>
                                     </div>
-                                    <div class="flex justify-between py-2">
-                                        <div class="w-full font-[Extra-Bold]">
-                                            {{ card.heading }}
+                                    <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
+                                        @click="removeFromCart(index)">
+                                        <div class="font-[Bold] sm:hidden">&#128473;</div>
+                                        <div class="font-[Bold] sm:hidden">
+                                            Remove item
                                         </div>
-                                    </div>
-                                    <div class="flex justify-between items-start">
-                                        <div class="w-full">
-                                            <button class="text-2xl" @click="increment(index)">&#65291;</button>
-                                            <span
-                                                class="border-2 border-[#61C1B4] text-[#61C1B4] rounded-lg p-2 px-3 shadow-lg">
-                                                {{ cardCounts[index] }} </span>
-                                            <button class="text-2xl" @click="decrement(index)">&#8722;</button>
-                                        </div>
-                                        <div class="w-full text-right">
-                                            {{ card.price }}
-                                        </div>
-                                    </div>
-
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -120,22 +142,25 @@
                 </div>
                 <div class="flex justify-between py-8">
                     <div class="w-full">
-                        <h1 class="pb-2 text-lg font-[Bold]">Subtotal (4 Items)</h1>
-                        <h1 class="pb-2 text-lg">Est. Taxes</h1>
+                        <h1 class="pb-2 sm:text-lg font-[Bold]">Subtotal ({{ cartItems.reduce((total, item) => total +
+                            item.quantity, 0) }} Items)</h1>
+                        <h1 class="pb-2 sm:text-lg">Est. Taxes</h1>
                         <h1 class="font-[Bold]">Estimated Total</h1>
                     </div>
                     <div class="w-full text-right">
-                        <h1 class="pb-2 text-lg font-[Bold]">$58.00</h1>
-                        <h1 class="pb-2 text-lg">$5.27</h1>
-                        <h1 class="font-[Bold]">$63.27</h1>
+                        <h1 class="pb-2 text-lg font-[Bold]">${{ totalPrice ? totalPrice.toFixed(2) : '0.00' }}</h1>
+                        <h1 class="pb-2 text-lg">${{ totalPrice ? (totalPrice * 0.09).toFixed(2) : '0.00' }}</h1>
+                        <h1 class="font-[Bold]">${{ totalPrice ? (totalPrice * 1.09).toFixed(2) : '0.00' }}</h1>
                     </div>
                 </div>
                 <div class="w-full pb-16">
-                    <router-link :to="{ name: 'CheckOutThankYou' }" @click="scrollToTop"
-                        class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Place Order</router-link>
+                    <router-link :to="{ name: 'CheckOutThankYou' }" @click="placeOrderAndClearCart"
+                        class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Place
+                        Order
+                    </router-link>
                 </div>
                 <div class="w-full text-center">
-                    <a href="#" class="underline font-[Bold]">Continue Shopping</a>
+                    <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue Shopping</router-link>
                     <p class="text-[#B7B7B7] pt-2 px-10 text-[14px]">Estimated total may not reflect actual taxes owed
                         or
                         other promotions. Payment is made directly to
@@ -163,7 +188,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useCartStore } from '../stores/modules/cart';
 const selectedLabels = ['First Name', 'Last Name', 'Country / Region', 'Street Address', 'Town / City', 'State', 'ZIP Code', 'Phone Number', 'Email Address'];
 
 const contactInfoInputGroup = ref([
@@ -265,65 +291,36 @@ const selectOption = (option, id) => {
 const isRequired = (label) => {
     return selectedLabels.includes(label);
 };
-const cards = ref([
-    {
-        id: '1',
-        image: import('../assets/images/CannabisStrainCarousel/ImgTwo.svg').then((module) => module.default),
-        weight: '3.0 g',
-        heading: 'Red Dirt Flower - Wedding Cake',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
-        price: '$24.00',
-        removeButton: 'Remove item'
-    },
-    {
-        id: '2',
-        image: import('../assets/images/CannabisStrainCarousel/ImgOne.svg').then((module) => module.default),
-        weight: '1 g',
-        heading: 'Urban AG Flower - Wedding Cake',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
-        price: '$10.00',
-        removeButton: 'Remove item'
-    },
-    {
-        id: '3',
-        image: import('../assets/images/CannabisStrainCarousel/ImgTwo.svg').then((module) => module.default),
-        weight: '3.0 g',
-        heading: 'Red Dirt Flower - Wedding Cake',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
-        price: '$24.00',
-        removeButton: 'Remove item'
-    },
-]);
 
-const cardCounts = ref([]);
+const placeOrderAndClearCart = () => {
+    scrollToTop();
+    clearCartItems();
+};
 
+const clearCartItems = () => {
+    store.clearCart(); 
+};
+
+const store = useCartStore();
+
+// Computed property to get cart items
+const cartItems = computed(() => store.cartItems);
+
+// Computed property to get total price
+const totalPrice = computed(() => store.totalPrice);
+
+// Methods to interact with cart
 const increment = (index) => {
-    cardCounts.value[index]++;
+    store.incrementItemQuantity(index);
 };
 
 const decrement = (index) => {
-    if (cardCounts.value[index] > 0) {
-        cardCounts.value[index]--;
-    }
+    store.decrementItemQuantity(index);
 };
 
-const removeItem = (index) => {
-    cards.value.splice(index, 1);
-    cardCounts.value.splice(index, 1);
+const removeFromCart = (index) => {
+    store.removeFromCart(index);
 };
-
-onMounted(() => {
-    cardCounts.value = new Array(cards.value.length).fill(0);
-});
-
-onMounted(async () => {
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            image: await card.image,
-        }))
-    );
-});
 const scrollToTop = () => {
     window.scrollTo({
         top: 0,

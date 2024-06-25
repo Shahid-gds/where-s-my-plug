@@ -172,17 +172,21 @@
                             </div>
                         </div>
                     </TransitionGroup>
-                    <router-link :to="{ name: 'YourCart' }" @click="handleClick"
-                        class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full relative">
+                    <div class="relative">
+                        <router-link :to="cartLink" @click="handleClick"
+                        class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
                         <div>
                             <img src="../icons/shop.svg" alt="">
                         </div>
-                        <!-- <div
-                            class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
-                            <h1>1</h1>
-                        </div> -->
                     </router-link>
-
+                    <div>
+                          <!-- Product count show here -->
+                          <div
+                          class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
+                          <h1>{{ cartItemCount }}</h1>
+                      </div>
+                    </div>
+                    </div>
                     <div :class="{ 'show-search': isSearchVisible, 'hide-search': !isSearchVisible }"
                         class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
                         <input type="search" placeholder="Search..."
@@ -354,9 +358,19 @@
 </template>
 
 <script setup>
+import { useCartStore } from '@/stores/modules/cart';
 import router from '@/router';
 import axios from 'axios';
 import { ref, computed, reactive, onMounted } from 'vue'
+
+
+const cartStore = useCartStore();
+const cartItemCount = computed(() => cartStore.cartItemCount);
+const isEmptyCart = computed(() => cartItemCount.value === 0);
+
+const cartLink = computed(() => {
+    return isEmptyCart.value ? { name: 'EmptyCart'} : { name: 'YourCart' };
+})
 
 const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
 const userId = getCookie('userId');

@@ -119,7 +119,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
-        id: '6', image: import('@/assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
+        id: '7', image: import('@/assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
         heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Yoda Candy THCa Flower',
         rating: '5.0',
@@ -127,7 +127,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
-        id: '7', image: import('@/assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
+        id: '8', image: import('@/assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
         heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Cookie Milk D8+THCP Vape Cart ',
         rating: '5.0',
@@ -135,7 +135,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
-        id: '8', image: import('@/assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
+        id: '9', image: import('@/assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
         heading: 'Pre-rolls', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
         rating: '5.0',

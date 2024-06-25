@@ -40,6 +40,13 @@ const router = createRouter({
       component: () => import("../pages/YourCart.vue"),
     },
     {
+      path: "/empty-cart",
+      name: "EmptyCart",
+      meta: { layout: "Default" },
+      component: () => import("../pages/EmptyCart.vue"),
+    },
+    
+    {
       path: "/check-out",
       name: "CheckOut",
       meta: { layout: "Default" },

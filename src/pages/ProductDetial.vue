@@ -109,13 +109,25 @@
                     <p>{{ card.note }}</p>
                 </div>
             </div>
+            <div class="flex justify-center">
+                <button @click="addToCart" class="bg-[#61c1b4] p-4 rounded-full px-16 text-white font-[Bold]">Add to
+                    cart</button>
+            </div>
         </div>
     </section>
 </template>
 
 <script setup>
+import { useCartStore } from '@/stores/modules/cart';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+const cartStore = useCartStore();
+
+const addToCart = () => {
+    scrollToTop();
+    console.log('Adding to cart:', card.value);
+    cartStore.addToCart(card.value);
+}
 
 const card = ref({});
 const mainImage = ref(null);
@@ -171,11 +183,99 @@ const getCardById = async (id) => {
             leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
             backgroundColor: '#ebb22d',
             subHeading: 'Cookie Milk D8+THCP Vape Cart',
-            price: '25.99',
+            price: '30.99',
+            rating: '5.0',
+            ratingQty: '(120)',
+            weight: '7g',
+            type: 'Savita',
+            thc: '22%',
+            cbc: '1%',
+            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            shopLocal: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
+        },
+        {
+            id: '3',
+            img1: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
+            img2: import('@/assets/images/ProductsCategories/Img2.svg').then(module => module.default),
+            img3: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
+            img4: import('@/assets/images/ProductsCategories/Img4.svg').then(module => module.default),
+            heading: 'Cartridges',
+            stars: import('../components/icons/star.svg').then(module => module.default),
+            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
+            backgroundColor: '#ebb22d',
+            subHeading: 'Cookie Milk D8+THCP Vape Cart',
+            price: '35.99',
+            rating: '5.0',
+            ratingQty: '(120)',
+            weight: '7g',
+            type: 'Savita',
+            thc: '22%',
+            cbc: '1%',
+            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            shopLocal: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
+        },
+        {
+            id: '4',
+            img1: import('@/assets/images/ProductsCategories/Img4.svg').then(module => module.default),
+            img2: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
+            img3: import('@/assets/images/ProductsCategories/Img2.svg').then(module => module.default),
+            img4: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
+            heading: 'Cartridges',
+            stars: import('../components/icons/star.svg').then(module => module.default),
+            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
+            backgroundColor: '#ebb22d',
+            subHeading: 'Cookie Milk D8+THCP Vape Cart',
+            price: '43.99',
+            rating: '5.0',
+            ratingQty: '(120)',
+            weight: '7g',
+            type: 'Savita',
+            thc: '22%',
+            cbc: '1%',
+            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            shopLocal: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
+        },
+        {
+            id: '5',
+            img1: import('@/assets/images/ProductsCategories/Img5.svg').then(module => module.default),
+            img2: import('@/assets/images/ProductsCategories/Img6.svg').then(module => module.default),
+            img3: import('@/assets/images/ProductsCategories/Img4.svg').then(module => module.default),
+            img4: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
+            heading: 'Cartridges',
+            stars: import('../components/icons/star.svg').then(module => module.default),
+            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
+            backgroundColor: '#ebb22d',
+            subHeading: 'Cookie Milk D8+THCP Vape Cart',
+            price: '56.99',
             rating: '5.0',
             ratingQty: '(120)',
             weight: '7g',
             type: 'Hybrid',
+            thc: '22%',
+            cbc: '1%',
+            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            shopLocal: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
+        },
+        {
+            id: '6',
+            img1: import('@/assets/images/ProductsCategories/Img6.svg').then(module => module.default),
+            img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
+            img3: import('@/assets/images/ProductsCategories/Img2.svg').then(module => module.default),
+            img4: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
+            heading: 'Cartridges',
+            stars: import('../components/icons/star.svg').then(module => module.default),
+            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
+            backgroundColor: '#ebb22d',
+            subHeading: 'Cookie Milk D8+THCP Vape Cart',
+            price: '63.99',
+            rating: '5.0',
+            ratingQty: '(120)',
+            weight: '7g',
+            type: 'Savita',
             thc: '22%',
             cbc: '1%',
             paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
@@ -193,4 +293,10 @@ const updateMainImage = (image) => {
 onMounted(() => {
     fetchCardDetails();
 });
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 </script>
