@@ -10,8 +10,8 @@
 
             </div>
             <div class="font-extrabold sm:leading-[2.5rem]">
-                <span class="text-[#010101] md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Not</span>
-                <span class="text-[#61c1b4] md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold]">Found</span>
+                <span class="text-[#010101] md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Not </span>
+                <span class="text-[#61c1b4] md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold]"> Found</span>
                 <h1 class="text-[25px]">If you want to buy a specific product, <br> please go back
                     <router-link class="underline uppercase" :to="{ name: 'Products' }">product</router-link>
                 </h1>
