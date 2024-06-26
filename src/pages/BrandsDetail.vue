@@ -13,35 +13,35 @@
                 <div class="border-2 p-2 rounded-2xl flex justify-center w-[20%] bg-[white]">
                     <img class="w-[100%]" v-if="card.img1" :src="card.img1" alt="Product image">
                 </div>
-             <div class="w-full">
-                <div class="flex space-x-4 items-center pb-2">
-                    <div class="flex items-center">
-                        <div class="w-5">
-                            <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                <div class="w-full">
+                    <div class="flex space-x-4 items-center pb-2">
+                        <div class="flex items-center">
+                            <div class="w-5">
+                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                            </div>
+                            <div class="w-5">
+                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                            </div>
+                            <div class="w-5">
+                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                            </div>
+                            <div class="w-5">
+                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                            </div>
                         </div>
-                        <div class="w-5">
-                            <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                        </div>
-                        <div class="w-5">
-                            <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                        </div>
-                        <div class="w-5">
-                            <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
+                        <div class="flex space-x-2 items-center mt-2">
+                            <div class="text-[#010101] font-[Jost-ExtraBold]">
+                                {{ card.rating }}
+                            </div>
+                            <div class="text-[#61c1b4] font-[Jost-SemiBold]">
+                                {{ card.ratingQty }}
+                            </div>
                         </div>
                     </div>
-                    <div class="flex space-x-2 items-center mt-2">
-                        <div class="text-[#010101] font-[Jost-ExtraBold]">
-                            {{ card.rating }}
-                        </div>
-                        <div class="text-[#61c1b4] font-[Jost-SemiBold]">
-                            {{ card.ratingQty }}
-                        </div>
+                    <div class="text-[#61c1b4]">
+                        {{ card.paragraph }}
                     </div>
                 </div>
-                <div class="text-[#61c1b4]">
-                    {{ card.paragraph }}
-                </div>
-             </div>
             </div>
         </div>
         <div>
@@ -52,20 +52,30 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import StoreForSellingBrand from '../views/StoreForSellingBrand.vue'
 
 const card = ref({});
 const route = useRoute();
+const router = useRouter();
 
 const fetchCardDetails = async () => {
     const cardId = route.params.id;
-    const cardData = await getCardById(cardId);
-    card.value = {
-        ...cardData,
-        img1: await cardData.img1,
-        stars: await cardData.stars,
-    };
+    try {
+        const cardData = await getCardById(cardId);
+        if (cardData) {
+            card.value = {
+                ...cardData,
+                img1: await cardData.img1,
+                stars: await cardData.stars,
+            }
+        } else {
+            scrollToTop();
+            router.push({ name: 'NotFoundProduct' });
+        }
+    } catch (error) {
+        console.error('Error fetching card detail', error)
+    }
 };
 
 const getCardById = async (id) => {

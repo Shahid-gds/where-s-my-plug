@@ -59,7 +59,7 @@
             </div>
         </div>
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.index"
+            <div v-for="card in paginationCard" :key="card.index" @click="navigateToDetails(card.id)"
                 class="2xl:w-[420px] w-[400px] border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
                 <div class="flex justify-center pb-6">
                     <div>
@@ -132,9 +132,18 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const navigateToDetails = (id) => {
+    scrollToTop();
+    router.push({ name: 'ProductDetail', params: { id } });
+}
 
 const cards = ref([
     {
+        id: '1',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
         heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Yoda Candy THCa Flower',
@@ -143,6 +152,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '2',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
         heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Cookie Milk D8+THCP Vape Cart ',
@@ -151,6 +161,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '3',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
         heading: 'Pre-rolls', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
@@ -159,6 +170,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '4',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img4.svg').then((module) => module.default),
         heading: 'Terpenes', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Sour Haze Live Resin Terpene',
@@ -167,6 +179,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '5',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img5.svg').then((module) => module.default),
         heading: 'Vape Pens', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'MAC 2ml THCa Sauce Vape Pen',
@@ -175,6 +188,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '6',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img6.svg').then((module) => module.default),
         heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Mimosa Live Resin Delta-8 | 1ml',
@@ -183,6 +197,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '7',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
         heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Yoda Candy THCa Flower',
@@ -191,6 +206,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '8',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
         heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Cookie Milk D8+THCP Vape Cart ',
@@ -199,6 +215,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '9',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
         heading: 'Pre-rolls', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
@@ -207,6 +224,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '10',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img4.svg').then((module) => module.default),
         heading: 'Terpenes', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Sour Haze Live Resin Terpene',
@@ -215,6 +233,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '11',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img5.svg').then((module) => module.default),
         heading: 'Vape Pens', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'MAC 2ml THCa Sauce Vape Pen',
@@ -223,6 +242,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '12',
         category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img6.svg').then((module) => module.default),
         heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Mimosa Live Resin Delta-8 | 1ml',
@@ -233,6 +253,7 @@ const cards = ref([
 
     // Flower Categories
     {
+        id: '13',
         category: 'Flower', image: import('../../../assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
         heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Yoda Candy THCa Flower',
@@ -241,6 +262,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '14',
         category: 'Flower', image: import('../../../assets/images/ProductsCategories/Img4.svg').then((module) => module.default),
         heading: 'Terpenes', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'Sour Haze Live Resin Terpene',
@@ -249,6 +271,7 @@ const cards = ref([
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
     },
     {
+        id: '15',
         category: 'Flower', image: import('../../../assets/images/ProductsCategories/Img5.svg').then((module) => module.default),
         heading: 'Vape Pens', stars: import('../../icons/star.svg').then((module) => module.default),
         subHeading: 'MAC 2ml THCa Sauce Vape Pen',
@@ -308,6 +331,12 @@ function prevPage() {
 
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
+}
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 </script>
 

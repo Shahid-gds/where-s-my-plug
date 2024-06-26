@@ -120,7 +120,7 @@
 <script setup>
 import { useCartStore } from '@/stores/modules/cart';
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 const cartStore = useCartStore();
 
 const addToCart = () => {
@@ -132,20 +132,30 @@ const addToCart = () => {
 const card = ref({});
 const mainImage = ref(null);
 const route = useRoute();
+const router = useRouter();
 
 const fetchCardDetails = async () => {
     const cardId = route.params.id;
-    const cardData = await getCardById(cardId);
-    card.value = {
-        ...cardData,
-        img1: await cardData.img1,
-        img2: await cardData.img2,
-        img3: await cardData.img3,
-        img4: await cardData.img4,
-        stars: await cardData.stars,
-        leaf: await cardData.leaf,
-    };
-    mainImage.value = card.value.img1;
+    try {
+        const cardData = await getCardById(cardId);
+        if (cardData) {
+            card.value = {
+                ...cardData,
+                img1: await cardData.img1,
+                img2: await cardData.img2,
+                img3: await cardData.img3,
+                img4: await cardData.img4,
+                stars: await cardData.stars,
+                leaf: await cardData.leaf,
+            };
+            mainImage.value = card.value.img1;
+        } else {
+            scrollToTop();
+            router.push({ name: 'NotFoundProduct' });
+        }
+    } catch (error) {
+        console.error('Error fetching card details:', error);
+    }
 };
 
 const getCardById = async (id) => {

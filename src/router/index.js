@@ -79,6 +79,12 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/not-found",
+      name: "NotFoundProduct",
+      // meta: { layout: "Default" },
+      component: () => import("../pages/NotFoundProduct.vue"),
+    },
+    {
       path: "/deliveries",
       name: "Deliveries",
       meta: { layout: "Default" },
