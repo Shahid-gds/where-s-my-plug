@@ -222,10 +222,6 @@
                     <img class="w-full h-full rounded-full object-cover"
                         :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
                 </div>
-                <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
-                    class="hover-btn bg-[#61c1b4] p-3 rounded-full cursor-pointer">
-                    <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
-                </div>
                 <div class="relative mt-2">
                     <router-link :to="cartLink" @click="handleClick"
                         class="hover-btn bg-[#61c1b4] p-2.5 rounded-full">
@@ -252,10 +248,6 @@
                             class="hover-btn w-[50px] mt-2 rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover"
                                 :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
-                        </div>
-                        <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
-                            class="hover-btn w-[50px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
-                            <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                         </div>
                         <div class="w-full text-[#9B9B9B] font-[Bold]">
                             {{ greeting }} <br>

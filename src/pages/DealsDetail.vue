@@ -1,6 +1,6 @@
 <template>
     <section class="pt-[15rem] bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
-        <div v-if="selectedCard" class="container mx-auto flex space-x-10 items-center">
+        <div v-if="selectedCard" class="container mx-auto lg:flex lg:space-x-10 items-center">
 
             <div class="w-full relative">
                 <img class="w-full" :src="selectedCard.image" alt="">
@@ -10,14 +10,14 @@
                 </div>
             </div>
             <div class="w-full">
-                <h1 class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">{{
+                <h1 class="text-[#010101]  xl:text-[70px] sm:text-[40px] text-[30px] font-[Jost-ExtraBold]">{{
             selectedCard.heading }}</h1>
-                <p class="text-[#61c1b4] text-[40px] font-[Jost-SemiBold]">{{ selectedCard.subHeading }}</p>
-                <p class="text-[#010101]  text-[30px] font-[Jost-SemiBold]">{{ selectedCard.availableDeals }}</p>
-                <p class="text-[25px] font-[Bold] text-[#61c1b4]">{{ selectedCard.distance }}</p>
+                <p class="text-[#61c1b4] xl:text-[40px] text-[30px] font-[Jost-SemiBold]">{{ selectedCard.subHeading }}</p>
+                <p class="text-[#010101]  xl:text-[30px] text-[20px] font-[Jost-SemiBold]">{{ selectedCard.availableDeals }}</p>
+                <p class="xl:text-[25px] font-[Bold] text-[#61c1b4]">{{ selectedCard.distance }}</p>
                 <div v-for="(contentConfig, index) in contentConfigs" :key="index">
                     <div v-if="isSelectedCardMatch(contentConfig)">
-                        <p class="text-[#61c1b4] text-[20px]">{{ contentConfig.content }}</p>
+                        <p class="text-[#61c1b4] xl:text-[20px]">{{ contentConfig.content }}</p>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
     </section>
     <section class="pb-[15rem]">
         <div class="overflow-hidden pt-[10rem]">
-            <div class="flex justify-center">
+            <div class="flex justify-center pb-6">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">
                         <div class="w-full absolute top-0 ">
@@ -38,10 +38,10 @@
             <div class="flex justify-center px-6 text-center pb-[5rem]">
                 <div class="font-extrabold sm:leading-[2.5rem]">
                     <span
-                        class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Shop</span><span
-                        class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative">
+                        class="text-[#010101]  xl:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">Shop</span><span
+                        class="text-[#61c1b4]  xl:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative">
                         Products</span>
-                    <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">Shop Cannabis Products &
+                    <h1 class="xl:text-[36px] sm:text-[20px] text-[18px] font-[Jost-ExtraBold]">Shop Cannabis Products &
                         Accessories Online</h1>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <section class="">
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.image"
+            <div v-for="card in paginationCard" :key="card.image" @click="selectCardAndNavigate(card)"
                 class="w-[400px] rounded-[30px] p-1.5 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                 <div class="relative">
                     <div>
@@ -39,6 +39,17 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useLearnStore } from '@/stores/modules/learnStore';
+
+const router = useRouter();
+const learnStore = useLearnStore();
+
+function selectCardAndNavigate(card) {
+    scrollToTop();
+    learnStore.selectCard(card);
+    router.push({ name: 'LearnDetail', params: { id: card.id } })
+}
 
 const cards = ref([
     {
@@ -140,7 +151,12 @@ function prevPage() {
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
 }
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 <style scoped>

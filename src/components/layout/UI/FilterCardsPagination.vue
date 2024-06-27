@@ -157,7 +157,7 @@
                 </div>
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
-                <div v-for="card in filteredCards" :key="card.image"
+                <div v-for="card in filteredCards" :key="card.image"  @click="navigateToDetails(card.id)"
                     class="md:w-[385px] w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
                         <div class="">
@@ -383,6 +383,11 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute();
+const router = useRouter();
+
 import img1 from '@/assets/images/CannabisStrainCarousel/ImgOne.svg';
 import img2 from '@/assets/images/CannabisStrainCarousel/ImgTwo.svg';
 const strainTypes = ref(['Hybrid Strains', 'Indica Strains', 'Sativa Strains']);
@@ -427,10 +432,14 @@ function handleCheckboxClick(event) {
     checkedCheckbox.value = targetCheckbox;
 }
 
+const navigateToDetails = (id) => {
+    scrollToTop();
+    router.push({ name: 'StrainsProduct', params: { id } });
+}
 
 const cards = ref([
     {
-        title: 'Slide 1',
+        id: '1',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -442,7 +451,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 2',
+        id: '2',
         src: img1,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -454,7 +463,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 3',
+        id: '3',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -466,7 +475,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 4',
+        id: '4',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -478,7 +487,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 5',
+        id: '5',
         src: img1,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -490,7 +499,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 6',
+        id: '6',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -502,7 +511,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 7',
+        id: '7',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -514,7 +523,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 8',
+        id: '8',
         src: img1,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -526,7 +535,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 9',
+        id: '9',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -538,7 +547,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 10',
+        id: '10',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -550,7 +559,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 11',
+        id: '11',
         src: img1,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -562,7 +571,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 12',
+        id: '12',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -574,7 +583,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 13',
+        id: '13',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -586,7 +595,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 14',
+        id: '14',
         src: img1,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -598,7 +607,7 @@ const cards = ref([
         price: '$35.00'
     },
     {
-        title: 'Slide 15',
+        id: '15',
         src: img2,
         button: 'Hybrid',
         options: 'THC 22%   |   CBG 1%',
@@ -646,7 +655,12 @@ function prevPage() {
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
 }
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 <style scoped>

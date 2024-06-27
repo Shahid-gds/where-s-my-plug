@@ -134,10 +134,28 @@ const router = createRouter({
       component: () => import("../pages/Learn.vue"),
     },
     {
+      path: "/learn:id",
+      name: "LearnDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/LearnDetail.vue"),
+    },
+    {
+      path: "/learn-product:id",
+      name: "LearnProductDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/LearnProductDetail.vue"),
+    },
+    {
       path: "/strains",
       name: "Strains",
       meta: { layout: "Default" },
       component: () => import("../pages/Strains.vue"),
+    },
+    {
+      path: "/strain-prouduct:id",
+      name: "StrainsProduct",
+      meta: { layout: "Default" },
+      component: () => import("../pages/StrainProductDetail.vue"),
     },
     {
       path: "/careers",
