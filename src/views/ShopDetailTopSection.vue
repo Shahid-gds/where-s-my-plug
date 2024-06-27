@@ -1,13 +1,34 @@
 <template>
-    <section class="py-[20rem] pb-[25rem] relative">
-        <div class="container mx-auto">
-            <div class="sm:flex justify-between bg-white p-6 shadow-xl rounded-xl">
-                <div class="w-full flex space-x-6 items-center">
-                    <div class="w-[20%]">
+    <section class="sm:py-[20rem] py-[10rem] sm:pb-[25rem] pb-[20rem] relative">
+        <div class="container mx-auto px-6">
+            <div class="xl:flex flex-row-reverse justify-between bg-white sm:p-6 p-3 shadow-xl rounded-xl">
+                <div class="w-full">
+                    <div class="w-full relative">
+                        <div class="w-full flex justify-center mt-[2.5rem] absolute">
+                            <div class="relative w-full">
+                                <div class="w-full relative">
+                                    <input class="border-2 shadow-xl w-full p-6 px-[4.5rem] rounded-2xl" type="text"
+                                        placeholder="What’s your address?">
+                                    <div class="absolute top-3 left-4">
+                                        <img src="../components/icons/locationIcon.svg" alt="">
+                                    </div>
+                                </div>
+                                <div
+                                    class="sm:block hidden bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
+                                    <div class="">
+                                        <img src="../components/icons/searchIcon.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full sm:flex sm:space-x-6 items-center xl:mt-0 mt-[10rem]">
+                    <div class="sm:w-[20%] sm:pb-0 pb-6">
                         <img class="w-full border-2 p-4 rounded-xl" :src="card.src" alt="Card Image" />
                     </div>
                     <div class="">
-                        <h1 class="text-4xl font-bold">{{ card.heading }}</h1>
+                        <h1 class="sm:text-4xl text-xl font-bold">{{ card.heading }}</h1>
                         <div class="">
                             <div class="flex items-center space-x-3 py-4">
                                 <div>
@@ -53,7 +74,7 @@
                             </div>
                             <div class="flex items-center space-x-3">
                                 <div
-                                    class="flex items-center space-x-3 bg-[#61C1B4] p-2 px-4 rounded-xl cursor-pointer">
+                                    class="flex items-center sm:space-x-3 space-x-2 bg-[#61C1B4] p-2 sm:px-4 px-3 rounded-xl cursor-pointer">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="white" class="size-6">
@@ -64,7 +85,7 @@
                                     <a :href="'tel:' + card.phone" class="text-white">{{ card.phoneBtn }}</a>
                                 </div>
                                 <div
-                                    class="flex items-center space-x-3 bg-[#61C1B4] p-2 px-4 rounded-xl cursor-pointer">
+                                    class="flex items-center sm:space-x-3 space-x-2 bg-[#61C1B4] p-2 sm:px-4 px-3 rounded-xl cursor-pointer">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="white" class="size-6">
@@ -75,7 +96,7 @@
                                     <a :href="'mailto:' + card.email" class="text-white">{{ card.emailBtn }}</a>
                                 </div>
                                 <div @click="openModal"
-                                    class="flex items-center space-x-3 bg-[#61C1B4] p-2 px-4 rounded-xl cursor-pointer">
+                                    class="flex items-center sm:space-x-3 space-x-2 bg-[#61C1B4] p-2 sm:px-4 px-3 rounded-xl cursor-pointer">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="white" class="size-6">
@@ -89,48 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full">
-                    <div class="w-full sm:block hidden relative">
-                        <div class="w-full flex justify-center mt-[2.5rem] absolute">
-                            <div class="relative w-full">
-                                <div class="w-full relative">
-                                    <input class="border-2 shadow-xl w-full p-6 px-[4.5rem] rounded-2xl" type="text"
-                                        placeholder="What’s your address?">
-                                    <div class="absolute top-3 left-4">
-                                        <img src="../components/icons/locationIcon.svg" alt="">
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center justify-center space-x-3 bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
-                                    <div>
-                                        <img src="../components/icons/searchIcon.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sm:hidden">
-                        <div class="w-full flex justify-center mt-[2rem] relative">
-                            <div class="w-full flex justify-center mt-[2.5rem] absolute px-8">
-                                <div class="relative xl:w-1/2 w-full">
-                                    <div class="relative">
-                                        <input class="border-2 shadow-xl w-full p-6 px-[4.5rem] rounded-2xl" type="text"
-                                            placeholder="What’s your address?">
-                                        <div class="absolute top-3 left-4">
-                                            <img src="../components/icons/locationIcon.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="flex items-center justify-center space-x-3 bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
-                                        <div>
-                                            <img src="../components/icons/searchIcon.svg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -146,11 +126,11 @@
                     <div class="border-2 border-[#61c1b4] p-2 rounded-xl">
                         <img :src="card.src" alt="">
                     </div>
-                    <div class="text-3xl text-[#61c1b4] font-[Jost-ExtraBold]">
+                    <div class="sm:text-3xl text-xl text-[#61c1b4] font-[Jost-ExtraBold]">
                         {{ card.heading }}
                     </div>
                 </div>
-                <div class="flex justify-between pt-4">
+                <div class="sm:flex justify-between pt-4">
                     <div>
                         <div class="flex space-x-2 items-center pt-[1rem]">
                             <div class="font-[Bold] text-xl">

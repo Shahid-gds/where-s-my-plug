@@ -1,5 +1,5 @@
 <template>
-    <section class="pb-[5rem]">
+    <section class="sm:pb-[5rem] px-6">
         <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
             <div class="container mx-auto py-[12rem] text-center">
                 <div class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">
@@ -7,10 +7,10 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto -mt-[8rem] px-[5rem] bg-white shadow-xl rounded-xl p-6">
-            <div class="flex items-center space-x-6 justify-center w-full p-4 rounded-xl">
+        <div class="container mx-auto -mt-[8rem] xl:px-[5rem] bg-white shadow-xl rounded-xl p-6">
+            <div class="lg:flex items-center lg:space-x-6 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
-                <div class="border-2 p-2 rounded-2xl flex justify-center w-[20%] bg-[white]">
+                <div class="border-2 p-2 rounded-2xl flex justify-center sm:w-[20%] bg-[white]">
                     <img class="w-[100%]" v-if="card.img1" :src="card.img1" alt="Product image">
                 </div>
                 <div class="w-full">

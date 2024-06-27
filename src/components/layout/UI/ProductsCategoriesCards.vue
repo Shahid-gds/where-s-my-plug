@@ -60,7 +60,7 @@
         </div>
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
             <div v-for="card in paginationCard" :key="card.index" @click="navigateToDetails(card.id)"
-                class="2xl:w-[420px] w-[400px] border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
+                class="2xl:w-[420px] w-[400px] cursor-pointer border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
                 <div class="flex justify-center pb-6">
                     <div>
                         <img :src="card.image">

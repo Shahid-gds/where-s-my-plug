@@ -1,7 +1,7 @@
 <template>
     <section class="">
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.image"
+            <div v-for="card in paginationCard" :key="card.id" @click="selectCardAndNavigate(card)"
                 class="w-[400px] rounded-[35px] p-1.5 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                 <div class="relative">
                     <div>
@@ -13,18 +13,18 @@
                     </div>
                 </div>
                 <div class="p-6">
-                   <div>
-                    {{ card.heading }}
-                   </div>
-                   <div class="py-3 font-[Extra-Bold] text-[18px]">
-                    {{ card.subHeading }}
-                   </div>
-                   <div class="pt-[1rem]">
-                    {{ card.availableDeals }}
-                   </div>
-                   <div class="py-3">
-                    {{ card.distance }}
-                   </div>
+                    <div>
+                        {{ card.heading }}
+                    </div>
+                    <div class="py-3 font-[Extra-Bold] text-[18px]">
+                        {{ card.subHeading }}
+                    </div>
+                    <div class="pt-[1rem]">
+                        {{ card.availableDeals }}
+                    </div>
+                    <div class="py-3">
+                        {{ card.distance }}
+                    </div>
                 </div>
             </div>
         </transition-group>
@@ -55,6 +55,17 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useDealStore } from '@/stores/modules/dealsStore';
+
+const router = useRouter();
+const dealStore = useDealStore();
+
+function selectCardAndNavigate(card) {
+    scrollToTop();
+    dealStore.selectCard(card);
+    router.push({ name: 'DealsDetail', params: { id: card.id } })
+}
 
 const cards = ref([
     {
@@ -62,7 +73,7 @@ const cards = ref([
         image: import('../../../assets/images/DealsBoardCardImages/Img1.svg').then((module) => module.default),
         discountFlag: '25% off',
         heading: 'Flower',
-        subHeading: 'Happy Hour!!!! 6pm - 8pm Every Day!',
+        subHeading: '420 Sales 20% off all Flowers',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
     },
@@ -70,7 +81,7 @@ const cards = ref([
         id: '2',
         image: import('../../../assets/images/DealsBoardCardImages/Img2.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Cartridges',
         subHeading: 'CLOUD - Z CARTS $4EA. / 14 FOR $50 / 28 FOR $100',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -79,7 +90,7 @@ const cards = ref([
         id: '3',
         image: import('../../../assets/images/DealsBoardCardImages/Img3.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Pre-rolls',
         subHeading: 'Happy Hour!!!! 6pm - 8pm Every Day!',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -88,7 +99,7 @@ const cards = ref([
         id: '4',
         image: import('../../../assets/images/DealsBoardCardImages/Img4.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Terpenes',
         subHeading: 'Happy Hour!!!! 6pm - 8pm Every Day!',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -97,7 +108,7 @@ const cards = ref([
         id: '5',
         image: import('../../../assets/images/DealsBoardCardImages/Img5.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Cartridges',
         subHeading: 'CLOUD - Z CARTS $4EA. / 14 FOR $50 / 28 FOR $100',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -106,7 +117,7 @@ const cards = ref([
         id: '6',
         image: import('../../../assets/images/DealsBoardCardImages/Img6.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Pre-rolls',
         subHeading: 'Happy Hour!!!! 6pm - 8pm Every Day!',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -115,7 +126,7 @@ const cards = ref([
         id: '7',
         image: import('../../../assets/images/DealsBoardCardImages/Img1.svg').then((module) => module.default),
         discountFlag: '25% off',
-        heading: 'Flower',
+        heading: 'Terpenes',
         subHeading: 'Happy Hour!!!! 6pm - 8pm Every Day!',
         availableDeals: 'Available daily   -   The Trich Home',
         distance: '26 miles away',
@@ -232,7 +243,12 @@ function prevPage() {
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
 }
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 <style scoped>

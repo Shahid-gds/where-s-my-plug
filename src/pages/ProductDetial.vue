@@ -1,24 +1,24 @@
 <template>
-    <section class="pb-[20rem]">
+    <section class="sm:pb-[20rem] pb-[15rem]">
         <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
             <div class="container mx-auto py-[12rem] text-center">
                 <div class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">
                     {{ card.heading }}
                 </div>
-                <div class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative">{{
+                <div class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[20px] font-[Jost-SemiBold] relative">{{
                     card.subHeading }}
                 </div>
             </div>
         </div>
-        <div class="container mx-auto -mt-[8rem]">
-            <div class="flex items-center space-x-6 justify-center w-full p-4 rounded-xl">
+        <div class="container mx-auto sm:-mt-[8rem] -mt-[10rem]">
+            <div class="sm:flex items-center sm:space-x-6 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
-                <div class="border-2 p-2 rounded-2xl flex justify-center w-[20%] bg-[white]">
+                <div class="border-2 p-2 rounded-2xl flex justify-center sm:w-[20%] bg-[white]">
                     <img class="w-[100%]" v-if="mainImage" :src="mainImage" alt="Product image">
                 </div>
                 <div>
-                    <span class="text-[#010101]  text-[30px] font-[Jost-ExtraBold]">$</span>
-                    <span class="text-[#61c1b4]  text-[40px]  font-[Jost-SemiBold]">
+                    <span class="text-[#010101]  sm:text-[30px] text-[25px] font-[Jost-ExtraBold]">$</span>
+                    <span class="text-[#61c1b4]  sm:text-[40px] text-[30px]  font-[Jost-SemiBold]">
                         {{ card.price }}
                     </span>
                     <div class="flex space-x-4 items-center pb-2">
@@ -49,7 +49,7 @@
                         <span>Weight: </span> {{ card.weight }}
                     </div>
                     <div class="flex items-center space-x-6">
-                        <div class="rounded-xl p-2 w-[20%]" :style="{ backgroundColor: card.backgroundColor }">
+                        <div class="rounded-xl p-2 sm:w-[20%]" :style="{ backgroundColor: card.backgroundColor }">
                             <img class="" v-if="card.leaf" :src="card.leaf" alt="">
                         </div>
                         <div>
@@ -88,10 +88,10 @@
                     <img class="w-[100%]" v-if="card.img4" :src="card.img4" alt="Product image">
                 </div>
             </div>
-            <div class="pt-[2rem] text-[#61c1b4] px-[8rem]">
+            <div class="pt-[2rem] text-[#61c1b4] sm:px-[8rem] px-6">
                 {{ card.paragraph }}
             </div>
-            <div class="px-[8rem] pt-8">
+            <div class="sm:px-[8rem] px-6 pt-8">
                 <div class="pb-5">
                     <h1 class="font-[Bold] text-xl">Shop Local</h1>
                     <p>{{ card.shopLocal }}</p>
@@ -276,7 +276,7 @@ const getCardById = async (id) => {
             img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
             img3: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
             img4: import('@/assets/images/ProductsCategories/Img4.svg').then(module => module.default),
-            heading: 'Flower',
+            heading: 'Cartridges',
             stars: import('../components/icons/star.svg').then(module => module.default),
             leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
             backgroundColor: '#61c1b4',

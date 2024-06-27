@@ -122,6 +122,12 @@ const router = createRouter({
       component: () => import("../pages/Deals.vue"),
     },
     {
+      path: "/deals:id",
+      name: "DealsDetail",
+      meta: { layout: "Default" },
+      component: () => import("../pages/DealsDetail.vue"),
+    },
+    {
       path: "/learn",
       name: "Learn",
       meta: { layout: "Default" },

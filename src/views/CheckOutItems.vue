@@ -1,67 +1,5 @@
 <template>
-    <section class="pb-[15rem] -mt-[10rem] container mx-auto xl:flex xl:space-x-5 px-6">
-        <div class="w-full bg-white p-6 shadow-lg rounded-xl">
-            <form class="pt-[3rem]">
-                <!-- Contact Information Section -->
-                <div class="pb-10">
-                    <h1 class="text-2xl uppercase">Billing details</h1>
-                    <p class="text-[#ACACAC] pb-4">Lorem Ipsum is simply dummy text of the printing</p>
-                    <div class="">
-                        <div v-for="(inputGroup, index) in contactInfoInputGroup" :key="index" class="">
-                            <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
-                                <div class="text-[#343434]" :class="{ 'pb-2 mt-3': input.id === 'companyName' }">
-                                    <label :for="input.id">
-                                        {{ input.label }}
-                                        <span v-if="isRequired(input.label)"
-                                            class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
-                                    </label>
-                                </div>
-                                <div v-if="input.type === 'select'" class="select w-full pb-10">
-                                    <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
-                                        :class="{ toggle: dropdownVisible[input.id] }"
-                                        @click="toggleDropdown(input.id)">
-                                        {{ selectedOption[input.id] }}
-                                    </div>
-                                    <div class="selectDropdown p-2" :class="{ toggle: dropdownVisible[input.id] }">
-                                        <div class="option w-full" v-for="option in input.options" :key="option"
-                                            @click="selectOption(option, input.id)" :data-type="option">
-                                            {{ option }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-[#818181] pb-6" v-else>
-                                    <input :type="input.type" :id="input.id"
-                                        class="border-2 border-[#61C1B4] w-full p-3 rounded-xl px-6"
-                                        :placeholder="input.placeholder">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkbox-wrapper-45 pt-6 flex items-center space-x-2">
-                        <div>
-                            <input id="cbx-45" type="checkbox" />
-                            <label class="cbx" for="cbx-45">
-                                <div class="flip">
-                                    <div class="front"></div>
-                                    <div class="back">
-                                        <svg width="16" height="14" viewBox="0 0 16 14">
-                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        <div><label for="cbx-45" class="text-[#343434]">Ship to a different address?</label></div>
-                    </div>
-                    <div class="pt-6">
-                        <label for="">Order Notes <span class=" text-[#B8B8B8]">(Optional)</span></label>
-                        <textarea class="border-2 border-[#61C1B4] w-full rounded-xl p-6" name="" id="" cols="30"
-                            rows="5" placeholder="write Order Notes Here ..."></textarea>
-                    </div>
-                </div>
-
-            </form>
-        </div>
+    <section class="pb-[15rem] -mt-[10rem] container mx-auto xl:flex gap-x-5 flex-row-reverse px-6">
         <div class="w-full">
             <div class="pb-6">
                 <transition-group name="nested" tag="div" class="w-full rounded-xl shadow-xl bg-[white] px-6">
@@ -77,9 +15,9 @@
                                     <div class="w-full text-[#61C1B4] font-[Bold]">
                                         {{ item.weight }}
                                     </div>
-                                    <div class="w-full text-right">
+                                    <!-- <div class="w-full text-right">
                                         ${{ item.price.toFixed(2) }}
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="text-[#61C1B4] font-[Bold] sm:block hidden">
                                     {{ item.weight }}
@@ -161,7 +99,7 @@
                 </div>
                 <div class="w-full text-center">
                     <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue Shopping</router-link>
-                    <p class="text-[#B7B7B7] pt-2 px-10 text-[14px]">Estimated total may not reflect actual taxes owed
+                    <p class="text-[#B7B7B7] pt-2 md:px-10 text-[14px]">Estimated total may not reflect actual taxes owed
                         or
                         other promotions. Payment is made directly to
                         the dispensary at time of pickup/delivery. Pickup/delivery orders that exceed local limits or
@@ -184,6 +122,69 @@
                 </div>
             </div>
         </div>
+        <div class="w-full bg-white p-6 shadow-lg rounded-xl">
+            <form class="pt-[3rem]">
+                <!-- Contact Information Section -->
+                <div class="pb-10">
+                    <h1 class="text-2xl uppercase">Billing details</h1>
+                    <p class="text-[#ACACAC] pb-4">Lorem Ipsum is simply dummy text of the printing</p>
+                    <div class="">
+                        <div v-for="(inputGroup, index) in contactInfoInputGroup" :key="index" class="">
+                            <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
+                                <div class="text-[#343434]" :class="{ 'pb-2 mt-3': input.id === 'companyName' }">
+                                    <label :for="input.id">
+                                        {{ input.label }}
+                                        <span v-if="isRequired(input.label)"
+                                            class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
+                                    </label>
+                                </div>
+                                <div v-if="input.type === 'select'" class="select w-full pb-10">
+                                    <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
+                                        :class="{ toggle: dropdownVisible[input.id] }"
+                                        @click="toggleDropdown(input.id)">
+                                        {{ selectedOption[input.id] }}
+                                    </div>
+                                    <div class="selectDropdown p-2" :class="{ toggle: dropdownVisible[input.id] }">
+                                        <div class="option w-full" v-for="option in input.options" :key="option"
+                                            @click="selectOption(option, input.id)" :data-type="option">
+                                            {{ option }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-[#818181] pb-6" v-else>
+                                    <input :type="input.type" :id="input.id"
+                                        class="border-2 border-[#61C1B4] w-full p-3 rounded-xl px-6"
+                                        :placeholder="input.placeholder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox-wrapper-45 pt-6 flex items-center space-x-2">
+                        <div>
+                            <input id="cbx-45" type="checkbox" />
+                            <label class="cbx" for="cbx-45">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div><label for="cbx-45" class="text-[#343434]">Ship to a different address?</label></div>
+                    </div>
+                    <div class="pt-6">
+                        <label for="">Order Notes <span class=" text-[#B8B8B8]">(Optional)</span></label>
+                        <textarea class="border-2 border-[#61C1B4] w-full rounded-xl p-6" name="" id="" cols="30"
+                            rows="5" placeholder="write Order Notes Here ..."></textarea>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+      
     </section>
 </template>
 

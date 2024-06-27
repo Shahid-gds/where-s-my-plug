@@ -174,18 +174,18 @@
                     </TransitionGroup>
                     <div class="relative">
                         <router-link :to="cartLink" @click="handleClick"
-                        class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                            class="hover-btn bg-[#61c1b4] w-[56px] h-[56px] p-4 rounded-full">
+                            <div>
+                                <img src="../icons/shop.svg" alt="">
+                            </div>
+                        </router-link>
                         <div>
-                            <img src="../icons/shop.svg" alt="">
+                            <!-- Product count show here -->
+                            <div
+                                class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
+                                <h1>{{ cartItemCount }}</h1>
+                            </div>
                         </div>
-                    </router-link>
-                    <div>
-                          <!-- Product count show here -->
-                          <div
-                          class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
-                          <h1>{{ cartItemCount }}</h1>
-                      </div>
-                    </div>
                     </div>
                     <div :class="{ 'show-search': isSearchVisible, 'hide-search': !isSearchVisible }"
                         class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
@@ -216,14 +216,31 @@
                     <img src="../../assets/images/Logo.svg" alt="">
                 </router-link>
             </div>
-            <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                class="hover-btn w-[100px] mt-2 rounded-full cursor-pointer">
-                <img class="w-full h-full rounded-full object-cover"
-                    :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
-            </div>
-            <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
-                class="hover-btn w-[100px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
-                <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
+            <div class="w-full flex justify-end space-x-3 items-center">
+                <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
+                    class="hover-btn rounded-full cursor-pointer">
+                    <img class="w-full h-full rounded-full object-cover"
+                        :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                </div>
+                <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                    class="hover-btn bg-[#61c1b4] p-3 rounded-full cursor-pointer">
+                    <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
+                </div>
+                <div class="relative mt-2">
+                    <router-link :to="cartLink" @click="handleClick"
+                        class="hover-btn bg-[#61c1b4] p-2.5 rounded-full">
+                        <div>
+                            <img class="w-full h-full object-cover" src="../icons/shop.svg">
+                        </div>
+                    </router-link>
+                    <div>
+                        <!-- Product count show here -->
+                        <div
+                            class="bg-[black] top-0 right-0 absolute text-white text-center rounded-full w-[22px] h-[22px]">
+                            <h1>{{ cartItemCount }}</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
             <TransitionGroup name="bounce" tag="ul" class="relative">
                 <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
@@ -369,7 +386,7 @@ const cartItemCount = computed(() => cartStore.cartItemCount);
 const isEmptyCart = computed(() => cartItemCount.value === 0);
 
 const cartLink = computed(() => {
-    return isEmptyCart.value ? { name: 'EmptyCart'} : { name: 'YourCart' };
+    return isEmptyCart.value ? { name: 'EmptyCart' } : { name: 'YourCart' };
 })
 
 const baseUrl = 'http://127.0.0.1:3000/api/v1/users';

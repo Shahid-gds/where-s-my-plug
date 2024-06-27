@@ -13,9 +13,9 @@
                                 <div class="w-full text-[#61C1B4] font-[Bold]">
                                     {{ item.weight }}
                                 </div>
-                                <div class="w-full text-right">
+                                <!-- <div class="w-full text-right">
                                     ${{ item.price.toFixed(2) }}
-                                </div>
+                                </div> -->
                             </div>
                             <div class="text-[#61C1B4] font-[Bold] sm:block hidden">
                                 {{ item.weight }}
@@ -32,7 +32,7 @@
                                 <div>
                                     {{ item.subHeading }}
                                 </div>
-                                <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
+                                <button class=" text-[#FF3B3B] uppercase flex justify-end items-center"
                                     @click="removeFromCart(index)">
                                     <div class="font-[Bold] sm:block hidden">&#128473;</div>
                                     <div class="font-[Bold] sm:block hidden">
@@ -49,19 +49,16 @@
                                     </span>
                                     <button class="text-2xl" @click="decrement(index)">&#8722;</button>
                                 </div>
-                                <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
+                                <button class="text-[#FF3B3B] uppercase flex justify-end items-center"
                                     @click="removeFromCart(index)">
                                     <div class="font-[Bold] sm:hidden">&#128473;</div>
-                                    <div class="font-[Bold] sm:hidden">
-                                        Remove item
-                                    </div>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </transition-group>
-            <div class="flex w-1/2 items-start space-x-2 pt-10 pb-6">
+            <div class="flex sm:w-1/2 items-start space-x-2 pt-10 pb-6">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#FFD764" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -107,7 +104,7 @@
             </div>
             <div class="w-full text-center">
                 <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue Shopping</router-link>
-                <p class="text-[#B7B7B7] pt-2 px-10 text-[14px]">Estimated total may not reflect actual taxes owed or
+                <p class="text-[#B7B7B7] pt-2 sm:px-10 text-[14px]">Estimated total may not reflect actual taxes owed or
                     other promotions. Payment is made directly to the dispensary at time of pickup/delivery.
                     Pickup/delivery orders that exceed local limits or that include items no longer available may be
                     modified. A dispensary agent may reach out to you if modifications must be made.</p>
