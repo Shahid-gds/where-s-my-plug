@@ -2,21 +2,21 @@
     <section class="sm:pb-[20rem] pb-[15rem]">
         <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
             <div class="container mx-auto py-[12rem] text-center">
-                <div class="text-[#010101]  sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">
+                <div class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">
                     {{ card.heading }}
                 </div>
-                <div class="text-[#61c1b4] sm:text-[30px] text-[25px] font-[Jost-SemiBold] relative">{{
+                <div class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[20px] font-[Jost-SemiBold] relative">{{
                     card.subHeading }}
                 </div>
             </div>
         </div>
         <div class="container mx-auto sm:-mt-[8rem] -mt-[10rem]">
-            <div class="sm:flex items-center sm:space-x-6 justify-center w-full p-4 rounded-xl">
+            <div class="sm:flex sm:space-x-6 items-center justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
-                <div class="border-2 p-2 rounded-2xl flex justify-center sm:w-[20%] bg-[white]">
-                    <img class="w-[100%]" v-if="mainImage" :src="mainImage" alt="Product image">
+                <div class="w-full border-2 p-2 rounded-2xl flex justify-center bg-[white]">
+                    <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
                 </div>
-                <div>
+                <div class="w-full">
                     <span class="text-[#010101]  sm:text-[30px] text-[25px] font-[Jost-ExtraBold]">$</span>
                     <span class="text-[#61c1b4]  sm:text-[40px] text-[30px]  font-[Jost-SemiBold]">
                         {{ card.price }}
@@ -49,7 +49,7 @@
                         <span>Weight: </span> {{ card.weight }}
                     </div>
                     <div class="flex items-center space-x-6">
-                        <div class="rounded-xl p-2 sm:w-[20%]" :style="{ backgroundColor: card.backgroundColor }">
+                        <div class="rounded-xl p-2" :style="{ backgroundColor: card.backgroundColor }">
                             <img class="" v-if="card.leaf" :src="card.leaf" alt="">
                         </div>
                         <div>
@@ -67,9 +67,37 @@
                             <div class="font-[Bold]">{{ card.cbc }}</div>
                         </div>
                     </div>
+                    <div class="py-4">
+                        <button @click="addToCart" :disabled="!isLoggedIn" class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]">Add to
+                            cart</button>
+                    </div>
+                    <div v-if="!isLoggedIn">
+                        To place an order online, you'll need to <router-link :to="{name : 'Sign-In'}" class="text-red-500 font-bold">Login</router-link>  or 
+                        <router-link :to="{name: 'Sign-Up'}" class="text-red-500 font-bold">Create an account.</router-link>
+                    </div>
                 </div>
+              <div class="flex justify-center">
+                <div class="">
+                    <div class="pb-5">
+                        <h1 class="font-[Bold] text-xl">Shop Local</h1>
+                        <p>{{ card.shopLocal }}</p>
+                    </div>
+                    <div class="pb-5">
+                        <h1 class="font-[Bold] text-xl">Order It Up</h1>
+                        <p>{{ card.shopLocal }}</p>
+                    </div>
+                    <div class="pb-5">
+                        <h1 class="font-[Bold] text-xl">Keep an eye Out</h1>
+                        <p>{{ card.shopLocal }}</p>
+                    </div>
+                    <div class="pb-5">
+                        <h1 class="font-[Bold] text-xl">Note</h1>
+                        <p>{{ card.note }}</p>
+                    </div>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-center space-x-4 pt-8">
+            <div class="flex space-x-4 pt-8">
                 <!-- related images -->
                 <div :class="['border-2 cursor-pointer p-2 rounded-2xl flex justify-center w-[20%] ', mainImage === card.img1 ? 'border-[black]' : 'border-[#61c1b4]']"
                     @click="updateMainImage(card.img1)">
@@ -88,31 +116,6 @@
                     <img class="w-[100%]" v-if="card.img4" :src="card.img4" alt="Product image">
                 </div>
             </div>
-            <div class="pt-[2rem] text-[#61c1b4] sm:px-[8rem] px-6">
-                {{ card.paragraph }}
-            </div>
-            <div class="sm:px-[8rem] px-6 pt-8">
-                <div class="pb-5">
-                    <h1 class="font-[Bold] text-xl">Shop Local</h1>
-                    <p>{{ card.shopLocal }}</p>
-                </div>
-                <div class="pb-5">
-                    <h1 class="font-[Bold] text-xl">Order It Up</h1>
-                    <p>{{ card.shopLocal }}</p>
-                </div>
-                <div class="pb-5">
-                    <h1 class="font-[Bold] text-xl">Keep an eye Out</h1>
-                    <p>{{ card.shopLocal }}</p>
-                </div>
-                <div class="pb-5">
-                    <h1 class="font-[Bold] text-xl">Note</h1>
-                    <p>{{ card.note }}</p>
-                </div>
-            </div>
-            <div class="flex justify-center">
-                <button @click="addToCart" class="bg-[#61c1b4] p-4 rounded-full px-16 text-white font-[Bold]">Add to
-                    cart</button>
-            </div>
         </div>
     </section>
 </template>
@@ -122,6 +125,23 @@ import { ref, onMounted } from 'vue';
 import { useCartStore } from '@/stores/modules/cart';
 import { useRoute, useRouter } from 'vue-router';
 const cartStore = useCartStore();
+const isLoggedIn = ref(false);
+const userEmail = ref('');
+const userId = ref('');
+
+const LoggedInStatus = () => {
+    // Check if user is logged in based on cookies or other authentication state
+    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'userEmail') {
+            userEmail.value = decodeURIComponent(value);
+        } else if (name === 'userId') {
+            userId.value = decodeURIComponent(value);
+        }
+    }
+    isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
+};
 
 const addToCart = () => {
     scrollToTop();
@@ -236,6 +256,7 @@ const updateMainImage = (image) => {
 
 onMounted(() => {
     fetchCardDetails();
+    LoggedInStatus();
 });
 const scrollToTop = () => {
     window.scrollTo({
@@ -244,3 +265,9 @@ const scrollToTop = () => {
     });
 };
 </script>
+<style scoped>
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+</style>

@@ -217,14 +217,17 @@
                 </router-link>
             </div>
             <div class="w-full flex justify-end space-x-3 items-center">
+                <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                    class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                    <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
+                </div>
                 <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                    class="hover-btn rounded-full cursor-pointer">
-                    <img class="w-full h-full rounded-full object-cover"
+                    class="flex hover-btn rounded-full cursor-pointer">
+                    <img class="rounded-full"
                         :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
                 </div>
                 <div class="relative mt-2">
-                    <router-link :to="cartLink" @click="handleClick"
-                        class="hover-btn bg-[#61c1b4] p-2.5 rounded-full">
+                    <router-link :to="cartLink" @click="handleClick" class="hover-btn bg-[#61c1b4] p-2.5 rounded-full">
                         <div>
                             <img class="w-full h-full object-cover" src="../icons/shop.svg">
                         </div>
@@ -418,7 +421,7 @@ const generateProfileInitial = (fname, lname) => {
     if (fname && lname) {
         const firstNameInitial = fname[0].toUpperCase();
         const lastNameInitial = lname[0].toUpperCase();
-        return `https://via.placeholder.com/150/61c1b4/FFFFFF?text=${firstNameInitial}${lastNameInitial}`;
+        return `https://via.placeholder.com/50/61c1b4/FFFFFF?text=${firstNameInitial}${lastNameInitial}`;
     } else {
         return '';
     }

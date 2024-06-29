@@ -34,13 +34,11 @@
                             <p>{{ contentConfig.content }}</p>
                         </div>
                         <div class="flex justify-center">
-                            <button @click="navigateToDetails(contentConfig.id)" class="bg-[#61c1b4] p-4 rounded-full px-16 text-white font-[Bold]">Add to
-                                cart</button>
+                            <button @click="navigateToDetails(contentConfig.id)" class="bg-[#61c1b4] p-4 rounded-full px-16 text-white font-[Bold]">Get Started</button>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
     <section class="pb-[15rem]">
@@ -97,8 +95,7 @@
                         {{ card.thcPercent }}
                     </div>
                 </div>
-                <div class="absolute top-0 right-0 bg-[#76c9be] p-3 rounded-tr-xl font-bold text-white">Add to Cart
-                </div>
+                <div class="absolute top-0 right-0 bg-[#76c9be] p-3 rounded-tr-xl font-bold text-white">Add to Cart </div>
             </div>
         </transition-group>
     </section>

@@ -200,7 +200,7 @@ const login = async () => {
     setCookie('userId', userId, 7);
     // console.log('Extracted userId:', userId); 
     setCookie('userEmail', email.value, 7);
-    router.replace('/')
+    router.replace('/index')
   } catch (error) {
     if (error.response && error.response.status === 401) {
       responseMessage.value = 'Incorrect Email or Password'; 

@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/Home.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
+      name: "AgeVerification",
+      component: () => import("../pages/AgeVerification.vue"),
+    },
+    {
+      path: "/index",
       name: "Home",
       meta: { layout: "Default" },
-      component: Home,
+      component: () => import("../pages/Home.vue"),
     },
     {
       path: "/sign-in",
@@ -30,7 +34,7 @@ const router = createRouter({
       name: "resetPassword",
       component: () => import("../components/layout/auth/resetPassword.vue"),
       meta: {
-        requiresAuth: true,
+        requiresOTP: true,
       },
     },
     {
@@ -45,7 +49,7 @@ const router = createRouter({
       meta: { layout: "Default" },
       component: () => import("../pages/EmptyCart.vue"),
     },
-    
+
     {
       path: "/check-out",
       name: "CheckOut",
@@ -220,7 +224,7 @@ const router = createRouter({
     {
       path: "/account-setting",
       name: "AccountSetting",
-      meta: { layout: "Default" },
+      meta: { layout: "Default", requiresAuth: true },
       component: () => import("../pages/AccountSetting.vue"),
     },
     {
@@ -264,11 +268,31 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    if (localStorage.getItem('correctOTP:')) {
+  const ageVerified = localStorage.getItem("ageVerified");
+  if (!ageVerified && to.name !== "AgeVerification") {
+    next({ name: "AgeVerification" });
+  } else if (to.meta.requiresAuth) {
+    const userEmail = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("userEmail="));
+    const userId = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("userId="));
+
+    if (userEmail && userId) {
       next();
+    } else {
+      next({ name: "Sign-In" });
     }
-     else {
+  } else {
+    next();
+  }
+});
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresOTP) {
+    if (localStorage.getItem("correctOTP:")) {
+      next();
+    } else {
       next("sign-in");
     }
   } else {
