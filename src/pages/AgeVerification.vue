@@ -2,7 +2,7 @@
     <div v-if="showModal" class="">
       <div
         class="bg-covers bg-center bg-[url('@/assets/images/bgs/HomeHeroSectionBg.svg')] w-full h-screen flex items-center justify-center">
-        <div class="sm:w-[40%] container mx-auto px-6">
+        <div class="xl:w-[40%] w-full container mx-auto px-6">
           <div class="flex justify-center sm:pb-6">
             <img class="w-[30%]" src="@/assets/images/footerLogo.svg" alt="">
           </div>
