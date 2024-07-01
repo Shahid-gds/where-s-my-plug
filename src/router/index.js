@@ -269,7 +269,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const ageVerified = localStorage.getItem("ageVerified");
-  if (!ageVerified && to.name !== "AgeVerification") {
+  if(ageVerified === "true" && to.name === "AgeVerification"){
+    next({name: "Home"});
+  } else if (!ageVerified && to.name !== "AgeVerification") {
     next({ name: "AgeVerification" });
   } else if (to.meta.requiresAuth) {
     const userEmail = document.cookie
