@@ -59,12 +59,14 @@
                     <div class="bg-[#F6F9F9] p-2 rounded-xl border-2 border-[#61C1B4] relative">
                         <div class="border-2 rounded-full">
                             <div class="relative w-full h-full rounded-full">
-                                <img class="w-full h-full rounded-full object-cover" :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                                <img  class="w-full h-full rounded-full object-cover"
+                                    :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
+                                    alt="">
                                 <!-- <div v-if="loading" class="absolute inset-0 flex items-center justify-center z-50">
                                     <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
                                 </div> -->
                             </div>
-                            <input  ref="fileInput" type="file" style="display:none;" @change="handleFileUpload">          
+                            <input ref="fileInput" type="file" style="display:none;" @change="handleFileUpload">
                         </div>
                         <div v-if="isEditing.profilePhotoUrl"
                             class="bg-[#61C1B4] absolute right-0 bottom-0 rounded-br-lg rounded-tl-xl p-2 cursor-pointer"
@@ -144,7 +146,8 @@
                             :class="{ 'border-2 p-2.5 rounded-xl': isEditing.pass, 'read-only': isEditing.pass }"
                             :readonly="!isEditing.pass" v-model="userData.pass">
                         <div class="pt-2 flex space-x-2" v-if="isEditing.pass">
-                            <button class="p-2 px-6 border-2 rounded-xl">Reset ?</button>
+                            <router-link :to="{ name: 'ForgetPassword' }" class="p-2 px-6 border-2 rounded-xl">Reset
+                                ?</router-link>
                             <button class="p-2 px-6 border-2 rounded-xl" @click="cancelEdit('pass')">Cancel</button>
                         </div>
                     </div>
@@ -231,7 +234,8 @@
         </div>
         <div v-if="isEditing.fname || isEditing.lname || isEditing.bday || isEditing.about || isEditing.phone || isEditing.mobile || isEditing.address"
             class="flex justify-center">
-            <button class="hover-btn uppercase bg-[#61C1B4] p-3 px-10 rounded-full text-white text-xl">
+            <button @click.prevent="updateUser"
+                class="hover-btn uppercase bg-[#61C1B4] p-3 px-10 rounded-full text-white text-xl">
                 {{ processing ? 'Please Wait...' : 'Update Account' }}
             </button>
         </div>
@@ -363,13 +367,15 @@ const isEditing = reactive({
     bday: false,
     pass: false,
     about: false,
-    address: false
+    phone: false,
+    mobile: false,
+    address: false,
 });
 
 const userData = reactive({
     fname: '',
     lname: '',
-    profilePhotoUrl: '',
+    profilePhotoUrl: 'fdfasdfsdaf',
     email: '',
     bday: '',
     pass: '**************',
@@ -418,6 +424,33 @@ const getUserData = async () => {
         console.error(error);
     }
 }
+const processing = ref(false);
+const updateUser = async () => {
+    processing.value = true;
+    const headers = {
+        'user-id': userId,
+        'Content-Type': 'application/json'
+    };
+    try {
+        const updatedData = {
+            name: `${userData.fname} ${userData.lname}`,
+            photo: userData.profilePhotoUrl,
+            email: userData.email,
+            birth: userData.bday,
+            about: userData.about,
+            phone: userData.phone,
+            mobile: userData.mobile,
+            address: userData.address
+        };
+
+        const response = await axios.patch(`${baseUrl}/updateMe`, updatedData, { headers });
+        console.log('User updated:', response.data);
+    } catch (error) {
+        console.error('Error updating user:', error);
+    } finally {
+        processing.value = false;
+    }
+};
 
 
 const toggleEdit = (field) => {
@@ -437,22 +470,43 @@ const cancelEdit = (field) => {
     }
 };
 const generateProfileInitial = (fname, lname) => {
-    if(fname && lname) {
+    if (fname && lname) {
         const firstNameInitial = fname[0].toUpperCase();
-        const lastNameInitial = lname[0]. toUpperCase();
+        const lastNameInitial = lname[0].toUpperCase();
         return `https://via.placeholder.com/150/61c1b4/FFFFFF?text=${firstNameInitial}${lastNameInitial}`;
     } else {
         return '';
     }
 }
-const fileInput = ref(null)
+
 const openFileInput = () => {
-  fileInput.value.click();
-};
-const handleFileUpload = async (event) => {
-    const file = event.target.file[0];
-    if(file) {
-        console.log('Uploading file', file);
+    document.querySelector('input[type="file"]').click()
+}
+
+const handleFileChange = async (event) => {
+    const file = event.target.files[0]
+    if (file) {
+        const formData = new FormData()
+        formData.append('photo', file)
+
+        try {
+            const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
+                headers: {
+                    'user-id': userId,
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log('Server response:', response.data)
+            profilePhotoUrl.value = response.data.data.user.photo
+        } catch (error) {
+            if (error.response) {
+                console.error('Error response:', error.response.data)
+                console.error('Status:', error.response.status)
+                console.error('Headers:', error.response.headers)
+            } else {
+                console.error('Error message:', error.message)
+            }
+        }
     }
 }
 
