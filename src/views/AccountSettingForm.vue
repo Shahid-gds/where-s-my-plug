@@ -483,32 +483,32 @@ const openFileInput = () => {
     document.querySelector('input[type="file"]').click()
 }
 
-const handleFileChange = async (event) => {
-    const file = event.target.files[0]
-    if (file) {
-        const formData = new FormData()
-        formData.append('photo', file)
+// const handleFileChange = async (event) => {
+//     const file = event.target.files[0]
+//     if (file) {
+//         const formData = new FormData()
+//         formData.append('photo', file)
 
-        try {
-            const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
-                headers: {
-                    'user-id': userId,
-                    'Content-Type': 'application/json'
-                }
-            })
-            console.log('Server response:', response.data)
-            profilePhotoUrl.value = response.data.data.user.photo
-        } catch (error) {
-            if (error.response) {
-                console.error('Error response:', error.response.data)
-                console.error('Status:', error.response.status)
-                console.error('Headers:', error.response.headers)
-            } else {
-                console.error('Error message:', error.message)
-            }
-        }
-    }
-}
+//         try {
+//             const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
+//                 headers: {
+//                     'user-id': userId,
+//                     'Content-Type': 'application/json'
+//                 }
+//             })
+//             console.log('Server response:', response.data)
+//             profilePhotoUrl.value = response.data.data.user.photo
+//         } catch (error) {
+//             if (error.response) {
+//                 console.error('Error response:', error.response.data)
+//                 console.error('Status:', error.response.status)
+//                 console.error('Headers:', error.response.headers)
+//             } else {
+//                 console.error('Error message:', error.message)
+//             }
+//         }
+//     }
+// }
 
 const interests = ref([
     { label: 'Products', checked: false },
