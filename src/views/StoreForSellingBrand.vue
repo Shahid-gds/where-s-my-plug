@@ -12,7 +12,7 @@
          </div>
          <div class="flex justify-center px-6">
             <div class="text-center">
-                <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Stores</h1>
+                <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Dispensaries</h1>
                 <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Selling This Brands</h1>
             </div>
          </div>

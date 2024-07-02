@@ -1,5 +1,5 @@
 <template>
-    <section class="-mt-[20rem]">
+    <!-- <section class="-mt-[20rem]">
         <div class="overflow-hidden pt-[3rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
@@ -23,10 +23,10 @@
                 <WecomeToWMPCarousel />
             </div>
         </div>
-    </section>
+    </section> -->
 </template>
 
 <script setup>
-import FeaturedBrandsCarousel from '@/components/layout/UI/FeaturedBrandsCarousel.vue';
-import WecomeToWMPCarousel from '@/components/layout/UI/WecomeToWMPCarousel.vue'
+// import FeaturedBrandsCarousel from '@/components/layout/UI/FeaturedBrandsCarousel.vue';
+// import WecomeToWMPCarousel from '@/components/layout/UI/WecomeToWMPCarousel.vue'
 </script>

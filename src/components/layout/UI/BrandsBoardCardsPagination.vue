@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, defineProps, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -102,6 +102,13 @@ const navigateToDetails = (id) => {
     scrollToTop();
     router.push({ name: 'BrandsDetail', params: { id } });
 }
+
+const props = defineProps({
+    searchQuery: {
+        type: String,
+        default: ''
+    }
+})
 
 const cards = ref([
     {
@@ -339,9 +346,13 @@ const currentPage = ref(1);
 const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
 
 const paginationCard = computed(() => {
+    if (props.searchQuery) {
+        return cards.value.filter(card => card.heading.toLowerCase().includes(props.searchQuery.toLowerCase()) || card.paragraph.toLowerCase().includes(props.searchQuery.toLowerCase()))
+    }
     const startIndex = (currentPage.value - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     return cards.value.slice(startIndex, endIndex);
+   
 });
 
 function nextPage() {
@@ -366,7 +377,9 @@ const scrollToTop = () => {
         behavior: 'smooth'
     });
 }
-
+watch(() => props.searchQuery, () => {
+    currentPage.value = 1
+})
 </script>
 
 <style scoped>

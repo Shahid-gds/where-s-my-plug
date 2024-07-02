@@ -19,14 +19,14 @@
       <div>
         <CannabisStrainCarousel />
       </div>
-      <div class="pt-[2rem]">
+      <!-- <div class="pt-[2rem]">
         <WecomeToWMPCarousel />
-      </div>
+      </div> -->
         </div>
     </section>
 </template>
 
 <script setup>
 import CannabisStrainCarousel from '@/components/layout/UI/CannabisStrainCarousel.vue';
-import WecomeToWMPCarousel  from '@/components/layout/UI/WecomeToWMPCarousel.vue'
+// import WecomeToWMPCarousel  from '@/components/layout/UI/WecomeToWMPCarousel.vue'
 </script>

@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, defineProps, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDealStore } from '@/stores/modules/dealsStore';
 
@@ -67,6 +67,12 @@ function selectCardAndNavigate(card) {
     router.push({ name: 'DealsDetail', params: { id: card.id } })
 }
 
+const props = defineProps({
+    searchQuery: {
+        type: String,
+        default: ''
+    }
+})
 const cards = ref([
     {
         id: '1',
@@ -223,6 +229,9 @@ const currentPage = ref(1);
 const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
 
 const paginationCard = computed(() => {
+    if (props.searchQuery) {
+        return cards.value.filter(card => card.heading.toLowerCase().includes(props.searchQuery.toLowerCase()) || card.subHeading.toLowerCase().includes(props.searchQuery.toLowerCase()))
+    }
     const startIndex = (currentPage.value - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     return cards.value.slice(startIndex, endIndex);
@@ -249,6 +258,9 @@ const scrollToTop = () => {
         behavior: 'smooth'
     });
 }
+watch(() => props.searchQuery, () => {
+    currentPage.value = 1
+})
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
     <section class="container mx-auto flex relative">
         <div class="2xl:w-[20%] w-1/2 md:block hidden">
             <div>
-                <h1 class="font-bold">Search Strains</h1>
+                <!-- <h1 class="font-bold">Search Strains</h1> -->
                 <div class="relative">
                     <input type="text" class="w-full border-2 border-[#CCE3E0] bg-[#FBFBFB]  p-2 rounded-[15px] px-4"
                         placeholder="Search Strains Here..." v-model="searchQuery">
@@ -134,7 +134,7 @@
         <div class="w-full">
             <div class="md:hidden flex items-center space-x-3 px-4">
                 <div class="w-full">
-                    <h1 class="font-bold">Search Strains</h1>
+                    <!-- <h1 class="font-bold">Search Strains</h1> -->
                     <div class="relative">
                         <input type="text"
                             class="w-full border-2 border-[#CCE3E0] bg-[#FBFBFB]  p-2 rounded-[15px] px-4"

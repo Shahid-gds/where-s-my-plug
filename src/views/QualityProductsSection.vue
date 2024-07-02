@@ -1,5 +1,5 @@
 <template>
-    <section class="py-28 relative">
+    <section class="relative">
         <div class="container mx-auto px-10 flex justify-center items-center h-full] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div class="relative lg:block hidden">
                 <div class="xl:w-[1280px]">
@@ -101,19 +101,19 @@
             </div>
             <div class="flex justify-center px-6">
                 <div class="text-center">
-                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Quality Products</h1>
+                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Featured Products</h1>
                     <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">Great Weed You Can Find Today!</h1>
                 </div>
             </div>
             <div>
-                <QualityProductsCard />
+                <HomeFeaturedProductsCarousel />
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import QualityProductsCard from '@/components/layout/UI/QualityProductsCard.vue';
+import HomeFeaturedProductsCarousel from '@/components/layout/UI/HomeFeaturedProductsCarousel.vue';
 </script>
 
 <style scoped>
