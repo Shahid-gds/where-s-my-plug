@@ -74,15 +74,18 @@
                 </div>
               
                 <div class="flex justify-center">
-                    <button class="hover-btn bg-[#61C1B4] p-3 rounded-xl text-white px-10">Submit Now</button>
+                    <div @click="showPopup = true" class="hover-btn bg-[#61C1B4] p-3 rounded-xl text-white px-10">Submit Now</div>
                 </div>
             </form>
         </div>
+        <businessAccoutSubmit :show="showPopup" />
     </section>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import businessAccoutSubmit from '../components/layout/UI/popupModels/businessAccoutSubmit.vue'
+const showPopup = ref (false);
 
 const personalInfoInputGroup = ref([
     [

@@ -112,7 +112,7 @@ const cards = ref([
         heading: 'Lorem Ipsum is simply dummy text',
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
         qty: 'Qty: 1',
-        status: 'Delivered',
+        status: 'On the way',
         manage: 'Manage',
         statusDate: 'Delivered on 18 March, 2024'
     },
@@ -123,7 +123,7 @@ const cards = ref([
         heading: 'Red Dirt Flower - Wedding Cake',
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
         qty: 'Qty: 1',
-        status: 'Delivered',
+        status: 'Cancelled',
         manage: 'Manage',
         statusDate: 'Delivered on 18 March, 2024'
     },
@@ -134,7 +134,7 @@ const cards = ref([
         heading: 'Lorem Ipsum is simply dummy text',
         paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur....',
         qty: 'Qty: 1',
-        status: 'Delivered',
+        status: 'Pending',
         manage: 'Manage',
         statusDate: 'Delivered on 18 March, 2024'
     },

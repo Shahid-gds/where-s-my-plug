@@ -139,11 +139,11 @@
                                         class="text-[#636363]">My
                                         Order</router-link>
                                 </div>
-                                <div class="w-full flex items-center space-x-4 pb-6">
+                                <!-- <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/heart.svg" alt="">
                                     <router-link :to="{ name: 'AddYourListings' }" @click="handleClick"
                                         class="text-[#636363]">Add Your Listings</router-link>
-                                </div>
+                                </div> -->
                                 <div class="w-full flex items-center space-x-4 pb-6">
                                     <img class="w-[12%]" src="../icons/review.svg" alt="">
                                     <router-link :to="{ name: 'MyReview' }" @click="handleClick"
@@ -272,12 +272,12 @@
                             <router-link :to="{ name: 'MyOrder' }" @click="handleClick" class="text-[#636363]">My
                                 Order</router-link>
                         </div>
-                        <div class="w-full flex items-center space-x-4 pb-6">
+                        <!-- <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/heart.svg" alt="">
                             <router-link :to="{ name: 'AddYourListings' }" @click="handleClick"
                                 class="text-[#636363]">Add
                                 Your Listings</router-link>
-                        </div>
+                        </div> -->
                         <div class="w-full flex items-center space-x-4 pb-6">
                             <img class="w-[12%]" src="../icons/review.svg" alt="">
                             <router-link :to="{ name: 'MyReview' }" @click="handleClick" class="text-[#636363]">My

@@ -65,7 +65,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                   </svg>                                                              
                             </div>
-                            <div class="text-[#358177] uppercase mt-1 lg:block hidden">
+                            <div @click="openReviewModal(selectedCard)" class="text-[#358177] uppercase mt-1 lg:block hidden">
                                 {{ card.editReview }}
                             </div>
                         </div>
@@ -77,12 +77,13 @@
                 </div>
             </transition-group>
         </div>
-      
+        <reviewModal  :show="showReviewModal" :onClose="colseReviewModal" :onSubmit="submitReview" />
     </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import reviewModal from '../components/layout/UI/popupModels/reviewModal.vue'
 // import { useRouter } from 'vue-router';
 // const router = useRouter();
 
@@ -103,7 +104,9 @@ const cards = ref([
         status: 'Based on 848 reviews',
         stars: import('../components/icons/star.svg').then((module) => module.default),
         editReview: 'Edit Reviews',
-        statusDate: 'Posted on 18 March, 2024'
+        statusDate: 'Posted on 18 March, 2024',
+        reviews: [],
+        rating: [],
     },
     {
         id: '2',
@@ -156,7 +159,21 @@ const cards = ref([
  
   
 ]);
+const selectedCard = ref(null);
 
+const showReviewModal = ref(false);
+const openReviewModal = (card) => {
+    selectedCard.value = card;
+    showReviewModal.value = true;
+};
+const colseReviewModal = () => {
+    showReviewModal.value = false;
+}
+const submitReview = (review, rating) => {
+    if (selectedCard.value){
+        selectedCard.value.reviews = [review, rating];
+    }
+}
 onMounted(async () => {
     cards.value = await Promise.all(
         cards.value.map(async (card) => ({
