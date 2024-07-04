@@ -348,6 +348,7 @@ const signup = async () => {
         });
         responseMessage.value = 'User Signed Up successfully!'
         console.log('User Signed Up successfully:', response.data)
+        localStorage.setItem('token', response.data.token);
         emailVerification.value = true; // This is using for api
     } catch (error) {
         if (error.response && error.response.status === 400) {

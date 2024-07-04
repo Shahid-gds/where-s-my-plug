@@ -97,7 +97,7 @@
             <div class="w-full pb-6">
                 <div class="w-full bg-white flex items-center border-2 p-6 rounded-2xl relative">
                     <div class="w-full">
-                        <label for="" class="text-[#161616] font-[Bold]">First Name</label>
+                        <label for="" class="text-[#161616] font-[Bold]">Last Name</label>
                         <input type="text" class="w-full text-[#818181] outline-none"
                             :class="{ 'border-2 p-2.5 rounded-xl': isEditing.lname, 'read-only': isEditing.fname }"
                             :readonly="!isEditing.lname" v-model="userData.lname" />

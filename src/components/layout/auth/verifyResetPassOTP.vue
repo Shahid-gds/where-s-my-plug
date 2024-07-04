@@ -125,6 +125,7 @@ const invalidCode = ref(false);
 
 const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+const token = localStorage.getItem('token');
 const handlePaste = (event, index) => {
     event.preventDefault();
     const pastedText = event.clipboardData.getData('text/plain');
@@ -189,6 +190,7 @@ const verifyOTP = async () => {
             otp: codeValue,
         }, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         });
