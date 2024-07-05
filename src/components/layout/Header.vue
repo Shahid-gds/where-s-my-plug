@@ -103,7 +103,8 @@
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
                             class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover"
-                                :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                                :src="userData.profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
+                                alt="">
                         </div>
                         <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
                             class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
@@ -112,12 +113,14 @@
                         <div v-if="isAccountToggleShow"
                             class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                             <div class="flex items-center space-x-4 pb-4">
-                                <div class="bg-[#61c1b4] w-[55px] rounded-full">
-                                    <img class="w-full h-full rounded-full object-cover"
-                                        :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
+                                <div v-if="userData.profilePhotoUrl" class="bg-[#61c1b4] w-[55px] rounded-full">
+                                    <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl"
                                         alt="">
                                 </div>
-
+                                <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                                    class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                                    <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
+                                </div>
                                 <div class="w-full text-[#9B9B9B] font-[Bold]">
                                     {{ greeting }} <br>
                                     <router-link v-if="!isBusinessAccount" :to="{ name: 'AccountSetting' }"
@@ -222,10 +225,10 @@
                     <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                 </div>
                 <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                    class="flex hover-btn rounded-full cursor-pointer">
-                    <img class="rounded-full"
-                        :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                    class="flex hover-btn w-[55px] rounded-full cursor-pointer">
+                    <img class="rounded-full" :src="userData.profilePhotoUrl" alt="">
                 </div>
+
                 <div class="relative mt-2">
                     <router-link :to="cartLink" @click="handleClick" class="hover-btn bg-[#61c1b4] p-2.5 rounded-full">
                         <div>
@@ -248,9 +251,12 @@
                     class="submenu w-[312px] absolute right-0 sm:top-20 top-12 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                     <div class="flex items-center space-x-4 pb-4">
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                            class="hover-btn w-[50px] mt-2 rounded-full cursor-pointer">
-                            <img class="w-full h-full rounded-full object-cover"
-                                :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)" alt="">
+                            class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl" alt="">
+                        </div>
+                        <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
+                            class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                            <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                         </div>
                         <div class="w-full text-[#9B9B9B] font-[Bold]">
                             {{ greeting }} <br>

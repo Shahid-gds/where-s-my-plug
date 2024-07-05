@@ -3,16 +3,26 @@
         <div class="xl:hidden w-full pb-6">
             <div class="w-full h-[193px] bg-white flex items-center space-x-5 border-2 p-4 rounded-2xl">
                 <div class="bg-[#F6F9F9] p-2 rounded-xl border-2 border-[#61C1B4] relative">
-                    <template v-if="profilePhotoUrl">
-                        <img :src="profilePhotoUrl" alt="Profile Photo" class="w-28 h-28 rounded-full object-cover">
-                    </template>
-
-                    <template v-else>
-                        <img class="w-[150px] rounded-full" src="../assets/images/default.jpg" alt="">
-                    </template>
+                    <div class="border-2 rounded-full">
+                        <div v-if="userData.profilePhotoUrl" class="relative w-full h-full rounded-full">
+                            <img class="w-[150px] h-[150px] rounded-full object-cover" :src="userData.profilePhotoUrl"
+                                alt="">
+                            <!-- <div v-if="loading" class="absolute inset-0 flex items-center justify-center z-50">
+                                <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
+                            </div> -->
+                        </div>
+                        <div v-else class="w-full h-full rounded-full">
+                            <img class="w-[150px] h-[150px] rounded-full object-cover"
+                                src="../assets/images/default.jpg" alt="">
+                            <!-- <div v-if="loading" class="absolute inset-0 flex items-center justify-center z-50">
+                                <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
+                            </div> -->
+                        </div>
+                        <input ref="fileInput" type="file" style="display:none;" @change="handleFileUpload">
+                    </div>
                     <div v-if="isEditing.profilePhotoUrl"
                         class="bg-[#61C1B4] absolute right-0 bottom-0 rounded-br-lg rounded-tl-xl p-2 cursor-pointer"
-                        @click="triggerFileInput">
+                        @click="openFileInput">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="white" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -24,8 +34,13 @@
                     <input type="file" ref="fileInput" class="hidden" @change="handleFileChange" accept="image/*">
                 </div>
                 <div class="text-[#818181] mt-4">
-                    <div>Profile Photo</div>
-                    <div>Add a profile photo</div>
+                    <div v-if="userData.profilePhotoUrl" class="mt-6">
+                        <div>Change Photo</div>
+                    </div>
+                    <div v-if="!userData.profilePhotoUrl" class="">
+                        <div>Profile Photo</div>
+                        <div>Add a profile photo</div>
+                    </div>
                     <div class="cursor-pointer" @click="toggleEdit('profilePhotoUrl')">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="#61C1B4" class="w-6 h-6">
@@ -58,10 +73,16 @@
                 <div class="w-full h-[193px] bg-white flex items-center space-x-5 border-2 p-4 rounded-2xl">
                     <div class="bg-[#F6F9F9] p-2 rounded-xl border-2 border-[#61C1B4] relative">
                         <div class="border-2 rounded-full">
-                            <div class="relative w-full h-full rounded-full">
-                                <img  class="w-full h-full rounded-full object-cover"
-                                    :src="profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
-                                    alt="">
+                            <div v-if="userData.profilePhotoUrl" class="relative w-full h-full rounded-full">
+                                <img class="w-[150px] h-[150px] rounded-full object-cover"
+                                    :src="userData.profilePhotoUrl" alt="">
+                                <!-- <div v-if="loading" class="absolute inset-0 flex items-center justify-center z-50">
+                                    <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
+                                </div> -->
+                            </div>
+                            <div v-else class="w-full h-full rounded-full">
+                                <img class="w-[150px] h-[150px] rounded-full object-cover"
+                                    src="../assets/images/default.jpg" alt="">
                                 <!-- <div v-if="loading" class="absolute inset-0 flex items-center justify-center z-50">
                                     <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
                                 </div> -->
@@ -82,8 +103,13 @@
                         <input type="file" ref="fileInput" class="hidden" @change="handleFileChange" accept="image/*">
                     </div>
                     <div class="text-[#818181] mt-4">
-                        <div>Profile Photo</div>
-                        <div>Add a profile photo</div>
+                        <div v-if="userData.profilePhotoUrl" class="mt-6">
+                            <div>Change Photo</div>
+                        </div>
+                        <div v-if="!userData.profilePhotoUrl" class="">
+                            <div>Profile Photo</div>
+                            <div>Add a profile photo</div>
+                        </div>
                         <div class="cursor-pointer" @click="toggleEdit('profilePhotoUrl')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="#61C1B4" class="w-6 h-6">
@@ -375,7 +401,7 @@ const isEditing = reactive({
 const userData = reactive({
     fname: '',
     lname: '',
-    profilePhotoUrl: 'fdfasdfsdaf',
+    profilePhotoUrl: '',
     email: '',
     bday: '',
     pass: '**************',
@@ -429,7 +455,7 @@ const updateUser = async () => {
     processing.value = true;
     const headers = {
         'user-id': userId,
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
     };
     try {
         const updatedData = {
@@ -445,6 +471,10 @@ const updateUser = async () => {
 
         const response = await axios.patch(`${baseUrl}/updateMe`, updatedData, { headers });
         console.log('User updated:', response.data);
+
+        // Hide editing fields after successful update
+        Object.keys(isEditing).forEach(field => isEditing[field] = false);
+
     } catch (error) {
         console.error('Error updating user:', error);
     } finally {
@@ -471,8 +501,8 @@ const cancelEdit = (field) => {
 };
 const generateProfileInitial = (fname, lname) => {
     if (fname && lname) {
-        const firstNameInitial = fname[0].toUpperCase();
-        const lastNameInitial = lname[0].toUpperCase();
+        const firstNameInitial = userData.fname[0].toUpperCase();
+        const lastNameInitial = userData.lname[0].toUpperCase();
         return `https://via.placeholder.com/150/61c1b4/FFFFFF?text=${firstNameInitial}${lastNameInitial}`;
     } else {
         return '';
@@ -480,35 +510,34 @@ const generateProfileInitial = (fname, lname) => {
 }
 
 const openFileInput = () => {
-    document.querySelector('input[type="file"]').click()
-}
+    document.querySelector('input[type="file"]').click();
+};
 
-// const handleFileChange = async (event) => {
-//     const file = event.target.files[0]
-//     if (file) {
-//         const formData = new FormData()
-//         formData.append('photo', file)
+const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('photo', file);
 
-//         try {
-//             const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
-//                 headers: {
-//                     'user-id': userId,
-//                     'Content-Type': 'application/json'
-//                 }
-//             })
-//             console.log('Server response:', response.data)
-//             profilePhotoUrl.value = response.data.data.user.photo
-//         } catch (error) {
-//             if (error.response) {
-//                 console.error('Error response:', error.response.data)
-//                 console.error('Status:', error.response.status)
-//                 console.error('Headers:', error.response.headers)
-//             } else {
-//                 console.error('Error message:', error.message)
-//             }
-//         }
-//     }
-// }
+        try {
+            const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
+                headers: {
+                    'user-id': userId,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            userData.profilePhotoUrl = response.data.data.user.photo;
+        } catch (error) {
+            if (error.response) {
+                console.error('Error response:', error.response.data);
+                console.error('Status:', error.response.status);
+                console.error('Headers:', error.response.headers);
+            } else {
+                console.error('Error message:', error.message);
+            }
+        }
+    }
+};
 
 const interests = ref([
     { label: 'Products', checked: false },
@@ -581,6 +610,7 @@ const notes2 = ref([
         checked: false
     },
 ]);
+
 onMounted(() => {
     getUserData();
 })
