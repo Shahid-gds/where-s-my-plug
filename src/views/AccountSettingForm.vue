@@ -525,6 +525,8 @@ const handleFileChange = async (event) => {
                 },
             });
             userData.profilePhotoUrl = response.data.data.user.photo;
+            // Hide editing fields after successful update
+            Object.keys(isEditing).forEach(field => isEditing[field] = false);
         } catch (error) {
             if (error.response) {
                 console.error('Error response:', error.response.data);
