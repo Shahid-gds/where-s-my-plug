@@ -18,7 +18,6 @@
                                 <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
                             </div> -->
                         </div>
-                        <input ref="fileInput" type="file" style="display:none;" @change="handleFileUpload">
                     </div>
                     <div v-if="isEditing.profilePhotoUrl"
                         class="bg-[#61C1B4] absolute right-0 bottom-0 rounded-br-lg rounded-tl-xl p-2 cursor-pointer"
@@ -87,7 +86,6 @@
                                     <div class="animate-spin rounded-full h-16 w-16 object-cover border-t-2 border-b-2 border-[blue]"></div>
                                 </div> -->
                             </div>
-                            <input ref="fileInput" type="file" style="display:none;" @change="handleFileUpload">
                         </div>
                         <div v-if="isEditing.profilePhotoUrl"
                             class="bg-[#61C1B4] absolute right-0 bottom-0 rounded-br-lg rounded-tl-xl p-2 cursor-pointer"
