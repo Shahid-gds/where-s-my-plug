@@ -60,12 +60,12 @@ const router = createRouter({
       path: "/check-out-thanks",
       name: "CheckOutThankYou",
       meta: { layout: "Default" },
-      component: () => import("../pages//CheckOutThankYou.vue"),
+      component: () => import("../pages/CheckOutThankYou.vue"),
     },
     {
       path: "/dispensaries",
       name: "Dispensaries",
-      meta: { layout: "dispensariesDefault" },
+      meta: { layout: "Default" },
       component: () => import("../pages/Dispensaries.vue"),
     },
     {
@@ -200,7 +200,7 @@ const router = createRouter({
     {
       path: "/los-angeles",
       name: "Los Angeles",
-      meta: { layout: "dispensariesDefault" },
+      meta: { layout: "Default" },
       component: () => import("../pages/LosAngeles.vue"),
     },
     {

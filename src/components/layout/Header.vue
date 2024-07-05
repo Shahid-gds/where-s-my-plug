@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute header w-full px-16 p-3 xl:block hidden z-50">
+        <div :class="['absolute header w-full px-16 p-3 xl:block hidden z-50', { 'bg-dispensaries': isDispensariesRoute }]">
             <nav class="flex items-center justify-between ">
                 <div>
                     <router-link :to="{ name: 'Home' }" @click="handleClick">
@@ -103,7 +103,7 @@
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
                             class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover"
-                                :src="userData.profilePhotoUrl || generateProfileInitial(userData.fname, userData.lname)"
+                                :src="userData.profilePhotoUrl"
                                 alt="">
                         </div>
                         <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
@@ -378,10 +378,11 @@
 <script setup>
 import { useCartStore } from '@/stores/modules/cart';
 import router from '@/router';
+import { useRoute } from 'vue-router';
 import axios from 'axios';
 import { ref, computed, reactive, onMounted } from 'vue'
 
-
+const route = useRoute();
 const cartStore = useCartStore();
 const cartItemCount = computed(() => cartStore.cartItemCount);
 const isEmptyCart = computed(() => cartItemCount.value === 0);
@@ -497,9 +498,13 @@ const scrollToTop = () => {
 onMounted(() => {
     getUserData();
 })
+const isDispensariesRoute = computed(() => route.name === 'Dispensaries' || route.name === 'Los Angeles');
 </script>
 
 <style scoped>
+.bg-dispensaries {
+    background-color: #f0f0f0;
+  }
 .list-enter-active,
 .list-leave-active {
     transition: all 0.5s ease;
@@ -680,4 +685,5 @@ onMounted(() => {
         padding-left: 2rem;
     }
 }
+
 </style>

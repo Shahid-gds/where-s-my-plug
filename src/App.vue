@@ -7,11 +7,9 @@
 
 <script>
 import Default from './components/layout/section/Default.vue';
-import dispensariesDefault from './components/layout/section/dispensariesDefault.vue';
 export default {
   components: {
     Default,
-    dispensariesDefault
   },
   data() {
     return {
