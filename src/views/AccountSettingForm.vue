@@ -148,7 +148,7 @@
             <div class="w-full pb-6">
                 <div class="w-full h-[140px] bg-white flex items-center border-2 p-6 rounded-2xl">
                     <div class="w-full">
-                        <label for="" class="text-[#161616] font-[Bold]">Birthday</label>
+                        <label for="" class="text-[#161616] font-[Bold]">Date of Birth</label>
                         <input type="text" class="w-full text-[#818181] outline-none"
                             :class="{ 'border-2 p-2.5 rounded-xl': isEditing.bday, 'read-only': isEditing.bday }"
                             :readonly="!isEditing.bday" v-model="userData.bday">

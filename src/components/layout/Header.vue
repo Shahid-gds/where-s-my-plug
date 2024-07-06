@@ -12,6 +12,16 @@
                             class="text-[#61c1b4] font-[Bold] underline" href="#">spend over $40</a>
                     </div>
                 </div>
+               <div @click="openLocationModal" class="flex items-center space-x-1 cursor-pointer">
+                <div class="font-bold">
+                    Delivering to 
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>                      
+                </div>
+               </div>
                 <div class="flex items-center space-x-9">
                     <div class="flex items-center space-x-10">
                         <div>
@@ -373,6 +383,7 @@
             </div>
         </TransitionGroup>
     </header>
+    <locationsModal  :show="showLocationModal" :onClose="colseReviewModal" />
 </template>
 
 <script setup>
@@ -380,7 +391,16 @@ import { useCartStore } from '@/stores/modules/cart';
 import router from '@/router';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
-import { ref, computed, reactive, onMounted } from 'vue'
+import { ref, computed, reactive, onMounted } from 'vue';
+import locationsModal from '@/components/layout/UI/popupModels/locationsModal.vue'
+
+const showLocationModal = ref(false);
+const openLocationModal = () => {
+    showLocationModal.value = true;
+};
+const colseReviewModal = () => {
+    showLocationModal.value = false;
+}
 
 const route = useRoute();
 const cartStore = useCartStore();
