@@ -9,7 +9,7 @@
                 <!-- main image -->
                 <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
                     <!-- previous button -->
-                    <div class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
                         @click="prevImage">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -20,7 +20,7 @@
                         <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
                     </div>
                     <!-- next button -->
-                    <div class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
                         @click="nextImage">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
