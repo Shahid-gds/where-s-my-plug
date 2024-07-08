@@ -18,26 +18,34 @@
                         </svg>
                     </div>
                 </div>
-                <div class="mt-4 overflow-y-scroll overflow-x-hidden h-[500px] text-left">
+                <div v-if="isLoggedIn" class="mt-4 overflow-y-scroll overflow-x-hidden h-[500px] text-left">
                     <table class="w-full border-collapse">
-                      <thead class="">
-                        <tr>
-                          <th class="border-b-2 border-gray-300 p-2">State</th>
-                          <th class="border-b-2 border-gray-300 p-2">Cities</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="state in locations" :key="state.state">
-                          <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
-                          <td class="border-b border-gray-200 p-2">
-                            <ul class="list-disc pl-4">
-                              <li v-for="city in state.cities" :key="city">{{ city }}</li>
-                            </ul>
-                          </td>
-                        </tr>
-                      </tbody>
+                        <thead class="">
+                            <tr>
+                                <th class="border-b-2 border-gray-300 p-2">State</th>
+                                <th class="border-b-2 border-gray-300 p-2">Cities</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="state in locations" :key="state.state">
+                                <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
+                                <td class="border-b border-gray-200 p-2">
+                                    <ul class="list-disc pl-4">
+                                        <li v-for="city in state.cities" :key="city">{{ city }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                  </div>
+                </div>
+             
+                    <div v-if="!isLoggedIn" class="text-2xl py-[5rem]">
+                        No Data <router-link :to="{ name: 'Sign-In' }"
+                            class="text-red-500 font-bold">Login</router-link> or
+                        <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
+                            account.</router-link>
+                    </div>
+         
             </div>
         </div>
     </transition-group>
@@ -45,6 +53,23 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+const isLoggedIn = ref(false);
+const userEmail = ref('');
+const userId = ref('');
+
+const LoggedInStatus = () => {
+    // Check if user is logged in based on cookies or other authentication state
+    const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'userEmail') {
+            userEmail.value = decodeURIComponent(value);
+        } else if (name === 'userId') {
+            userId.value = decodeURIComponent(value);
+        }
+    }
+    isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
+};
 
 const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
 
@@ -80,6 +105,7 @@ const fetchLocations = async () => {
 
 onMounted(() => {
     fetchLocations();
+    LoggedInStatus();
 });
 
 const close = () => {
@@ -122,15 +148,16 @@ const close = () => {
     transform: translateY(-30px);
     opacity: 0;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
     background-color: #61c1b4;
     border-radius: 10px;
-  }
-  
- 
-  ::-webkit-scrollbar-thumb {
+}
+
+
+::-webkit-scrollbar-thumb {
     background-color: rgb(31, 20, 20);
     border-radius: 5px;
-  }
+}
 </style>

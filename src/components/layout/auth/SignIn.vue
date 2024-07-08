@@ -25,7 +25,7 @@
           <div>
             <input v-model="email" type="email" class="border-2 outline-none w-full p-4 px-4 rounded-xl shadow-xl"
               :class="{ 'border-red-500': emptyFields.includes('email') }" placeholder="Email or Username" required
-              @input="removeEmptyField('email')" @keypress.enter="triggerEnter">
+              @input="removeEmptyField('email'); email = email.toLocaleLowerCase()" @keypress.enter="triggerEnter">
           </div>
         </div>
         <div class="pb-8 relative">
@@ -226,6 +226,7 @@ watch(responseMessage, (newValue) => {
 onUnmounted(() => {
   clearTimeout(responseMessageTimeout.value);
 });
+
 </script>
 
 

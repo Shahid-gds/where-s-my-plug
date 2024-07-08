@@ -32,7 +32,7 @@
                         <div>
                             <input type="email" class="border-2 w-full p-4 px-4 rounded-xl shadow-xl outline-none"
                                 :class="{ 'border-red-500': emptyFields.includes('email') }" placeholder="Email Address"
-                                v-model="email" required @input="removeEmptyField('email')"
+                                v-model="email" required @input="removeEmptyField('email'); email = email.toLocaleLowerCase()"
                                 @keypress.enter="triggerCreateAccount">
                         </div>
                     </div>
