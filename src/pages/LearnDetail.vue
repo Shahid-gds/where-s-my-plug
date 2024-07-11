@@ -21,13 +21,13 @@
                 </div>
             </div>
         </div>
-        <div  v-for="card in bodyCards" :key="card.index"
-            class="container mx-auto px-[20rem]">
+        <div v-for="card in bodyCards" :key="card.index" class="container mx-auto px-[20rem]">
             <div>
                 <div v-if="card.id === '1'" class="pt-[5rem] font-bold text-xl">{{ card.bodyParagraph }}</div>
                 <div v-if="card.id === '1' || card.id === '5'" class="py-[5rem] text-3xl font-bold text-[#171717]">{{
             card.bodyHeading }}</div>
-                <div class="hover:opacity-75 transition-all duration-150 cursor-pointer" @click="navigateToDetails(card.id)">
+                <div class="hover:opacity-75 transition-all duration-150 cursor-pointer"
+                    @click="navigateToDetails(card.id)">
                     <img :src="card.image">
                 </div>
                 <div class="py-[5rem]">
@@ -37,10 +37,12 @@
         </div>
     </section>
 
-    <section>
+    <section class="">
         <div class="container mx-auto pb-[15rem]">
-            <div>
-                <h1>VIEW OTHER ARTICLES</h1>
+            <div class="p-6">
+                <h1>
+                    <span class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">VIEW OTHER ARTICLES</span>
+                </h1>
             </div>
             <div class="flex space-x-3">
                 <div v-for="card in othersArticles" :key="card.image" class="pb-6 cursor-pointer">
@@ -56,8 +58,16 @@
                                 {{ card.paragraph }}
                             </div>
                         </div>
-                        <div class="absolute bottom-6 p-6">
+                        <div class="more-btn absolute bottom-8 flex space-x-4 items-center p-6">
                             <button class="font-bold">Learn More</button>
+                            <div class="border-2 p-1 rounded-full border-black">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="black" class="size-3">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+
+                            </div>
                         </div>
                     </div>
                 </div>
