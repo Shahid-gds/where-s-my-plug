@@ -38,14 +38,13 @@
                         </tbody>
                     </table>
                 </div>
-             
-                    <div v-if="!isLoggedIn" class="text-2xl py-[5rem]">
-                        No Data <router-link :to="{ name: 'Sign-In' }"
-                            class="text-red-500 font-bold">Login</router-link> or
-                        <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
-                            account.</router-link>
-                    </div>
-         
+
+                <div v-if="!isLoggedIn" class="text-2xl py-[5rem]">
+                    No Data <router-link :to="{ name: 'Sign-In' }" class="text-red-500 font-bold">Login</router-link> or
+                    <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
+                        account.</router-link>
+                </div>
+
             </div>
         </div>
     </transition-group>

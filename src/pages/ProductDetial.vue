@@ -1,9 +1,9 @@
 <template>
     <section class="sm:pb-[20rem] pb-[15rem]">
-        <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
+        <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6 pb-[5rem]">
             <div class="container mx-auto py-[12rem] text-center">
             </div>
-        </div>
+
         <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] px-[8rem]">
             <div class="sm:flex items-center sm:space-x-16 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
@@ -111,6 +111,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </section>
 </template>
 

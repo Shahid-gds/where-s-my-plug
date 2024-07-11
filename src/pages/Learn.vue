@@ -33,8 +33,8 @@
   
   const sections = [
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/LearnHeroSection.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/WelcomeLearnSection.vue').then(m => m.default), { lazy: true }) },
-    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/LearnAboutCardSection.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/WelcomeLearnSection.vue').then(m => m.default), { lazy: true }) },
+    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/LearnGridCardSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: 'pb-[10rem]', component: defineAsyncComponent(() => import('../views/LearnGetYourAnswer.vue').then(m => m.default), { lazy: true }) },
     // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
   ];
@@ -87,4 +87,4 @@
       background-size: cover;
     }
   }
-</style>
+</style>../views/LearnGridCardSection.vue
