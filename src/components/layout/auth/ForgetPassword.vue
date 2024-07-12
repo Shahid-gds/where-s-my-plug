@@ -101,6 +101,7 @@ const forgotPassword = async () => {
         });
         responseMessage.value = 'OTP sent to your email. Please check your email!';
         console.log('Email sent', response.data);
+        localStorage.setItem('token', response.data.token);
         emailVerification.value = true;
     } catch (error) {
         if (error.response && error.response.status === 500) {

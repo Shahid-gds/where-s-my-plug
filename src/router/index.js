@@ -138,13 +138,13 @@ const router = createRouter({
       component: () => import("../pages/Learn.vue"),
     },
     {
-      path: "/learn:id",
+      path: "/learn/:url",
       name: "LearnDetail",
       meta: { layout: "Default" },
       component: () => import("../pages/LearnDetail.vue"),
     },
     {
-      path: "/learn-product:id",
+      path: "/learn-product/:url",
       name: "LearnProductDetail",
       meta: { layout: "Default" },
       component: () => import("../pages/LearnProductDetail.vue"),

@@ -169,6 +169,7 @@ const router = useRouter();
 
 const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+const token = localStorage.getItem('token');
 const togglePasswordVisibility = () => {
     passwordVisible.value = !passwordVisible.value
 }
@@ -226,6 +227,7 @@ const resetPassword = async () => {
             passwordConfirm: passwordConfirm.value,
         }, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         });

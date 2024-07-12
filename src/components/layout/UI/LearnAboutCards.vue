@@ -98,12 +98,13 @@ const learnStore = useLearnStore();
 function selectCardAndNavigate(card) {
     scrollToTop();
     learnStore.selectCard(card);
-    router.push({ name: 'LearnDetail', params: { id: card.id } });
+    router.push({ name: 'LearnDetail', params: { url: card.url } });
 }
 
 const cards = ref([
     {
         id: '1',
+        url: 'what-is-710',
         image: import('../../../assets/images/Learn/grid-img1.png').then((module) => module.default),
         heading: 'What is 710?',
         paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',

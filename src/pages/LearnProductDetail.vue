@@ -155,7 +155,7 @@ const route = useRoute();
 const router = useRouter();
 
 const fetchCardDetails = async () => {
-    const cardId = route.params.id;
+    const cardId = route.params.url;
     try {
         const cardData = await getCardById(cardId);
         if (cardData) {
@@ -192,10 +192,11 @@ const toggleNote = () => {
     isNoteVisible.value = !isNoteVisible.value;
 };
 
-const getCardById = async (id) => {
+const getCardById = async (url) => {
     const cards = [
         {
             id: '1',
+            url: 'what-is-710',
             img1: import('../assets/images/Learn/dailly-detail-img1.png').then(module => module.default),
             heading: 'Cresco',
             backgroundColor: '#61c1b4',
@@ -209,7 +210,7 @@ const getCardById = async (id) => {
         },
            
     ];
-    return cards.find(card => card.id === id);
+    return cards.find(card => card.url === url);
 };
 
 let currentImageIndex = ref(0);
