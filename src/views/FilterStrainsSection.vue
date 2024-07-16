@@ -1,6 +1,6 @@
 <template>
-    <section class="-mt-[20rem]">
-        <div class="container mx-auto overflow-hidden md:pt-[5rem]">
+    <section class="mt-[5rem]">
+        <div class="container mx-auto overflow-hidden">
          <div class="flex justify-center">
             <div class="py-6 relative">
                 <div class="bg-[#61c1b4] w-[182px] h-0.5">

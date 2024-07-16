@@ -1,7 +1,7 @@
 <template>
-    <header class="w-full">
+    <header class="w-full fixed z-50 bg-white">
         <!-- Top Header -->
-        <div class="xl:block hidden w-full p-3 px-16 top-header">
+        <div class="xl:block hidden w-full p-3 px-16 top-header border-b-2">
             <div class="flex items-start justify-between">
                 <div class="flex items-center space-x-2">
                     <div class="">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div :class="['absolute header w-full px-16 p-3 xl:block hidden z-50', { 'bg-dispensaries': isDispensariesRoute }]">
+        <div :class="['absolute header w-full px-16 p-3 xl:block hidden z-50 bg-white shadow-lg', { 'bg-dispensaries': isDispensariesRoute }]">
             <nav class="flex items-center justify-between ">
                 <div>
                     <router-link :to="{ name: 'Home' }" @click="handleClick">
@@ -95,7 +95,7 @@
                     </ul>
                 </div>
                 <div class="flex items-center space-x-4 relative">
-                    <div class="flex space-x-3 cursor-pointer" @click="toggleSearchInput">
+                    <div class="flex space-x-3 cursor-pointer" @click="openMegaSearchModal">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
@@ -383,7 +383,8 @@
             </div>
         </TransitionGroup>
     </header>
-    <locationsModal  :show="showLocationModal" :onClose="colseReviewModal" />
+    <locationsModal  :show="showLocationModal" :onClose="colseLocationModal" />
+    <megaSearch  :show="showMegaSerachModal" :onClose="colseMegaSearchModal" />
 </template>
 
 <script setup>
@@ -393,13 +394,21 @@ import { useRoute } from 'vue-router';
 import axios from 'axios';
 import { ref, computed, reactive, onMounted } from 'vue';
 import locationsModal from '@/components/layout/UI/popupModels/locationsModal.vue'
+import megaSearch from '@/components/layout/UI/popupModels/megaSearch.vue'
 
 const showLocationModal = ref(false);
+const showMegaSerachModal = ref(false);
 const openLocationModal = () => {
     showLocationModal.value = true;
 };
-const colseReviewModal = () => {
+const openMegaSearchModal = () => {
+    showMegaSerachModal.value = true;
+};
+const colseLocationModal = () => {
     showLocationModal.value = false;
+}
+const colseMegaSearchModal = () => {
+    showMegaSerachModal.value = false;
 }
 
 const route = useRoute();
@@ -459,19 +468,13 @@ const closeSideMenuOutside = () => {
     isMobileMenuOpen.value = false;
 };
 const isMobileMenuOpen = ref(false);
-const isSearchVisible = ref(false);
+
 
 const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
-const toggleSearchInput = () => {
-    isSearchVisible.value = !isSearchVisible.value;
-};
 
-const hideSearchInput = () => {
-    isSearchVisible.value = false;
-};
 const isAccountToggleShow = ref(false);
 
 function getCookie(name) {

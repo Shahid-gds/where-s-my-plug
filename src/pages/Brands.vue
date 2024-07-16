@@ -36,8 +36,8 @@ const sections = [
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/BrandsHeroSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/FeaturedBrands.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/BrandsBoard.vue').then(m => m.default), { lazy: true }) },
-    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
+    // { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
 ];
 setTimeout(() => {
     isLoading.value = false;

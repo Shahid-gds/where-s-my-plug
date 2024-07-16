@@ -70,7 +70,8 @@ const LoggedInStatus = () => {
     isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
 };
 
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
+// const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
+const baseUrl = '';
 
 const props = defineProps({
     show: Boolean,

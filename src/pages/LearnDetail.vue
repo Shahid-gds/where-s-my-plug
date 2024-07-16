@@ -11,7 +11,7 @@
         </div>
     </section>
 
-    <section class="pt-[5rem] pb-[5rem]">
+    <section class="pt-[5rem] pb-[3rem]">
         <div class="flex justify-center">
             <div class="py-6 relative">
                 <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -41,9 +41,18 @@
     <section class="">
         <div class="container mx-auto pb-[15rem]">
             <div class="p-6">
-                <h1>
-                    <span class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">VIEW OTHER ARTICLES</span>
-                </h1>
+                <div class="flex justify-center">
+                    <div class="py-6 relative">
+                        <div class="bg-[#61c1b4] w-[182px] h-0.5">
+                            <div class="w-full absolute top-0">
+                                <img class="mr-auto ml-auto" src="../components/icons/drugLeaf.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">VIEW OTHER ARTICLES</h1>
+                </div>
             </div>
             <div class="flex space-x-3">
                 <div v-for="card in othersArticles" :key="card.image" class="pb-6 cursor-pointer">

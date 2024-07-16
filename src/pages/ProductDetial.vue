@@ -9,7 +9,7 @@
                 <!-- main image -->
                 <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
                     <!-- previous button -->
-                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                    <div  v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
                         @click="prevImage">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -20,7 +20,7 @@
                         <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
                     </div>
                     <!-- next button -->
-                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
                         @click="nextImage">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -56,7 +56,7 @@
 
                     <div class="py-4">
                         <button @click="addToCart" :disabled="!isLoggedIn"
-                            class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]">Add to
+                            class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]" :style="{ backgroundColor: card.backgroundColor }">Add to
                             cart</button>
                     </div>
                     <div v-if="!isLoggedIn">
@@ -81,14 +81,14 @@
                                 <div>
                                     <h1 class="font-[Bold] text-xl">Product Detail</h1>
                                 </div>
-                                <div class="cursor-pointer border-2 p-1 rounded-full border-black" @click="toggleNote">
-                                    <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote" :style="{ borderColor: card.borderColor }">
+                                    <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                                        viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor" class="size-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                     </svg>
                                     <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        stroke-width="1.5" :stroke="card.borderColor" class="size-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                                     </svg>
@@ -201,6 +201,7 @@ const getCardById = async (id) => {
             img3: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
             heading: 'Flower',
             backgroundColor: '#61c1b4',
+            borderColor: '#61c1b4',
             subHeading: 'Yoda Candy THCa Flower',
             price: '25.99',
             weight: '20ct',
@@ -215,6 +216,7 @@ const getCardById = async (id) => {
             img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
             heading: 'Cartridges',
             backgroundColor: '#ebb22d',
+            borderColor: '#ebb22d',
             subHeading: 'Cookie Milk D8+THCP Vape Cart',
             price: '25.99',
             weight: '20ct',

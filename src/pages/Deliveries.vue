@@ -34,10 +34,10 @@
   const sections = [
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/DeliveriesHeroSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveryIsNowAvailableSection.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/CannabisStrainsSection.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/CannabisStrainsSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/GetYourAnswerSection.vue').then(m => m.default), { lazy: true }) },
-    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
+    // { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
   ];
   setTimeout(() => {
     isLoading.value = false;

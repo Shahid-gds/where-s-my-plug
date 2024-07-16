@@ -35,10 +35,10 @@ const isLoading = ref(true);
 const sections = [
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/ProductsHeroSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsCategories.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsCategoriesCarousel.vue').then(m => m.default), { lazy: true }) },
-    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/ProductsQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsCategoriesCarousel.vue').then(m => m.default), { lazy: true }) },
+    // { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/ProductsQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/GetYourAnswerSection.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/ProductsShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
 ];
 setTimeout(() => {
     isLoading.value = false;

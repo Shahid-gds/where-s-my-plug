@@ -1,5 +1,5 @@
 <template>
-    <section class="-mt-[20rem] pb-[20rem]">
+    <section class="mt-[5rem] pb-[20rem]">
         <div class="overflow-hidden">
          <div class="flex justify-center">
             <div class="py-6 relative">

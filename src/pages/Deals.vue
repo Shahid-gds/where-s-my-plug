@@ -35,10 +35,10 @@
     { name: 'HomeHeroBg', class: 'HomeHeroBg', component: defineAsyncComponent(() => import('../views/DealsHeroSection.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsHeroCarousel.vue').then(m => m.default), { lazy: true }) },
     { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsCardBoard.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsCannabisStrains.vue').then(m => m.default), { lazy: true }) },
-    { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsCategoriesCarousel.vue').then(m => m.default), { lazy: true }) },
-    { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsCannabisStrains.vue').then(m => m.default), { lazy: true }) },
+    // { name: 'QualityProductsBg', class: 'QualityProductsBg', component: defineAsyncComponent(() => import('../views/DeliveriesQualityDispensaries.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DealsCategoriesCarousel.vue').then(m => m.default), { lazy: true }) },
+    // { name: '', class: '', component: defineAsyncComponent(() => import('../views/DeliveriesShopLegalWeed.vue').then(m => m.default), { lazy: true }) },
   ];
   setTimeout(() => {
     isLoading.value = false;

@@ -1,6 +1,6 @@
 <template>
-    <section class="">
-      <div class="sm:pt-[15rem] pt-[10rem] relative pb-[5rem] text-center container mx-auto px-6">
+    <section class="mt-[8rem] h-[600px]">
+      <div class="sm:pt-[10rem] pt-[10rem] relative  text-center container mx-auto px-6">
         <div class="font-extrabold sm:leading-[2.5rem]">
           <span class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">All Weed,</span><span class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-SemiBold] relative"> Delivered.</span>
           <h1 class="md:text-[36px] sm:text-[25px] text-[18px] font-[Jost-ExtraBold]">Shop, Order, Hang Tight. We’ll Arrange The Rest.</h1>

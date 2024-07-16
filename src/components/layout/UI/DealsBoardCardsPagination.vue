@@ -1,5 +1,5 @@
 <template>
-    <section class="">
+    <section class="pb-[15rem]">
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
             <div v-for="card in paginationCard" :key="card.id" @click="selectCardAndNavigate(card)"
                 class="w-[400px] rounded-[35px] p-1.5 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
