@@ -1,8 +1,8 @@
 <template>
-    <transition-group name="nested" tag="div">
+    <transition-group name="nested" tag="div" class="">
         <div v-if="show" class="fixed inset-0 flex items-center justify-center z-50">
             <div @click="close" class="backdrop"></div>
-            <div class="popup w-[800px] h-[600px] bg-white p-10 shadow-lg text-center rounded-xl">
+            <div class="popup lg:w-[800px] w-full h-[600px]  bg-white lg:p-10 p-6 shadow-lg text-center rounded-xl">
                 <h1 class="text-4xl font-[Semi-Bold] text-[#61c1b4]">Where are you?</h1>
                 <p>For the most relevant products and content, please enter your address.</p>
                 <div class="w-full relative">
@@ -39,7 +39,7 @@
                                 <tr v-for="state in filteredLocations" :key="state.state">
                                     <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
                                     <td class="border-b border-gray-200 p-2">
-                                        <ul class="list-disc pl-4">
+                                        <ul class="pl-4">
                                             <li v-for="city in state.cities" :key="city">
                                                 <button @click="selectLocation(state.state, city)" class="text-blue-500 underline">
                                                     {{ city }}
@@ -205,7 +205,7 @@ const close = () => {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     background-color: #61c1b4;
     border-radius: 10px;
 }

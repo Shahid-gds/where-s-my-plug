@@ -231,7 +231,7 @@
         </div>
         <div
             class="fixed z-50 w-full bg-[#EFFBF9] shadow-lg flex items-center justify-between p-6 cursor-pointer xl:hidden">
-            <div class="w-full">
+            <div class="sm:w-full w-1/2">
                 <button @click="toggleMobileMenu" class="block 2xl:hidden" transition="slide-fade">
                     <!-- Show menu icon or cancel icon based on isMobileMenuOpen -->
                     <svg v-if="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24"
