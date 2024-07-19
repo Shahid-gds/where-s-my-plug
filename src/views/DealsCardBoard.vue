@@ -1,5 +1,5 @@
 <template>
-    <section class="pb-[5rem] mt-[15rem]">
+    <section class="sm:pb-[5rem] mt-[15rem]">
         <div class="overflow-hidden">
          <div class="flex justify-center">
             <div class="py-6 relative">
@@ -17,11 +17,11 @@
                 <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">High Deals Nearby</h1>
                </div>
                 <div class="w-full flex justify-center py-6">
-                    <div class="relative w-1/2">
+                    <div class="relative md:w-1/2 w-full px-6">
                       <div class="relative">
                           <input v-model="searchQuery" class="border-2 shadow-xl w-full p-6 px-6 rounded-2xl" type="text" placeholder="What would you like to learn about?">
                       </div>
-                      <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
+                      <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] md:w-[5rem] p-4 absolute top-1.5 md:right-1.5 right-8 rounded-2xl cursor-pointer">
                         <div>
                           <img src="../components/icons/searchIcon.svg" alt="">
                         </div>

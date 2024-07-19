@@ -2,13 +2,19 @@
     <transition-group name="nested" tag="div">
         <div v-if="show" class="fixed inset-0 flex items-center justify-center z-50">
             <div @click="close" class="backdrop"></div>
-            <div class="popup w-[800px] bg-white p-10 shadow-lg text-center rounded-xl">
+            <div class="popup w-[800px] h-[600px] bg-white p-10 shadow-lg text-center rounded-xl">
                 <h1 class="text-4xl font-[Semi-Bold] text-[#61c1b4]">Where are you?</h1>
                 <p>For the most relevant products and content, please enter your address.</p>
                 <div class="w-full relative">
-                    <input type="text" placeholder="Enter your delivery address"
-                        class="border-2 w-full p-4 px-14 text-xl rounded-xl">
+                    <input 
+                        v-model="searchQuery" 
+                        type="text" 
+                        placeholder="Enter your delivery address"
+                        class="border-2 w-full p-4 px-14 text-xl rounded-xl"
+                        @input="filterLocations"
+                    />
                     <div class="absolute top-2 left-3">
+                        <!-- Search Icon SVG -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-10">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -18,25 +24,38 @@
                         </svg>
                     </div>
                 </div>
-                <div v-if="isLoggedIn" class="mt-4 overflow-y-scroll overflow-x-hidden h-[500px] text-left">
-                    <table class="w-full border-collapse">
-                        <thead class="">
-                            <tr>
-                                <th class="border-b-2 border-gray-300 p-2">State</th>
-                                <th class="border-b-2 border-gray-300 p-2">Cities</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="state in locations" :key="state.state">
-                                <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
-                                <td class="border-b border-gray-200 p-2">
-                                    <ul class="list-disc pl-4">
-                                        <li v-for="city in state.cities" :key="city">{{ city }}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div v-if="isLoggedIn" class="relative">
+                    <!-- Show the filtered locations if there is a search query -->
+                    <div v-if="searchQuery && filteredLocations.length" class="absolute mt-4  text-left bg-white w-full h-[300px] overflow-y-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="border-b-2 border-gray-300 p-2">State</th>
+                                    <th class="border-b-2 border-gray-300 p-2">Cities</th>
+                                    <th class="border-b-2 border-gray-300 p-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="state in filteredLocations" :key="state.state">
+                                    <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
+                                    <td class="border-b border-gray-200 p-2">
+                                        <ul class="list-disc pl-4">
+                                            <li v-for="city in state.cities" :key="city">
+                                                <button @click="selectLocation(state.state, city)" class="text-blue-500 underline">
+                                                    {{ city }}
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                  
+                    </div>
+                    <!-- Show message if no locations are found and there is a search query -->
+                    <div v-if="searchQuery && !filteredLocations.length" class="text-gray-500 mt-4">
+                        No matching locations found.
+                    </div>
                 </div>
 
                 <div v-if="!isLoggedIn" class="text-2xl py-[5rem]">
@@ -45,19 +64,43 @@
                         account.</router-link>
                 </div>
 
+                <div v-if="selectedLocations.length > 0" class="mt-4 h-[300px] overflow-y-auto">
+                    <h2 class="text-2xl font-bold">Selected Locations</h2>
+                    <table class="w-full border-collapse mt-2 text-left">
+                        <thead>
+                            <tr>
+                                <th class="border-b-2 border-gray-300 p-2">State</th>
+                                <th class="border-b-2 border-gray-300 p-2">City</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(loc, index) in selectedLocations" :key="index">
+                                <td class="border-b border-gray-200 p-2">{{ loc.state }}</td>
+                                <td class="border-b border-gray-200 p-2">{{ loc.city }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </transition-group>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useApi } from '@/components/api/useApi';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 const isLoggedIn = ref(false);
 const userEmail = ref('');
 const userId = ref('');
+const searchQuery = ref('');
+const locations = ref([]);
+const selectedLocations = ref([]);
+const showSearchList = ref(true);
 
 const LoggedInStatus = () => {
-    // Check if user is logged in based on cookies or other authentication state
     const cookies = document.cookie.split(';').map(cookie => cookie.trim());
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=');
@@ -70,27 +113,21 @@ const LoggedInStatus = () => {
     isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
 };
 
-// const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-const baseUrl = '';
-
 const props = defineProps({
     show: Boolean,
     onClose: Function,
-    onSubmit: Function,
 });
 
-const locations = ref([]);
-
-function getCookie(name) {
+const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
-}
+};
 
 const fetchLocations = async () => {
     try {
         const userId = getCookie('userId');
-        const response = await fetch(`${baseUrl}/myAddress`, {
+        const response = await fetch(`${apiUrl}/myAddress`, {
             headers: {
                 'user-id': userId,
                 'Content-Type': 'application/json'
@@ -102,6 +139,24 @@ const fetchLocations = async () => {
         console.error('Error fetching locations:', error);
     }
 };
+
+const filterLocations = () => {
+    searchQuery.value = searchQuery.value.toLowerCase();
+};
+
+const selectLocation = (state, city) => {
+    selectedLocations.value.push({ state, city });
+    searchQuery.value = '';
+    showSearchList.value = false;
+};
+
+const filteredLocations = computed(() => {
+    
+    return locations.value.filter(state =>
+        state.state.toLowerCase().includes(searchQuery.value) ||
+        state.cities.some(city => city.toLowerCase().includes(searchQuery.value))
+    );
+});
 
 onMounted(() => {
     fetchLocations();
@@ -154,7 +209,6 @@ const close = () => {
     background-color: #61c1b4;
     border-radius: 10px;
 }
-
 
 ::-webkit-scrollbar-thumb {
     background-color: rgb(31, 20, 20);

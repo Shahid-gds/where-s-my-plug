@@ -49,13 +49,17 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import verifyResetPassOTP from './verifyResetPassOTP.vue';
+import { useApi } from '@/components/api/useApi';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
 const email = ref('');
 const responseMessage = ref('');
 const processing = ref(false);
 const emailVerification = ref(false);
 const emptyFields = ref([]);
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-// const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+
 
 const enterButton = ref(null);
 
@@ -92,7 +96,7 @@ const forgotPassword = async () => {
     }
     try {
         processing.value = true;
-        const response = await axios.post(`${baseUrl}/forgotPassword`, {
+        const response = await axios.post(`${apiUrl}/forgotPassword`, {
             email: email.value
         }, {
             headers: {

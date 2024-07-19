@@ -1,20 +1,20 @@
 <template>
-    <section class="">
-        <transition-group name="nested" tag="div" class="container mx-auto px-[10rem] mt-[2rem]">
+    <section class="pb-10">
+        <transition-group name="nested" tag="div" class="container mx-auto xl:px-[10rem] px-6 mt-[2rem]">
             <div v-for="card in cards" :key="card.image" @click="selectCardAndNavigate(card)"
-                class="pb-6 cursor-pointer">
-                <div v-if="card.id === '1'" class="flex space-x-10 border-[3px] border-[#61c1b4] rounded-xl">
+                class="pb-4 cursor-pointer">
+                <div v-if="card.id === '1'" class="md:flex md:space-x-10 border-[3px] border-[#61c1b4] rounded-xl">
                     <div class="bg-[#61c1b4] w-full flex justify-center rounded-l-lg">
                         <img class="object-cover" :src="card.image" alt="">
                     </div>
-                    <div class="w-[70%] p-6 relative">
+                    <div class="md:w-[70%] p-6 relative">
                         <div class="text-2xl font-[Bold] pb-4">
                             {{ card.heading }}
                         </div>
-                        <div>
+                        <div class="pb-6">
                             {{ card.paragraph }}
                         </div>
-                        <div class="more-btn absolute bottom-8 flex space-x-4 items-center">
+                        <div class="more-btn absolute md:bottom-8 bottom-2 flex space-x-4 items-center">
                             <button class="font-bold">Learn More</button>
                             <div class="border-2 p-1 rounded-full border-black">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -28,10 +28,10 @@
                     </div>
                 </div>
             </div>
-            <div class="flex space-x-6 pb-8 cursor-pointer">
+            <div class="md:flex md:space-x-6 cursor-pointer">
                 <div v-for="card in gridRightcards" :key="card.image" @click="selectCardAndNavigate(card)"
-                    :class="cardWidthClass(card.id)">
-                    <div :class="['border-[3px] border-[#61c1b4] rounded-xl h-full', { 'flex': card.id !== '3' }]">
+                    :class="cardWidthClass(card.id)" class="pb-4">
+                    <div :class="['border-[3px] border-[#61c1b4] rounded-xl h-full', { 'md:flex': card.id !== '3' }]">
                         <div :class="['bg-[#61c1b4] w-full flex justify-center', { '': card.id !== '2' }]">
                             <img class="object-cover" :src="card.image" alt="">
                         </div>
@@ -42,15 +42,25 @@
                             <div class="pb-16">
                                 {{ card.paragraph }}
                             </div>
-                            <button class="absolute bottom-8 font-bold">Learn More</button>
+                            <div class="more-btn absolute md:bottom-8 bottom-2 flex space-x-4 items-center">
+                                <button class="font-bold">Learn More</button>
+                                <div class="border-2 p-1 rounded-full border-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="black" class="size-3">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="flex space-x-6 pb-6 cursor-pointer">
+            <div class="md:flex md:space-x-6 cursor-pointer">
                 <div v-for="card in gridLeftcards" :key="card.image" @click="selectCardAndNavigate(card)"
-                    :class="cardWidthClass(card.id)">
-                    <div :class="['border-[3px] border-[#61c1b4] rounded-xl h-full', { 'flex': card.id !== '4' }]">
+                    :class="cardWidthClass(card.id)" class="pb-4">
+                    <div :class="['border-[3px] border-[#61c1b4] rounded-xl h-full', { 'md:flex': card.id !== '4' }]">
                         <div :class="['bg-[#61c1b4] w-full flex justify-center', { '': card.id !== '5' }]">
                             <img class="object-cover" :src="card.image" alt="">
                         </div>
@@ -61,25 +71,45 @@
                             <div class="pb-16">
                                 {{ card.paragraph }}
                             </div>
-                            <button class="absolute bottom-8 font-bold">Learn More</button>
+                            <div class="more-btn absolute md:bottom-8 bottom-2 flex space-x-4 items-center">
+                                <button class="font-bold">Learn More</button>
+                                <div class="border-2 p-1 rounded-full border-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="black" class="size-3">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-for="card in cards" :key="card.image" @click="selectCardAndNavigate(card)"
-                class="pb-6 cursor-pointer">
-                <div v-if="card.id === '6'" class="flex space-x-10 border-[3px] border-[#61c1b4] rounded-xl">
+                class=" cursor-pointer">
+                <div v-if="card.id === '6'" class="md:flex md:space-x-10 border-[3px] border-[#61c1b4] rounded-xl">
                     <div class="bg-[#61c1b4] w-full flex justify-center rounded-l-lg">
                         <img class="object-cover" :src="card.image" alt="">
                     </div>
-                    <div class="w-[70%] p-6 relative">
+                    <div class="md:w-[70%] w-full p-6 relative">
                         <div class="text-2xl font-[Bold] pb-4">
                             {{ card.heading }}
                         </div>
-                        <div>
+                        <div class="pb-16">
                             {{ card.paragraph }}
                         </div>
-                        <button class="absolute bottom-8 font-bold">Learn More</button>
+                        <div class="more-btn absolute md:bottom-8 bottom-2 flex space-x-4 items-center">
+                            <button class="font-bold">Learn More</button>
+                            <div class="border-2 p-1 rounded-full border-black">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="black" class="size-3">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -176,12 +206,13 @@ const scrollToTop = () => {
 
 const cardWidthClass = (id) => {
     if (id === '2') {
-        return 'w-[60%]';
+        return 'w-full md:w-[60%]';
     } else if (id === '3') {
-        return 'w-[40%]';
+        return 'w-full md:w-[40%]';
     }
-    return '';
+    return 'w-full';
 };
+
 </script>
 
 <style scoped>

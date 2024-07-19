@@ -123,7 +123,7 @@
             </div>
             <div class="bg-[#FFFFFF] p-2  sm:w-[480px]" v-if="isSideMenuOpen">
 
-                <div class="p-4 pt-2 bg-[#FFFFFF]">
+                <div class="p-4 lg:pt-2 pt-16 bg-[#FFFFFF]">
                     <div class="flex items-center justify-between">
                         <div>
                             <h1 class="font-[Bold] py-2">Find weed dispensaries near you</h1>
@@ -250,7 +250,7 @@
                 </div>
                 </transition-group>
             </div>
-            <div class="absolute -z-10 top-0 p-6 cursor-pointer 2xl:hidden">
+            <div class="absolute -z-10 lg:top-0 top-16 p-6 cursor-pointer 2xl:hidden">
                 <div class="w-full">
                     <button @click="toggleSideMenu" class="block 2xl:hidden" transition="slide-fade">
                         <!-- Show menu icon or cancel icon based on isMobileMenuOpen -->

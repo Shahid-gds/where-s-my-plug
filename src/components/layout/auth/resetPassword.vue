@@ -157,6 +157,10 @@
 import { onUnmounted, ref, watch } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
 const password = ref('');
 const passwordConfirm = ref('');
 const passwordVisible = ref(false);
@@ -166,9 +170,6 @@ const responseMessage = ref('');
 const processing = ref(false);
 const router = useRouter();
 
-
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-// const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
 const token = localStorage.getItem('token');
 const togglePasswordVisibility = () => {
     passwordVisible.value = !passwordVisible.value
@@ -222,7 +223,7 @@ const resetPassword = async () => {
 
     try {
         processing.value = true;
-        const response = await axios.patch(`${baseUrl}/resetPassword`, {
+        const response = await axios.patch(`${apiUrl}/resetPassword`, {
             password: password.value,
             passwordConfirm: passwordConfirm.value,
         }, {

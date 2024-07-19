@@ -1,122 +1,128 @@
 <template>
     <section class="sm:pb-[20rem] pb-[15rem]">
-        <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6">
+        <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6 pb-[5rem]">
             <div class="container mx-auto py-[12rem] text-center">
-                <div class="text-[#010101]  md:text-[70px] sm:text-[50px] text-[30px] font-[Jost-ExtraBold]">
-                    {{ card.heading }}
-                </div>
-                <div class="text-[#61c1b4]  md:text-[70px] sm:text-[50px] text-[20px] font-[Jost-SemiBold] relative">{{
-                    card.subHeading }}
-                </div>
             </div>
-        </div>
-        <div class="container mx-auto sm:-mt-[8rem] -mt-[10rem]">
-            <div class="sm:flex sm:space-x-6 items-center justify-center w-full p-4 rounded-xl">
+
+        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] lg:px-[8rem] px-6">
+            <div class="lg:flex items-center lg:space-x-16 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
-                <div class="w-full border-2 p-2 rounded-2xl flex justify-center bg-[white]">
-                    <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
+                <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
+                    <!-- previous button -->
+                    <div  v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
+                        @click="prevImage">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="">
+                        <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
+                    </div>
+                    <!-- next button -->
+                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
+                        @click="nextImage">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
                 </div>
                 <div class="w-full">
-                    <span class="text-[#010101]  sm:text-[30px] text-[25px] font-[Jost-ExtraBold]">$</span>
-                    <span class="text-[#61c1b4]  sm:text-[40px] text-[30px]  font-[Jost-SemiBold]">
-                        {{ card.price }}
-                    </span>
-                    <div class="flex space-x-4 items-center pb-2">
-                        <div class="flex items-center">
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
+                    <div class="flex justify-between items-center pb-1">
+                        <div class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">
+                            {{ card.heading }}
                         </div>
-                        <div class="flex space-x-2 items-center mt-2">
-                            <div class="text-[#010101] font-[Jost-ExtraBold">
-                                {{ card.rating }}
-                            </div>
-                            <div class="text-[#61c1b4] font-[Jost-SemiBold]">
-                                {{ card.ratingQty }}
-                            </div>
+                        <div class="p-2 text-white rounded-full px-6"
+                            :style="{ backgroundColor: card.backgroundColor }">
+                            {{ card.type }}
                         </div>
                     </div>
-                    <div class="text-xl font-[Jost-SemiBold] pb-2">
-                        <span>Weight: </span> {{ card.weight }}
+                    <div class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold] relative">{{
+                            card.subHeading }}
                     </div>
-                    <div class="flex items-center space-x-6">
-                        <div class="rounded-xl p-2" :style="{ backgroundColor: card.backgroundColor }">
-                            <img class="" v-if="card.leaf" :src="card.leaf" alt="">
-                        </div>
-                        <div>
-                            <p class="text-[#61c1b4]">Type</p>
-                            <div class="font-[Bold]">{{ card.type }}</div>
-                        </div>
-                        <div class="w-0.5 h-14 bg-[#61c1b4]"></div>
-                        <div>
-                            <p class="text-[#61c1b4]">THC</p>
-                            <div class="font-[Bold]">{{ card.thc }}</div>
-                        </div>
-                        <div class="w-0.5 h-14 bg-[#61c1b4]"></div>
-                        <div>
-                            <p class="text-[#61c1b4]">CBC</p>
-                            <div class="font-[Bold]">{{ card.cbc }}</div>
+                    <div class="py-6">
+                        <span class="text-[#010101]  text-[20px]font-[Jost-ExtraBold]">$</span>
+                        <span class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold]">
+                            {{ card.price }}
+                        </span>
+                    </div>
+                    <div class="font-[Jost-SemiBold] pb-2">
+                        <span>Size: </span>
+                        <div class="text-2xl font-bold">
+                            {{ card.weight }}
                         </div>
                     </div>
+
                     <div class="py-4">
-                        <button @click="addToCart" :disabled="!isLoggedIn" class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]">Add to
+                        <button @click="addToCart" :disabled="!isLoggedIn"
+                            class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]" :style="{ backgroundColor: card.backgroundColor }">Add to
                             cart</button>
                     </div>
                     <div v-if="!isLoggedIn">
-                        To place an order online, you'll need to <router-link :to="{name : 'Sign-In'}" class="text-red-500 font-bold">Login</router-link>  or 
-                        <router-link :to="{name: 'Sign-Up'}" class="text-red-500 font-bold">Create an account.</router-link>
+                        To place an order online, you'll need to <router-link :to="{ name: 'Sign-In' }"
+                            class="text-red-500 font-bold">Login</router-link> or
+                        <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
+                            account.</router-link>
                     </div>
                 </div>
-              <div class="flex justify-center">
-                <div class="">
-                    <div class="pb-5">
-                        <h1 class="font-[Bold] text-xl">Shop Local</h1>
-                        <p>{{ card.shopLocal }}</p>
-                    </div>
-                    <div class="pb-5">
-                        <h1 class="font-[Bold] text-xl">Order It Up</h1>
-                        <p>{{ card.shopLocal }}</p>
-                    </div>
-                    <div class="pb-5">
-                        <h1 class="font-[Bold] text-xl">Keep an eye Out</h1>
-                        <p>{{ card.shopLocal }}</p>
-                    </div>
-                    <div class="pb-5">
-                        <h1 class="font-[Bold] text-xl">Note</h1>
-                        <p>{{ card.note }}</p>
+                <div class="w-full">
+                    <div class="">
+                        <div class="pb-5">
+                            <h1 class="text-xl">THC</h1>
+                            <p class="text-2xl font-[Bold]">{{ card.thc }}</p>
+                        </div>
+                        <div class="pb-5">
+                            <h1 class="text-xl">CBN</h1>
+                            <p class="font-[Bold] text-2xl">{{ card.cbn }}</p>
+                        </div>
+                        <div class="pb-5 lg:h-[250px] relative">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h1 class="font-[Bold] text-xl">Product Detail</h1>
+                                </div>
+                                <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote" :style="{ borderColor: card.borderColor }">
+                                    <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                                        viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor" class="size-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" :stroke="card.borderColor" class="size-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <transition-group name="nested" tag="div">
+                                <p v-if="isNoteVisible">{{ card.note }}</p>
+                            </transition-group>
+
+                        </div>
                     </div>
                 </div>
-              </div>
             </div>
-            <div class="flex space-x-4 pt-8">
-                <!-- related images -->
-                <div :class="['border-2 cursor-pointer p-2 rounded-2xl flex justify-center w-[20%] ', mainImage === card.img1 ? 'border-[black]' : 'border-[#61c1b4]']"
-                    @click="updateMainImage(card.img1)">
-                    <img class="w-[100%]" v-if="card.img1" :src="card.img1" alt="Product image">
-                </div>
-                <div :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[20%]', mainImage === card.img2 ? 'border-[black]' : 'border-[#61c1b4]']"
-                    @click="updateMainImage(card.img2)">
-                    <img class="w-[100%]" v-if="card.img2" :src="card.img2" alt="Product image">
+            <div class="flex space-x-4">
+                <!-- Related images -->
+                <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
+                    :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[10%] h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
+                    @click="updateMainImage(image)">
+                    <img class="w-[100%]" :src="image" alt="Product image">
                 </div>
             </div>
         </div>
+    </div>
     </section>
 </template>
 
 <script setup>
+import { ref, onMounted, computed } from 'vue';
 import { useCartStore } from '@/stores/modules/cart';
-import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+
+
 const cartStore = useCartStore();
+
 const isLoggedIn = ref(false);
 const userEmail = ref('');
 const userId = ref('');
@@ -135,6 +141,8 @@ const LoggedInStatus = () => {
     isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
 };
 
+
+
 const addToCart = () => {
     scrollToTop();
     console.log('Adding to cart:', card.value);
@@ -151,14 +159,23 @@ const fetchCardDetails = async () => {
     try {
         const cardData = await getCardById(cardId);
         if (cardData) {
+            // Resolve promises for images
+            const img1 = await cardData.img1;
+            const img2 = await cardData.img2;
+            const img3 = await cardData.img3;
+            const img4 = await cardData.img4;
+
+            // Assign resolved image URLs to card.value
             card.value = {
                 ...cardData,
-                img1: await cardData.img1,
-                img2: await cardData.img2,
-                stars: await cardData.stars,
-                leaf: await cardData.leaf,
+                relatedImages: [
+                    img1,
+                    img2,
+                    img3,
+                    img4,
+                ].filter(img => img),
             };
-            mainImage.value = card.value.img1;
+            mainImage.value = card.value.relatedImages[0];
         } else {
             scrollToTop();
             router.push({ name: 'NotFoundProduct' });
@@ -168,6 +185,13 @@ const fetchCardDetails = async () => {
     }
 };
 
+
+const isNoteVisible = ref(false);
+
+const toggleNote = () => {
+    isNoteVisible.value = !isNoteVisible.value;
+};
+
 const getCardById = async (id) => {
     const cards = [
         {
@@ -175,9 +199,8 @@ const getCardById = async (id) => {
             img1: import('../assets/images/CannabisStrainCarousel/ImgTwo.svg').then(module => module.default),
             img2: import('../assets/images/CannabisStrainCarousel/ImgOne.svg').then(module => module.default),
             heading: 'Banana Cream Cake',
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
             backgroundColor: '#61c1b4',
+            borderColor: '#61c1b4',
             price: '25',
             rating: '5.0',
             ratingQty: '(120)',
@@ -207,9 +230,8 @@ const getCardById = async (id) => {
             img1: import('../assets/images/CannabisStrainCarousel/ImgOne.svg').then(module => module.default),
             img2: import('../assets/images/CannabisStrainCarousel/ImgTwo.svg').then(module => module.default),
             heading: 'Platinum Kush Breath',
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            leaf: import('../components/icons/drugLeaf.svg').then(module => module.default),
             backgroundColor: '#61c1b4',
+            borderColor: '#61c1b4',
             price: '25',
             rating: '5.0',
             ratingQty: '(120)',
@@ -238,6 +260,20 @@ const getCardById = async (id) => {
     return cards.find(card => card.id === id);
 };
 
+let currentImageIndex = ref(0);
+
+const nextImage = () => {
+    const imageCount = card.value.relatedImages.length;
+    currentImageIndex.value = (currentImageIndex.value + 1) % imageCount;
+    mainImage.value = card.value.relatedImages[currentImageIndex.value];
+};
+
+const prevImage = () => {
+    const imageCount = card.value.relatedImages.length;
+    currentImageIndex.value = (currentImageIndex.value - 1 + imageCount) % imageCount;
+    mainImage.value = card.value.relatedImages[currentImageIndex.value];
+};
+
 const updateMainImage = (image) => {
     mainImage.value = image;
 };
@@ -253,7 +289,23 @@ const scrollToTop = () => {
     });
 };
 </script>
+
 <style scoped>
+.nested-enter-active,
+.nested-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.nested-leave-active {
+    transition-delay: 0.25s;
+}
+
+.nested-enter-from,
+.nested-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+}
+
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;

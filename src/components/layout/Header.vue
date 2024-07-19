@@ -1,54 +1,74 @@
 <template>
     <header class="w-full fixed z-50 bg-white">
         <!-- Top Header -->
-        <div class="xl:block hidden w-full p-3 px-16 top-header border-b-2">
+        <div class="w-full p-3 px-16 top-header border-b-2">
             <div class="flex items-start justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="">
-                        <img src="../icons/free-delivery.svg" alt="">
+                <div class="xl:block hidden">
+                    <div class="flex items-center space-x-2">
+                        <div class="">
+                            <img src="../icons/free-delivery.svg" alt="">
+                        </div>
+                        <div>
+                            <span class="text-[#010101] font-bold">Free next day delivery when you</span> <a
+                                class="text-[#61c1b4] font-[Bold] underline" href="#">spend over $40</a>
+                        </div>
+                    </div>
+                </div>
+                <div @click="openLocationModal" class="flex items-center space-x-1 cursor-pointer">
+                    <div class="font-bold">
+                        Delivering to
                     </div>
                     <div>
-                        <span class="text-[#010101] font-bold">Free next day delivery when you</span> <a
-                            class="text-[#61c1b4] font-[Bold] underline" href="#">spend over $40</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
                     </div>
                 </div>
-               <div @click="openLocationModal" class="flex items-center space-x-1 cursor-pointer">
-                <div class="font-bold">
-                    Delivering to 
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                      </svg>                      
-                </div>
-               </div>
-                <div class="flex items-center space-x-9">
-                    <div class="flex items-center space-x-10">
-                        <div>
-                            <a href="#"><img src="../icons/facebook.svg" alt=""></a>
-                        </div>
-                        <div>
-                            <a href="#"><img src="../icons/googlePlus.svg" alt=""></a>
-                        </div>
-                        <div>
-                            <a href="#"><img src="../icons/twitter.svg" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div>
-                            <img src="../icons/helpLineHeadphone.svg" alt="">
+                <div class="xl:hidden">
+                    <div class="flex space-x-3 cursor-pointer" @click="openMegaSearchModal">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
                         </div>
                         <div class="font-bold">
-                            Need Help?
+                            Search
                         </div>
-                        <div>
-                            +01 234 567 8910
+                    </div>
+                </div>
+                <div class="xl:block hidden">
+                    <div class="flex items-center space-x-9">
+                        <div class="flex items-center space-x-10">
+                            <div>
+                                <a href="#"><img src="../icons/facebook.svg" alt=""></a>
+                            </div>
+                            <div>
+                                <a href="#"><img src="../icons/googlePlus.svg" alt=""></a>
+                            </div>
+                            <div>
+                                <a href="#"><img src="../icons/twitter.svg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div>
+                                <img src="../icons/helpLineHeadphone.svg" alt="">
+                            </div>
+                            <div class="font-bold">
+                                Need Help?
+                            </div>
+                            <div>
+                                +01 234 567 8910
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div :class="['absolute header w-full px-16 p-3 xl:block hidden z-50 bg-white shadow-lg', { 'bg-dispensaries': isDispensariesRoute }]">
+        <div
+            :class="['absolute header w-full px-16 p-3 xl:block hidden z-50 bg-white shadow-lg', { 'bg-dispensaries': isDispensariesRoute }]">
             <nav class="flex items-center justify-between ">
                 <div>
                     <router-link :to="{ name: 'Home' }" @click="handleClick">
@@ -112,12 +132,10 @@
                         </div> -->
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
                             class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
-                            <img class="w-full h-full rounded-full object-cover"
-                                :src="userData.profilePhotoUrl"
-                                alt="">
+                            <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl" alt="">
                         </div>
                         <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
-                            class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                            class="hover-btn w-[55px] bg-[#61c1b4] p-3 rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                         </div>
                         <div v-if="isAccountToggleShow"
@@ -231,7 +249,7 @@
             </div>
             <div class="w-full flex justify-end space-x-3 items-center">
                 <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
-                    class="hover-btn w-[55px] bg-[#61c1b4] p-3 mt-2 rounded-full cursor-pointer">
+                    class="hover-btn w-[50px] bg-[#61c1b4] p-3 rounded-full cursor-pointer">
                     <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                 </div>
                 <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
@@ -383,8 +401,8 @@
             </div>
         </TransitionGroup>
     </header>
-    <locationsModal  :show="showLocationModal" :onClose="colseLocationModal" />
-    <megaSearch  :show="showMegaSerachModal" :onClose="colseMegaSearchModal" />
+    <locationsModal :show="showLocationModal" :onClose="colseLocationModal" />
+    <megaSearch :show="showMegaSerachModal" :onClose="colseMegaSearchModal" />
 </template>
 
 <script setup>
@@ -393,8 +411,12 @@ import router from '@/router';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import { ref, computed, reactive, onMounted } from 'vue';
-import locationsModal from '@/components/layout/UI/popupModels/locationsModal.vue'
-import megaSearch from '@/components/layout/UI/popupModels/megaSearch.vue'
+import locationsModal from '@/components/layout/UI/popupModels/locationsModal.vue';
+import megaSearch from '@/components/layout/UI/popupModels/megaSearch.vue';
+import { useApi } from '../api/useApi';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const showLocationModal = ref(false);
 const showMegaSerachModal = ref(false);
@@ -420,8 +442,7 @@ const cartLink = computed(() => {
     return isEmptyCart.value ? { name: 'EmptyCart' } : { name: 'YourCart' };
 })
 
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-// const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+
 const userId = getCookie('userId');
 const userData = reactive({
     fname: '',
@@ -436,7 +457,7 @@ const getUserData = async () => {
         'Content-Type': 'application/json'
     };
     try {
-        const response = await axios.get(`${baseUrl}/me`,
+        const response = await axios.get(`${apiUrl}/me`,
             { headers });
 
         const getUser = response.data.data.data;
@@ -527,7 +548,8 @@ const isDispensariesRoute = computed(() => route.name === 'Dispensaries' || rout
 <style scoped>
 .bg-dispensaries {
     background-color: #f0f0f0;
-  }
+}
+
 .list-enter-active,
 .list-leave-active {
     transition: all 0.5s ease;
@@ -708,5 +730,4 @@ const isDispensariesRoute = computed(() => route.name === 'Dispensaries' || rout
         padding-left: 2rem;
     }
 }
-
 </style>

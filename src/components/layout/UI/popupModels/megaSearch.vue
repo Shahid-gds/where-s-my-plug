@@ -2,7 +2,7 @@
     <transition-group name="nested" tag="div">
         <div v-if="show" class="fixed w-full inset-0 flex items-center justify-center z-50">
             <div @click="close" class="backdrop"></div>
-            <div class="popup w-full bg-white shadow-lg ">
+            <div class="popup w-full bg-white shadow-lg">
                 <div class="w-full border-b-2 border-black">
                     <div @click="close" class="cursor-pointer p-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -13,28 +13,63 @@
                     <input type="text" placeholder="Search for Products & Categories"
                         class="w-full p-4 px-6 text-xl rounded-xl outline-none">
                 </div>
-                <div class="md:flex">
-                    <div class="w-1/2 bg-[#61c1b4] p-10 border-r-2 border-black text-white">
-                        <h1 class="font-bold text-xl uppercase py-6">Popular Categories</h1>
-                        <div class="pb-2 cursor-pointer">Flowers</div>
-                        <div class="pb-2 cursor-pointer">Vapes</div>
-                        <div class="pb-2 cursor-pointer">Edibles</div>
-                        <div class="pb-2 cursor-pointer">Prerolls</div>
-                        <div class="pb-2 cursor-pointer">Concentrates</div>
-                        <div class="pb-2 cursor-pointer">Topicals</div>
-                        <div class="pb-2 cursor-pointer">Capsules</div>
-                    </div>
-                    <div class="w-full p-10">
-                        <h1 class="font-bold text-xl uppercase py-6">FEATURED PRODUCTS</h1>
-                        <div class="md:flex space-x-6">
-                            <div v-for="card in cards" class="w-full">
-                                <div class="p-4 cursor-pointer border-2 rounded-xl h-[300px]">
-                                    <h1 class="font-bold uppercase text-xl text-center">{{ card.heading }}</h1>
-                                    <div class="flex justify-center">
-                                        <img :src="card.image" alt="">
+                <div class="xl:block hidden">
+                    <div class="flex">
+                        <div class="xl:w-1/2 bg-[#61c1b4] p-10 xl:border-r-2 border-black text-white">
+                            <h1 class="font-bold text-xl uppercase py-6">Popular Categories</h1>
+                            <div class="pb-2 cursor-pointer">Flowers</div>
+                            <div class="pb-2 cursor-pointer">Vapes</div>
+                            <div class="pb-2 cursor-pointer">Edibles</div>
+                            <div class="pb-2 cursor-pointer">Prerolls</div>
+                            <div class="pb-2 cursor-pointer">Concentrates</div>
+                            <div class="pb-2 cursor-pointer">Topicals</div>
+                            <div class="pb-2 cursor-pointer">Capsules</div>
+                        </div>
+                        <div class="w-full p-10">
+                            <h1 class="font-bold text-xl uppercase py-6">FEATURED PRODUCTS</h1>
+                            <div class="flex space-x-6">
+                                <div v-for="card in cards" class="w-full">
+                                    <div class="p-4 cursor-pointer border-2 rounded-xl h-[300px]">
+                                        <h1 class="font-bold uppercase text-xl text-center">{{ card.heading }}</h1>
+                                        <div class="flex justify-center">
+                                            <img :src="card.image" alt="">
+                                        </div>
+                                        <p>{{ card.subHeading }}</p>
+                                        <p class=""><span class="">$</span><span class="text-xl font-bold">{{ card.price
+                                                }}</span></p>
                                     </div>
-                                    <p>{{ card.subHeading }}</p>
-                                    <p class=""><span class="">$</span><span class="text-xl font-bold">{{ card.price }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="xl:hidden">
+                    <div class="overflow-y-scroll h-screen pb-[10rem]">
+                        <div class="xl:w-1/2 bg-[#61c1b4] p-6 xl:border-r-2 border-black text-white">
+                            <h1 class="font-bold text-xl uppercase py-4 p-2">Popular Categories</h1>
+                            <div class="">
+                                <div class="p-2 cursor-pointer">Flowers</div>
+                                <div class="p-2 cursor-pointer">Vapes</div>
+                                <div class="p-2 cursor-pointer">Edibles</div>
+                                <div class="p-2 cursor-pointer">Prerolls</div>
+                                <div class="p-2 cursor-pointer">Concentrates</div>
+                                <div class="p-2 cursor-pointer">Topicals</div>
+                                <div class="p-2 cursor-pointer">Capsules</div>
+                            </div>
+                        </div>
+                        <div class="w-full p-6">
+                            <h1 class="font-bold text-xl uppercase py-6">FEATURED PRODUCTS</h1>
+                            <div class="md:flex md:space-x-6">
+                                <div v-for="card in cards" class="w-full pb-5">
+                                    <div class="p-4 cursor-pointer border-2 rounded-xl h-[300px]">
+                                        <h1 class="font-bold uppercase text-xl text-center">{{ card.heading }}</h1>
+                                        <div class="flex justify-center">
+                                            <img :src="card.image" alt="">
+                                        </div>
+                                        <p>{{ card.subHeading }}</p>
+                                        <p class=""><span class="">$</span><span class="text-xl font-bold">{{ card.price
+                                                }}</span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -139,17 +174,6 @@ watch(() => props.show, (newVal) => {
 .nested-leave-to {
     transform: translateY(-30px);
     opacity: 0;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-    background-color: #61c1b4;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgb(31, 20, 20);
-    border-radius: 5px;
 }
 
 /* Add this class to disable body scrolling */

@@ -382,6 +382,9 @@
 <script setup>
 import axios from 'axios';
 import { onMounted, ref, reactive, computed } from 'vue';
+import { useApi } from '@/components/api/useApi';
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const isEditing = reactive({
     fname: false,
@@ -415,8 +418,7 @@ const getCookie = (name) => {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return cookieValue ? cookieValue.pop() : '';
 };
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-// const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
+
 const userId = getCookie('userId');
 
 const getUserData = async () => {
@@ -426,7 +428,7 @@ const getUserData = async () => {
         'Content-Type': 'application/json'
     };
     try {
-        const response = await axios.get(`${baseUrl}/me`,
+        const response = await axios.get(`${apiUrl}/me`,
             { headers });
 
         const getUser = response.data.data.data;
@@ -467,7 +469,7 @@ const updateUser = async () => {
             address: userData.address
         };
 
-        const response = await axios.patch(`${baseUrl}/updateMe`, updatedData, { headers });
+        const response = await axios.patch(`${apiUrl}/updateMe`, updatedData, { headers });
         console.log('User updated:', response.data);
 
         // Hide editing fields after successful update

@@ -109,6 +109,10 @@ import axios from 'axios';
 import { useRouter } from 'vue-router';
 import resendOtp from '../UI/popupModels/resendOtp.vue';
 import successOtp from '../UI/popupModels/successOtp.vue';
+import { useApi } from '@/components/api/useApi';
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
 const isLoading = ref(false);
 const totalSeconds = ref(60);
 const showPopup = ref(false);
@@ -123,8 +127,6 @@ const codeDigits = ref(['', '', '', '']);
 const incorrectCodeAttempts = ref(0);
 const invalidCode = ref(false);
 
-const baseUrl = 'https://wmp-api-shahid-gds-projects.vercel.app/api/v1/users';
-// const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
 const token = localStorage.getItem('token');
 const handlePaste = (event, index) => {
     event.preventDefault();
@@ -186,7 +188,7 @@ const verifyOTP = async () => {
     }
 
     try {
-        const response = await axios.post(`${baseUrl}/verifyOTP`, {
+        const response = await axios.post(`${apiUrl}/verifyOTP`, {
             otp: codeValue,
         }, {
             headers: {

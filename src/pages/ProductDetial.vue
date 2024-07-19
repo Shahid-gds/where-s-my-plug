@@ -4,8 +4,8 @@
             <div class="container mx-auto py-[12rem] text-center">
             </div>
 
-        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] px-[8rem]">
-            <div class="sm:flex items-center sm:space-x-16 justify-center w-full p-4 rounded-xl">
+        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
+            <div class="lg:flex items-center lg:space-x-16 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
                 <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
                     <!-- previous button -->
@@ -26,6 +26,16 @@
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
+                    </div>
+                </div>
+                <div class="lg:hidden py-[2rem]">
+                    <div class="flex space-x-4">
+                        <!-- Related images -->
+                        <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
+                            :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center sm:w-[10%] w-[30%] sm:h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
+                            @click="updateMainImage(image)">
+                            <img class="w-[100%]" :src="image" alt="Product image">
+                        </div>
                     </div>
                 </div>
                 <div class="w-full">
@@ -69,14 +79,14 @@
                 <div class="w-full">
                     <div class="">
                         <div class="pb-5">
-                            <h1 class="text-xl">THC</h1>
-                            <p class="text-2xl font-[Bold]">{{ card.thc }}</p>
+                            <h1 class="sm:text-xl">THC</h1>
+                            <p class="sm:text-2xl font-[Bold]">{{ card.thc }}</p>
                         </div>
                         <div class="pb-5">
-                            <h1 class="text-xl">CBN</h1>
-                            <p class="font-[Bold] text-2xl">{{ card.cbn }}</p>
+                            <h1 class="sm:text-xl">CBN</h1>
+                            <p class="font-[Bold] sm:text-2xl">{{ card.cbn }}</p>
                         </div>
-                        <div class="pb-5 h-[250px] relative">
+                        <div class="pb-5 lg:h-[250px] relative">
                             <div class="flex justify-between">
                                 <div>
                                     <h1 class="font-[Bold] text-xl">Product Detail</h1>
@@ -102,12 +112,14 @@
                     </div>
                 </div>
             </div>
-            <div class="flex space-x-4">
-                <!-- Related images -->
-                <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
-                    :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[10%] h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
-                    @click="updateMainImage(image)">
-                    <img class="w-[100%]" :src="image" alt="Product image">
+            <div class="lg:block hidden">
+                <div class="flex space-x-4">
+                    <!-- Related images -->
+                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
+                        :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[10%] h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
+                        @click="updateMainImage(image)">
+                        <img class="w-[100%]" :src="image" alt="Product image">
+                    </div>
                 </div>
             </div>
         </div>
@@ -230,6 +242,7 @@ const getCardById = async (id) => {
             img1: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
             heading: 'Pre-rolls',
             backgroundColor: '#61c1b4',
+            borderColor: '#ebb22d',
             subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
             price: '25.99',
             weight: '20ct',
@@ -244,6 +257,7 @@ const getCardById = async (id) => {
             img2: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
             heading: 'Terpenes',
             backgroundColor: '#61c1b4',
+            borderColor: '#ebb22d',
             subHeading: 'Sour Haze Live Resin Terpene',
             price: '25.99',
             weight: '20ct',
@@ -257,6 +271,7 @@ const getCardById = async (id) => {
             img1: import('@/assets/images/ProductsCategories/Img5.svg').then(module => module.default),
             heading: 'Vape Pens',
             backgroundColor: '#ebb22d',
+            borderColor: '#ebb22d',
             subHeading: 'MAC 2ml THCa Sauce Vape Pen',
             price: '25.99',
             weight: '20ct',
@@ -271,6 +286,7 @@ const getCardById = async (id) => {
             img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
             heading: 'Cartridges',
             backgroundColor: '#61c1b4',
+            borderColor: '#ebb22d',
             subHeading: 'Yoda Candy THCa Flower',
             price: '25.99',
             weight: '20ct',

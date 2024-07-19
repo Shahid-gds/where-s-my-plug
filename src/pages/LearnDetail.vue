@@ -1,17 +1,17 @@
 <template>
-    <section class="py-[8rem] bg-covers bg-center bg-[url('@/assets/images/bgs/LearnHeroSectionBg.svg')] w-full p-6">
-        <div v-for="card in cards" :key="card.index" class="container mx-auto px-6 flex items-center">
-            <div class="w-full font-extrabold sm:leading-[2.5rem]">
+    <section class="py-[5rem] bg-covers bg-center bg-[url('@/assets/images/bgs/LearnHeroSectionBg.svg')] w-full p-6">
+        <div v-for="card in cards" :key="card.index" class="container mx-auto px-6 lg:flex items-center lg:mt-[5rem] mt-[8rem]">
+            <div class="w-full font-extrabold sm:leading-[2.5rem] lg:text-left text-center">
                 <span class="text-[#010101] text-[50px] font-[Jost-ExtraBold]">{{ card.heading }}</span>
                 <div>{{ card.paragraphHero }}</div>
             </div>
-            <div>
-                <img :src="card.image">
+            <div class="lg:w-1/2 w-full flex justify-center">
+                <img class="lg:w-full w-1/2" :src="card.image">
             </div>
         </div>
     </section>
 
-    <section class="pt-[5rem] pb-[3rem]">
+    <section class="md:pt-[5rem] pt-[2.5rem] md:pb-[3rem]">
         <div class="flex justify-center">
             <div class="py-6 relative">
                 <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -21,10 +21,10 @@
                 </div>
             </div>
         </div>
-        <div v-for="card in bodyCards" :key="card.index" class="container mx-auto px-[20rem]">
+        <div v-for="card in bodyCards" :key="card.index" class="container mx-auto xl:px-[20rem]">
             <div class="m-6">
-                <div v-if="card.id === '1'" class="pt-[5rem] font-bold text-xl">{{ card.bodyParagraph }}</div>
-                <div v-if="card.id === '1' || card.id === '5'" class="py-[5rem] text-3xl font-bold text-[#171717]">
+                <div v-if="card.id === '1'" class="md:pt-[2.5rem] font-bold md:text-xl">{{ card.bodyParagraph }}</div>
+                <div v-if="card.id === '1' || card.id === '5'" class="md:py-[5rem] py-[2.5rem] md:text-3xl text-xl font-bold text-[#171717]">
                     {{ card.bodyHeading }}
                 </div>
                 <div class="hover:opacity-75 transition-all duration-150 cursor-pointer border-2 p-6 rounded-xl"
@@ -39,7 +39,7 @@
     </section>
 
     <section class="">
-        <div class="container mx-auto pb-[15rem]">
+        <div class="container mx-auto pb-[15rem] px-6">
             <div class="p-6">
                 <div class="flex justify-center">
                     <div class="py-6 relative">
@@ -54,7 +54,7 @@
                     <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">VIEW OTHER ARTICLES</h1>
                 </div>
             </div>
-            <div class="flex space-x-3">
+            <div class="xl:flex xl:space-x-3">
                 <div v-for="card in othersArticles" :key="card.image" class="pb-6 cursor-pointer">
                     <div class="h-full relative border-[3px] border-[#61c1b4] rounded-xl">
                         <div class="bg-[#61c1b4] w-full h-1/2 flex justify-center rounded-t-lg">

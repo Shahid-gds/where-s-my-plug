@@ -89,7 +89,7 @@
                     </div>
             </div>
         </div>
-        <div class="overflow-hidden pt-[8rem]">
+        <div class="overflow-hidden lg:pt-[8rem] pt-[20rem]">
             <div class="flex justify-center">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">

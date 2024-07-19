@@ -1,5 +1,5 @@
 <template>
-    <section class="mt-[5rem]">
+    <section class="sm:mt-[5rem] mt-[2.5rem]">
         <div class="overflow-hidden">
             <div class="flex justify-center">
                 <div class="py-6 relative">
@@ -16,11 +16,11 @@
                         categories</h1>
                 </div>
             </div>
-            <div class="flex space-x-10 items-center container mx-auto px-[7.5rem]">
-                <div class="w-full py-6 text-xl">
+            <div class="md:flex md:space-x-10 items-center container mx-auto sm:px-[7.5rem] px-6">
+                <div class="w-full py-6 text-xl md:text-left text-center">
                     12 items found
                 </div>
-                <div class="w-full flex justify-end items-center space-x-8">
+                <div class="w-full flex md:justify-end justify-center items-center space-x-8 pb-6">
                     <div>
                         <label class="text-xl" for="">Sort By:</label>
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="">
                 <ProdutsCategoriesCards  />
             </div>
         </div>

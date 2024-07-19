@@ -1,6 +1,6 @@
 <template>
     <section class="relative">
-        <div class="overflow-hidden pt-[5rem]">
+        <div class="overflow-hidden md:pt-[5rem] pt-[2.5rem]">
          <div class="flex justify-center">
             <div class="py-6 relative">
                 <div class="bg-[#61c1b4] w-[182px] h-0.5">

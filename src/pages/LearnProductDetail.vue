@@ -4,8 +4,8 @@
             <div class="container mx-auto py-[12rem] text-center">
             </div>
 
-        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] px-[8rem]">
-            <div class="sm:flex items-center sm:space-x-16 justify-center w-full p-4 rounded-xl">
+        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
+            <div class="md:flex items-center md:space-x-16 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
                 <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
                     <!-- previous button -->
@@ -69,26 +69,26 @@
                 <div class="w-full">
                     <div class="">
                         <div class="pb-5">
-                            <h1 class="text-xl">THC</h1>
-                            <p class="text-2xl font-[Bold]">{{ card.thc }}</p>
+                            <h1 class="md:text-xl">THC</h1>
+                            <p class="md:text-2xl font-[Bold]">{{ card.thc }}</p>
                         </div>
                         <div class="pb-5">
-                            <h1 class="text-xl">CBN</h1>
-                            <p class="font-[Bold] text-2xl">{{ card.cbn }}</p>
+                            <h1 class="md:text-xl">CBN</h1>
+                            <p class="font-[Bold] md:text-2xl">{{ card.cbn }}</p>
                         </div>
-                        <div class="pb-5 h-[250px] relative">
+                        <div class="pb-5 md:h-[250px] relative">
                             <div class="flex justify-between">
                                 <div>
                                     <h1 class="font-[Bold] text-xl">Product Detail</h1>
                                 </div>
                                 <div class="cursor-pointer border-2 p-1 rounded-full border-black" @click="toggleNote">
                                     <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                     </svg>
                                     <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        stroke-width="1.5" stroke="currentColor" class="size-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                                     </svg>

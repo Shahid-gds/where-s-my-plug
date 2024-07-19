@@ -38,12 +38,15 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import verifyOTP from '../../auth/verifyOTP.vue';
+import { useApi } from '@/components/api/useApi';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const email = ref('');
 const responseMessage = ref('');
 const processing = ref(false);
 const showVerifyOTPScreen = ref(false);
-const baseUrl = 'http://127.0.0.1:3000/api/v1/users';
 
 const resendOTP = async () => {
     if (!email.value) {
@@ -53,7 +56,7 @@ const resendOTP = async () => {
 
     try {
         processing.value = true;
-        const response = await axios.post(`${baseUrl}/resendOTP`, {
+        const response = await axios.post(`${apiUrl}/resendOTP`, {
             email: email.value
         }, {
             headers: {

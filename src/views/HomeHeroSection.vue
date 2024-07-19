@@ -1,24 +1,24 @@
 <template>
-  <section class="h-[600px] relative overflow-hidden mt-[8rem]">
+  <section class="lg:h-[600px] relative overflow-hidden mt-[8rem]">
     <div class="w-full h-full flex transition-transform duration-300"  @mouseenter="stopAutoSlide"
            @mouseleave="startAutoSlide"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
       <div v-for="(slide, index) in slides" :key="slide.id" class="w-full flex-shrink-0"
         :style="{ backgroundColor: slide.backgroundColor }">
-        <div class="flex items-center p-6 px-20">
+        <div class="sm:flex items-center lg:p-6 p-10 sm:pt-0 pt-[3rem] lg:px-20">
           <div class="w-full">
-            <div class="font-bold text-white text-[35px]">
+            <div class="font-bold text-white sm:text-[35px] text-[25px]">
               {{ slide.heading }}
             </div>
-            <div class="text-white text-[25px]">
+            <div class="text-white sm:text-[25px]">
               {{ slide.paragraphHero }}
             </div>
-            <div class="mt-[3rem] bg-white p-4 w-[200px] text-center cursor-pointer rounded-xl font-bold">
+            <div class="sm:mt-[3rem] mt-[1rem] bg-white p-4 sm:w-[200px] text-center cursor-pointer rounded-xl font-bold">
               {{ slide.button }}
             </div>
           </div>
-          <div class="w-1/2 h-[500px] mt-[2rem]">
-            <img class="h-[500px]" :src="slide.image" alt="">
+          <div class="xl:w-1/2 w-full lg:h-[500px] sm:mt-[2rem]">
+            <img class="lg:h-[500px]" :src="slide.image" alt="">
           </div>
         </div>
       </div>

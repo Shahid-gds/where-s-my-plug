@@ -1,6 +1,6 @@
 <template>
     <section class="pb-[15rem]">
-        <div class="overflow-hidden pt-[5rem]">
+        <div class="overflow-hidden sm:pt-[5rem] pt-[2.5rem]">
          <div class="flex justify-center">
             <div class="py-6 relative">
                 <div class="bg-[#61c1b4] w-[182px] h-0.5">
@@ -17,11 +17,11 @@
                 <h1 class="font-[Jost-ExtraBold] md:text-[50px] text-[30px] text-[#000000]">All Brands</h1>
                 </div>
                     <div class="w-full flex justify-center py-6">
-                      <div class="relative w-1/2">
+                      <div class="relative sm:w-1/2 w-full px-6">
                         <div class="relative">
                             <input v-model="searchQuery" class="border-2 shadow-xl w-full p-6 px-6 rounded-2xl" type="text" placeholder="What would you like to learn about?">
                         </div>
-                        <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
+                        <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] sm:w-[5rem] p-4 absolute top-1.5 sm:right-1.5 right-8 rounded-2xl cursor-pointer">
                           <div>
                             <img src="../components/icons/searchIcon.svg" alt="">
                           </div>
