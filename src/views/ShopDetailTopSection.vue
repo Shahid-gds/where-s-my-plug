@@ -2,33 +2,14 @@
     <section class="sm:py-[20rem] py-[10rem] sm:pb-[25rem] pb-[20rem] relative">
         <div class="container mx-auto px-6">
             <div class="xl:flex flex-row-reverse justify-between bg-white sm:p-6 p-3 shadow-xl rounded-xl">
-                <div class="w-full">
-                    <div class="w-full relative">
-                        <div class="w-full flex justify-center mt-[2.5rem] absolute">
-                            <div class="relative w-full">
-                                <div class="w-full relative">
-                                    <input class="border-2 shadow-xl w-full p-6 px-[4.5rem] rounded-2xl" type="text"
-                                        placeholder="What’s your address?">
-                                    <div class="absolute top-3 left-4">
-                                        <img src="../components/icons/locationIcon.svg" alt="">
-                                    </div>
-                                </div>
-                                <div
-                                    class="sm:block hidden bg-[#61c1b4] w-[5rem] p-4 absolute top-1.5 right-1.5 rounded-2xl cursor-pointer">
-                                    <div class="">
-                                        <img src="../components/icons/searchIcon.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="w-full sm:flex sm:space-x-6 items-center xl:mt-0 mt-[10rem]">
                     <div class="sm:w-[20%] sm:pb-0 pb-6">
-                        <img class="w-full border-2 p-4 rounded-xl" :src="card.src" alt="Card Image" />
+                        <img class="w-full border-2 rounded-xl" :src="card.image" alt="">
                     </div>
                     <div class="">
                         <h1 class="sm:text-4xl text-xl font-bold">{{ card.heading }}</h1>
+                        <h1 class="sm:text-2xl text-xl font-bold py-4">{{ card.type }}</h1>
                         <div class="">
                             <div class="flex items-center space-x-3 py-4">
                                 <div>
@@ -42,7 +23,7 @@
                                     <div>
                                         <p class="font-bold uppercase">{{ card.time }}</p>
                                     </div>
-                                    <div class="cursor-pointer relative" @click="toggleDropdown">
+                                    <div ref="dropdownContainer" class="cursor-pointer relative" @click="toggleDropdown">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24"
                                             stroke-width="0" stroke="black" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,10 +33,12 @@
                                             <div v-if="dropdownOpen"
                                                 class="absolute z-40 top-6 right-0  w-[250px] p-2 bg-white border rounded-xl shadow-md">
                                                 <ul class="py-1">
-                                                    <li v-for="(time, day) in card.daysOfWeek" :key="day"  class="cursor-pointer px-4 py-2 hover:bg-gray-100 flex space-x-4 items-center">
+                                                    <li v-for="(time, day) in card.daysOfWeek" :key="day"
+                                                        class="cursor-pointer px-4 py-2 hover:bg-gray-100 flex space-x-4 items-center">
                                                         <div>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                                stroke-width="1.5" stroke="currentColor" class="size-10">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="size-10">
                                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                             </svg>
@@ -82,7 +65,7 @@
                                                 d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
                                         </svg>
                                     </div>
-                                    <a :href="'tel:' + card.phone" class="text-white">{{ card.phoneBtn }}</a>
+                                    <a :href="'tel:' + card.phone" class="text-white">Phone</a>
                                 </div>
                                 <div
                                     class="flex items-center sm:space-x-3 space-x-2 bg-[#61C1B4] p-2 sm:px-4 px-3 rounded-xl cursor-pointer">
@@ -93,7 +76,7 @@
                                                 d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                                         </svg>
                                     </div>
-                                    <a :href="'mailto:' + card.email" class="text-white">{{ card.emailBtn }}</a>
+                                    <a :href="'mailto:' + card.email" class="text-white">Email</a>
                                 </div>
                                 <div @click="openModal"
                                     class="flex items-center sm:space-x-3 space-x-2 bg-[#61C1B4] p-2 sm:px-4 px-3 rounded-xl cursor-pointer">
@@ -104,13 +87,13 @@
                                                 d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
                                         </svg>
                                     </div>
-                                    <div class="text-white">{{ card.detailBtn }}</div>
+                                    <div class="text-white">Detail</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -123,8 +106,8 @@
                     &#x2716;
                 </div>
                 <div class="flex items-center space-x-3 border-b-2 border-[#61c1b4] pb-2">
-                    <div class="border-2 border-[#61c1b4] p-2 rounded-xl">
-                        <img :src="card.src" alt="">
+                    <div class="w-[100px] border-2 border-[#61c1b4] p-2 rounded-xl">
+                        <img class="w-full h-[100px]" :src="card.image" alt="">
                     </div>
                     <div class="sm:text-3xl text-xl text-[#61c1b4] font-[Jost-ExtraBold]">
                         {{ card.heading }}
@@ -145,7 +128,7 @@
                                     Registration #
                                 </div>
                                 <div class="text-[#61c1b4]">
-                                    {{ card.registrationNumber }}
+                                    {{ card.regNo }}
                                 </div>
                             </div>
                         </div>
@@ -184,7 +167,7 @@
                                     Website
                                 </div>
                                 <div class="text-[#61c1b4]">
-                                    {{ card.links.website }}
+                                    {{ card.website }}
                                 </div>
                             </div>
                         </div>
@@ -202,7 +185,7 @@
                                     Facebook
                                 </div>
                                 <div class="text-[#61c1b4]">
-                                    {{ card.links.facebook }}
+                                    {{ card.facebook }}
                                 </div>
                             </div>
                         </div>
@@ -220,7 +203,7 @@
                                     Instagram
                                 </div>
                                 <div class="text-[#61c1b4]">
-                                    {{ card.links.instagram }}
+                                    {{ card.instagram }}
                                 </div>
                             </div>
                         </div>
@@ -233,13 +216,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
-import img1 from '@/assets/images/DispensariesSlidebarImages/Img1.svg';
-import img2 from '@/assets/images/DispensariesSlidebarImages/Img2.svg';
-import img3 from '@/assets/images/DispensariesSlidebarImages/Img3.svg';
-import img4 from '@/assets/images/DispensariesSlidebarImages/Img4.svg';
+import { useApi } from '@/components/api/useApi';
+import router from '@/router';
 
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const isModalVisible = ref(false);
 const openModal = () => {
@@ -255,139 +239,81 @@ const closeModalOnOverlayClick = (event) => {
     }
 };
 const dropdownOpen = ref(false);
+const dropdownContainer = ref(null);
 const toggleDropdown = () => {
     dropdownOpen.value = !dropdownOpen.value;
 };
-const card = ref({});
+
+const handleClickOutside = (event) => {
+    if (dropdownContainer.value && !dropdownContainer.value.contains(event.target)) {
+        dropdownOpen.value = false;
+    }
+};
+
+const card = ref({
+    id: '',
+    name: '',
+    type: '',
+    email: '',
+    phone: '',
+    regNo: '',
+    website: '',
+    image: '',
+});
 const route = useRoute();
+
+const fetchCardDetails = async () => {
+    const cardId = route.params.id;
+    try {
+        const response = await fetch(`${apiUrl}/dispensaries/getMe`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'dispensary-id': cardId
+            }
+        });
+        const { data } = await response.json();
+
+        if (data && data.dispensary) {
+            const dispensary = data.dispensary;
+            card.value = {
+                id: dispensary._id,
+                image: dispensary.image,
+                heading: dispensary.name,
+                regNo: dispensary.regNo,
+                type: dispensary.type,
+                address: dispensary.startLocation.state,
+                address: dispensary.startLocation.city,
+                website: 'https://www.example.com',
+                facebook: 'https://www.example.com',
+                instagram: 'https://www.example.com',
+                time:'9:00 AM - 5:00 PM',
+                daysOfWeek: {
+                    Monday: '9:00 AM - 5:00 PM',
+                    Tuesday: '9:00 AM - 5:00 PM',
+                    Wedensday: '9:00 AM - 5:00 PM',
+                    Thurday: '9:00 AM - 5:00 PM',
+                    Friday: '9:00 AM - 5:00 PM',
+                    Satruday: '9:00 AM - 5:00 PM',
+                    Sunday: '9:00 AM - 5:00 PM',
+                },
+
+            }
+        } else {
+            router.push({ name: 'NotFoundProduct' });
+        }
+    } catch (error) {
+        console.error('Error fetching details:', error)
+    }
+};
 
 onMounted(() => {
     fetchCardDetails();
+    document.addEventListener('click', handleClickOutside);
 });
-
-const fetchCardDetails = () => {
-    const cardId = route.params.id;
-    card.value = getCardById(cardId);
-};
-
-const getCardById = (id) => {
-    const cards = [
-        {
-            id: '1',
-            src: img1,
-            heading: 'Dreadlock & Jetset',
-            time: '10:00 am - 8:00 pm',
-            phone: '123-456-7890',
-            email: 'info@dreadlockandjetset.com',
-            phoneBtn: 'Phone',
-            emailBtn: 'Email',
-            detailBtn: 'Detail',
-            registrationNumber: '12345-ABCDE',
-            address: '643 Mundy St Watertown, New York(NY), 13601',
-            links: {
-                website: 'https://www.dreadlockjetset.com',
-                facebook: 'https://www.facebook.com/dreadlockandjetset',
-                twitter: 'https://twitter.com/dreadlockjetset',
-                instagram: 'https://www.instagram.com/dreadlockjetset'
-            },
-            daysOfWeek: {
-                Monday: '10:00 am - 8:00 pm',
-                Tuesday: '10:00 am - 8:00 pm',
-                Wednesday: '10:00 am - 8:00 pm',
-                Thursday: '10:00 am - 8:00 pm',
-                Friday: '10:00 am - 8:00 pm',
-                Saturday: '10:00 am - 8:00 pm',
-                Sunday: '10:00 am - 8:00 pm'
-            }
-        },
-        {
-            id: '2',
-            src: img2,
-            heading: 'Coffeeshop The Stud',
-            time: '10:00 am - 8:00 pm',
-            phone: '234-567-8901',
-            email: 'info@coffeeshopthestud.com',
-            phoneBtn: 'Phone',
-            emailBtn: 'Email',
-            detailBtn: 'Detail',
-            registrationNumber: '56789-ABCDE',
-            address: '1050 Pittsford Victor Rd Pittsford, New York(NY), 14534',
-            links: {
-                website: 'https://www.coffeeshopthestud.com',
-                facebook: 'https://www.facebook.com/coffeeshopthestud',
-                twitter: 'https://twitter.com/coffeeshopthestud',
-                instagram: 'https://www.instagram.com/coffeeshopthestud'
-            },
-            daysOfWeek: {
-                Monday: '10:00 am - 8:00 pm',
-                Tuesday: '10:00 am - 8:00 pm',
-                Wednesday: '10:00 am - 8:00 pm',
-                Thursday: '10:00 am - 8:00 pm',
-                Friday: '10:00 am - 8:00 pm',
-                Saturday: '10:00 am - 8:00 pm',
-                Sunday: '10:00 am - 8:00 pm'
-            }
-        },
-        {
-            id: '3',
-            src: img3,
-            heading: 'Het Ballonnetje Coffeeshop - Amst...',
-            time: '10:00 am - 8:00 pm',
-            phone: '345-678-9012',
-            email: 'info@hetballonnetje.com',
-            phoneBtn: 'Phone',
-            emailBtn: 'Email',
-            detailBtn: 'Detail',
-            registrationNumber: '901234-ABCDE',
-            address: '11 Tulip Ct Albertson, New York(NY), 11507',
-            links: {
-                website: 'https://www.hetballonnetje.com',
-                facebook: 'https://www.facebook.com/hetballonnetje',
-                twitter: 'https://twitter.com/hetballonnetje',
-                instagram: 'https://www.instagram.com/hetballonnetje'
-            },
-            daysOfWeek: {
-                Monday: '10:00 am - 8:00 pm',
-                Tuesday: '10:00 am - 8:00 pm',
-                Wednesday: '10:00 am - 8:00 pm',
-                Thursday: '10:00 am - 8:00 pm',
-                Friday: '10:00 am - 8:00 pm',
-                Saturday: '10:00 am - 8:00 pm',
-                Sunday: '10:00 am - 8:00 pm'
-            }
-        },
-        {
-            id: '4',
-            src: img4,
-            heading: 'Dreadlock & Jetset',
-            time: '10:00 am - 8:00 pm',
-            phone: '456-789-0123',
-            email: 'info@dreadlockandjetset.com',
-            phoneBtn: 'Phone',
-            emailBtn: 'Email',
-            detailBtn: 'Detail',
-            registrationNumber: '12345-ABCDE',
-            address: '643 Mundy St Watertown, New York(NY), 13601',
-            links: {
-                website: 'https://www.dreadlockjetset.com',
-                facebook: 'https://www.facebook.com/dreadlockandjetset',
-                twitter: 'https://twitter.com/dreadlockjetset',
-                instagram: 'https://www.instagram.com/dreadlockjetset'
-            },
-            daysOfWeek: {
-                Monday: '10:00 am - 8:00 pm',
-                Tuesday: '10:00 am - 8:00 pm',
-                Wednesday: '10:00 am - 8:00 pm',
-                Thursday: '10:00 am - 8:00 pm',
-                Friday: '10:00 am - 8:00 pm',
-                Saturday: '10:00 am - 8:00 pm',
-                Sunday: '10:00 am - 8:00 pm'
-            }
-        }
-    ];
-    return cards.find(card => card.id === id);
-};
-
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <style scoped>

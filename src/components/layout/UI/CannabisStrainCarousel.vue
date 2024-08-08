@@ -89,7 +89,7 @@ import img2 from '@/assets/images/CannabisStrainCarousel/ImgTwo.svg';
 
 const slides = [
     {
-        title: 'Slide 1',
+        id: '1',
         src: img1,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -99,7 +99,7 @@ const slides = [
         options: 'THC 22%   |   CBG 1%',
     },
     {
-        title: 'Slide 2',
+        id: '2',
         src: img2,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -109,7 +109,7 @@ const slides = [
         options: 'THC 22%   |   CBG 1%',
     },
     {
-        title: 'Slide 3',
+        id: '3',
         src: img1,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -119,7 +119,7 @@ const slides = [
         options: 'THC 22%   |   CBG 1%',
     },
     {
-        title: 'Slide 4',
+        id: '4',
         src: img2,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -129,7 +129,7 @@ const slides = [
         options: 'THC 22%   |   CBG 1%',
     },
     {
-        title: 'Slide 5',
+        id: '5',
         src: img1,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -139,7 +139,7 @@ const slides = [
         options: 'THC 22%   |   CBG 1%',
     },
     {
-        title: 'Slide 6',
+        id: '6',
         src: img2,
         button: 'Hybrid',
         heading: 'Lorem Ipsum',
@@ -148,9 +148,6 @@ const slides = [
         ratingQty: '(120)',
         options: 'THC 22%   |   CBG 1%',
     },
-
-
-
 ]
 
 export default {

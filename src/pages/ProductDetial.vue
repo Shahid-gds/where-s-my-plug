@@ -4,134 +4,169 @@
             <div class="container mx-auto py-[12rem] text-center">
             </div>
 
-        <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
-            <div class="lg:flex items-center lg:space-x-16 justify-center w-full p-4 rounded-xl">
-                <!-- main image -->
-                <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
-                    <!-- previous button -->
-                    <div  v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
-                        @click="prevImage">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
-                    </div>
-                    <div class="">
-                        <img class="w-full" v-if="mainImage" :src="mainImage" alt="Product image">
-                    </div>
-                    <!-- next button -->
-                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150" :style="{ backgroundColor: card.backgroundColor }"
-                        @click="nextImage">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="lg:hidden py-[2rem]">
-                    <div class="flex space-x-4">
-                        <!-- Related images -->
-                        <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
-                            :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center sm:w-[10%] w-[30%] sm:h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
-                            @click="updateMainImage(image)">
-                            <img class="w-[100%]" :src="image" alt="Product image">
+            <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
+                <div class="lg:flex items-center lg:space-x-16 justify-center w-full p-4 rounded-xl">
+                    <!-- main image -->
+                    <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
+                        <!-- previous button -->
+                        <div class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                            :style="{ backgroundColor: card.backgroundColor }" @click="prevImage">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                            </svg>
                         </div>
-                    </div>
-                </div>
-                <div class="w-full">
-                    <div class="flex justify-between items-center pb-1">
-                        <div class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">
-                            {{ card.heading }}
+                        <div class="">
+                            <img class="w-full h-[300px]" v-if="mainImage" :src="mainImage" alt="Product image">
                         </div>
-                        <div class="p-2 text-white rounded-full px-6"
-                            :style="{ backgroundColor: card.backgroundColor }">
-                            {{ card.type }}
+                        <!-- next button -->
+                        <div class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                            :style="{ backgroundColor: card.backgroundColor }" @click="nextImage">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
                         </div>
-                    </div>
-                    <div class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold] relative">{{
-                            card.subHeading }}
-                    </div>
-                    <div class="py-6">
-                        <span class="text-[#010101]  text-[20px]font-[Jost-ExtraBold]">$</span>
-                        <span class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold]">
-                            {{ card.price }}
-                        </span>
-                    </div>
-                    <div class="font-[Jost-SemiBold] pb-2">
-                        <span>Size: </span>
-                        <div class="text-2xl font-bold">
-                            {{ card.weight }}
-                        </div>
-                    </div>
-
-                    <div class="py-4">
-                        <button @click="addToCart" :disabled="!isLoggedIn"
-                            class="bg-[#61c1b4] p-3 rounded-lg px-16 text-white font-[Bold]" :style="{ backgroundColor: card.backgroundColor }">Add to
-                            cart</button>
-                    </div>
-                    <div v-if="!isLoggedIn">
-                        To place an order online, you'll need to <router-link :to="{ name: 'Sign-In' }"
-                            class="text-red-500 font-bold">Login</router-link> or
-                        <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
-                            account.</router-link>
-                    </div>
-                </div>
-                <div class="w-full">
-                    <div class="">
-                        <div class="pb-5">
-                            <h1 class="sm:text-xl">THC</h1>
-                            <p class="sm:text-2xl font-[Bold]">{{ card.thc }}</p>
-                        </div>
-                        <div class="pb-5">
-                            <h1 class="sm:text-xl">CBN</h1>
-                            <p class="font-[Bold] sm:text-2xl">{{ card.cbn }}</p>
-                        </div>
-                        <div class="pb-5 lg:h-[250px] relative">
-                            <div class="flex justify-between">
-                                <div>
-                                    <h1 class="font-[Bold] text-xl">Product Detail</h1>
-                                </div>
-                                <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote" :style="{ borderColor: card.borderColor }">
-                                    <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none" 
-                                        viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor" class="size-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" :stroke="card.borderColor" class="size-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                    </svg>
+                        <div class="lg:block hidden absolute -bottom-[8rem]">
+                            <div class="flex space-x-4">
+                                <!-- Related images -->
+                                <div v-if="card.relatedImages.length > 1" v-for="(image, index) in card.relatedImages"
+                                    :key="index"
+                                    :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[30%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
+                                    @click="updateMainImage(image)">
+                                    <img class="w-[100%]" :src="image" alt="Product image">
                                 </div>
                             </div>
-                            <transition-group name="nested" tag="div">
-                                <p v-if="isNoteVisible">{{ card.note }}</p>
-                            </transition-group>
+                        </div>
+                    </div>
+                    <div class="lg:hidden py-[2rem]">
+                        <div class="flex space-x-4">
+                            <!-- Related images -->
+                            <div v-if="card.relatedImages.length > 1" v-for="(image, index) in card.relatedImages"
+                                :key="index"
+                                :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center sm:w-[10%] w-[30%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
+                                @click="updateMainImage(image)">
+                                <img class="w-[100%]" :src="image" alt="Product image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between items-center pb-1">
+                            <div class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">
+                                {{ card.heading }}
+                            </div>
+                            <div class="p-2 text-white rounded-full px-6"
+                                :style="{ backgroundColor: card.backgroundColor }">
+                                {{ card.type }}
+                            </div>
+                        </div>
+                        <div class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold] relative">{{
+                                card.subHeading }}
+                        </div>
+                        <div class="">
+                            <span class="text-[#010101]  text-[20px]font-[Jost-ExtraBold]">$</span>
+                            <span class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold]">
+                                {{ card.price }}
+                            </span>
+                        </div>
+                        <div class="font-[Jost-SemiBold] pb-2">
+                            <span>Size: </span>
+                            <div class="text-2xl font-bold">
+                                {{ card.weight }}
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <!-- Flavours Section -->
+                            <div v-if="card.flavours && card.flavours.length" class="pb-5">
+                                <h1 class="sm:text-xl">Flavours</h1>
+                                <div class="flex flex-wrap gap-2">
+                                    <div :style="{ borderColor: card.borderColor }"
+                                        v-for="(flavour, index) in card.flavours" :key="index"
+                                        class="border-2 border-gray-300 rounded-lg px-3 py-1 bg-white">
+                                        {{ flavour }}
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Effects Section -->
+                            <div v-if="card.effects && card.effects.length" class="pb-5">
+                                <h1 class="sm:text-xl">Effects</h1>
+                                <div class="flex flex-wrap gap-2">
+                                    <div :style="{ borderColor: card.borderColor }"
+                                        v-for="(effect, index) in card.effects" :key="index"
+                                        class="border-2 border-gray-300 rounded-lg px-3 py-1 bg-white">
+                                        {{ effect }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="pb-4">
+                            <button @click="addToCart" :disabled="!isLoggedIn"
+                                class="p-3 rounded-lg px-16 text-white font-[Bold]"
+                                :style="{ backgroundColor: card.backgroundColor }">Add to
+                                cart</button>
+                        </div>
+                        <div v-if="!isLoggedIn">
+                            To place an order online, you'll need to <router-link :to="{ name: 'Sign-In' }"
+                                class="text-red-500 font-bold">Login</router-link> or
+                            <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
+                                account.</router-link>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="">
+                            <div class="pb-5">
+                                <h1 class="sm:text-xl">THC</h1>
+                                <p class="sm:text-2xl font-[Bold]">{{ card.thc }}</p>
+                            </div>
+                            <div class="pb-5">
+                                <h1 class="sm:text-xl">CBN</h1>
+                                <p class="font-[Bold] sm:text-2xl">{{ card.cbn }}</p>
+                            </div>
+                            <div class="pb-5 lg:h-[250px] relative">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <h1 class="font-[Bold] text-xl">Product Detail</h1>
+                                    </div>
+                                    <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote"
+                                        :style="{ borderColor: card.borderColor }">
+                                        <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor"
+                                            class="size-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" :stroke="card.borderColor" class="size-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <transition-group name="nested" tag="div">
+                                    <p v-if="isNoteVisible">{{ card.note }}</p>
+                                </transition-group>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="lg:block hidden">
-                <div class="flex space-x-4">
-                    <!-- Related images -->
-                    <div v-if="card.heading === 'Flower' || card.heading === 'Cartridges' || card.heading === 'Terpenes'" v-for="(image, index) in card.relatedImages" :key="index"
-                        :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[10%] h-[10%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
-                        @click="updateMainImage(image)">
-                        <img class="w-[100%]" :src="image" alt="Product image">
-                    </div>
-                </div>
+
             </div>
         </div>
-    </div>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, effect } from 'vue';
 import { useCartStore } from '@/stores/modules/cart';
 import { useRoute, useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
 
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const cartStore = useCartStore();
 
@@ -161,42 +196,73 @@ const addToCart = () => {
     cartStore.addToCart(card.value);
 }
 
-const card = ref({});
+const card = ref({
+    id: '',
+    heading: '',
+    backgroundColor: '',
+    borderColor: '',
+    subHeading: '',
+    price: '',
+    weight: '',
+    type: '',
+    thc: '',
+    cbd: '',
+    note: '',
+    relatedImages: [],
+    flavours: [],
+    effects: [],
+});
 const mainImage = ref(null);
 const route = useRoute();
 const router = useRouter();
 
+
+const typeColorMap = {
+    'Indica': '#126CAB',
+    'Sativa': '#EBB22D',
+    'Hybrid': '#42BC97',
+}
+
 const fetchCardDetails = async () => {
     const cardId = route.params.id;
     try {
-        const cardData = await getCardById(cardId);
-        if (cardData) {
-            // Resolve promises for images
-            const img1 = await cardData.img1;
-            const img2 = await cardData.img2;
-            const img3 = await cardData.img3;
-            const img4 = await cardData.img4;
+        const response = await fetch(`${apiUrl}/products/getMe`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'product-id': cardId
+            }
+        });
+        const { data } = await response.json();
 
-            // Assign resolved image URLs to card.value
+        if (data && data.product) {
+            const product = data.product;
+            const backgroundColor = typeColorMap[product.type]
+            const borderColor = typeColorMap[product.type]
             card.value = {
-                ...cardData,
-                relatedImages: [
-                    img1,
-                    img2,
-                    img3,
-                    img4,
-                ].filter(img => img),
+                id: product._id,
+                heading: product.category,
+                backgroundColor,
+                borderColor,
+                subHeading: product.name,
+                price: product.price.toFixed(2),
+                weight: product.quantity + ' units',
+                type: product.type,
+                thc: product.thc,
+                cbd: product.cbd,
+                note: product.description,
+                relatedImages: product.images,
+                flavours: product.flavours || [],
+                effects: product.effects || []
             };
             mainImage.value = card.value.relatedImages[0];
         } else {
-            scrollToTop();
             router.push({ name: 'NotFoundProduct' });
         }
     } catch (error) {
-        console.error('Error fetching card details:', error);
+        console.error('Error fetching details:', error)
     }
-};
-
+}
 
 const isNoteVisible = ref(false);
 
@@ -204,100 +270,6 @@ const toggleNote = () => {
     isNoteVisible.value = !isNoteVisible.value;
 };
 
-const getCardById = async (id) => {
-    const cards = [
-        {
-            id: '1',
-            img1: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
-            img2: import('@/assets/images/ProductsCategories/Img2.svg').then(module => module.default),
-            img3: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
-            heading: 'Flower',
-            backgroundColor: '#61c1b4',
-            borderColor: '#61c1b4',
-            subHeading: 'Yoda Candy THCa Flower',
-            price: '25.99',
-            weight: '20ct',
-            type: 'Hybrid',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-        {
-            id: '2',
-            img1: import('@/assets/images/ProductsCategories/Img2.svg').then(module => module.default),
-            img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
-            heading: 'Cartridges',
-            backgroundColor: '#ebb22d',
-            borderColor: '#ebb22d',
-            subHeading: 'Cookie Milk D8+THCP Vape Cart',
-            price: '25.99',
-            weight: '20ct',
-            type: 'CBD',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-        {
-            id: '3',
-            img1: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
-            heading: 'Pre-rolls',
-            backgroundColor: '#61c1b4',
-            borderColor: '#ebb22d',
-            subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
-            price: '25.99',
-            weight: '20ct',
-            type: 'Hybrid',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-        {
-            id: '4',
-            img1: import('@/assets/images/ProductsCategories/Img4.svg').then(module => module.default),
-            img2: import('@/assets/images/ProductsCategories/Img3.svg').then(module => module.default),
-            heading: 'Terpenes',
-            backgroundColor: '#61c1b4',
-            borderColor: '#ebb22d',
-            subHeading: 'Sour Haze Live Resin Terpene',
-            price: '25.99',
-            weight: '20ct',
-            type: 'Hybrid',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-        {
-            id: '5',
-            img1: import('@/assets/images/ProductsCategories/Img5.svg').then(module => module.default),
-            heading: 'Vape Pens',
-            backgroundColor: '#ebb22d',
-            borderColor: '#ebb22d',
-            subHeading: 'MAC 2ml THCa Sauce Vape Pen',
-            price: '25.99',
-            weight: '20ct',
-            type: 'Indica',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-        {
-            id: '6',
-            img1: import('@/assets/images/ProductsCategories/Img6.svg').then(module => module.default),
-            img2: import('@/assets/images/ProductsCategories/Img1.svg').then(module => module.default),
-            heading: 'Cartridges',
-            backgroundColor: '#61c1b4',
-            borderColor: '#ebb22d',
-            subHeading: 'Yoda Candy THCa Flower',
-            price: '25.99',
-            weight: '20ct',
-            type: 'Hybrid',
-            thc: '100mg (5mg each)',
-            cbn: '20mg (1mg each)',
-            note: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing'
-        },
-    ];
-    return cards.find(card => card.id === id);
-};
 
 let currentImageIndex = ref(0);
 
@@ -327,6 +299,7 @@ const scrollToTop = () => {
         behavior: 'smooth'
     });
 };
+
 </script>
 
 <style scoped>

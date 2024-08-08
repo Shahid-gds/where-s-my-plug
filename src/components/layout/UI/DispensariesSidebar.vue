@@ -29,64 +29,42 @@
                     :class="{ 'border-b-2': index !== cards.length - 1 }"
                     class="rounded-2xl p-3 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                     <div class="flex space-x-4">
-                        <div class="border-2 h-[80px] p-3 rounded-xl">
-                            <img class="w-full" :src="card.src" alt="">
+                        <div class="w-1/2 border-2 rounded-xl">
+                            <img class="w-full" :src="card.image" alt="">
                         </div>
                         <div class="w-full">
-                            <div class="flex items-center space-x-3">
+                            <div class="py-2 font-[Bold]">
+                                {{ card.name }}
+                            </div>
+                            <div class="text-[#A5A5A5] flex space-x-3 items-center">
+                                <div>{{ card.type }}</div>
+                                <div class="w-2 h-2 bg-[#A5A5A5] rounded-full"></div>
+                                <div>{{ card.optionsTwo }}</div>
+                            </div>
+                            <div class="flex items-center space-x-5 pb-4">
                                 <div class="flex">
-                                    <div class="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                    <div v-for="n in 5" :key="n" class="w-[24px]">
+                                        <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
+                                            <path
+                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
                                         </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                        <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="w-5 h-5">
+                                            <path
+                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
                                         </svg>
                                     </div>
                                 </div>
                                 <div class="flex space-x-2">
-                                    <div class="text-[#444444] font-[poppin-bold]">
-                                        {{ card.rating }}
+                                    <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
+                                        {{ card.ratingsAverage }}
                                     </div>
-                                    <div class="text-[#76c9be] font-[poppin-bold]">
-                                        {{ card.ratingQty }}
+                                    <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
+                                        ({{ card.ratingsQuantity }})
                                     </div>
                                 </div>
-                            </div>
-                            <div class="py-2 font-[Bold]">
-                                {{ card.heading }}
-                            </div>
-                            <div class="text-[#A5A5A5] flex space-x-3 items-center">
-                                <div>{{ card.optionsOne }}</div>
-                                <div class="w-2 h-2 bg-[#A5A5A5] rounded-full"></div>
-                                <div>{{ card.optionsTwo }}</div>
                             </div>
                             <div>
                                 {{ card.paragraph }}
@@ -101,7 +79,7 @@
                                         </svg>
                                     </div>
                                     <div class="font-bold">
-                                        {{ card.distence }}
+                                        <h1>2.4 miles away</h1>
                                     </div>
                                 </div>
                                 <div class="rounded-full">
@@ -268,15 +246,19 @@
 
 <script setup>
 import { ref, onMounted, computed, TransitionGroup } from 'vue';
-import img1 from '@/assets/images/DispensariesSlidebarImages/Img1.svg';
-import img2 from '@/assets/images/DispensariesSlidebarImages/Img2.svg';
-import img3 from '@/assets/images/DispensariesSlidebarImages/Img3.svg';
-import img4 from '@/assets/images/DispensariesSlidebarImages/Img4.svg';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+import { useApi } from '@/components/api/useApi';
+import axios from 'axios';
+
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
+const cards = ref([]);
 
 const navigateToDetails = (id) => {
-    scrollToTop();
+    localStorage.setItem('dispensaryId', id);
     router.push({ name: 'ShopDetail', params: { id } });
 };
 const closeSideMenuOutside = () => {
@@ -290,141 +272,16 @@ const sortingOptions = {
     price: (a, b) => a.price.localeCompare(b.price),
     rating: (a, b) => b.rating - a.rating,
 };
-const cards = ref([
-    {
-        id: '1',
-        src: img1,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '2',
-        src: img2,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Coffeeshop The Stud',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '3',
-        src: img3,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Het Ballonnetje Coffeeshop - Amst...',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '4',
-        src: img4,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '5',
-        src: img1,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Coffeeshop The Stud',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '6',
-        src: img2,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '7',
-        src: img1,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '8',
-        src: img2,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Coffeeshop The Stud',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '9',
-        src: img3,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Het Ballonnetje Coffeeshop - Amst...',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '10',
-        src: img4,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '11',
-        src: img1,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Coffeeshop The Stud',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
-    {
-        id: '12',
-        src: img2,
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Dreadlock & Jetset',
-        optionsOne: 'Dispensary',
-        optionsTwo: 'Recreational',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        distence: '2.4 miles away'
-    },
 
-]);
+onMounted(async () => {
+    try {
+        const response = await axios.get(`${apiUrl}/dispensaries/getAllDispensaries`);
+        cards.value = response.data.data.dispensaries;
+    } catch (error) {
+        console.error("Failed to fetch data:", error)
+    }
+})
+
 const cardDetial = ref([
     {
         phone: 'Phone',

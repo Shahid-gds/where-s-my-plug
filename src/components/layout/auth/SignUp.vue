@@ -337,7 +337,7 @@ const signup = async () => {
 
     try {
         processing.value = true;
-        const response = await axios.post(`${apiUrl}/signup`, {
+        const response = await axios.post(`${apiUrl}/users/signup`, {
             name: name.value,
             email: email.value,
             password: password.value,

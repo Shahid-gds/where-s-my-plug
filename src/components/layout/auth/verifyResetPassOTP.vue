@@ -188,7 +188,7 @@ const verifyOTP = async () => {
     }
 
     try {
-        const response = await axios.post(`${apiUrl}/verifyOTP`, {
+        const response = await axios.post(`${apiUrl}/users/verifyOTP`, {
             otp: codeValue,
         }, {
             headers: {

@@ -428,7 +428,7 @@ const getUserData = async () => {
         'Content-Type': 'application/json'
     };
     try {
-        const response = await axios.get(`${apiUrl}/me`,
+        const response = await axios.get(`${apiUrl}/users/me`,
             { headers });
 
         const getUser = response.data.data.data;
@@ -469,7 +469,7 @@ const updateUser = async () => {
             address: userData.address
         };
 
-        const response = await axios.patch(`${apiUrl}/updateMe`, updatedData, { headers });
+        const response = await axios.patch(`${apiUrl}/users/updateMe`, updatedData, { headers });
         console.log('User updated:', response.data);
 
         // Hide editing fields after successful update

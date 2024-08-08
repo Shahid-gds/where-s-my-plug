@@ -69,7 +69,7 @@ const router = createRouter({
       component: () => import("../pages/Dispensaries.vue"),
     },
     {
-      path: "/dispensaries-detail:id",
+      path: "/dispensary/:id",
       name: "ShopDetail",
       meta: { layout: "Default" },
       component: () => import("../pages/ShopDetail.vue"),
@@ -156,7 +156,7 @@ const router = createRouter({
       component: () => import("../pages/Strains.vue"),
     },
     {
-      path: "/strain-prouduct:id",
+      path: "/strains/:id",
       name: "StrainsProduct",
       meta: { layout: "Default" },
       component: () => import("../pages/StrainProductDetail.vue"),

@@ -223,7 +223,7 @@ const resetPassword = async () => {
 
     try {
         processing.value = true;
-        const response = await axios.patch(`${apiUrl}/resetPassword`, {
+        const response = await axios.patch(`${apiUrl}/users/resetPassword`, {
             password: password.value,
             passwordConfirm: passwordConfirm.value,
         }, {

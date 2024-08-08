@@ -157,80 +157,59 @@
                 </div>
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
-                <div v-for="card in filteredCards" :key="card.image"  @click="navigateToDetails(card.id)"
+                <div v-for="card in filteredCards" :key="card._id"  @click="navigateToDetails(card._id)"
                     class="md:w-[385px] w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
-                    <div class="flex space-x-4">
-                        <div class="">
-                            <img class="w-full" :src="card.src" alt="">
+                        <div class="w-full border-2 p-4 rounded-xl flex justify-center">
+                            <img class="w-1/2" :src="card.images[0]" alt="">
                         </div>
-                        <div class="w-full">
-                            <div class="border-2 w-1/2 p-2 rounded-full text-[#B4B4B4] text-center">
-                                {{ card.button }}
+                        <div class="w-full pt-3">
+                            <div class="border-2 w-full p-2 rounded-full text-[#B4B4B4] text-center">
+                                {{ card.type }}
                             </div>
                             <div class="py-2">
-                                {{ card.options }}
+                                <span>Weight:</span> <span class="font-bold">{{ card.weight }}</span>
                             </div>
-                            <div class="flex justify-between space-x-3">
+                            <div class="flex items-center space-x-5 pb-4">
                                 <div class="flex">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                    <div v-for="n in 5" :key="n" class="w-[24px]">
+                                        <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
+                                            <path
+                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
                                         </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                        <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="w-5 h-5">
+                                            <path
+                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
                                         </svg>
                                     </div>
                                 </div>
                                 <div class="flex space-x-2">
                                     <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
-                                        {{ card.rating }}
+                                        {{ card.ratingsAverage }}
                                     </div>
                                     <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
-                                        {{ card.ratingQty }}
+                                        ({{ card.ratingsQuantity }})
                                     </div>
                                 </div>
                             </div>
                             <div class="py-2 font-[Extra-Bold]">
-                                {{ card.heading }}
+                                {{ card.name }}
                             </div>
-                            <div>
-                                {{ card.paragraph }}
+                            <div class="description-container">
+                                <p :class="{ 'expanded': card.expanded, 'collapsed': !card.expanded }">
+                                    {{ card.description }}
+                                </p>
+                                <button @click="toggleDescription(card._id)" class="float-right pt-6 font-bold">
+                                    {{ card.expanded ? '' : 'Read More...' }}
+                                </button>
                             </div>
-                            <div>
-                                {{ card.startingAt }}
-                            </div>
+                            
                             <div class="pt-4 font-[Extra-Bold] text-[20px]">
-                                {{ card.price }}
+                                <span>$</span>{{ card.price }}
                             </div>
                         </div>
-                    </div>
                 </div>
             </transition-group>
             <div class="container mx-auto flex justify-end mt-5 px-[3rem]">
@@ -384,14 +363,20 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
+import axios from 'axios';
+
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
 
 const route = useRoute();
 const router = useRouter();
 
-import img1 from '@/assets/images/CannabisStrainCarousel/ImgOne.svg';
-import img2 from '@/assets/images/CannabisStrainCarousel/ImgTwo.svg';
-const strainTypes = ref(['Hybrid Strains', 'Indica Strains', 'Sativa Strains']);
-const selectedStrainTypes = ref([strainTypes.value[0]]);
+const strainTypes = ref(['Hybrid', 'Indica', 'Sativa']);
+const selectedStrainTypes = ref([]);
+
 const closeSideMenuOutside = () => {
     isSideMenuOpen.value = false;
 };
@@ -403,11 +388,11 @@ const showStrainTypeCheckboxArea = ref(true);
 function toggleStrainType() {
     showStrainTypeCheckboxArea.value = !showStrainTypeCheckboxArea.value;
 }
-const effects = ref(['Aroused', 'Creative', 'Energetic', 'Focused', 'Giggly', 'Happy', 'Hungry', 'Relaxed', 'Sleepy', 'Talkative', 'Tingly', 'Uplifted']);
-const selectedEffects = ref([effects.value[0]]);
+const effects = ref(['Focused', 'Creative', 'Euphoric', 'Relaxed']);
+const selectedEffects = ref([]);
 
 const flavors = ref(['Ammonia', 'Apple', 'Apricot', 'Berry', 'Blue Cheese', 'Blackberry', 'Cheese', 'Chemical', 'Chestnut', 'Citrus', 'Coffee', 'Diesel', 'Earthy', 'Flowery', 'Grape', 'Grapefruit', 'Honey', 'Lavender', 'Lemon', 'Lime', 'Mango', 'Mint', 'Nutty', 'Orange', 'Peach', 'Pear', 'Pepper', 'Pine', 'Pineapple', 'Plum', 'Pungent', 'Rose', 'Sage', 'Skunk', 'Spicy/Herbal', 'Strawberry', 'Sweet', 'Tar', 'Tea', 'Tobacco', 'Tree Fruit', 'Tropical', 'Vanilla', 'Woody']);
-const selectedFlavors = ref([flavors.value[0]]);
+const selectedFlavors = ref([]);
 
 const showEffectsCheckboxArea = ref(true);
 const showFlavorsCheckboxArea = ref(true);
@@ -423,11 +408,11 @@ const checkedCheckbox = ref(null);
 function handleCheckboxClick(event) {
     const targetCheckbox = event.target;
 
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        if (checkbox !== targetCheckbox) {
-            checkbox.checked = false;
-        }
-    });
+    // document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    //     if (checkbox !== targetCheckbox) {
+    //         checkbox.checked = false;
+    //     }
+    // });
 
     checkedCheckbox.value = targetCheckbox;
 }
@@ -437,196 +422,29 @@ const navigateToDetails = (id) => {
     router.push({ name: 'StrainsProduct', params: { id } });
 }
 
-const cards = ref([
-    {
-        id: '1',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Banana Cream Cake',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '2',
-        src: img1,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Platinum Kush Breath',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '3',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Oreoz',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '4',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Banana Cream Cake',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '5',
-        src: img1,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Platinum Kush Breath',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '6',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Oreoz',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '7',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Banana Cream Cake',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '8',
-        src: img1,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Platinum Kush Breath',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '9',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Oreoz',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '10',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Banana Cream Cake',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '11',
-        src: img1,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Platinum Kush Breath',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '12',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Oreoz',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '13',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Banana Cream Cake',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '14',
-        src: img1,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Platinum Kush Breath',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-    {
-        id: '15',
-        src: img2,
-        button: 'Hybrid',
-        options: 'THC 22%   |   CBG 1%',
-        rating: '5.0',
-        ratingQty: '(120)',
-        heading: 'Oreoz',
-        paragraph: 'Lorem ipsum dolor sit amet...',
-        startingAt: ' 1/8 oz. starting at',
-        price: '$35.00'
-    },
-]);
+const cards = ref([]);
+
+onMounted(async () => {
+    try {
+        const response = await axios.get(`${apiUrl}/strains/getAllStrains`);
+        cards.value = response.data.data.strains;
+    } catch (error) {
+        console.error("Failed to fetch data:", error)
+    }
+})
 
 const searchQuery = ref('');
 
 const filteredCards = computed(() => {
-    if (!searchQuery.value) return paginationCard.value;
-    const query = searchQuery.value.toLowerCase();
-    return paginationCard.value.filter(card => card.heading.toLowerCase().includes(query));
+  return cards.value.filter(card => {
+    const matchesSearch = card.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+    const matchesType = selectedStrainTypes.value.length === 0 || selectedStrainTypes.value.includes(card.type);
+    const matchesEffect = selectedEffects.value.length === 0 || card.effects.some(effect => selectedEffects.value.includes(effect));
+
+    return matchesSearch && matchesType && matchesEffect;
+  });
 });
+
 // Define number of cards per page
 const cardsPerPage = 24;
 
@@ -664,6 +482,20 @@ const scrollToTop = () => {
 </script>
 
 <style scoped>
+.description-container {
+    position: relative;
+}
+
+.description-container p {
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.description-container p.expanded {
+    max-height: 100em;
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s;

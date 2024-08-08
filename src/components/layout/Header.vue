@@ -131,7 +131,7 @@
                         <!-- <div v-if="isAccountToggleShow" @click="accontToggleShow" class="fixed inset-0 z-10 opacity-25">
                         </div> -->
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                            class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
+                            class="hover-btn w-[55px] h-[55px] rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl" alt="">
                         </div>
                         <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
@@ -141,7 +141,7 @@
                         <div v-if="isAccountToggleShow"
                             class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                             <div class="flex items-center space-x-4 pb-4">
-                                <div v-if="userData.profilePhotoUrl" class="bg-[#61c1b4] w-[55px] rounded-full">
+                                <div v-if="userData.profilePhotoUrl" class="bg-[#61c1b4] w-[50px]  h-[40px] rounded-full">
                                     <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl"
                                         alt="">
                                 </div>
@@ -218,13 +218,6 @@
                             </div>
                         </div>
                     </div>
-                    <div :class="{ 'show-search': isSearchVisible, 'hide-search': !isSearchVisible }"
-                        class="absolute right-[9rem] flex space-x-3" v-if="isSearchVisible">
-                        <input type="search" placeholder="Search..."
-                            class="border border-gray-300 p-3 px-6 rounded-xl relative">
-                        <button @click="hideSearchInput"
-                            class="bg-[#61c1b4] rounded-full py-0.5 w-6 h-6 absolute -right-2 -top-2 text-white font-bold">&#x2715;</button>
-                    </div>
                 </div>
 
             </nav>
@@ -253,7 +246,7 @@
                     <img class="w-full h-full rounded-full object-cover" src="../icons/user.svg">
                 </div>
                 <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                    class="flex hover-btn w-[55px] rounded-full cursor-pointer">
+                    class="flex hover-btn w-[55px] h-[55px] rounded-full cursor-pointer">
                     <img class="rounded-full" :src="userData.profilePhotoUrl" alt="">
                 </div>
 
@@ -279,7 +272,7 @@
                     class="submenu w-[312px] absolute right-0 sm:top-20 top-12 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                     <div class="flex items-center space-x-4 pb-4">
                         <div v-if="userData.profilePhotoUrl" @click="accontToggleShow"
-                            class="hover-btn w-[55px] mt-2 rounded-full cursor-pointer">
+                            class="hover-btn w-[55px] h-[45px] rounded-full cursor-pointer">
                             <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl" alt="">
                         </div>
                         <div v-if="!userData.profilePhotoUrl" @click="accontToggleShow"
@@ -407,6 +400,7 @@
 
 <script setup>
 import { useCartStore } from '@/stores/modules/cart';
+import Cookies from 'js-cookie';
 import router from '@/router';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
@@ -414,6 +408,7 @@ import { ref, computed, reactive, onMounted } from 'vue';
 import locationsModal from '@/components/layout/UI/popupModels/locationsModal.vue';
 import megaSearch from '@/components/layout/UI/popupModels/megaSearch.vue';
 import { useApi } from '../api/useApi';
+import { logoutApi } from '@/stores/modules/authStore';
 
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
@@ -457,7 +452,7 @@ const getUserData = async () => {
         'Content-Type': 'application/json'
     };
     try {
-        const response = await axios.get(`${apiUrl}/me`,
+        const response = await axios.get(`${apiUrl}/users/me`,
             { headers });
 
         const getUser = response.data.data.data;
@@ -516,10 +511,17 @@ const accontToggleShow = () => {
     }
 }
 
-const signOut = () => {
-    eraseCookie('userEmail');
-    eraseCookie('userId');
-    router.push('/sign-in');
+const signOut = async () => {
+    try {
+        await logoutApi();
+
+        Cookies.remove('userEmail');
+        Cookies.remove('userId');
+
+        router.push({name: 'Sign-In'})
+    } catch (error){
+        console.error('Error during logout', error);
+    }
 }
 const isBusinessAccount = ref(false);
 const greeting = computed(() => {
@@ -531,7 +533,6 @@ const accountText = computed(() => {
 const handleClick = () => {
     scrollToTop();
     isAccountToggleShow.value = false;
-    isSearchVisible.value = false;
 };
 const scrollToTop = () => {
     window.scrollTo({
@@ -599,13 +600,11 @@ const isDispensariesRoute = computed(() => route.name === 'Dispensaries' || rout
 .show-search {
     animation: slideIn 0.3s ease forwards;
     transition: opacity 0.5s ease;
-    /* Add transition property */
 }
 
 .hide-search {
     animation: slideOut 0.3s ease forwards;
     transition: opacity 0.5s ease;
-    /* Add transition property */
 }
 
 @keyframes slideIn {

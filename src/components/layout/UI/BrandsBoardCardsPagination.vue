@@ -113,7 +113,7 @@ const props = defineProps({
 const cards = ref([
     {
         id: '1',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
         heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -121,7 +121,7 @@ const cards = ref([
     },
     {
         id: '2',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -129,7 +129,7 @@ const cards = ref([
     },
     {
         id: '3',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -137,7 +137,7 @@ const cards = ref([
     },
     {
         id: '4',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -145,7 +145,7 @@ const cards = ref([
     },
     {
         id: '5',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
         heading: 'Dixie Brands',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -153,7 +153,7 @@ const cards = ref([
     },
     {
         id: '6',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -161,7 +161,7 @@ const cards = ref([
     },
     {
         id: '7',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
         heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -169,7 +169,7 @@ const cards = ref([
     },
     {
         id: '8',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -177,7 +177,7 @@ const cards = ref([
     },
     {
         id: '9',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -185,7 +185,7 @@ const cards = ref([
     },
     {
         id: '10',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -193,7 +193,7 @@ const cards = ref([
     },
     {
         id: '11',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
         heading: 'Dixie Brands',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -201,7 +201,7 @@ const cards = ref([
     },
     {
         id: '12',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -209,7 +209,7 @@ const cards = ref([
     },
     {
         id: '13',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
         heading: 'Dixie Brands',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -217,7 +217,7 @@ const cards = ref([
     },
     {
         id: '14',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -225,7 +225,7 @@ const cards = ref([
     },
     {
         id: '15',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
         heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -233,7 +233,7 @@ const cards = ref([
     },
     {
         id: '16',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -241,7 +241,7 @@ const cards = ref([
     },
     {
         id: '17',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
         heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -249,7 +249,7 @@ const cards = ref([
     },
     {
         id: '18',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -257,7 +257,7 @@ const cards = ref([
     },
     {
         id: '19',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
         heading: 'Dixie Brands',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -265,7 +265,7 @@ const cards = ref([
     },
     {
         id: '20',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -273,7 +273,7 @@ const cards = ref([
     },
     {
         id: '21',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -281,7 +281,7 @@ const cards = ref([
     },
     {
         id: '22',
-        image: import('../../../assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -289,7 +289,7 @@ const cards = ref([
     },
     {
         id: '23',
-        image: import('../../../assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
         heading: 'Dime Industries',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -297,7 +297,7 @@ const cards = ref([
     },
     {
         id: '24',
-        image: import('../../../assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
         heading: 'Dixie Brands',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -305,7 +305,7 @@ const cards = ref([
     },
     {
         id: '25',
-        image: import('../../../assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
         heading: 'DRiP',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -313,7 +313,7 @@ const cards = ref([
     },
     {
         id: '26',
-        image: import('../../../assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
         heading: 'Cartel Oil Co',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',
@@ -321,7 +321,7 @@ const cards = ref([
     },
     {
         id: '27',
-        image: import('../../../assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
+        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
         heading: 'Element',
         paragraph: 'Lorem ipsum dolor sit amet,',
         rating: '5.0',

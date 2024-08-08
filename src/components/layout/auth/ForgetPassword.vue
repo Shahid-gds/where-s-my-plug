@@ -96,7 +96,7 @@ const forgotPassword = async () => {
     }
     try {
         processing.value = true;
-        const response = await axios.post(`${apiUrl}/forgotPassword`, {
+        const response = await axios.post(`${apiUrl}/users/forgotPassword`, {
             email: email.value
         }, {
             headers: {

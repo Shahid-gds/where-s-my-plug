@@ -5,7 +5,7 @@
                 <div class="w-full 2xl:flex">
                     <div class="px-6">
                         <div class="w-full">
-                            <img src="../../assets/images/footerLogo.svg" alt="">
+                            <img src="@/assets/images/footerLogo.svg" alt="">
                         </div>
                         <div class="text-[#000000] mt-[2rem] font-bold">
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -352,7 +352,7 @@ const scrollToTop = () => {
 <style scoped>
 .top-footer,
 .buttom-footer {
-    background-image: url('../../assets/images/bgs/FooterBg.svg');
+    background-image: url('@/assets/images/bgs/FooterBg.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

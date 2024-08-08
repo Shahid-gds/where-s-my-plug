@@ -24,8 +24,8 @@
                         <div class="flex space-x-10 items-center">
                             <div class="w-full">
                                 <div class="">
-                                    <span class="font-[Extra-Bold] text-[#A5A5A5]">Posted by:</span> <span class="">{{
-            card.postedBy }}</span>
+                                    <span class="font-[Extra-Bold] text-[#A5A5A5]">Posted by:</span> 
+                                    <span class="">{{ card.postedBy }}</span>
                                 </div>
                                 <div class="py-2 font-[Extra-Bold]">
                                     {{ card.heading }}

@@ -187,7 +187,7 @@ const login = async () => {
 
   try {
     processing.value = true;
-    const response = await axios.post(`${apiUrl}/login`, {
+    const response = await axios.post(`${apiUrl}/users/login`, {
       email: email.value,
       password: password.value,
     }, {

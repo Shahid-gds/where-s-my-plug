@@ -127,7 +127,7 @@ const getCookie = (name) => {
 const fetchLocations = async () => {
     try {
         const userId = getCookie('userId');
-        const response = await fetch(`${apiUrl}/myAddress`, {
+        const response = await fetch(`${apiUrl}/users/myAddress`, {
             headers: {
                 'user-id': userId,
                 'Content-Type': 'application/json'

@@ -4,7 +4,7 @@
             <div class="flex justify-center">
                 <div class="py-6 relative">
                     <div class="bg-[#61c1b4] w-[182px] h-0.5">
-                        <div class="w-full absolute top-0 ">
+                        <div class="w-full absolute top-0">
                             <img class="mr-auto ml-auto" src="../components/icons/drugLeaf.svg" alt="">
                         </div>
                     </div>
@@ -12,13 +12,14 @@
             </div>
             <div class="flex justify-center px-6">
                 <div class="text-center">
-                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Browse by
-                        categories</h1>
+                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">
+                        Browse by categories
+                    </h1>
                 </div>
             </div>
             <div class="md:flex md:space-x-10 items-center container mx-auto sm:px-[7.5rem] px-6">
                 <div class="w-full py-6 text-xl md:text-left text-center">
-                    12 items found
+                    {{ itemsFound }} items found
                 </div>
                 <div class="w-full flex md:justify-end justify-center items-center space-x-8 pb-6">
                     <div>
@@ -34,21 +35,26 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <ProdutsCategoriesCards  />
+            <div>
+                <ProdutsCategoriesCards :cards="sortedCards" />
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import ProdutsCategoriesCards from '../components/layout/UI/ProductsCategoriesCards.vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import ProdutsCategoriesCards from '../components/layout/UI/ProductsCategoriesCards.vue';
+import { useApi } from '@/components/api/useApi';
+import axios from 'axios';
 
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
-let selectedOption = 'Best Match';
+const cards = ref([]);
+const selectedOption = ref('Best Match');
 const dropdownVisible = ref(false);
-const options = ['Top Sales', 'Newest Arrivals', 'Price Low to High', 'Price High to Low'];
+const options = ['Best Match', 'Top Sales', 'Newest Arrivals', 'Price Low to High', 'Price High to Low'];
 const dropdown = ref(null);
 
 const handleClickOutside = (event) => {
@@ -62,17 +68,45 @@ const toggleDropdown = () => {
 };
 
 const selectOption = (option) => {
-    selectedOption = option;
+    selectedOption.value = option;
     dropdownVisible.value = false;
 };
 
-onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
+const sortedCards = computed(() => {
+    const sorted = [...cards.value];
+    switch (selectedOption.value) {
+        case 'Top Sales':
+            // Replace with actual field for sales
+            return sorted.sort((a, b) => b.sales - a.sales);
+        case 'Newest Arrivals':
+            // Replace with actual field for creation date
+            return sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        case 'Price Low to High':
+            return sorted.sort((a, b) => a.price - b.price);
+        case 'Price High to Low':
+            return sorted.sort((a, b) => b.price - a.price);
+        case 'Best Match':
+        default:
+            return sorted; // Default sorting, if any
+    }
+});
+
+const itemsFound = computed(() => sortedCards.value.length);
+
+onMounted(async () => {
+    try {
+        const response = await axios.get(`${apiUrl}/products/getAllProducts`);
+        cards.value = response.data.data.products;
+    } catch (error) {
+        console.error("Failed to fetch data:", error);
+    }
 });
 
 onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside);
 });
+
+document.addEventListener('click', handleClickOutside);
 </script>
 
 <style scoped>
@@ -88,7 +122,6 @@ onBeforeUnmount(() => {
     right: 15px;
     width: 10px;
     height: 10px;
-    -webkit-transform: translateY(-50%) rotate(45deg);
     transform: translateY(-50%) rotate(45deg);
     border-right: 2px solid #61C1B4;
     border-bottom: 2px solid #61C1B4;
@@ -101,7 +134,6 @@ onBeforeUnmount(() => {
 }
 
 .select .selectBtn.toggle:after {
-    -webkit-transform: translateY(-50%) rotate(-135deg);
     transform: translateY(-50%) rotate(-135deg);
 }
 
@@ -114,9 +146,7 @@ onBeforeUnmount(() => {
     background: #61C1B4;
     border-top: 1px solid #61C1B4;
     z-index: 1;
-    -webkit-transform: scale(1, 0);
     transform: scale(1, 0);
-    -webkit-transform-origin: top center;
     transform-origin: top center;
     visibility: hidden;
     transition: 0.2s ease;
@@ -136,17 +166,6 @@ onBeforeUnmount(() => {
 
 .select .selectDropdown.toggle {
     visibility: visible;
-    -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
-}
-
-@keyframes rotateAnimation {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
 }
 </style>

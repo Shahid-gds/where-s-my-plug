@@ -21,7 +21,7 @@
                         <div class="relative">
                             <input v-model="searchQuery" class="border-2 shadow-xl w-full p-6 px-6 rounded-2xl" type="text" placeholder="What would you like to learn about?">
                         </div>
-                        <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] sm:w-[5rem] p-4 absolute top-1.5 sm:right-1.5 right-8 rounded-2xl cursor-pointer">
+                        <div class="flex items-center justify-center space-x-3 bg-[#61c1b4] sm:w-[5rem] p-4 absolute top-1.5 right-8 rounded-2xl cursor-pointer">
                           <div>
                             <img src="../components/icons/searchIcon.svg" alt="">
                           </div>
