@@ -1,5 +1,6 @@
 <template>
     <section class="container mx-auto flex relative">
+      
         <div class="2xl:w-[20%] w-1/2 md:block hidden">
             <div>
                 <!-- <h1 class="font-bold">Search Strains</h1> -->
@@ -158,17 +159,17 @@
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
                 <div v-for="card in filteredCards" :key="card._id"  @click="navigateToDetails(card._id)"
-                    class="md:w-[385px] w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
-                        <div class="w-full border-2 p-4 rounded-xl flex justify-center">
+                    class="md:w-[385px] relative w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
+                        <div class="w-full p-4 rounded-xl flex justify-center">
                             <img class="w-1/2" :src="card.images[0]" alt="">
                         </div>
                         <div class="w-full pt-3">
-                            <div class="border-2 w-full p-2 rounded-full text-[#B4B4B4] text-center">
+                            <div class="border-b-2 border-r-2 p-2  text-[#B4B4B4] text-center absolute top-0 left-0">
                                 {{ card.type }}
                             </div>
-                            <div class="py-2">
+                            <!-- <div class="py-2">
                                 <span>Weight:</span> <span class="font-bold">{{ card.weight }}</span>
-                            </div>
+                            </div> -->
                             <div class="flex items-center space-x-5 pb-4">
                                 <div class="flex">
                                     <div v-for="n in 5" :key="n" class="w-[24px]">
@@ -206,9 +207,9 @@
                                 </button>
                             </div>
                             
-                            <div class="pt-4 font-[Extra-Bold] text-[20px]">
+                            <!-- <div class="pt-4 font-[Extra-Bold] text-[20px]">
                                 <span>$</span>{{ card.price }}
-                            </div>
+                            </div> -->
                         </div>
                 </div>
             </transition-group>
@@ -419,7 +420,7 @@ function handleCheckboxClick(event) {
 
 const navigateToDetails = (id) => {
     scrollToTop();
-    router.push({ name: 'StrainsProduct', params: { id } });
+    router.push({ name: 'StrainsCategories', params: { id } });
 }
 
 const cards = ref([]);

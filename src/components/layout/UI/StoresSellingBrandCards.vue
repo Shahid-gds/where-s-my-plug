@@ -1,65 +1,41 @@
 <template>
     <section class="">
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.id" @click="navigateToDetails(card.id)"
-                class="rounded-2xl 2xl:p-6 p-4 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
+            <div v-for="card in paginationCard" :key="card._id" @click="navigateToDetails(card._id)"
+                class="2xl:w-[420px] w-[400px] rounded-2xl 2xl:p-6 p-4 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                 <div class="flex space-x-4">
-                    <div class="">
+                    <div class="w-full">
                         <img class="w-full" :src="card.image" alt="">
                     </div>
-                    <div class="">
+                    <div class="w-full">
                         <div class="py-2 font-[Extra-Bold]">
-                            {{ card.heading }}
+                            {{ card.name }}
                         </div>
                         <div>
-                            {{ card.paragraph }}
+                            {{ card.type }}
                         </div>
-                        <div class="">
-                            <div class="flex justify-between space-x-3">
-                                <div class="flex">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
+                        <div class="flex items-center space-x-5 pb-4">
+                            <div class="flex">
+                                <div v-for="n in 5" :key="n" class="w-[24px]">
+                                    <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
+                                        <path
+                                            d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                                    </svg>
+                                    <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                                    </svg>
                                 </div>
-                                <div class="flex space-x-2">
-                                    <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
-                                        {{ card.rating }}
-                                    </div>
-                                    <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
-                                        {{ card.ratingQty }}
-                                    </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
+                                    {{ card.ratingsAverage }}
+                                </div>
+                                <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
+                                    ({{ card.ratingsQuantity }})
                                 </div>
                             </div>
                         </div>
@@ -93,92 +69,44 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
+
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
 
 const router = useRouter();
 
 const navigateToDetails = (id) => {
     scrollToTop();
+    localStorage.setItem('dispensaryId', id);
     router.push({ name: 'StoresSellingBrand', params: { id } });
 }
 
-const cards = ref([
-    {
-        id: '1',
-        image: import('../../../assets/images/DispensariesSlidebarImages/Img1.svg').then((module) => module.default),
-        heading: 'Dreadlock & Jetset',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '2',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img2.svg').then((module) => module.default),
-        heading: 'Coffeeshop The Stud',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '3',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '4',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img4.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '5',
-        image: import('../../../assets/images/DispensariesSlidebarImages/Img1.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '6',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img2.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '7',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '8',
-        image: import('../../../assets/images//DispensariesSlidebarImages/Img4.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-
-]);
+const cards = ref([]);
 
 
 onMounted(async () => {
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            image: await card.image,
-        }))
-    );
+    try {
+        const brandId = localStorage.getItem('brandId');
+
+        if (!brandId) {
+            console.error('No Dispensary found');
+            return;
+        }
+        const response = await axios.get(`${apiUrl}/dispensaries/getMeBybrand`, {
+            headers: {
+                'brand-id': brandId,
+            }
+        });
+        cards.value = response.data.data.dispensaries;
+    } catch (error) {
+        console.error("Failed to fetch data");
+    }
 });
 // Define number of cards per page
 const cardsPerPage = 12;

@@ -101,13 +101,13 @@ const router = createRouter({
       component: () => import("../pages/Brands.vue"),
     },
     {
-      path: "/brands-detail:id",
+      path: "/brands/:id",
       name: "BrandsDetail",
       meta: { layout: "Default" },
       component: () => import("../pages/BrandsDetail.vue"),
     },
     {
-      path: "/stores-for-selling-brand",
+      path: "/stores/:id",
       name: "StoresSellingBrand",
       meta: { layout: "Default" },
       component: () => import("../pages/StoresSellingBrandProducts.vue"),
@@ -154,6 +154,12 @@ const router = createRouter({
       name: "Strains",
       meta: { layout: "Default" },
       component: () => import("../pages/Strains.vue"),
+    },
+    {
+      path: "/strains/:id",
+      name: "StrainsCategories",
+      meta: { layout: "Default" },
+      component: () => import("../pages/StrainCategoriesDetail.vue"),
     },
     {
       path: "/strains/:id",

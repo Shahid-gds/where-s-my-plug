@@ -10,30 +10,6 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center px-6">
-                <div class="text-center">
-                    <h1 class="font-[Jost-ExtraBold] md:text-[30px] text-[20px] text-[#61c1b4] uppercase">Browse by
-                        categories</h1>
-                </div>
-            </div>
-            <div class="md:flex md:space-x-10 items-center container mx-auto sm:px-[7.5rem] px-6">
-                <div class="w-full py-6 text-xl md:text-left text-center">
-                    12 items found
-                </div>
-                <div class="w-full flex md:justify-end justify-center items-center space-x-8 pb-6">
-                    <div>
-                        <label class="text-xl" for="">Sort By:</label>
-                    </div>
-                    <div class="select" ref="dropdown">
-                        <div class="selectBtn border-2 p-3 bg rounded-xl"
-                            :class="{ toggle: dropdownVisible }" @click="toggleDropdown">{{ selectedOption }}</div>
-                        <div class="selectDropdown p-2" :class="{ toggle: dropdownVisible }">
-                            <div class="option w-full" v-for="option in options" :key="option"
-                                @click="selectOption(option)" :data-type="option">{{ option }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="">
                 <ProdutsCategoriesCards  />
             </div>
@@ -43,7 +19,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import ProdutsCategoriesCards from '../components/layout/UI/ProductsCategoriesCards.vue'
+import ProdutsCategoriesCards from '../components/layout/UI/StoresSellingBrandProductCard.vue'
 
 
 let selectedOption = 'Best Match';

@@ -151,7 +151,7 @@ onMounted(async () => {
         const dispensaryId = localStorage.getItem('dispensaryId');
 
         if (!dispensaryId) {
-            console.error("Dispensary ID is not found in localStorage.");
+            console.error("No Dispensary found");
             return;
         }
 

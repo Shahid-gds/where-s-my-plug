@@ -10,37 +10,11 @@
         <div class="container mx-auto -mt-[8rem] xl:px-[5rem] bg-white shadow-xl rounded-xl p-6">
             <div class="lg:flex items-center lg:space-x-6 justify-center w-full p-4 rounded-xl">
                 <!-- main image -->
-                <div class="border-2 p-2 rounded-2xl flex justify-center sm:w-[20%] bg-[white]">
-                    <img class="w-[100%]" v-if="card.img1" :src="card.img1" alt="Product image">
+                <div class="w-1/2 border-2 p-2 rounded-2xl flex justify-center sm:w-[20%] bg-[white]">
+                    <img class="w-[100%]" :src="card.image" alt="Product image">
                 </div>
                 <div class="w-full">
-                    <div class="flex space-x-4 items-center pb-2">
-                        <div class="flex items-center">
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                            <div class="w-5">
-                                <img class="w-[100%]" v-if="card.stars" :src="card.stars" alt="">
-                            </div>
-                        </div>
-                        <div class="flex space-x-2 items-center mt-2">
-                            <div class="text-[#010101] font-[Jost-ExtraBold]">
-                                {{ card.rating }}
-                            </div>
-                            <div class="text-[#61c1b4] font-[Jost-SemiBold]">
-                                {{ card.ratingQty }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-[#61c1b4]">
-                        {{ card.paragraph }}
-                    </div>
+                    {{ card.description }}
                 </div>
             </div>
         </div>
@@ -53,144 +27,45 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import StoreForSellingBrand from '../views/StoreForSellingBrand.vue'
+import StoreForSellingBrand from '../views/StoreForSellingBrand.vue';
+import { useApi } from '@/components/api/useApi';
 
-const card = ref({});
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+
+
+const card = ref({
+    id: '',
+    heading: '',
+});
 const route = useRoute();
 const router = useRouter();
 
 const fetchCardDetails = async () => {
     const cardId = route.params.id;
     try {
-        const cardData = await getCardById(cardId);
-        if (cardData) {
-            card.value = {
-                ...cardData,
-                img1: await cardData.img1,
-                stars: await cardData.stars,
+        const response = await fetch(`${apiUrl}/brands/getMe`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'brand-id': cardId
             }
-        } else {
-            scrollToTop();
-            router.push({ name: 'NotFoundProduct' });
+        });
+        const { data } = await response.json();
+        if (data && data.brand) {
+            const brand = data.brand;
+            card.value = {
+                id: brand._id,
+                heading: brand.name,
+                description: brand.description,
+                image: brand.image
+            }
         }
     } catch (error) {
         console.error('Error fetching card detail', error)
     }
 };
 
-const getCardById = async (id) => {
-    const cards = [
-        {
-            id: '1',
-            img1: import('../assets/images/BrandBoardCardImages/Img1.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Cartel Oil Co',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '2',
-            img1: import('../assets/images/BrandBoardCardImages/Img2.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'DRiP',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '3',
-            img1: import('../assets/images/BrandBoardCardImages/Img3.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Dime Industries',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '4',
-            img1: import('../assets/images/BrandBoardCardImages/Img4.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'DRiP',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '5',
-            img1: import('../assets/images/BrandBoardCardImages/Img5.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Dixie Brands',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '6',
-            img1: import('../assets/images/BrandBoardCardImages/Img6.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Element',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '7',
-            img1: import('../assets/images/BrandBoardCardImages/Img1.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Cartel Oil Co',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '8',
-            img1: import('../assets/images/BrandBoardCardImages/Img2.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'DRiP',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '9',
-            img1: import('../assets/images/BrandBoardCardImages/Img3.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Dime Industries',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '10',
-            img1: import('../assets/images/BrandBoardCardImages/Img4.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'DRiP',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '11',
-            img1: import('../assets/images/BrandBoardCardImages/Img5.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Dixie Brands',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-        {
-            id: '12',
-            img1: import('../assets/images/BrandBoardCardImages/Img6.svg').then(module => module.default),
-            stars: import('../components/icons/star.svg').then(module => module.default),
-            heading: 'Element',
-            paragraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            rating: '5.0',
-            ratingQty: '(120)',
-        },
-    ];
-    return cards.find(card => card.id === id);
-};
 
 onMounted(() => {
     fetchCardDetails();

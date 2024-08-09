@@ -1,58 +1,59 @@
 <template>
-    <section class="">
-        <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.index" @click="navigateToDetails(card.id)"
+    <section class="pb-[10rem]">
+        <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center px-6">
+            <div v-for="card in paginatedCards" :key="card._id" @click="navigateToDetails(card._id)"
                 class="2xl:w-[420px] w-[400px] cursor-pointer border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
                 <div class="flex justify-center pb-6">
-                    <div>
-                        <img :src="card.image">
+                    <div class="">
+                        <img :src="card.images[0]" alt="Product Image" class="w-full h-[250px]" loading="lazy">
                     </div>
                 </div>
-                <div>
-                    {{ card.heading }}
+                <div class="text-lg font-bold">
+                    {{ card.name }}
                 </div>
                 <div class="py-2 font-[Extra-Bold]">
-                    {{ card.subHeading }}
+                    ${{ card.price }}
                 </div>
                 <div class="flex items-center space-x-5 pb-4">
                     <div class="flex">
-                        <div class="w-[24px]">
-                            <img :src="card.stars">
-                        </div>
-                        <div class="w-[24px]">
-                            <img :src="card.stars">
-                        </div>
-                        <div class="w-[24px]">
-                            <img :src="card.stars">
-                        </div>
-                        <div class="w-[24px]">
-                            <img :src="card.stars">
-                        </div>
-                        <div class="w-[24px]">
-                            <img :src="card.stars">
+                        <div v-for="n in 5" :key="n" class="w-[24px]">
+                            <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
+                                <path
+                                    d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                            </svg>
+                            <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-5 h-5">
+                                <path
+                                    d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                            </svg>
                         </div>
                     </div>
                     <div class="flex space-x-2">
                         <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
-                            {{ card.rating }}
+                            {{ card.ratingsAverage }}
                         </div>
                         <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
-                            {{ card.ratingQty }}
+                            ({{ card.ratingsQuantity }})
                         </div>
                     </div>
                 </div>
-                <div>
-                    {{ card.paragraph }}
+                <div class="description-container">
+                    <p :class="{ 'expanded': card.expanded, 'collapsed': !card.expanded }">
+                        {{ card.description }}
+                    </p>
+                    <button @click="toggleDescription(card._id)" class="float-right pt-6 font-bold">
+                        {{ card.expanded ? '' : 'Read More...' }}
+                    </button>
                 </div>
-
             </div>
         </transition-group>
         <div class="container mx-auto flex justify-end mt-5 px-[7.8rem]">
             <nav>
                 <ul class="pagination">
                     <li>
-                        <button @click="prevPage" :disabled="currentPage === 1" class="pagination-btn">&lt;
-                        </button>
+                        <button @click="prevPage" :disabled="currentPage === 1" class="pagination-btn">&lt;</button>
                     </li>
                     <li v-for="pageNumber in totalPages" :key="pageNumber">
                         <template v-if="pageNumber !== 1">
@@ -60,7 +61,7 @@
                         </template>
                         <button @click="goToPage(pageNumber)"
                             :class="{ 'pageNumber': true, 'active': pageNumber === currentPage }">{{
-                        pageNumber }}</button>
+                pageNumber }}</button>
                     </li>
                     <li>
                         <button @click="nextPage" :disabled="currentPage === totalPages"
@@ -73,8 +74,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, defineProps } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
+import axios from 'axios';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
+const cards = ref([]);
+const currentPage = ref(1);
+const itemsPerPage = 12;
+
+const toggleDescription = (id) => {
+    const card = cards.value.find(c => c._id === id);
+    if (card) {
+        card.expanded = !card.expanded;
+    }
+}
 
 const router = useRouter();
 
@@ -84,157 +100,19 @@ const props = defineProps({
         required: true
     }
 });
+
+const totalPages = computed(() => Math.ceil(cards.value.length / itemsPerPage));
+
+const paginatedCards = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return cards.value.slice(start, end);
+});
+
 const navigateToDetails = (id) => {
     scrollToTop();
     router.push({ name: 'ProductDetail', params: { id } });
 }
-
-const cards = ref([
-    {
-        id: '1',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
-        heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Yoda Candy THCa Flower',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '2',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
-        heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Cookie Milk D8+THCP Vape Cart ',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '3',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
-        heading: 'Pre-rolls', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '4',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img4.svg').then((module) => module.default),
-        heading: 'Terpenes', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Sour Haze Live Resin Terpene',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '5',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img5.svg').then((module) => module.default),
-        heading: 'Vape Pens', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'MAC 2ml THCa Sauce Vape Pen',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '6',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img6.svg').then((module) => module.default),
-        heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Mimosa Live Resin Delta-8 | 1ml',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '7',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img1.svg').then((module) => module.default),
-        heading: 'Flower', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Yoda Candy THCa Flower',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '8',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img2.svg').then((module) => module.default),
-        heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Cookie Milk D8+THCP Vape Cart ',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '9',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img3.svg').then((module) => module.default),
-        heading: 'Pre-rolls', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Delta 8 THC Pre Roll Sativa Sour Candy',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '10',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img4.svg').then((module) => module.default),
-        heading: 'Terpenes', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Sour Haze Live Resin Terpene',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '11',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img5.svg').then((module) => module.default),
-        heading: 'Vape Pens', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'MAC 2ml THCa Sauce Vape Pen',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-    {
-        id: '12',
-        category: 'Concentrates', image: import('../../../assets/images/ProductsCategories/Img6.svg').then((module) => module.default),
-        heading: 'Cartridges', stars: import('../../icons/star.svg').then((module) => module.default),
-        subHeading: 'Mimosa Live Resin Delta-8 | 1ml',
-        rating: '5.0',
-        ratingQty: '(120)',
-        paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
-    },
-]);
-
-
-const activeCategory = ref('Concentrates');
-
-const setActiveCategory = (category) => {
-    activeCategory.value = category;
-};
-
-const filteredCards = computed(() => cards.value.filter((card) => card.category === activeCategory.value));
-
-
-onMounted(async () => {
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            image: await card.image,
-        }))
-    );
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            stars: await card.stars,
-        }))
-    );
-});
-const cardsPerPage = 12;
-
-const currentPage = ref(1);
-
-const totalPages = computed(() => Math.ceil(filteredCards.value.length / cardsPerPage));
-
-const paginationCard = computed(() => {
-    const startIndex = (currentPage.value - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-    return filteredCards.value.slice(startIndex, endIndex);
-});
 
 function nextPage() {
     if (currentPage.value < totalPages.value) {
@@ -251,15 +129,51 @@ function prevPage() {
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
 }
+
 const scrollToTop = () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
 }
+
+onMounted(async () => {
+    try {
+        const dispensaryId = localStorage.getItem('dispensaryId');
+        const brandId = localStorage.getItem('brandId');
+        if (!dispensaryId || !brandId) {
+            console.error('Data not found')
+            return;
+        }
+        const response = await axios.get(`${apiUrl}/products/getMeBybrandAndDispensary`, {
+            headers:
+            {
+                'dispensary-id': dispensaryId,
+                'brand-id': brandId
+            }
+
+        });
+        cards.value = response.data.data.products;
+    } catch (error) {
+        console.error("Failed to fetch data:", error);
+    }
+});
 </script>
 
 <style scoped>
+.description-container {
+    position: relative;
+}
+
+.description-container p {
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.description-container p.expanded {
+    max-height: 100em;
+}
 
 .nested-enter-active,
 .nested-leave-active {

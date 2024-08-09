@@ -1,67 +1,23 @@
 <template>
     <section class="">
-        <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center">
-            <div v-for="card in paginationCard" :key="card.id" @click="navigateToDetails(card.id)"
-                class="rounded-2xl 2xl:p-6 p-4 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
+        <transition-group name="nested" tag="div" class="container mx-auto flex items-center flex-wrap">
+            <div v-for="card in paginationCard" :key="card._id" @click="navigateToDetails(card._id)"
+                class="2xl:w-[420px] w-[400px]  rounded-2xl 2xl:p-6 p-4 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                 <div class="flex space-x-4">
-                    <div class="">
+                    <div class="w-1/2">
                         <img class="w-full" :src="card.image" alt="">
                     </div>
-                    <div class="">
+                    <div class="w-full">
                         <div class="py-2 font-[Extra-Bold]">
-                            {{ card.heading }}
+                            {{ card.name }}
                         </div>
-                        <div>
-                            {{ card.paragraph }}
-                        </div>
-                        <div class="">
-                            <div class="flex justify-between space-x-3">
-                                <div class="flex">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F1A026" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="#F1A026" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
-                                        {{ card.rating }}
-                                    </div>
-                                    <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
-                                        {{ card.ratingQty }}
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="description-container">
+                            <p :class="{ 'expanded': card.expanded, 'collapsed': !card.expanded }">
+                                {{ card.description }}
+                            </p>
+                            <button @click="toggleDescription(card._id)" class="float-right pt-6 font-bold">
+                                {{ card.expanded ? '' : 'Read More...' }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -93,13 +49,20 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref, onMounted, computed, defineProps, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useApi } from '@/components/api/useApi';
+
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const router = useRouter();
 
 const navigateToDetails = (id) => {
     scrollToTop();
+    localStorage.setItem('brandId', id);
     router.push({ name: 'BrandsDetail', params: { id } });
 }
 
@@ -110,233 +73,16 @@ const props = defineProps({
     }
 })
 
-const cards = ref([
-    {
-        id: '1',
-        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '2',
-        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '3',
-        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '4',
-        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '5',
-        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '6',
-        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '7',
-        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '8',
-        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '9',
-        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '10',
-        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '11',
-        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '12',
-        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '13',
-        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '14',
-        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '15',
-        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '16',
-        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '17',
-        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '18',
-        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '19',
-        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '20',
-        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '21',
-        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '22',
-        image: import('@/assets/images/BrandBoardCardImages/Img4.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '23',
-        image: import('@/assets/images/BrandBoardCardImages/Img5.svg').then((module) => module.default),
-        heading: 'Dime Industries',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '24',
-        image: import('@/assets/images/BrandBoardCardImages/Img6.svg').then((module) => module.default),
-        heading: 'Dixie Brands',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '25',
-        image: import('@/assets/images/BrandBoardCardImages/Img1.svg').then((module) => module.default),
-        heading: 'DRiP',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '26',
-        image: import('@/assets/images/BrandBoardCardImages/Img3.svg').then((module) => module.default),
-        heading: 'Cartel Oil Co',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-    {
-        id: '27',
-        image: import('@/assets/images/BrandBoardCardImages/Img2.svg').then((module) => module.default),
-        heading: 'Element',
-        paragraph: 'Lorem ipsum dolor sit amet,',
-        rating: '5.0',
-        ratingQty: '(120)',
-    },
-]);
+const cards = ref([]);
 
 
 onMounted(async () => {
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            image: await card.image,
-        }))
-    );
+    try {
+        const response = await axios.get(`${apiUrl}/brands/getAllBrands`)
+        cards.value = response.data.data.brands;
+    } catch (error) {
+        console.error("Failed to fetch data");
+    }
 });
 // Define number of cards per page
 const cardsPerPage = 21;
@@ -347,12 +93,12 @@ const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
 
 const paginationCard = computed(() => {
     if (props.searchQuery) {
-        return cards.value.filter(card => card.heading.toLowerCase().includes(props.searchQuery.toLowerCase()) || card.paragraph.toLowerCase().includes(props.searchQuery.toLowerCase()))
+        return cards.value.filter(card => card.name.toLowerCase().includes(props.searchQuery.toLowerCase()) )
     }
     const startIndex = (currentPage.value - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     return cards.value.slice(startIndex, endIndex);
-   
+
 });
 
 function nextPage() {
@@ -383,6 +129,19 @@ watch(() => props.searchQuery, () => {
 </script>
 
 <style scoped>
+.description-container {
+    position: relative;
+}
+
+.description-container p {
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.description-container p.expanded {
+    max-height: 100em;
+}
 .nested-enter-active,
 .nested-leave-active {
     transition: all 0.3s ease-in-out;

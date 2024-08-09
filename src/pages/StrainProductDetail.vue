@@ -1,11 +1,11 @@
 <template>
-    <section class="sm:pb-[20rem] pb-[15rem]">
+    <section class="">
         <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6 pb-[5rem]">
             <div class="container mx-auto py-[12rem] text-center">
             </div>
 
             <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
-                <div class="lg:flex items-center lg:space-x-16 justify-center w-full p-4 rounded-xl">
+                <div class="lg:flex lg:space-x-16 justify-center w-full p-4 rounded-xl">
                     <!-- main image -->
                     <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
                         <!-- previous button -->
@@ -63,18 +63,18 @@
                         <div class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold] relative">{{
                                 card.subHeading }}
                         </div>
-                        <div class="">
+                        <!-- <div class="">
                             <span class="text-[#010101]  text-[20px]font-[Jost-ExtraBold]">$</span>
                             <span class="text-[#61c1b4]  text-[25px] font-[Jost-SemiBold]">
                                 {{ card.price }}
                             </span>
-                        </div>
-                        <div class="font-[Jost-SemiBold] pb-2">
+                        </div> -->
+                        <!-- <div class="font-[Jost-SemiBold] pb-2">
                             <span>Size: </span>
                             <div class="text-2xl font-bold">
                                 {{ card.weight }}
                             </div>
-                        </div>
+                        </div> -->
                         <div class="w-full">
                             <!-- Flavours Section -->
                             <div v-if="card.flavours && card.flavours.length" class="pb-5">
@@ -100,20 +100,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="pb-4">
-                            <button @click="addToCart" :disabled="!isLoggedIn"
-                                class="p-3 rounded-lg px-16 text-white font-[Bold]"
-                                :style="{ backgroundColor: card.backgroundColor }">Add to
-                                cart</button>
-                        </div>
-                        <div v-if="!isLoggedIn">
-                            To place an order online, you'll need to <router-link :to="{ name: 'Sign-In' }"
-                                class="text-red-500 font-bold">Login</router-link> or
-                            <router-link :to="{ name: 'Sign-Up' }" class="text-red-500 font-bold">Create an
-                                account.</router-link>
-                        </div>
                     </div>
                     <div class="w-full">
                         <div class="">
@@ -125,35 +111,33 @@
                                 <h1 class="sm:text-xl">CBN</h1>
                                 <p class="font-[Bold] sm:text-2xl">{{ card.cbn }}</p>
                             </div>
-                            <div class="pb-5 lg:h-[250px] relative">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <h1 class="font-[Bold] text-xl">Product Detail</h1>
-                                    </div>
-                                    <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote"
-                                        :style="{ borderColor: card.borderColor }">
-                                        <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor"
-                                            class="size-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" :stroke="card.borderColor" class="size-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <transition-group name="nested" tag="div">
-                                    <p v-if="isNoteVisible">{{ card.note }}</p>
-                                </transition-group>
-
-                            </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="pb-5 relative px-6">
+                    <div class="flex space-x-7">
+                        <div>
+                            <h1 class="font-[Bold] text-xl">Detail</h1>
+                        </div>
+                        <div class="cursor-pointer border-2 p-1 rounded-full" @click="toggleNote"
+                            :style="{ borderColor: card.borderColor }">
+                            <svg v-if="!isNoteVisible" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" :stroke="card.borderColor"
+                                class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" :stroke="card.borderColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <transition-group name="nested" tag="div" class="px-6">
+                    <p v-if="isNoteVisible">{{ card.note }}</p>
+                </transition-group>
             </div>
         </div>
     </section>
@@ -190,11 +174,11 @@ const LoggedInStatus = () => {
 
 
 
-const addToCart = () => {
-    scrollToTop();
-    console.log('Adding to cart:', card.value);
-    cartStore.addToCart(card.value);
-}
+// const addToCart = () => {
+//     scrollToTop();
+//     console.log('Adding to cart:', card.value);
+//     cartStore.addToCart(card.value);
+// }
 
 const card = ref({
     id: '',
