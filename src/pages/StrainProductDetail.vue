@@ -108,8 +108,8 @@
                                 <p class="sm:text-2xl font-[Bold]">{{ card.thc }}</p>
                             </div>
                             <div class="pb-5">
-                                <h1 class="sm:text-xl">CBN</h1>
-                                <p class="font-[Bold] sm:text-2xl">{{ card.cbn }}</p>
+                                <h1 class="sm:text-xl">CBD</h1>
+                                <p class="font-[Bold] sm:text-2xl">{{ card.cbd }}</p>
                             </div>
                         </div>
                     </div>

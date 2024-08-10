@@ -316,6 +316,78 @@ const cards = ref([
         price: '20',
         backgroundColor: '#EBB22D'
     },
+    {
+        id: '7',
+        category: 'Cartridge',
+        image: import('../assets/images/strains/img6.avif').then((module) => module.default),
+        name: 'Rove',
+        heading: 'WAUI CARTRIDGE',
+        // thc: 'THC: 24.57%',
+        type: 'Sativa',
+        weight: '1.0 grams',
+        price: '40',
+        backgroundColor: '#EBB22D'
+    },
+    {
+        id: '8',
+        category: 'Cartridge',
+        image: import('../assets/images/strains/img7.avif').then((module) => module.default),
+        name: 'Stiiizy',
+        heading: 'WATERMELON Z POD',
+        thc: 'THC: 91.15%',
+        type: 'Indica',
+        weight: '0.5 grams',
+        price: '18',
+        backgroundColor: '#126CAB'
+    },
+    {
+        id: '9',
+        category: 'Cartridge',
+        image: import('../assets/images/strains/img8.avif').then((module) => module.default),
+        name: 'Stiiizy',
+        heading: 'WATERMELON Z POD',
+        thc: 'THC: 91.47%',
+        type: 'Indica',
+        weight: '0.5 grams',
+        price: '20',
+        backgroundColor: '#126CAB'
+    },
+    {
+        id: '10',
+        category: 'Preroll',
+        image: import('../assets/images/strains/img11.avif').then((module) => module.default),
+        name: 'Pacific stone',
+        heading: 'WEDDING CAKE PRE-ROLLS (2PK)',
+        // thc: 'THC: 100.0%',
+        type: 'Indica',
+        weight: '1.0 grams',
+        price: '8',
+        backgroundColor: '#126CAB'
+    },
+    {
+        id: '11',
+        category: 'Preroll',
+        image: import('../assets/images/strains/img12.avif').then((module) => module.default),
+        name: 'Lowell',
+        heading: 'THE BEDTIME PRE-ROLLS (6PK)',
+        thc: 'THC: 13.5MG',
+        type: 'Indica',
+        weight: '3.5 grams',
+        price: '40',
+        backgroundColor: '#126CAB'
+    },
+    {
+        id: '12',
+        category: 'Preroll',
+        image: import('../assets/images/strains/img11.avif').then((module) => module.default),
+        name: 'Pacific stone',
+        heading: 'PRIVATE RESERVE OG PRE-ROLL (2PK)',
+        // thc: 'THC: 10.0%',
+        type: 'Indica',
+        weight: '3.5 grams',
+        price: '8',
+        backgroundColor: '#126CAB'
+    },
 ]);
 
 
