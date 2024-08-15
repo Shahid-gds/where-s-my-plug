@@ -103,10 +103,12 @@
 
 
                         <div class="pb-4">
-                            <button @click="addToCart" :disabled="!isLoggedIn"
+                            <button @click="addToCart" :disabled="!isLoggedIn || loading"
                                 class="p-3 rounded-lg px-16 text-white font-[Bold]"
-                                :style="{ backgroundColor: card.backgroundColor }">Add to
-                                cart</button>
+                                :style="{ backgroundColor: card.backgroundColor }">
+                                <span v-if="loading">Adding......</span>
+                                <span v-else>Add to cart</span>
+                            </button>
                         </div>
                         <div v-if="!isLoggedIn">
                             To place an order online, you'll need to <router-link :to="{ name: 'Sign-In' }"
@@ -173,7 +175,7 @@ const cartStore = useCartStore();
 const isLoggedIn = ref(false);
 const userEmail = ref('');
 const userId = ref('');
-
+const loading = ref(false)
 const LoggedInStatus = () => {
     // Check if user is logged in based on cookies or other authentication state
     const cookies = document.cookie.split(';').map(cookie => cookie.trim());
@@ -190,11 +192,41 @@ const LoggedInStatus = () => {
 
 
 
-const addToCart = () => {
-    scrollToTop();
-    console.log('Adding to cart:', card.value);
-    cartStore.addToCart(card.value);
-}
+const addToCart = async () => {
+    loading.value = true;
+    try {
+        const response = await fetch(`${apiUrl}/addtoCart/addMe`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': userId.value,
+                'product-id': card.value.id
+            },
+            body: JSON.stringify({
+                quantity: 1 
+            })
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            cartStore.addToCart({
+                _id: card.value.id,
+                price: card.value.price,
+                quantity: 1,
+                heading: card.value.heading,
+                subHeading: card.value.subHeading,
+                images: card.value.relatedImages,
+            });
+        } else {
+            console.error('Failed to add product to cart:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error adding product to cart:', error);
+    }
+    finally {
+        loading.value = false;
+    }
+};
 
 const card = ref({
     id: '',

@@ -520,7 +520,7 @@ const handleFileChange = async (event) => {
         formData.append('photo', file);
 
         try {
-            const response = await axios.patch(`${baseUrl}/updateMe`, formData, {
+            const response = await axios.patch(`${apiUrl}/users/updateMe`, formData, {
                 headers: {
                     'user-id': userId,
                     'Content-Type': 'multipart/form-data',

@@ -4,11 +4,11 @@
             <div class="pb-6">
                 <transition-group name="nested" tag="div" class="w-full rounded-xl shadow-xl bg-[white] px-6">
                     <!-- Display cart items dynamically -->
-                    <div v-for="(item, index) in cartItems" :key="index" class="py-4"
+                    <div v-for="(item, index) in cartItems" :key="item._id" class="py-4"
                         :class="{ 'border-b-2': index !== item.length - 1 }">
                         <div class="md:flex justify-center md:space-x-4 py-4">
                             <div class="md:w-[137px] h-[137px] flex justify-center border-2 p-2 rounded-xl">
-                                <img :src="item.img1" alt="">
+                                <img :src="item.images[0]" alt="">
                             </div>
                             <div class="w-full">
                                 <div class="sm:hidden flex justify-between items-center pt-3">
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="flex justify-between py-2">
                                     <div class="w-full font-[Extra-Bold]">
-                                        {{ item.heading }}
+                                        {{ item.name }}
                                     </div>
                                     <div class="w-full text-right">
                                         ${{ (item.price * item.quantity).toFixed(2) }}
@@ -32,32 +32,26 @@
                                 </div>
                                 <div class="flex justify-between items-start">
                                     <div>
-                                        {{ item.subHeading }}
+                                        {{ item.category }}
                                     </div>
-                                    <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
+                                    <button class="text-[#FF3B3B] uppercase flex justify-end items-center"
                                         @click="removeFromCart(index)">
                                         <div class="font-[Bold] sm:block hidden">&#128473;</div>
                                         <div class="font-[Bold] sm:block hidden">
-                                            Remove item
+                                            {{ isRemoving === index ? 'Removing...' : 'Remove item' }}
                                         </div>
                                     </button>
                                 </div>
                                 <div class="mt-4 flex justify-between">
                                     <div>
-                                        <button class="text-2xl" @click="increment(index)">&#65291;</button>
+                                        <button class="text-2xl" @click="debouncedIncrement(index)">&#65291;</button>
                                         <span
                                             class="border-2 border-[#61C1B4] text-[#61C1B4] rounded-lg p-2 px-3 shadow-lg">
                                             {{ item.quantity }}
                                         </span>
-                                        <button class="text-2xl" @click="decrement(index)">&#8722;</button>
+                                        <button class="text-2xl" @click="debouncedDecrement(index)">&#8722;</button>
                                     </div>
-                                    <button class="w-1/2 text-[#FF3B3B] uppercase flex justify-end items-center"
-                                        @click="removeFromCart(index)">
-                                        <div class="font-[Bold] sm:hidden">&#128473;</div>
-                                        <div class="font-[Bold] sm:hidden">
-                                            Remove item
-                                        </div>
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -81,7 +75,7 @@
                 <div class="flex justify-between py-8">
                     <div class="w-full">
                         <h1 class="pb-2 sm:text-lg font-[Bold]">Subtotal ({{ cartItems.reduce((total, item) => total +
-                            item.quantity, 0) }} Items)</h1>
+                        item.quantity, 0) }} Items)</h1>
                         <h1 class="pb-2 sm:text-lg">Est. Taxes</h1>
                         <h1 class="font-[Bold]">Estimated Total</h1>
                     </div>
@@ -98,8 +92,10 @@
                     </router-link>
                 </div>
                 <div class="w-full text-center">
-                    <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue Shopping</router-link>
-                    <p class="text-[#B7B7B7] pt-2 md:px-10 text-[14px]">Estimated total may not reflect actual taxes owed
+                    <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue
+                        Shopping</router-link>
+                    <p class="text-[#B7B7B7] pt-2 md:px-10 text-[14px]">Estimated total may not reflect actual taxes
+                        owed
                         or
                         other promotions. Payment is made directly to
                         the dispensary at time of pickup/delivery. Pickup/delivery orders that exceed local limits or
@@ -184,7 +180,7 @@
 
             </form>
         </div>
-      
+
     </section>
 </template>
 
@@ -299,7 +295,7 @@ const placeOrderAndClearCart = () => {
 };
 
 const clearCartItems = () => {
-    store.clearCart(); 
+    store.clearCart();
 };
 
 const store = useCartStore();
@@ -309,7 +305,8 @@ const cartItems = computed(() => store.cartItems);
 
 // Computed property to get total price
 const totalPrice = computed(() => store.totalPrice);
-
+const debounceDelay = 300;
+let debounceTimeout = null;
 // Methods to interact with cart
 const increment = (index) => {
     store.incrementItemQuantity(index);
@@ -318,9 +315,20 @@ const increment = (index) => {
 const decrement = (index) => {
     store.decrementItemQuantity(index);
 };
+const debouncedIncrement = (index) => {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => increment(index), debounceDelay);
+};
 
-const removeFromCart = (index) => {
-    store.removeFromCart(index);
+const debouncedDecrement = (index) => {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => decrement(index), debounceDelay);
+};
+const isRemoving = ref(null);
+const removeFromCart = async (index) => {
+    isRemoving.value = index;
+    await store.removeFromCart(index);
+    isRemoving.value = null;
 };
 const scrollToTop = () => {
     window.scrollTo({

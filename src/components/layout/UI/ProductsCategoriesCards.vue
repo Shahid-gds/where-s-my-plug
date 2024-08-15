@@ -111,6 +111,7 @@ const paginatedCards = computed(() => {
 
 const navigateToDetails = (id) => {
     scrollToTop();
+    localStorage.setItem('productId', id)
     router.push({ name: 'ProductDetail', params: { id } });
 }
 

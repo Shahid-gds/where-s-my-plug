@@ -141,7 +141,8 @@
                         <div v-if="isAccountToggleShow"
                             class="submenu w-[312px] absolute right-0 top-20 z-20 bg-[#FFFFFF] shadow-xl p-4 rounded-xl transition-opacity 0.5 ease-in pointer-events-auto">
                             <div class="flex items-center space-x-4 pb-4">
-                                <div v-if="userData.profilePhotoUrl" class="bg-[#61c1b4] w-[50px]  h-[40px] rounded-full">
+                                <div v-if="userData.profilePhotoUrl"
+                                    class="bg-[#61c1b4] w-[50px]  h-[40px] rounded-full">
                                     <img class="w-full h-full rounded-full object-cover" :src="userData.profilePhotoUrl"
                                         alt="">
                                 </div>
@@ -514,12 +515,13 @@ const accontToggleShow = () => {
 const signOut = async () => {
     try {
         await logoutApi();
-
         Cookies.remove('userEmail');
         Cookies.remove('userId');
-
-        router.push({name: 'Sign-In'})
-    } catch (error){
+        router.push({ name: 'Sign-In' })
+        setTimeout(() => {
+            window.location.reload();
+        }, 0);
+    } catch (error) {
         console.error('Error during logout', error);
     }
 }
@@ -542,6 +544,7 @@ const scrollToTop = () => {
 };
 onMounted(() => {
     getUserData();
+    cartStore.fetchCartItems();
 })
 const isDispensariesRoute = computed(() => route.name === 'Dispensaries' || route.name === 'Los Angeles');
 </script>
