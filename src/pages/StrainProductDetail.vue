@@ -7,49 +7,28 @@
             <div class="container mx-auto sm:-mt-[15rem] -mt-[10rem] xl:px-[8rem]">
                 <div class="lg:flex lg:space-x-16 justify-center w-full p-4 rounded-xl">
                     <!-- main image -->
-                    <div class="w-full border-2 p-2 rounded-2xl  bg-[white] relative">
+                    <div class="w-full h-[300px] border-2 p-2 rounded-2xl  bg-[white] relative">
                         <!-- previous button -->
-                        <div class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                        <!-- <div class="bg-[#61c1b4] p-3 rounded-r-full text-white absolute left-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
                             :style="{ backgroundColor: card.backgroundColor }" @click="prevImage">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                             </svg>
-                        </div>
+                        </div> -->
                         <div class="">
-                            <img class="w-full h-[300px]" v-if="mainImage" :src="mainImage" alt="Product image">
+                            <img class="w-full h-[280px] rounded-xl" v-if="mainImage" :src="mainImage" alt="Product image">
                         </div>
                         <!-- next button -->
-                        <div class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
+                        <!-- <div class="bg-[#61c1b4] p-3 rounded-l-full text-white absolute right-0 top-[10rem] cursor-pointer hover:bg-[#998a8a] transition-all duration-150"
                             :style="{ backgroundColor: card.backgroundColor }" @click="nextImage">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-                        </div>
-                        <div class="lg:block hidden absolute -bottom-[8rem]">
-                            <div class="flex space-x-4">
-                                <!-- Related images -->
-                                <div v-if="card.relatedImages.length > 1" v-for="(image, index) in card.relatedImages"
-                                    :key="index"
-                                    :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center w-[30%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
-                                    @click="updateMainImage(image)">
-                                    <img class="w-[100%]" :src="image" alt="Product image">
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="lg:hidden py-[2rem]">
-                        <div class="flex space-x-4">
-                            <!-- Related images -->
-                            <div v-if="card.relatedImages.length > 1" v-for="(image, index) in card.relatedImages"
-                                :key="index"
-                                :class="['border-2 p-2 cursor-pointer rounded-2xl flex justify-center sm:w-[10%] w-[30%]', mainImage === image ? 'border-[black]' : 'border-[#61c1b4]']"
-                                @click="updateMainImage(image)">
-                                <img class="w-[100%]" :src="image" alt="Product image">
-                            </div>
-                        </div>
-                    </div>
+                 
                     <div class="w-full">
                         <div class="flex justify-between items-center pb-1">
                             <div class="text-[#010101] text-[30px] font-[Jost-ExtraBold]">
@@ -102,14 +81,38 @@
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="">
+                         <!-- Relieved Section -->
+                         <div v-if="card.relieved && card.relieved.length" class="pb-5">
+                            <h1 class="sm:text-xl">Relieved</h1>
+                            <div class="flex flex-wrap gap-2">
+                                <div :style="{ borderColor: card.borderColor }"
+                                    v-for="(relief, index) in card.relieved" :key="index"
+                                    class="border-2 border-gray-300 rounded-lg px-3 py-1 bg-white">
+                                    {{ relief }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aromas Section -->
+                        <div v-if="card.aromas && card.aromas.length" class="pb-5">
+                            <h1 class="sm:text-xl">Aromas</h1>
+                            <div class="flex flex-wrap gap-2">
+                                <div :style="{ borderColor: card.borderColor }"
+                                    v-for="(aroma, index) in card.aromas" :key="index"
+                                    class="border-2 border-gray-300 rounded-lg px-3 py-1 bg-white">
+                                    {{ aroma }}
+                                </div>
+                            </div>
+                        </div>
+                         <!-- THC and CBD Section -->
+                         <div class="w-full flex justify-between">
                             <div class="pb-5">
                                 <h1 class="sm:text-xl">THC</h1>
-                                <p class="sm:text-2xl font-[Bold]">{{ card.thc }}</p>
+                                <p class="sm:text-2xl font-[Bold]">{{ card.cannabinoids.THC}}</p>
                             </div>
-                            <div class="pb-5">
+                            <div class="pb-5" v-if="card.cannabinoids.CBN">
                                 <h1 class="sm:text-xl">CBD</h1>
-                                <p class="font-[Bold] sm:text-2xl">{{ card.cbd }}</p>
+                                <p class="font-[Bold] sm:text-2xl">{{ card.cannabinoids.CBN}}</p>
                             </div>
                         </div>
                     </div>
@@ -189,8 +192,7 @@ const card = ref({
     price: '',
     weight: '',
     type: '',
-    thc: '',
-    cbd: '',
+    cannabinoids: {},
     note: '',
     relatedImages: [],
     flavours: [],
@@ -226,15 +228,17 @@ const fetchCardDetails = async () => {
                 heading: strain.name,
                 backgroundColor,
                 borderColor,
-                price: strain.price.toFixed(2),
-                weight: strain.quantity + ' units',
+                weight: strain.strain_percentages ? `${strain.strain_percentages.Sativa} Sativa / ${strain.strain_percentages.Indica} Indica` : '',
                 type: strain.type,
-                thc: strain.thc,
-                cbd: strain.cbd,
+                cannabinoids: strain.cannabinoids,
                 note: strain.description,
                 relatedImages: strain.images,
-                flavours: strain.flavours || [],
-                effects: strain.effects || []
+                flavours: strain.flavors || [],
+                effects: strain.effects || [],
+                relieved: strain.relieved || [],
+                aromas: strain.aromas || [],
+                note: strain.description,
+                relatedImages: strain.images,
             };
             mainImage.value = card.value.relatedImages[0];
         } else {

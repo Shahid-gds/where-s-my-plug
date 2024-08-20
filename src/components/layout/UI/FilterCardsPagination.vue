@@ -1,6 +1,6 @@
 <template>
     <section class="container mx-auto flex relative">
-      
+
         <div class="2xl:w-[20%] w-1/2 md:block hidden">
             <div>
                 <!-- <h1 class="font-bold">Search Strains</h1> -->
@@ -158,88 +158,83 @@
                 </div>
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
-                <div v-for="card in filteredCards" :key="card._id"  @click="navigateToDetails(card._id)"
+                <div v-for="card in displayedCards" :key="card._id" @click="navigateToDetails(card._id)"
                     class="md:w-[385px] relative w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
-                        <div class="w-full p-4 rounded-xl flex justify-center">
-                            <img class="w-1/2" :src="card.images[0]" alt="">
+                    <div class="w-full h-[180px] p-4 rounded-xl flex justify-center">
+                        <img class="w-1/2 rounded-xl" :src="card.images[0]" alt="">
+                    </div>
+                    <div class="w-full pt-3">
+                        <div class="border-b-2 border-r-2 p-2  text-[#B4B4B4] text-center absolute top-0 left-0">
+                            {{ card.type }}
                         </div>
-                        <div class="w-full pt-3">
-                            <div class="border-b-2 border-r-2 p-2  text-[#B4B4B4] text-center absolute top-0 left-0">
-                                {{ card.type }}
-                            </div>
-                            <!-- <div class="py-2">
+                        <!-- <div class="py-2">
                                 <span>Weight:</span> <span class="font-bold">{{ card.weight }}</span>
                             </div> -->
-                            <div class="flex items-center space-x-5 pb-4">
-                                <div class="flex">
-                                    <div v-for="n in 5" :key="n" class="w-[24px]">
-                                        <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
-                                            <path
-                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
-                                        </svg>
-                                        <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="w-5 h-5">
-                                            <path
-                                                d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
-                                        {{ card.ratingsAverage }}
-                                    </div>
-                                    <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
-                                        ({{ card.ratingsQuantity }})
-                                    </div>
+                        <div class="flex items-center space-x-5 pb-4">
+                            <div class="flex">
+                                <div v-for="n in 5" :key="n" class="w-[24px]">
+                                    <svg v-if="n <= Math.round(card.ratingsAverage)" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" fill="#FFD700" class="w-5 h-5">
+                                        <path
+                                            d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                                    </svg>
+                                    <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M12 .587l3.668 7.425 8.172 1.186-5.912 5.76 1.394 8.13-7.322-3.856-7.322 3.856 1.394-8.13-5.912-5.76 8.172-1.186L12 .587z" />
+                                    </svg>
                                 </div>
                             </div>
-                            <div class="py-2 font-[Extra-Bold]">
-                                {{ card.name }}
+                            <div class="flex space-x-2">
+                                <div class="text-[#444444] font-[poppin-bold] sm:text-xl">
+                                    {{ card.ratingsAverage }}
+                                </div>
+                                <div class="text-[#76c9be] font-[poppin-bold] sm:text-xl">
+                                    ({{ card.ratingsQuantity }})
+                                </div>
                             </div>
-                            <div class="description-container">
-                                <p :class="{ 'expanded': card.expanded, 'collapsed': !card.expanded }">
-                                    {{ card.description }}
-                                </p>
-                                <button @click="toggleDescription(card._id)" class="float-right pt-6 font-bold">
-                                    {{ card.expanded ? '' : 'Read More...' }}
-                                </button>
-                            </div>
-                            
-                            <!-- <div class="pt-4 font-[Extra-Bold] text-[20px]">
+                        </div>
+                        <div class="py-2 font-[Extra-Bold]">
+                            {{ card.name }}
+                        </div>
+                        <div class="description-container">
+                            <p :class="{ 'expanded': card.expanded, 'collapsed': !card.expanded }">
+                                {{ card.description }}
+                            </p>
+                            <button @click="toggleDescription(card._id)" class="float-right pt-6 font-bold">
+                                {{ card.expanded ? '' : 'Read More...' }}
+                            </button>
+                        </div>
+
+                        <!-- <div class="pt-4 font-[Extra-Bold] text-[20px]">
                                 <span>$</span>{{ card.price }}
                             </div> -->
-                        </div>
+                    </div>
                 </div>
+
             </transition-group>
-            <div class="container mx-auto flex justify-end mt-5 px-[3rem]">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <button @click="prevPage" :disabled="currentPage === 1" class="pagination-btn">&lt;
-                            </button>
-                        </li>
-                        <li v-for="pageNumber in totalPages" :key="pageNumber">
-                            <template v-if="pageNumber !== 1">
-                                <span class="text-[#999999]"> | </span>
-                            </template>
-                            <button @click="goToPage(pageNumber)"
-                                :class="{ 'pageNumber': true, 'active': pageNumber === currentPage }">{{
-                            pageNumber }}</button>
-                        </li>
-                        <li>
-                            <button @click="nextPage" :disabled="currentPage === totalPages"
-                                class="pagination-btn">&gt;</button>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="flex justify-center mt-8">
+                <button @click="loadMore" :disabled="loading"
+                    class="px-16 py-4 border-2 rounded-lg text-balck font-semibold">
+                    <span v-if="!loading">Load More..</span>
+                    <span v-else>
+                        <svg class="animate-spin h-5 w-5 mr-3 text-black inline-block"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        Loading...
+                    </span>
+                </button>
             </div>
         </div>
         <div v-if="isSideMenuOpen" @click="closeSideMenuOutside" class="fixed inset-0 bg-black z-10 opacity-25">
         </div>
         <TransitionGroup name="list" tag="ul" class="md:hidden">
-            <div class="w-[80%] shadow-lg bg-[#FBFBFB] p-6 rounded-tl-2xl rounded-bl-2xl absolute right-0 z-20" v-if="isSideMenuOpen">
+            <div class="w-[80%] shadow-lg bg-[#FBFBFB] p-6 rounded-tl-2xl rounded-bl-2xl absolute right-0 z-20"
+                v-if="isSideMenuOpen">
                 <div class="border-2 p-4 mt-[1rem] rounded-[15px] bg-[#FBFBFB]">
                     <div class="flex justify-between border-b-2">
                         <div>
@@ -424,56 +419,52 @@ const navigateToDetails = (id) => {
 }
 
 const cards = ref([]);
+const searchQuery = ref('');
+const currentPage = ref(1);
+const totalPages = ref(267);
+const itemsPerPage = ref(6);
+const loading = ref(false)
+
+const fetchCards = async (page) => {
+    loading.value = true
+    try {
+        
+        const response = await fetch(`${apiUrl}/strains/getAllStrains?page=${page}&limit=${itemsPerPage.value}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (Array.isArray(data.data.strains)) {
+            cards.value = [...cards.value, ...data.data.strains];
+        } else {
+            console.error('Error: The "strains" field is not an array:', data.data.strains);
+        }
+    } catch (error) {
+        console.error('Error fetching cards:', error);
+    } finally {
+        loading.value = false;
+    }
+};
+
+const loadMore = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value += 1;
+        fetchCards(currentPage.value);
+    }
+};
+
+const displayedCards = computed(() => {
+    return cards.value.filter(card => {
+        const matchesSearch = card.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+        const matchesType = selectedStrainTypes.value.length === 0 || selectedStrainTypes.value.includes(card.type);
+        const matchesEffect = selectedEffects.value.length === 0 || card.effects.some(effect => selectedEffects.value.includes(effect));
+        return matchesSearch && matchesType && matchesEffect;
+    });
+});
 
 onMounted(async () => {
-    try {
-        const response = await axios.get(`${apiUrl}/strains/getAllStrains`);
-        cards.value = response.data.data.strains;
-    } catch (error) {
-        console.error("Failed to fetch data:", error)
-    }
+    fetchCards(currentPage.value);
 })
-
-const searchQuery = ref('');
-
-const filteredCards = computed(() => {
-  return cards.value.filter(card => {
-    const matchesSearch = card.name.toLowerCase().includes(searchQuery.value.toLowerCase());
-    const matchesType = selectedStrainTypes.value.length === 0 || selectedStrainTypes.value.includes(card.type);
-    const matchesEffect = selectedEffects.value.length === 0 || card.effects.some(effect => selectedEffects.value.includes(effect));
-
-    return matchesSearch && matchesType && matchesEffect;
-  });
-});
-
-// Define number of cards per page
-const cardsPerPage = 24;
-
-const currentPage = ref(1);
-
-const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
-
-const paginationCard = computed(() => {
-    const startIndex = (currentPage.value - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-    return cards.value.slice(startIndex, endIndex);
-});
-
-function nextPage() {
-    if (currentPage.value < totalPages.value) {
-        currentPage.value++;
-    }
-}
-
-function prevPage() {
-    if (currentPage.value > 1) {
-        currentPage.value--;
-    }
-}
-
-function goToPage(pageNumber) {
-    currentPage.value = pageNumber;
-}
 const scrollToTop = () => {
     window.scrollTo({
         top: 0,
