@@ -422,7 +422,7 @@ const cards = ref([]);
 const searchQuery = ref('');
 const currentPage = ref(1);
 const totalPages = ref(267);
-const itemsPerPage = ref(6);
+const itemsPerPage = ref(22);
 const loading = ref(false)
 
 const fetchCards = async (page) => {
