@@ -6,13 +6,8 @@
                 <h1 class="text-4xl font-[Semi-Bold] text-[#61c1b4]">Where are you?</h1>
                 <p>For the most relevant products and content, please enter your address.</p>
                 <div class="w-full relative">
-                    <input 
-                        v-model="searchQuery" 
-                        type="text" 
-                        placeholder="Enter your delivery address"
-                        class="border-2 w-full p-4 px-14 text-xl rounded-xl"
-                        @input="filterLocations"
-                    />
+                    <input v-model="searchQuery" type="text" placeholder="Enter your delivery address"
+                        class="border-2 w-full p-4 px-14 text-xl rounded-xl" @input="filterLocations" />
                     <div class="absolute top-2 left-3">
                         <!-- Search Icon SVG -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -26,31 +21,26 @@
                 </div>
                 <div v-if="isLoggedIn" class="relative">
                     <!-- Show the filtered locations if there is a search query -->
-                    <div v-if="searchQuery && filteredLocations.length" class="absolute mt-4  text-left bg-white w-full h-[300px] overflow-y-auto">
+                    <div v-if="searchQuery && filteredLocations.length"
+                        class="absolute mt-4  text-left bg-white w-full h-[300px] overflow-y-auto">
                         <table class="w-full border-collapse">
-                            <thead>
-                                <tr>
-                                    <th class="border-b-2 border-gray-300 p-2">State</th>
-                                    <th class="border-b-2 border-gray-300 p-2">Cities</th>
-                                    <th class="border-b-2 border-gray-300 p-2">Actions</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr v-for="state in filteredLocations" :key="state.state">
-                                    <td class="border-b border-gray-200 p-2"><strong>{{ state.state }}</strong></td>
-                                    <td class="border-b border-gray-200 p-2">
-                                        <ul class="pl-4">
-                                            <li v-for="city in state.cities" :key="city">
-                                                <button @click="selectLocation(state.state, city)" class="text-blue-500 underline">
-                                                    {{ city }}
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    <td @click="selectLocation(state.state)"
+                                        class="cursor-pointer border-b border-gray-200 p-2 flex space-x-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                        </svg>
+                                        <strong>{{ state.state }}</strong>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                  
+
                     </div>
                     <!-- Show message if no locations are found and there is a search query -->
                     <div v-if="searchQuery && !filteredLocations.length" class="text-gray-500 mt-4">
@@ -70,13 +60,21 @@
                         <thead>
                             <tr>
                                 <th class="border-b-2 border-gray-300 p-2">State</th>
-                                <th class="border-b-2 border-gray-300 p-2">City</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(loc, index) in selectedLocations" :key="index">
-                                <td class="border-b border-gray-200 p-2">{{ loc.state }}</td>
-                                <td class="border-b border-gray-200 p-2">{{ loc.city }}</td>
+                            <tr v-for="(loc, index) in selectedLocations" :key="index"
+                                @click="selectLocation(loc.state)">
+                                <td class="border-b cursor-pointer border-gray-200 p-2 flex space-x-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <div>
+                                        {{ loc.state }}
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,6 +87,9 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useApi } from '@/components/api/useApi';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
@@ -144,14 +145,25 @@ const filterLocations = () => {
     searchQuery.value = searchQuery.value.toLowerCase();
 };
 
+const uniqueLocations = new Set();
+
 const selectLocation = (state, city) => {
-    selectedLocations.value.push({ state, city });
+    const locationKey = `${state}-${city}`;
+
+    if (!uniqueLocations.has(locationKey)) {
+        selectedLocations.value.push({ state, city });
+        uniqueLocations.add(locationKey);
+    }
+
     searchQuery.value = '';
     showSearchList.value = false;
+    router.push({ name: 'Menu', query: { state, city } });
+    props.onClose();
 };
 
+
 const filteredLocations = computed(() => {
-    
+
     return locations.value.filter(state =>
         state.state.toLowerCase().includes(searchQuery.value) ||
         state.cities.some(city => city.toLowerCase().includes(searchQuery.value))
