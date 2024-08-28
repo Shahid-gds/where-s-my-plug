@@ -1,6 +1,6 @@
 <template>
     <section class="">
-        <div class="bg-covers bg-center bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6 pb-[5rem]">
+        <div class="bg-[url('@/assets/images/bgs/FooterBg.svg')] w-full p-6 pb-[5rem]">
             <div class="container mx-auto py-[12rem] text-center">
             </div>
 

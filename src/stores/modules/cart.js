@@ -67,7 +67,7 @@ export const useCartStore = defineStore({
           };
         });
       } catch (error) {
-        console.error("Error fetching cart items or product details:", error);
+        // console.error("Error fetching cart items or product details:", error);
         this.cartItems = [];
       }
     },

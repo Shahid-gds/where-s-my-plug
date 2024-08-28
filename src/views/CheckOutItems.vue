@@ -86,10 +86,11 @@
                     </div>
                 </div>
                 <div class="w-full pb-16">
-                    <router-link :to="{ name: 'CheckOutThankYou' }" @click="placeOrderAndClearCart"
-                        class="hover-btn w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">Place
+                    <div @click="placeOrder"
+                        class="hover-btn cursor-pointer w-full text-center p-4 rounded-full bg-[#61C1B4] text-white font-[Bold]">
+                        Place
                         Order
-                    </router-link>
+                    </div>
                 </div>
                 <div class="w-full text-center">
                     <router-link to="/dispensaries-detail:id" class="underline font-[Bold]">Continue
@@ -124,36 +125,89 @@
                 <div class="pb-10">
                     <h1 class="text-2xl uppercase">Billing details</h1>
                     <p class="text-[#ACACAC] pb-4">Lorem Ipsum is simply dummy text of the printing</p>
-                    <div class="">
-                        <div v-for="(inputGroup, index) in contactInfoInputGroup" :key="index" class="">
-                            <div v-for="(input, inputIndex) in inputGroup" :key="inputIndex" class="w-full">
-                                <div class="text-[#343434]" :class="{ 'pb-2 mt-3': input.id === 'companyName' }">
-                                    <label :for="input.id">
-                                        {{ input.label }}
-                                        <span v-if="isRequired(input.label)"
-                                            class="text-[30px] font-[Bold] text-[#EC1818]">*</span>
-                                    </label>
-                                </div>
-                                <div v-if="input.type === 'select'" class="select w-full pb-10">
-                                    <div class="selectBtn border-2 border-[#61C1B4] text-[#818181] p-3 w-full rounded-xl px-6"
-                                        :class="{ toggle: dropdownVisible[input.id] }"
-                                        @click="toggleDropdown(input.id)">
-                                        {{ selectedOption[input.id] }}
-                                    </div>
-                                    <div class="selectDropdown p-2" :class="{ toggle: dropdownVisible[input.id] }">
-                                        <div class="option w-full" v-for="option in input.options" :key="option"
-                                            @click="selectOption(option, input.id)" :data-type="option">
-                                            {{ option }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-[#818181] pb-6" v-else>
-                                    <input :type="input.type" :id="input.id"
-                                        class="border-2 border-[#61C1B4] w-full p-3 rounded-xl px-6"
-                                        :placeholder="input.placeholder">
-                                </div>
-                            </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">First Name <span class="text-[30px] font-bold text-[red]">*</span></label>
                         </div>
+                        <input v-model="orderData.billingDetails.firstName" type="text" @input="clearError('firstName')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your First Name">
+                        <p v-if="errors.firstName" class="text-red-500 text-sm">{{ errors.firstName }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Last Name <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.lastName" type="text" @input="clearError('lastName')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your Last Name">
+                        <p v-if="errors.lastName" class="text-red-500 text-sm">{{ errors.lastName }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Company Name (Optional)</label>
+                        </div>
+                        <input v-model="orderData.billingDetails.companyName" type="text"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your Company Name">
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Country / Region <span
+                                    class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.country" type="text" @input="clearError('country')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Country Name">
+                        <p v-if="errors.country" class="text-red-500 text-sm">{{ errors.country }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Street Address <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.streetAddress" type="text" @input="clearError('streetAddress')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="House Number and Street Name">
+                        <p v-if="errors.streetAddress" class="text-red-500 text-sm">{{ errors.streetAddress }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <input type="text" class="border-2 p-3 rounded-lg w-full"
+                            placeholder="Appartment, Suit, Unit etc">
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Town / City <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.city" type="text" @input="clearError('city')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Town / City">
+                        <p v-if="errors.city" class="text-red-500 text-sm">{{ errors.city }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">State <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.state" type="text" @input="clearError('state')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your State">
+                        <p v-if="errors.state" class="text-red-500 text-sm">{{ errors.state }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">ZIP Code <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.zipCode" type="text" @input="clearError('zipCode')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your ZIP Code">
+                        <p v-if="errors.zipCode" class="text-red-500 text-sm">{{ errors.zipCode }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Phone Number <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.phoneNumber" type="text" @input="clearError('phoneNumber')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your Phone Number">
+                        <p v-if="errors.phoneNumber" class="text-red-500 text-sm">{{ errors.phoneNumber }}</p>
+                    </div>
+                    <div class="pb-4">
+                        <div>
+                            <label for="">Email Address <span class="text-[30px] font-bold text-[red]">*</span></label>
+                        </div>
+                        <input v-model="orderData.billingDetails.email" type="email" @input="clearError('email')"
+                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your Email Address">
+                        <p v-if="errors.email" class="text-red-500 text-sm">{{ errors.email }}</p>
                     </div>
                     <div class="checkbox-wrapper-45 pt-6 flex items-center space-x-2">
                         <div>
@@ -187,124 +241,166 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useCartStore } from '../stores/modules/cart';
-const selectedLabels = ['First Name', 'Last Name', 'Country / Region', 'Street Address', 'Town / City', 'State', 'ZIP Code', 'Phone Number', 'Email Address'];
+import axios from 'axios';
+import { useApi } from '@/components/api/useApi';
 
-const contactInfoInputGroup = ref([
-    [
-        {
-            id: 'firstName',
-            type: 'text',
-            label: 'First Name',
-            placeholder: 'Enter Your First Name'
-        },
-        {
-            id: 'lastName',
-            type: 'text',
-            label: 'Last Name',
-            placeholder: 'Enter Your Last Name'
-        },
-        {
-            id: 'companyName',
-            type: 'text',
-            label: 'Company Name (Optional)',
-            placeholder: 'Enter Your Company Name'
-        },
 
-        {
-            id: 'country',
-            type: 'select',
-            label: 'Country / Region',
-            options: ['One', 'Two', 'Three']
-        },
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
-        {
-            id: 'streetAddress',
-            type: 'text',
-            label: 'Street Address',
-            placeholder: 'House Number and Street Name'
-        },
-        {
-            id: 'streetAddress',
-            type: 'text',
-            label: '',
-            placeholder: 'Apartment, Suite, Unit, etc. (optional)'
-        },
-        {
-            id: 'city',
-            type: 'text',
-            label: 'Town / City',
-            placeholder: 'Enter Your Town / City'
-        },
-        {
-            id: 'state',
-            type: 'select',
-            label: 'State',
-            options: ['One', 'Two', 'Three']
-        },
-        {
-            id: 'zipCode',
-            type: 'text',
-            label: 'ZIP Code',
-            placeholder: 'Enter Your ZIP Code'
-        },
-        {
-            id: 'phoneNumber',
-            type: 'text',
-            label: 'Phone Number',
-            placeholder: 'Enter Your Phone Number'
-        },
-        {
-            id: 'emailAddress',
-            type: 'email',
-            label: 'Email Address',
-            placeholder: 'Enter Your Email Address'
-        },
-    ],
-]);
-let selectedOption = {
-    country: 'Select Country / Region',
-    state: 'Select State',
-};
+const store = useCartStore();
 
-const dropdownVisible = ref({
-    country: false,
-    state: false,
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+const orderData = ref({
+    items: [],
+    billingDetails: {
+        firstName: '',
+        lastName: '',
+        companyName: '',
+        country: '',
+        streetAddress: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        phoneNumber: '',
+        email: ''
+    },
+    paymentMethod: {
+        name: '',
+        cardNumber: '',
+        expiryData: '',
+        cvv: ''
+    },
+    orderStatus: '',
+    summary: {
+        subtotal: 0,
+        taxes: 0,
+        total: 0
+    }
 });
 
-const toggleDropdown = (id) => {
-    dropdownVisible.value[id] = !dropdownVisible.value[id];
-    for (const key in dropdownVisible.value) {
-        if (key !== id) {
-            dropdownVisible.value[key] = false;
+const orderNote = ref('');
+const calculateSummary = () => {
+    const subtotal = cartItems.value.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const taxes = subtotal * 0.09; 
+    const total = subtotal + taxes;
+
+    orderData.value.summary = {
+        subtotal: subtotal.toFixed(2),
+        taxes: taxes.toFixed(2),
+        total: total.toFixed(2)
+    };
+};
+
+onMounted(async () => {
+    await store.fetchCartItems();
+    orderData.value.items = store.cartItems.map(item => ({
+        product: item._id,
+        quantity: item.quantity.toString()
+    }));
+    calculateSummary();
+})
+
+const cartItems = computed(() => store.cartItems);
+const totalPrice = computed(() => store.totalPrice);
+const errors = ref({
+    firstName: '',
+    lastName: '',
+    country: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    phoneNumber: '',
+    email: ''
+});
+
+const validateForm = () => {
+    errors.value = {};
+    let isValid = true;
+
+    if (!orderData.value.billingDetails.firstName) {
+        errors.value.firstName = 'First name is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.lastName) {
+        errors.value.lastName = 'Last name is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.country) {
+        errors.value.country = 'Country / Region is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.streetAddress) {
+        errors.value.streetAddress = 'Street address is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.city) {
+        errors.value.city = 'City is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.state) {
+        errors.value.state = 'State is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.zipCode) {
+        errors.value.zipCode = 'ZIP Code is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.phoneNumber) {
+        errors.value.phoneNumber = 'Phone number is required';
+        isValid = false;
+    }
+    if (!orderData.value.billingDetails.email) {
+        errors.value.email = 'Email address is required';
+        isValid = false;
+    }
+
+    return isValid;
+};
+const clearError = (field) => {
+    errors.value[field] = '';
+};
+
+const placeOrder = async () => {
+    if (!validateForm()) {
+        return
+    }
+    const userId = getCookie("userId");
+    try {
+        const response = await fetch(`${apiUrl}/checkout/placeMe`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': userId
+            },
+            body: JSON.stringify(orderData.value)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // console.log('Order placed successfully:', result);
+            window.location.reload();
+        } else {
+            console.error('Order placement failed:', result);
         }
+    } catch (error) {
+        console.error('An error occurred:', error);
     }
 };
 
-const selectOption = (option, id) => {
-    selectedOption[id] = option;
-    dropdownVisible.value[id] = false;
-};
 
-const isRequired = (label) => {
-    return selectedLabels.includes(label);
-};
-
-const placeOrderAndClearCart = () => {
-    scrollToTop();
-    clearCartItems();
-};
 
 const clearCartItems = () => {
     store.clearCart();
 };
-
-const store = useCartStore();
-
-// Computed property to get cart items
-const cartItems = computed(() => store.cartItems);
-
-// Computed property to get total price
-const totalPrice = computed(() => store.totalPrice);
 const debounceDelay = 300;
 let debounceTimeout = null;
 // Methods to interact with cart

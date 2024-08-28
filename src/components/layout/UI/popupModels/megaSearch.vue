@@ -35,8 +35,12 @@
                                             <img :src="card.image" alt="">
                                         </div>
                                         <p>{{ card.subHeading }}</p>
-                                        <p class=""><span class="">$</span><span class="text-xl font-bold">{{ card.price
-                                                }}</span></p>
+                                        <p class="">
+                                            <span class="">$</span>
+                                            <span class="text-xl font-bold">
+                                                {{ card.price }}
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
