@@ -161,8 +161,9 @@
                         <div>
                             <label for="">Street Address <span class="text-[30px] font-bold text-[red]">*</span></label>
                         </div>
-                        <input v-model="orderData.billingDetails.streetAddress" type="text" @input="clearError('streetAddress')"
-                            class="border-2 p-3 rounded-lg w-full" placeholder="House Number and Street Name">
+                        <input v-model="orderData.billingDetails.streetAddress" type="text"
+                            @input="clearError('streetAddress')" class="border-2 p-3 rounded-lg w-full"
+                            placeholder="House Number and Street Name">
                         <p v-if="errors.streetAddress" class="text-red-500 text-sm">{{ errors.streetAddress }}</p>
                     </div>
                     <div class="pb-4">
@@ -197,8 +198,9 @@
                         <div>
                             <label for="">Phone Number <span class="text-[30px] font-bold text-[red]">*</span></label>
                         </div>
-                        <input v-model="orderData.billingDetails.phoneNumber" type="text" @input="clearError('phoneNumber')"
-                            class="border-2 p-3 rounded-lg w-full" placeholder="Enter Your Phone Number">
+                        <input v-model="orderData.billingDetails.phoneNumber" type="text"
+                            @input="clearError('phoneNumber')" class="border-2 p-3 rounded-lg w-full"
+                            placeholder="Enter Your Phone Number">
                         <p v-if="errors.phoneNumber" class="text-red-500 text-sm">{{ errors.phoneNumber }}</p>
                     </div>
                     <div class="pb-4">
@@ -243,6 +245,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useCartStore } from '../stores/modules/cart';
 import axios from 'axios';
 import { useApi } from '@/components/api/useApi';
+import { useRoute, useRouter } from 'vue-router';
 
 
 const { getApiUrl } = useApi();
@@ -250,6 +253,9 @@ const apiUrl = getApiUrl();
 
 const store = useCartStore();
 
+
+const route = useRoute();
+const router = useRouter();
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -288,7 +294,7 @@ const orderData = ref({
 const orderNote = ref('');
 const calculateSummary = () => {
     const subtotal = cartItems.value.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const taxes = subtotal * 0.09; 
+    const taxes = subtotal * 0.09;
     const total = subtotal + taxes;
 
     orderData.value.summary = {
@@ -386,8 +392,11 @@ const placeOrder = async () => {
         const result = await response.json();
 
         if (response.ok) {
-            // console.log('Order placed successfully:', result);
-            window.location.reload();
+            if (result.data && result.data.order && result.data.order.orderNumber) {
+                const orderNumber = result.data.order.orderNumber;
+                localStorage.setItem('orderNumber', orderNumber);
+                router.push({ name: 'CheckOutThankYou' });
+            }
         } else {
             console.error('Order placement failed:', result);
         }
