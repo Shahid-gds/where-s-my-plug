@@ -252,7 +252,7 @@ const router = createRouter({
       component: () => import("../pages/MyOrder.vue"),
     },
     {
-      path: "/my-orders-details:id",
+      path: "/my-orders/:id",
       name: "MyOrderDetails",
       meta: { layout: "Default" },
       component: () => import("../pages/MyOrderDetails.vue"),
