@@ -58,6 +58,9 @@
 
         </div>
         <div class="w-full">
+            <div v-if="filteredCards.length === 0" class="text-center text-lg font-bold mt-4 p-36 rounded-xl border-2 w-1/2 ml-auto mr-auto">
+                No Strains Products Available
+            </div>
             <div class="md:hidden flex items-center space-x-3 px-4">
                 <div class="w-full">
                     <!-- <h1 class="font-bold">Search Strains</h1> -->
@@ -125,7 +128,7 @@
                     </div>
                 </div>
             </transition-group>
-            <div class="container mx-auto flex justify-end mt-5 px-[3rem]">
+            <div v-if="hasStrainProducts" class="container mx-auto flex justify-end mt-5 px-[3rem]">
                 <nav>
                     <ul class="pagination">
                         <li>
@@ -192,6 +195,7 @@
                 </div>
             </div>
         </TransitionGroup>
+        
     </section>
 
 </template>
@@ -222,6 +226,7 @@ const currentPage = ref(1);
 const toggleSideMenu = () => {
     isSideMenuOpen.value = !isSideMenuOpen.value;
 };
+const hasStrainProducts = computed(() => filteredCards.value.length > 0);
 
 const closeSideMenuOutside = () => {
     isSideMenuOpen.value = false;
