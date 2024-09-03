@@ -83,17 +83,18 @@
                 </div>
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
-                <div v-for="card in filteredCards" :key="card.id" @click="navigateToDetails(card.id)"
+                <div v-for="card in filteredCards" :key="card._id" @click="navigateToDetails(card.id)"
                     class="md:w-[385px] relative w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
-                    <div class="w-full p-4 rounded-xl flex justify-center relative">
-                        <img class="w-1/2" :src="card.image" alt="">
-                        <div class="absolute bottom-0 right-0 text-lg font-bold border-2 p-1 px-6 rounded-full">
-                            {{card.category}}
-                        </div>
+                    <div class="w-full p-4 rounded-xl flex justify-center">
+                        <img class="w-1/2" :src="card.images" alt="">
                     </div>
                     <div class="w-full pt-3">
-                        <div class="border-2 text-white rounded-tl-xl p-2 text-center absolute top-0 left-0"
-                            :style="{ backgroundColor: card.backgroundColor }">
+                        <div
+                            class="absolute top-0 right-0 text-lg font-bold border-b-2 border-l-2 rounded-tr-xl p-2 px-6">
+                            {{ card.category }}
+                        </div>
+                        <div class=" text-white rounded-tl-xl p-2 text-center absolute top-0 left-0"
+                            :style="{ backgroundColor: getCardBackgroundColor(card.type) }">
                             {{ card.type }}
                         </div>
                         <div v-if="card.thc" class="border-2 p-2 w-[150px] text-center rounded-xl">
@@ -108,7 +109,7 @@
                         <div class="py-2 pb-6">
                             <span>Weight:</span> <span class="font-bold">{{ card.weight }}</span>
                         </div>
-                    
+
                         <div class="w-[80%] flex items-center justify-between absolute bottom-3">
                             <div class="font-[Extra-Bold] text-[20px]">
                                 <span>$</span>{{ card.price }}
@@ -120,7 +121,7 @@
                                         d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                                 </svg>
                             </div>
-                     </div>
+                        </div>
                     </div>
                 </div>
             </transition-group>
@@ -192,7 +193,7 @@
             </div>
         </TransitionGroup>
     </section>
-   
+
 </template>
 
 <script setup>
@@ -206,35 +207,32 @@ import axios from 'axios';
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
-
 const route = useRoute();
 const router = useRouter();
 
-const strainTypes = ref(['Flowers', 'Cartridge', 'Preroll', 'Edible', 'Beverage', 'Extract', 'Tincture', 'Topical', 'Pill', 'Merch', 'Plant']);
+const strainTypes = ref(['Flower', 'Cartridge', 'Preroll', 'Edible', 'Beverage', 'Extract', 'Tincture', 'Topical', 'Pill', 'Merch', 'Plant']);
 const selectedStrainTypes = ref([]);
+const isSideMenuOpen = ref(false);
+const showStrainTypeCheckboxArea = ref(true);
+const checkedCheckbox = ref(null);
+const searchQuery = ref('');
+const cards = ref([]);
+const currentPage = ref(1);
+
+const toggleSideMenu = () => {
+    isSideMenuOpen.value = !isSideMenuOpen.value;
+};
 
 const closeSideMenuOutside = () => {
     isSideMenuOpen.value = false;
 };
-const isSideMenuOpen = ref(false);
-const toggleSideMenu = () => {
-    isSideMenuOpen.value = !isSideMenuOpen.value;
-};
-const showStrainTypeCheckboxArea = ref(true);
+
 function toggleStrainType() {
     showStrainTypeCheckboxArea.value = !showStrainTypeCheckboxArea.value;
 }
 
-const checkedCheckbox = ref(null);
 function handleCheckboxClick(event) {
     const targetCheckbox = event.target;
-
-    // document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-    //     if (checkbox !== targetCheckbox) {
-    //         checkbox.checked = false;
-    //     }
-    // });
-
     checkedCheckbox.value = targetCheckbox;
 }
 
@@ -242,185 +240,72 @@ const navigateToDetails = (id) => {
     scrollToTop();
     router.push({ name: 'StrainsDetail', params: { id } });
 }
+const typeColors = {
+    Hybrid: '#42BC97',
+    Indica: '#126CAB',
+    Sativa: '#EBB22D',
+};
 
-const cards = ref([
-    {
-        id: '1',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img1.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: 'PRIVATE RESERVE OG',
-        // thc: 'THC: 24.57%',
-        type: 'Indica',
-        weight: '3.5 grams',
-        price: '20',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '2',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img2.avif').then((module) => module.default),
-        name: 'True classic',
-        heading: 'TRUE CLASSIC OG',
-        thc: 'THC: 24.57%',
-        type: 'Indica',
-        weight: '3.5 grams',
-        price: '40',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '3',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img3.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: 'BLUE DREAM (1OZ)',
-        // thc: 'THC: 24.57%',
-        type: 'Sativa',
-        weight: '28.0 grams',
-        price: '120',
-        backgroundColor: '#EBB22D'
-    },
-    {
-        id: '4',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img3.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: '805 GLUE',
-        // thc: 'THC: 24.57%',
-        type: 'Hybird',
-        weight: '3.5 grams',
-        price: '20',
-        backgroundColor: '#42BC97'
-    },
-    {
-        id: '5',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img4.avif').then((module) => module.default),
-        name: 'Thc design',
-        heading: 'GELATTI CAKE',
-        // thc: 'THC: 24.57%',
-        type: 'Hybird',
-        weight: '3.5 grams',
-        price: '45',
-        backgroundColor: '#42BC97'
-    },
-    {
-        id: '6',
-        category: 'Flowers',
-        image: import('../assets/images/strains/img5.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: 'BLUE DREAM',
-        // thc: 'THC: 24.57%',
-        type: 'Sativa',
-        weight: '3.5 grams',
-        price: '20',
-        backgroundColor: '#EBB22D'
-    },
-    {
-        id: '7',
-        category: 'Cartridge',
-        image: import('../assets/images/strains/img6.avif').then((module) => module.default),
-        name: 'Rove',
-        heading: 'WAUI CARTRIDGE',
-        // thc: 'THC: 24.57%',
-        type: 'Sativa',
-        weight: '1.0 grams',
-        price: '40',
-        backgroundColor: '#EBB22D'
-    },
-    {
-        id: '8',
-        category: 'Cartridge',
-        image: import('../assets/images/strains/img7.avif').then((module) => module.default),
-        name: 'Stiiizy',
-        heading: 'WATERMELON Z POD',
-        thc: 'THC: 91.15%',
-        type: 'Indica',
-        weight: '0.5 grams',
-        price: '18',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '9',
-        category: 'Cartridge',
-        image: import('../assets/images/strains/img8.avif').then((module) => module.default),
-        name: 'Stiiizy',
-        heading: 'WATERMELON Z POD',
-        thc: 'THC: 91.47%',
-        type: 'Indica',
-        weight: '0.5 grams',
-        price: '20',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '10',
-        category: 'Preroll',
-        image: import('../assets/images/strains/img11.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: 'WEDDING CAKE PRE-ROLLS (2PK)',
-        // thc: 'THC: 100.0%',
-        type: 'Indica',
-        weight: '1.0 grams',
-        price: '8',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '11',
-        category: 'Preroll',
-        image: import('../assets/images/strains/img12.avif').then((module) => module.default),
-        name: 'Lowell',
-        heading: 'THE BEDTIME PRE-ROLLS (6PK)',
-        thc: 'THC: 13.5MG',
-        type: 'Indica',
-        weight: '3.5 grams',
-        price: '40',
-        backgroundColor: '#126CAB'
-    },
-    {
-        id: '12',
-        category: 'Preroll',
-        image: import('../assets/images/strains/img11.avif').then((module) => module.default),
-        name: 'Pacific stone',
-        heading: 'PRIVATE RESERVE OG PRE-ROLL (2PK)',
-        // thc: 'THC: 10.0%',
-        type: 'Indica',
-        weight: '3.5 grams',
-        price: '8',
-        backgroundColor: '#126CAB'
-    },
-]);
+const getCardBackgroundColor = (type) => {
+    return typeColors[type] || '#9E9E9E'; // Fallback color if type not found
+};
 
 
-onMounted(async () => {
-    cards.value = await Promise.all(
-        cards.value.map(async (card) => ({
-            ...card,
-            image: await card.image,
-        }))
-    );
+const fetchStrainProducts = async () => {
+    try {
+        const strainId = localStorage.getItem('strainId');
+        const selectedLocation = JSON.parse(localStorage.getItem('selectedLocation')) || { state: 'Default City' };
+        const state = selectedLocation.state;
+
+        const response = await axios.get(
+            `${apiUrl}/products/getMeByStrainIdAndLocations?state=${encodeURIComponent(state)}`,
+            {
+                headers: {
+                    'strain-id': strainId,
+                },
+            }
+        );
+
+        if (response.data.status === 'success' && response.data.data && response.data.data.products) {
+            cards.value = response.data.data.products;
+        } else {
+            cards.value = [];
+        }
+    } catch (error) {
+        console.error('Error fetching strain products:', error);
+        cards.value = [];
+    }
+};
+
+onMounted(() => {
+    fetchStrainProducts();
 });
-const searchQuery = ref('');
 
 const filteredCards = computed(() => {
-    return cards.value.filter(card => {
-        const matchesSearch = card.category.toLowerCase().includes(searchQuery.value.toLowerCase());
-        const matchesType = selectedStrainTypes.value.length === 0 || selectedStrainTypes.value.includes(card.category);
+    let filtered = cards.value || [];
 
-        return matchesSearch && matchesType;
-    });
+    if (searchQuery.value) {
+        filtered = filtered.filter(card =>
+            card.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        );
+    }
+
+    if (selectedStrainTypes.value.length) {
+        filtered = filtered.filter(card =>
+            selectedStrainTypes.value.includes(card.category)
+        );
+    }
+
+    return filtered;
 });
-
-// Define number of cards per page
 const cardsPerPage = 24;
 
-const currentPage = ref(1);
-
-const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
+const totalPages = computed(() => Math.ceil((filteredCards.value || []).length / cardsPerPage));
 
 const paginationCard = computed(() => {
     const startIndex = (currentPage.value - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
-    return cards.value.slice(startIndex, endIndex);
+    return (filteredCards.value || []).slice(startIndex, endIndex);
 });
 
 function nextPage() {
@@ -438,6 +323,7 @@ function prevPage() {
 function goToPage(pageNumber) {
     currentPage.value = pageNumber;
 }
+
 const scrollToTop = () => {
     window.scrollTo({
         top: 0,

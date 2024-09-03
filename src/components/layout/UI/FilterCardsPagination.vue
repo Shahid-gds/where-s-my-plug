@@ -414,6 +414,7 @@ function handleCheckboxClick(event) {
 }
 
 const navigateToDetails = (id) => {
+    localStorage.setItem('strainId', id)
     scrollToTop();
     router.push({ name: 'StrainsCategories', params: { id } });
 }
@@ -428,7 +429,7 @@ const loading = ref(false)
 const fetchCards = async (page) => {
     loading.value = true
     try {
-        
+
         const response = await fetch(`${apiUrl}/strains/getAllStrains?page=${page}&limit=${itemsPerPage.value}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

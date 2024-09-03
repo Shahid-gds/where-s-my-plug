@@ -153,6 +153,7 @@ const selectLocation = (state, city) => {
     if (!uniqueLocations.has(locationKey)) {
         selectedLocations.value.push({ state, city });
         uniqueLocations.add(locationKey);
+        localStorage.setItem('selectedLocation', JSON.stringify({ state, city }));
     }
 
     searchQuery.value = '';
