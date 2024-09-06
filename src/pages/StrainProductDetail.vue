@@ -175,8 +175,6 @@ const LoggedInStatus = () => {
     isLoggedIn.value = userEmail.value !== '' && userId.value !== '';
 };
 
-
-
 // const addToCart = () => {
 //     scrollToTop();
 //     console.log('Adding to cart:', card.value);

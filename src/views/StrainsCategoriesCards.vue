@@ -59,7 +59,7 @@
         </div>
         <div class="w-full">
             <div v-if="filteredCards.length === 0" class="text-center text-lg font-bold mt-4 p-36 rounded-xl border-2 w-1/2 ml-auto mr-auto">
-                No Strains Products Available
+                No Strains Products Available in this Location<div @click="openLocationModal" class="cursor-pointer border-2 p-2 rounded-xl">Change your Location</div>
             </div>
             <div class="md:hidden flex items-center space-x-3 px-4">
                 <div class="w-full">
@@ -86,10 +86,10 @@
                 </div>
             </div>
             <transition-group name="nested" tag="div" class="flex flex-wrap 2xl:justify-center justify-center">
-                <div v-for="card in filteredCards" :key="card._id" @click="navigateToDetails(card.id)"
+                <div v-for="card in filteredCards" :key="card._id" @click="navigateToDetails(card._id)"
                     class="md:w-[385px] relative w-full rounded-2xl p-6 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
-                    <div class="w-full p-4 rounded-xl flex justify-center">
-                        <img class="w-1/2" :src="card.images" alt="">
+                    <div class="w-full p-4 rounded-xl flex justify-center pt-10">
+                        <img class="w-1/2 rounded-xl" :src="card.images[0]" alt="">
                     </div>
                     <div class="w-full pt-3">
                         <div
@@ -195,7 +195,7 @@
                 </div>
             </div>
         </TransitionGroup>
-        
+        <locationsModal :show="showLocationModal" :onClose="colseLocationModal" />
     </section>
 
 </template>
@@ -203,11 +203,18 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import StrainProductDetail from '@/pages/StrainProductDetail.vue';
+import locationsModal from '@/components/layout/UI/popupModels/strainsLocationModel.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useApi } from '@/components/api/useApi';
 import axios from 'axios';
 
-
+const showLocationModal = ref(false);
+const colseLocationModal = () => {
+    showLocationModal.value = false;
+}
+const openLocationModal = () => {
+    showLocationModal.value = true;
+};
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
@@ -243,7 +250,7 @@ function handleCheckboxClick(event) {
 
 const navigateToDetails = (id) => {
     scrollToTop();
-    router.push({ name: 'StrainsDetail', params: { id } });
+    router.push({ name: 'ProductDetail', params: { id } });
 }
 const typeColors = {
     Hybrid: '#42BC97',
@@ -252,7 +259,7 @@ const typeColors = {
 };
 
 const getCardBackgroundColor = (type) => {
-    return typeColors[type] || '#9E9E9E'; // Fallback color if type not found
+    return typeColors[type] || '#9E9E9E';
 };
 
 

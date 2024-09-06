@@ -214,7 +214,7 @@
                 </div>
 
             </transition-group>
-            <div class="flex justify-center mt-8">
+            <!-- <div class="flex justify-center mt-8">
                 <button @click="loadMore" :disabled="loading"
                     class="px-16 py-4 border-2 rounded-lg text-balck font-semibold">
                     <span v-if="!loading">Load More..</span>
@@ -228,7 +228,7 @@
                         Loading...
                     </span>
                 </button>
-            </div>
+            </div> -->
         </div>
         <div v-if="isSideMenuOpen" @click="closeSideMenuOutside" class="fixed inset-0 bg-black z-10 opacity-25">
         </div>
@@ -422,23 +422,21 @@ const navigateToDetails = (id) => {
 const cards = ref([]);
 const searchQuery = ref('');
 const currentPage = ref(1);
-const totalPages = ref(267);
-const itemsPerPage = ref(22);
 const loading = ref(false)
 
 const fetchCards = async (page) => {
     loading.value = true
     try {
 
-        const response = await fetch(`${apiUrl}/strains/getAllStrains?page=${page}&limit=${itemsPerPage.value}`);
+        const response = await fetch(`${apiUrl}/strains/getAllStrains`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        if (Array.isArray(data.data.strains)) {
-            cards.value = [...cards.value, ...data.data.strains];
+        if (Array.isArray(data.data.Strains)) {
+            cards.value = [...cards.value, ...data.data.Strains];
         } else {
-            console.error('Error: The "strains" field is not an array:', data.data.strains);
+            console.error('Error: The "strains" field is not an array:', data.data.Strains);
         }
     } catch (error) {
         console.error('Error fetching cards:', error);
@@ -447,12 +445,12 @@ const fetchCards = async (page) => {
     }
 };
 
-const loadMore = () => {
-    if (currentPage.value < totalPages.value) {
-        currentPage.value += 1;
-        fetchCards(currentPage.value);
-    }
-};
+// const loadMore = () => {
+//     if (currentPage.value < totalPages.value) {
+//         currentPage.value += 1;
+//         fetchCards(currentPage.value);
+//     }
+// };
 
 const displayedCards = computed(() => {
     return cards.value.filter(card => {
