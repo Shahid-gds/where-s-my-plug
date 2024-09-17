@@ -93,22 +93,33 @@ const cards = ref([]);
 onMounted(async () => {
     try {
         const brandId = localStorage.getItem('brandId');
+        const selectedLocation = JSON.parse(localStorage.getItem('selectedLocation'));
 
-        if (!brandId) {
-            console.error('No Dispensary found');
+        if (!brandId || !selectedLocation || !selectedLocation.state) {
+            console.error('Missing required data from localStorage');
             return;
         }
-        const response = await axios.get(`${apiUrl}/dispensaries/getMeBybrand`, {
+
+        const state = selectedLocation.state;
+        const city = selectedLocation.city || '';
+        
+        const response = await axios.get(`${apiUrl}/dispensaries/getMeBybrandAndLocation`, {
             headers: {
                 'brand-id': brandId,
+            },
+            params: {
+                state, 
+                city   
             }
         });
+
         cards.value = response.data.data.dispensaries;
     } catch (error) {
-        console.error("Failed to fetch data");
+        console.error("Failed to fetch data", error);
     }
 });
-// Define number of cards per page
+
+
 const cardsPerPage = 12;
 
 const currentPage = ref(1);

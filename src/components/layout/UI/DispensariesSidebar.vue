@@ -15,8 +15,8 @@
                     <div>
                         <label for="sortBy" class="">Sort By:</label>
                         <select id="sortBy" v-model="sortBy" @change="sortCards" class="rounded-lg outline-none">
-                            <!-- <option value="price">Price</option>
-                            <option value="rating">Rating</option> -->
+                            <option value="price">Price</option>
+                            <option value="rating">Rating</option>
                         </select>
                     </div>
                 </div>
@@ -275,7 +275,22 @@ const sortingOptions = {
 
 onMounted(async () => {
     try {
-        const response = await axios.get(`${apiUrl}/dispensaries/getAllDispensaries`);
+ 
+        const selectedLocation = JSON.parse(localStorage.getItem('selectedLocation'));
+
+        if ( !selectedLocation || !selectedLocation.state) {
+            console.error('Missing required data from localStorage');
+            return;
+        }
+        const state = selectedLocation.state;
+        const city = selectedLocation.city || '';
+
+        const response = await axios.get(`${apiUrl}/dispensaries/getDispensariesByCityState`, {
+            params: {
+                state, 
+                city   
+            }
+        });
         cards.value = response.data.data.dispensaries;
     } catch (error) {
         console.error("Failed to fetch data:", error)
@@ -289,7 +304,7 @@ const cardDetial = ref([
         detailBtn: 'Detail'
     }
 ])
-const sortBy = ref('price'); // Default sorting option
+const sortBy = ref('price');
 function sortCards() {
     cards.value.sort(sortingOptions[sortBy.value]);
 }

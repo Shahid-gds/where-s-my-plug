@@ -54,7 +54,6 @@ import { ref, onMounted, computed, defineProps, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useApi } from '@/components/api/useApi';
 
-
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
@@ -67,38 +66,62 @@ const navigateToDetails = (id) => {
 }
 
 const props = defineProps({
+    state: {
+        type: String,
+        default: ''
+    },
+    city: {
+        type: String,
+        default: ''
+    },
     searchQuery: {
         type: String,
         default: ''
     }
-})
+});
 
+const state = ref('');
+const city = ref('');
 const cards = ref([]);
 
 
 onMounted(async () => {
+    const selectedLocation = localStorage.getItem('selectedLocation');
+    if (selectedLocation) {
+        try {
+            const locationData = JSON.parse(selectedLocation);
+            state.value = locationData.state || '';
+            city.value = locationData.city || ''; 
+        } catch (error) {
+            console.error('Error parsing selectedLocation from localStorage:', error);
+        }
+    }
+
     try {
-        const response = await axios.get(`${apiUrl}/brands/getAllBrands`)
+        const response = await axios.get(`${apiUrl}/brands/getMeByLocation`, {
+            params: {
+                state: state.value,
+                city: city.value
+            }
+        });
         cards.value = response.data.data.brands;
     } catch (error) {
-        console.error("Failed to fetch data");
+        console.error("Failed to fetch data", error);
     }
 });
+
 // Define number of cards per page
 const cardsPerPage = 21;
-
 const currentPage = ref(1);
-
 const totalPages = computed(() => Math.ceil(cards.value.length / cardsPerPage));
 
 const paginationCard = computed(() => {
     if (props.searchQuery) {
-        return cards.value.filter(card => card.name.toLowerCase().includes(props.searchQuery.toLowerCase()) )
+        return cards.value.filter(card => card.name.toLowerCase().includes(props.searchQuery.toLowerCase()));
     }
     const startIndex = (currentPage.value - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
     return cards.value.slice(startIndex, endIndex);
-
 });
 
 function nextPage() {
@@ -123,9 +146,10 @@ const scrollToTop = () => {
         behavior: 'smooth'
     });
 }
+
 watch(() => props.searchQuery, () => {
-    currentPage.value = 1
-})
+    currentPage.value = 1;
+});
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@
         <div
           @click="openLocationModal"
           class="flex items-center space-x-1 cursor-pointer">
-          <div class="font-bold">Delivering to</div>
+          <div class="font-bold">Delivering to: <span class="text-[#61c1b4]" >{{ selectedLocation ? selectedLocation.state : 'Unknown' }}</span></div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -491,6 +491,8 @@ const userData = reactive({
   lname: "",
   profilePhotoUrl: "",
 });
+const selectedLocation = JSON.parse(localStorage.getItem('selectedLocation'));
+const locationName = selectedLocation ? selectedLocation.state : null;
 
 const getUserData = async () => {
   const headers = {

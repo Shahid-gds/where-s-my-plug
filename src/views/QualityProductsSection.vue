@@ -13,7 +13,7 @@
                     <div class="text-white">
                         <h1 class="xl:text-[40px] font-[Extra-Bold] leading-6">Shop No.1 Dispensaries Near You</h1>
                         <h2 class="xl:text-[30px] text-[#c6fff7] font-[Semi-Bold]">Showing you stores near Newyork, USA</h2>
-                        <p class="lg:mr-[15rem]"><a href="#" class="underline font-[Semi-Bold] xl:text-xl">Check out our dispensaries map</a>
+                        <p class="lg:mr-[15rem]"><router-link :to="{name : 'Dispensaries'}" href="#" class="underline font-[Semi-Bold] xl:text-xl">Check out our dispensaries map</router-link>
                         to find the nearest dispensary outside of your area.</p>
                     </div>
                    </div>

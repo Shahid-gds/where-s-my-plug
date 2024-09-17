@@ -8,7 +8,11 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
+import { useApi } from '@/components/api/useApi';
 import L from 'leaflet';
+
+const { getApiUrl } = useApi();
+const apiUrl = getApiUrl();
 
 const svgIconUrl = 'data:image/svg+xml;base64,' + btoa(`
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -49,7 +53,20 @@ const allData = ref([]);
 // Fetch data and update coordinates and names
 const fetchData = async () => {
     try {
-        const response = await axios.get('https://wmp-api-shahid-gds-projects.vercel.app/api/v1/dispensaries/getAllDispensaries');
+        const selectedLocation = JSON.parse(localStorage.getItem('selectedLocation'));
+
+if ( !selectedLocation || !selectedLocation.state) {
+    console.error('Missing required data from localStorage');
+    return;
+}
+const state = selectedLocation.state;
+const city = selectedLocation.city || '';
+        const response = await axios.get(`${apiUrl}/dispensaries/getDispensariesByCityState`, {
+            params: {
+                state, 
+                city   
+            }
+        });
         const data = response.data.data.dispensaries;
         allData.value = extractCoordinatesAndNames(data);
         initMap();
