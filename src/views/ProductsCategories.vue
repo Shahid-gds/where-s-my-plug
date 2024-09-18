@@ -21,7 +21,7 @@
                 <div class="w-full py-6 text-xl md:text-left text-center">
                     {{ itemsFound }} items found
                 </div>
-                <div class="w-full flex md:justify-end justify-center items-center space-x-8 pb-6">
+                <div class="w-full flex md:justify-end justify-center items-center space-x-8 pb-2">
                     <div>
                         <label class="text-xl" for="">Sort By:</label>
                     </div>
@@ -36,7 +36,10 @@
                 </div>
             </div>
             <div>
-                <ProdutsCategoriesCards :cards="sortedCards" />
+                <ProdutsCategoriesCards v-if="filteredCards.length > 0" :cards="sortedCards" />
+                <div v-else class="text-center text-xl p-[20rem] border-2 container mx-auto rounded-xl">
+                    No products found with this category
+                </div>
             </div>
         </div>
     </section>
@@ -47,15 +50,18 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import ProdutsCategoriesCards from '../components/layout/UI/ProductsCategoriesCards.vue';
 import { useApi } from '@/components/api/useApi';
 import axios from 'axios';
+import { useRouter, useRoute } from 'vue-router';
 
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
 
 const cards = ref([]);
-const selectedOption = ref('Best Match');
+const selectedOption = ref('All');
 const dropdownVisible = ref(false);
-const options = ['Best Match', 'Top Sales', 'Newest Arrivals', 'Price Low to High', 'Price High to Low'];
+const options = ['All', 'Flower', 'Pre-roll', 'Edibles', 'Concentrates', 'Vapes', 'Tinctures', 'Tropicals', 'Capsules', 'Drinks', 'Hash', 'Kief'];
 const dropdown = ref(null);
+const router = useRouter();
+const route = useRoute();
 
 const handleClickOutside = (event) => {
     if (dropdown.value && !dropdown.value.contains(event.target)) {
@@ -70,24 +76,30 @@ const toggleDropdown = () => {
 const selectOption = (option) => {
     selectedOption.value = option;
     dropdownVisible.value = false;
+    router.push({ name: 'Products', query: { category: option } });
 };
 
+const filteredCards = computed(() => {
+    if (selectedOption.value === 'All') {
+        return cards.value;
+    }
+    return cards.value.filter(card => card.category === selectedOption.value);
+});
+
 const sortedCards = computed(() => {
-    const sorted = [...cards.value];
-    switch (selectedOption.value) {
+    const sorted = [...filteredCards.value];
+    switch (route.query.sortBy || 'Best Match') {
         case 'Top Sales':
-            // Replace with actual field for sales
             return sorted.sort((a, b) => b.sales - a.sales);
         case 'Newest Arrivals':
-            // Replace with actual field for creation date
+        
             return sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         case 'Price Low to High':
             return sorted.sort((a, b) => a.price - b.price);
         case 'Price High to Low':
             return sorted.sort((a, b) => b.price - a.price);
-        case 'Best Match':
         default:
-            return sorted; // Default sorting, if any
+            return sorted;
     }
 });
 
@@ -97,6 +109,12 @@ onMounted(async () => {
     try {
         const response = await axios.get(`${apiUrl}/products/getAllProducts`);
         cards.value = response.data.data.products;
+
+        if (route.query.category && route.query.category !== 'All') {
+            router.push({ name: 'Products', query: { category: 'All' } });
+        } else {
+            selectedOption.value = route.query.category || 'All';
+        }
     } catch (error) {
         console.error("Failed to fetch data:", error);
     }
@@ -118,6 +136,7 @@ document.addEventListener('click', handleClickOutside);
 .select .selectBtn:after {
     content: "";
     position: absolute;
+    z-index: 50;
     top: 45%;
     right: 15px;
     width: 10px;

@@ -17,7 +17,7 @@
         <div
           @click="openLocationModal"
           class="flex items-center space-x-1 cursor-pointer">
-          <div class="font-bold">Delivering to: <span class="text-[#61c1b4]" >{{ selectedLocation ? selectedLocation.state : 'Unknown' }}</span></div>
+          <div class="font-bold">Delivering to: <span class="text-[#61c1b4]" >{{ locationStore.selectedLocation.state }} {{ locationStore.selectedLocation.city }}</span></div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -457,9 +457,11 @@ import locationsModal from "@/components/layout/UI/popupModels/locationsModal.vu
 import megaSearch from "@/components/layout/UI/popupModels/megaSearch.vue";
 import { useApi } from "../api/useApi";
 import { logoutApi } from "@/stores/modules/authStore";
+import { useLocationStore } from "@/stores/modules/locationStore";
 
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
+const locationStore = useLocationStore();
 
 const showLocationModal = ref(false);
 const showMegaSerachModal = ref(false);

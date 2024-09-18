@@ -8,7 +8,7 @@
                         </div>
                         <div class="bg-white border-2 flex items-center sm:w-[316px] rounded-3xl absolute sm:top-16 top-0 sm:left-0">
                             <div class="w-full relative">
-                                <img class="absolute -top-16 -left-4" src="../assets/images/HomeCarousel/HomeCarouselImg1.svg" alt="">
+                                <img class="absolute -top-[3.5rem] left-[0.3rem]" src="../assets/images/HomeCarousel/tinctures.png" alt="">
                             </div>
                             <div class="p-3">
                                 <p>Your free 10% CBD 

@@ -1,6 +1,6 @@
 <template>
     <section class="">
-        <transition-group name="nested" tag="div" class="container mx-auto flex items-center flex-wrap">
+        <transition-group name="nested" tag="div" class="container mx-auto flex justify-center items-center flex-wrap">
             <div v-for="card in paginationCard" :key="card._id" @click="navigateToDetails(card._id)"
                 class="2xl:w-[420px] w-[400px]  rounded-2xl 2xl:p-6 p-4 border-2 border-[#CCE3E0] hover:border-2  hover:border-[#61c1b4] transition-all duration-300 cursor-pointer m-4 bg-[white]">
                 <div class="flex space-x-4">

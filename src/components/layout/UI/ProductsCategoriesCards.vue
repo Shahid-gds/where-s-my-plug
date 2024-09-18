@@ -2,14 +2,17 @@
     <section>
         <transition-group name="nested" tag="div" class="container mx-auto flex flex-wrap justify-center px-6">
             <div v-for="card in paginatedCards" :key="card._id" @click="navigateToDetails(card._id)"
-                class="2xl:w-[420px] w-[400px] cursor-pointer border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
-                <div class="flex justify-center pb-6">
-                    <div class="">
-                        <img :src="card.images[0]" alt="Product Image" class="w-full h-[250px]" loading="lazy">
+                class="2xl:w-[420px] w-[400px] relative cursor-pointer border-2 border-[#CCE3E0] m-2 p-6 py-8 rounded-2xl hover:shadow-xl hover:border-[#61C1B4] duration-300 transition-all">
+                <div class="flex justify-center py-6">
+                    <div class="rounded-xl">
+                        <img :src="card.images[0]" alt="Product Image" class="w-full h-[200px] rounded-xl" loading="lazy">
                     </div>
                 </div>
                 <div class="text-lg font-bold">
                     {{ card.name }}
+                </div>
+                <div class="text-lg font-bold absolute top-0 right-0 p-3 rounded-tr-xl bg-[#CCE3E0]">
+                    {{ card.category }}
                 </div>
                 <div class="py-2 font-[Extra-Bold]">
                     ${{ card.price }}
@@ -75,7 +78,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useApi } from '@/components/api/useApi';
 import axios from 'axios';
 
@@ -93,6 +96,7 @@ const toggleDescription = (id) => {
 }
 
 const router = useRouter();
+const route = useRoute();
 
 const props = defineProps({
     paginationCard: {
@@ -101,12 +105,20 @@ const props = defineProps({
     }
 });
 
-const totalPages = computed(() => Math.ceil(cards.value.length / itemsPerPage));
+const category = computed(() => route.query.category || 'All');
+
+const filteredCards = computed(() => {
+    if (category.value === 'All') {
+        return cards.value;
+    }
+    return cards.value.filter(card => card.category === category.value);
+});
+const totalPages = computed(() => Math.ceil(filteredCards.value.length / itemsPerPage));
 
 const paginatedCards = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return cards.value.slice(start, end);
+    return filteredCards.value.slice(start, end);
 });
 
 const navigateToDetails = (id) => {

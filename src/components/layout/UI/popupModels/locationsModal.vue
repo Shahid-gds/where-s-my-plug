@@ -88,8 +88,10 @@
 import { ref, onMounted, computed } from 'vue';
 import { useApi } from '@/components/api/useApi';
 import { useRouter } from 'vue-router';
+import { useLocationStore } from '@/stores/modules/locationStore';
 
 const router = useRouter();
+const locationStore = useLocationStore();
 
 const { getApiUrl } = useApi();
 const apiUrl = getApiUrl();
@@ -154,6 +156,7 @@ const selectLocation = (state, city) => {
         selectedLocations.value.push({ state, city });
         uniqueLocations.add(locationKey);
         localStorage.setItem('selectedLocation', JSON.stringify({ state, city }));
+        locationStore.setLocation(state, city);
     }
 
     searchQuery.value = '';
